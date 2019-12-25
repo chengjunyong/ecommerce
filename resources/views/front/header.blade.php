@@ -122,12 +122,12 @@
                   <li>
                     <a href="#">Home</a>
                     <ul>
-                      <li><a target="_blank" href="index.html">layout 1</a></li>
-                      <li><a target="_blank" href="layout-2.html">layout 2</a></li>
-                      <li><a target="_blank" href="layout-3.html">layout 3</a></li>
-                      <li><a target="_blank" href="layout-4.html">layout 4</a></li>
-                      <li><a target="_blank" href="layout-5.html">layout 5</a></li>
-                      <li><a target="_blank" href="layout-6.html">layout 6</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">layout 1</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex2') }}">layout 2</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex3') }}">layout 3</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex4') }}">layout 4</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex5') }}">layout 5</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex6') }}">layout 6</a></li>
                     </ul>
                   </li>
                   <!--HOME-END-->

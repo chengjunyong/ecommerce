@@ -33,7 +33,7 @@
 </head>
 <body class="bg-light ">
 
-@yield('content')
+@yield('layout')
 
 <!-- latest jquery-->
 <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>

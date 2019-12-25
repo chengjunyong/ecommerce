@@ -1,8 +1,7 @@
-@extends('front.app')
+@extends('front.layout')
 
 @section('content')
 
-@include('front.header')
 <section class="theme-slider section-pt-space">
     <div class="custom-container">
         <div class="row">
