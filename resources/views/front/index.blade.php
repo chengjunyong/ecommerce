@@ -1,6 +1,6 @@
 @extends('front.layout')
 
-@section('content')
+@section('layout')
 
 <section class="theme-slider section-pt-space">
     <div class="custom-container">
@@ -19,7 +19,7 @@
                                     <h4>the best</h4>
                                     <h1>loffer shoes</h1>
                                     <h2>minimum 30% off</h2>
-                                    <a class="btn btn-rounded">
+                                    <a class="btn btn-rounded" href="{{ route('getItemDetail', ['id' => 1]) }}">
                                         Shop Now
                                     </a>
                                 </div>
@@ -4971,8 +4971,8 @@
                 </li>
                 <li>
                     <div class="buttons">
-                        <a href="cart.html" class="btn btn-normal btn-xs view-cart">view cart</a>
-                        <a href="#" class="btn btn-normal btn-xs checkout">checkout</a>
+                        <a href="{{ route('getCartIndex') }}" class="btn btn-normal btn-xs view-cart">view cart</a>
+                        <a href="{{ route('getCheckoutIndex') }}" class="btn btn-normal btn-xs checkout">checkout</a>
                     </div>
                 </li>
             </ul>
@@ -5236,5 +5236,14 @@
     </div>
   </div>
   <!-- notification product -->
+
+  <script>
+    
+    $(document).ready(function(){
+      $("#navbarToggleExternalContent").addClass("show");
+    });
+    
+
+  </script>
 
 @endsection

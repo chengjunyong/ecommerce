@@ -105,7 +105,7 @@
               </ul>
             </div>
             <div class="brand-logo">
-              <a href="{{ route('getNew') }}" target="_blank">
+              <a href="{{ route('getFrontIndex') }}" target="_blank">
                 <img src="../assets/images/layout-1/logo/logo.png" class="img-fluid  " alt="logo-header">
               </a>
           	</div>
@@ -464,7 +464,7 @@
                     </button>
                     <h5 class="mb-0 ml-3 text-white title-font">Shop by category</h5>
                   </nav>
-                  <div class="collapse show nav-desk" id="navbarToggleExternalContent">
+                  <div class="collapse nav-desk" id="navbarToggleExternalContent">
                     <ul class="nav-cat title-font">
                       <li> <img src="../assets/images/layout-1/nav-img/01.png " alt="catergory-product"> <a>western ware</a></li>
                       <li> <img src="../assets/images/layout-1/nav-img/02.png " alt="catergory-product"> <a>TV, Appliances</a></li>

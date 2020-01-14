@@ -1,11 +1,11 @@
 @extends('front.app')
 
-@section('layout')
+@section('content')
 
 @include('front.header')
 
 @include('front.loader')
 
-@yield('content')
+@yield('layout')
 
 @endsection

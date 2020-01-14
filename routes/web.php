@@ -19,3 +19,18 @@ Route::get('/index5', 'frontController@getFrontIndex5')->name('getFrontIndex5');
 Route::get('/index6', 'frontController@getFrontIndex6')->name('getFrontIndex6');
 
 Route::get('/newpage', 'frontController@getNewPage')->name('getNew');
+
+Route::prefix('item')->group(function () {
+  Route::get('{id}', 'itemController@getItemDetail')->name('getItemDetail');
+});
+
+Route::prefix('cart')->group(function () {
+  Route::get('/', 'itemController@getCartIndex')->name('getCartIndex');
+});
+
+Route::prefix('checkout')->group(function () {
+  Route::get('/', 'itemController@getCheckoutIndex')->name('getCheckoutIndex');
+  Route::get('/success', 'itemController@getCheckoutSuccessIndex')->name('getCheckoutSuccessIndex');
+});
+
+
