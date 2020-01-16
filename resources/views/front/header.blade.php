@@ -75,7 +75,7 @@
                     back <i class="fa fa-angle-right pl-2"></i>
                   </div>
                 </li>
-                <li><a href="#">western ware</a></li>
+                <li><a href="{{ route('getCategoryPage') }}">western ware</a></li>
                 <li><a href="#">TV, Appliances</a></li>
                 <li><a href="#">Pets Products</a></li>
                 <li><a href="#">Car, Motorbike</a></li>
@@ -466,7 +466,7 @@
                   </nav>
                   <div class="collapse nav-desk" id="navbarToggleExternalContent">
                     <ul class="nav-cat title-font">
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a>western ware</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage') }}">western ware</a></li>
                       <li> <img src="{{ asset('/assets/images/layout-1/nav-img/02.png') }}" alt="catergory-product"> <a>TV, Appliances</a></li>
                       <li> <img src="{{ asset('/assets/images/layout-1/nav-img/03.png') }}" alt="catergory-product"> <a>Pets Products</a></li>
                       <li> <img src="{{ asset('/assets/images/layout-1/nav-img/04.png') }}" alt="catergory-product"> <a>Car, Motorbike</a></li>
