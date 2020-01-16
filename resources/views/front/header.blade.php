@@ -106,7 +106,7 @@
             </div>
             <div class="brand-logo">
               <a href="{{ route('getFrontIndex') }}" target="_blank">
-                <img src="../assets/images/layout-1/logo/logo.png" class="img-fluid  " alt="logo-header">
+                <img src="{{ asset('/assets/images/layout-1/logo/logo.png') }}" class="img-fluid  " alt="logo-header">
               </a>
           	</div>
       		</div>
@@ -466,25 +466,25 @@
                   </nav>
                   <div class="collapse nav-desk" id="navbarToggleExternalContent">
                     <ul class="nav-cat title-font">
-                      <li> <img src="../assets/images/layout-1/nav-img/01.png " alt="catergory-product"> <a>western ware</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/02.png " alt="catergory-product"> <a>TV, Appliances</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/03.png " alt="catergory-product"> <a>Pets Products</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/04.png " alt="catergory-product"> <a>Car, Motorbike</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/05.png " alt="catergory-product"> <a>Industrial Products</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/06.png " alt="catergory-product"> <a>Beauty, Health Products</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/07.png " alt="catergory-product"> <a>Grocery Products </a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/08.png " alt="catergory-product"> <a>Sports</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/09.png " alt="catergory-product"> <a>Bags, Luggage</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/10.png " alt="catergory-product"> <a>Movies, Music </a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/11.png " alt="catergory-product"> <a>Video Games</a></li>
-                      <li> <img src="../assets/images/layout-1/nav-img/08.png " alt="catergory-product"> <a>Sports</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a>western ware</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/02.png') }}" alt="catergory-product"> <a>TV, Appliances</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/03.png') }}" alt="catergory-product"> <a>Pets Products</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/04.png') }}" alt="catergory-product"> <a>Car, Motorbike</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/05.png') }}" alt="catergory-product"> <a>Industrial Products</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/06.png') }}" alt="catergory-product"> <a>Beauty, Health Products</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/07.png') }}" alt="catergory-product"> <a>Grocery Products </a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>Sports</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/09.png') }}" alt="catergory-product"> <a>Bags, Luggage</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/10.png') }}" alt="catergory-product"> <a>Movies, Music </a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/11.png') }}" alt="catergory-product"> <a>Video Games</a></li>
+                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>Sports</a></li>
                       <li class="mor-slide-open">
                         <ul>
-                          <li> <img src="../assets/images/layout-1/nav-img/08.png " alt="catergory-product"> <a>Sports</a></li>
-                          <li> <img src="../assets/images/layout-1/nav-img/09.png " alt="catergory-product"> <a>Bags, Luggage</a></li>
-                          <li> <img src="../assets/images/layout-1/nav-img/10.png " alt="catergory-product"> <a>Movies, Music </a></li>
-                          <li> <img src="../assets/images/layout-1/nav-img/11.png " alt="catergory-product"> <a>Video Games</a></li>
-                          <li> <img src="../assets/images/layout-1/nav-img/12.png " alt="catergory-product"> <a>Toys, Baby Products</a></li>
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>Sports</a></li>
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/09.png') }}" alt="catergory-product"> <a>Bags, Luggage</a></li>
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/10.png') }}" alt="catergory-product"> <a>Movies, Music </a></li>
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/11.png') }}" alt="catergory-product"> <a>Video Games</a></li>
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/12.png') }}" alt="catergory-product"> <a>Toys, Baby Products</a></li>
                         </ul>
                       </li>
                       <li> <a class="mor-slide-click">mor category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
@@ -532,25 +532,25 @@
               <div class="dropdown-menu gift-dropdown">
                 <div class="media">
                   <div  class="mr-3">
-                    <img src="../assets/images/icon/1.png" alt="Generic placeholder image">
+                    <img src="{{ asset('/assets/images/icon/1.png') }}" alt="Generic placeholder image">
                   </div>
                   <div class="media-body">
                     <h5 class="mt-0">Billion Days</h5>
-                    <p><img src="../assets/images/icon/currency.png" class="cash" alt="gift-block"> Flat Rs. 270 Rewards</p>
+                    <p><img src="{{ asset('/assets/images/icon/currency.png') }}" class="cash" alt="gift-block"> Flat Rs. 270 Rewards</p>
                   </div>
                 </div>
                   <div class="media">
                     <div  class="mr-3">
-                      <img src="../assets/images/icon/2.png" alt="Generic placeholder image">
+                      <img src="{{ asset('/assets/images/icon/2.png') }}" alt="Generic placeholder image">
                     </div>
                     <div class="media-body">
                       <h5 class="mt-0">Fashion Discount</h5>
-                      <p><img src="../assets/images/icon/fire.png"  class="fire" alt="gift-block">Extra 10% off (upto Rs. 10,000*) </p>
+                      <p><img src="{{ asset('/assets/images/icon/fire.png') }}"  class="fire" alt="gift-block">Extra 10% off (upto Rs. 10,000*) </p>
                     </div>
                   </div>
                   <div class="media">
                     <div  class="mr-3">
-                      <img src="../assets/images/icon/3.png" alt="Generic placeholder image">
+                      <img src="{{ asset('/assets/images/icon/3.png') }}" alt="Generic placeholder image">
                     </div>
                     <div class="media-body">
                       <h5 class="mt-0">75% off Store</h5>
@@ -559,7 +559,7 @@
                   </div>
                   <div class="media">
                     <div  class="mr-3">
-                      <img src="../assets/images/icon/6.png" alt="Generic placeholder image">
+                      <img src="{{ asset('/assets/images/icon/6.png') }}" alt="Generic placeholder image">
                     </div>
                     <div class="media-body">
                       <h5 class="mt-0">Upto 50% off</h5>
@@ -568,11 +568,11 @@
                   </div>
                   <div class="media">
                     <div  class="mr-3">
-                      <img src="../assets/images/icon/5.png" alt="Generic placeholder image">
+                      <img src="{{ asset('/assets/images/icon/5.png') }}" alt="Generic placeholder image">
                     </div>
                     <div class="media-body">
                       <h5 class="mt-0">Beauty store</h5>
-                      <p><img src="../assets/images/icon/currency.png" class="cash" alt="curancy"> Flat Rs. 270 Rewards</p>
+                      <p><img src="{{ asset('/assets/images/icon/currency.png') }}" class="cash" alt="curancy"> Flat Rs. 270 Rewards</p>
                     </div>
                   </div>
                 </div>
