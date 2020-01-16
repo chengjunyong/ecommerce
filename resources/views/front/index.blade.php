@@ -11,7 +11,7 @@
                         <div class="slider-banner">
                             <div class="slider-img">
                                 <ul class="layout2-slide-1">
-                                    <li id="img-1"><img src="../assets/images/layout-1/slider/1.1.png" class="img-fluid" alt="slider"></li>
+                                    <li id="img-1"><img src="{{ asset('/assets/images/layout-1/slider/1.1.png') }}" class="img-fluid" alt="slider"></li>
                                 </ul>
                             </div>
                             <div class="slider-banner-contain">
@@ -30,7 +30,7 @@
                         <div class="slider-banner">
                             <div class="slider-img">
                                 <ul class="layout2-slide-2">
-                                    <li id="img-2"><img src="../assets/images/layout-1/slider/1.2.png" class="img-fluid" alt="slider"></li>
+                                    <li id="img-2"><img src="{{ asset('/assets/images/layout-1/slider/1.2.png') }}" class="img-fluid" alt="slider"></li>
                                 </ul>
                             </div>
                             <div class="slider-banner-contain">
@@ -49,7 +49,7 @@
                         <div class="slider-banner">
                             <div class="slider-img">
                                 <ul class="layout2-slide-3">
-                                    <li id="img-3"><img src="../assets/images/layout-1/slider/1.3.png" class="img-fluid" alt="slider"></li>
+                                    <li id="img-3"><img src="{{ asset('/assets/images/layout-1/slider/1.3.png') }}" class="img-fluid" alt="slider"></li>
                                 </ul>
                             </div>
                             <div class="slider-banner-contain">
@@ -68,7 +68,7 @@
             </div>
             <div class="col-xl-2 col-sm-3 pl-0 offer-banner">
                 <div class="offer-banner-img">
-                    <img src="../assets/images/layout-1/offer-banner.png" alt="offer-banner" class="img-fluid  ">
+                    <img src="{{ asset('/assets/images/layout-1/offer-banner.png') }}" alt="offer-banner" class="img-fluid  ">
                 </div>
                 <div class="banner-contain">
                     <div>
@@ -89,7 +89,7 @@
             <div class="col-md-4 offset-xl-2 p-r-md-0">
                 <div class="collection-banner-main p-left">
                     <div class="collection-img">
-                        <img src="../assets/images/layout-1/collection-banner/1.jpg" class="img-fluid bg-img  " alt="banner">
+                        <img src="{{ asset('/assets/images/layout-1/collection-banner/1.jpg') }}" class="img-fluid bg-img  " alt="banner">
                     </div>
                     <div class="collection-banner-contain">
                         <div>
@@ -108,7 +108,7 @@
             <div class="col-md-4 col-4">
                 <div class="collection-banner-main p-left">
                     <div class="collection-img">
-                        <img src="../assets/images/layout-1/collection-banner/2.jpg" class="img-fluid bg-img  " alt="banner">
+                        <img src="{{ asset('/assets/images/layout-1/collection-banner/2.jpg') }}" class="img-fluid bg-img  " alt="banner">
                     </div>
                     <div class="collection-banner-contain">
                         <div>
@@ -127,7 +127,7 @@
             <div class="col-md-2  pl-md-0">
                 <div class="collection-banner-main p-top banner-6">
                     <div class="collection-img">
-                        <img src="../assets/images/layout-1/collection-banner/7.jpg" class="img-fluid bg-img  " alt="banner">
+                        <img src="{{ asset('/assets/images/layout-1/collection-banner/7.jpg') }}" class="img-fluid bg-img  " alt="banner">
                     </div>
                     <div class="collection-banner-contain">
                         <div>
@@ -285,7 +285,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/1.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -308,7 +308,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/2.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/2.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -345,7 +345,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/3.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/3.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -368,7 +368,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/4.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/4.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -416,10 +416,10 @@
                                     <div class="row hot-deal-subcontain">
                                         <div class="col-lg-4 col-sm-4 col-12">
                                             <div class="hotdeal-right-slick-1 no-arrow">
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/1.jpg" alt="hot-deal" class="img-fluid  "></div>
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/2.jpg" alt="hot-deal" class="img-fluid  "></div>
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/3.jpg" alt="hot-deal" class="img-fluid  "></div>
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/4.jpg" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6">
@@ -472,10 +472,10 @@
                                         </div>
                                         <div class="col-lg-2 col-sm-2 p-l-md-0">
                                             <div class="hotdeal-right-nav-1">
-                                                <div><img src="../assets/images/layout-1/hot-deal/1.jpg" alt="hot-deal" class="img-fluid  " ></div>
-                                                <div><img src="../assets/images/layout-1/hot-deal/2.jpg" alt="hot-deal" class="img-fluid  " ></div>
-                                                <div><img src="../assets/images/layout-1/hot-deal/3.jpg" alt="hot-deal" class="img-fluid  " ></div>
-                                                <div><img src="../assets/images/layout-1/hot-deal/4.jpg" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
                                             </div>
                                         </div>
                                     </div>
@@ -489,10 +489,10 @@
                                     <div class="row hot-deal-subcontain">
                                         <div class="col-lg-4 col-sm-4 col-12">
                                             <div class="hotdeal-right-slick-1 no-arrow">
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/4.jpg" alt="hot-deal" class="img-fluid  "></div>
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/3.jpg" alt="hot-deal" class="img-fluid  "></div>
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/2.jpg" alt="hot-deal" class="img-fluid  "></div>
-                                                <div class="right-slick-img"><img src="../assets/images/layout-1/hot-deal/1.jpg" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
+                                                <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-6">
@@ -545,10 +545,10 @@
                                         </div>
                                         <div class="col-lg-2 col-sm-2 p-l-md-0">
                                             <div class="hotdeal-right-nav-1">
-                                                <div><img src="../assets/images/layout-1/hot-deal/4.jpg" alt="hot-deal" class="img-fluid  " ></div>
-                                                <div><img src="../assets/images/layout-1/hot-deal/3.jpg" alt="hot-deal" class="img-fluid  " ></div>
-                                                <div><img src="../assets/images/layout-1/hot-deal/2.jpg" alt="hot-deal" class="img-fluid  " ></div>
-                                                <div><img src="../assets/images/layout-1/hot-deal/1.jpg" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
+                                                <div><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
                                             </div>
                                         </div>
                                     </div>
@@ -590,7 +590,7 @@
             <div class="col-md-4">
                 <div class="collection-banner-main p-left">
                     <div class="collection-img">
-                        <img src="../assets/images/layout-1/collection-banner/3.jpg" class="img-fluid bg-img " alt="banner">
+                        <img src="{{ asset('/assets/images/layout-1/collection-banner/3.jpg') }}" class="img-fluid bg-img " alt="banner">
                     </div>
                     <div class="collection-banner-contain">
                         <div>
@@ -609,7 +609,7 @@
             <div class="col-md-4">
                 <div class="collection-banner-main p-left">
                     <div class="collection-img">
-                        <img src="../assets/images/layout-1/collection-banner/4.jpg" class="img-fluid bg-img " alt="banner">
+                        <img src="{{ asset('/assets/images/layout-1/collection-banner/4.jpg') }}" class="img-fluid bg-img " alt="banner">
                     </div>
                     <div class="collection-banner-contain">
                         <div>
@@ -628,7 +628,7 @@
             <div class="col-md-4">
                 <div class="collection-banner-main p-left">
                     <div class="collection-img">
-                        <img src="../assets/images/layout-1/collection-banner/5.jpg" class="img-fluid bg-img  " alt="banner">
+                        <img src="{{ asset('/assets/images/layout-1/collection-banner/5.jpg') }}" class="img-fluid bg-img  " alt="banner">
                     </div>
                     <div class="collection-banner-contain">
                         <div>
@@ -678,10 +678,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/1.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a1.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a1.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -738,10 +738,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/2.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/2.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a2.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a2.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -793,10 +793,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/3.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/3.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a3.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a3.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -851,10 +851,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/4.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/4.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a4.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a4.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -906,10 +906,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/5.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/5.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a5.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a5.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -967,10 +967,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/6.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/6.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a6.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a6.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1022,10 +1022,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/7.jpg" class="img-fluid"   alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/7.jpg') }}" class="img-fluid"   alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a7.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a7.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1077,10 +1077,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/8.jpg" class="img-fluid"   alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/8.jpg') }}" class="img-fluid"   alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a8.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a8.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1136,10 +1136,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/8.jpg" class="img-fluid"   alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/8.jpg') }}" class="img-fluid"   alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a8.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a8.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1191,10 +1191,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/1.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a1.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a1.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1251,10 +1251,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/2.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/2.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a2.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a2.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1306,10 +1306,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/3.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/3.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a3.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a3.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1364,10 +1364,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/4.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/4.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a4.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a4.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1419,10 +1419,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/5.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/5.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a5.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a5.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1480,10 +1480,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/6.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/6.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a6.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a6.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1535,10 +1535,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/7.jpg" class="img-fluid"   alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/7.jpg') }}" class="img-fluid"   alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a7.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a7.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1594,10 +1594,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/7.jpg" class="img-fluid"   alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/7.jpg') }}" class="img-fluid"   alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a7.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a7.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1649,10 +1649,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/8.jpg" class="img-fluid"   alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/8.jpg') }}" class="img-fluid"   alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a8.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a8.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1704,10 +1704,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/1.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a1.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a1.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1764,10 +1764,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/2.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/2.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a2.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a2.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1819,10 +1819,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/3.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/3.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a3.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a3.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1877,10 +1877,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/4.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/4.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a4.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a4.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -1932,10 +1932,10 @@
                                     <div class="product-box">
                                         <div class="product-imgbox">
                                             <div class="product-front">
-                                                <img src="../assets/images/layout-1/product/5.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/5.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-back">
-                                                <img src="../assets/images/layout-1/product/a5.jpg" class="img-fluid  " alt="product">
+                                                <img src="{{ asset('/assets/images/layout-1/product/a5.jpg') }}" class="img-fluid  " alt="product">
                                             </div>
                                             <div class="product-icon">
                                                 <button  onclick="openCart()" type="button" >
@@ -3466,7 +3466,7 @@
                         <div class="category-contain">
                             <a href="#">
                                 <div class="img-wrapper">
-                                    <img src="../assets/images/layout-1/rounded-cat/1.png" alt="category" class="img-fluid">
+                                    <img src="{{ asset('/assets/images/layout-1/rounded-cat/1.png') }}" alt="category" class="img-fluid">
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
@@ -3480,7 +3480,7 @@
                         <div class="category-contain">
                             <a href="#">
                                 <div class="img-wrapper">
-                                    <img src="../assets/images/layout-1/rounded-cat/2.png" alt="category" class="img-fluid  ">
+                                    <img src="{{ asset('/assets/images/layout-1/rounded-cat/2.png') }}" alt="category" class="img-fluid  ">
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
@@ -3494,7 +3494,7 @@
                         <div class="category-contain">
                             <a href="#">
                                 <div class="img-wrapper">
-                                    <img src="../assets/images/layout-1/rounded-cat/3.png" alt="category" class="img-fluid  ">
+                                    <img src="{{ asset('/assets/images/layout-1/rounded-cat/3.png') }}" alt="category" class="img-fluid  ">
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
@@ -3508,7 +3508,7 @@
                         <div class="category-contain">
                             <a href="#">
                                 <div class="img-wrapper">
-                                    <img src="../assets/images/layout-1/rounded-cat/4.png" alt="category" class="img-fluid  ">
+                                    <img src="{{ asset('/assets/images/layout-1/rounded-cat/4.png') }}" alt="category" class="img-fluid  ">
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
@@ -3522,7 +3522,7 @@
                         <div class="category-contain">
                             <a href="#">
                                 <div class="img-wrapper">
-                                    <img src="../assets/images/layout-1/rounded-cat/5.png" alt="category" class="img-fluid  ">
+                                    <img src="{{ asset('/assets/images/layout-1/rounded-cat/5.png') }}" alt="category" class="img-fluid  ">
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
@@ -3536,7 +3536,7 @@
                         <div class="category-contain">
                             <a href="#">
                                 <div class="img-wrapper">
-                                    <img src="../assets/images/layout-1/rounded-cat/6.png" alt="category" class="img-fluid  ">
+                                    <img src="{{ asset('/assets/images/layout-1/rounded-cat/6.png') }}" alt="category" class="img-fluid  ">
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
@@ -3550,7 +3550,7 @@
                         <div class="category-contain">
                             <a href="#">
                                 <div class="img-wrapper">
-                                    <img src="../assets/images/layout-1/rounded-cat/7.png" alt="category" class="img-fluid  ">
+                                    <img src="{{ asset('/assets/images/layout-1/rounded-cat/7.png') }}" alt="category" class="img-fluid  ">
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
@@ -3582,7 +3582,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/1.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -3605,7 +3605,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/2.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/2.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -3642,7 +3642,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/3.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/3.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -3665,7 +3665,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media">
-                                    <img src="../assets/images/layout-1/media-banner/4.jpg" class="img-fluid  " alt="banner">
+                                    <img src="{{ asset('/assets/images/layout-1/media-banner/4.jpg') }}" class="img-fluid  " alt="banner">
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
@@ -4735,7 +4735,7 @@
         <div class="row">
             <div class="col">
                 <div class="contact-banner-contain">
-                    <div class="contact-banner-img"><img src="../assets/images/layout-1/call-img.png" alt="call-banner"></div>
+                    <div class="contact-banner-img"><img src="{{ asset('/assets/images/layout-1/call-img.png') }}" alt="call-banner"></div>
                     <div> <h3>if you have any question please call us</h3></div>
                     <div><h2>123-456-7890</h2></div>
                 </div>
@@ -4753,10 +4753,10 @@
                 <div class="app-link-bloc-contain">
                     <div class="app-item-group">
                         <div class="app-item">
-                            <img src="../assets/images/layout-1/app/1.png" class="img-fluid  " alt="app-banner">
+                            <img src="{{ asset('/assets/images/layout-1/app/1.png') }}" class="img-fluid  " alt="app-banner">
                         </div>
                         <div class="app-item">
-                            <img src="../assets/images/layout-1/app/2.png" class="img-fluid  " alt="app-banner">
+                            <img src="{{ asset('/assets/images/layout-1/app/2.png') }}" class="img-fluid  " alt="app-banner">
                         </div>
                     </div>
                     <div class="app-item-group ">
@@ -4781,7 +4781,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12 ">
                         <div class="logo-block">
-                            <img src="../assets/images/layout-1/logo/logo.png" class="img-fluid  " alt="logo">
+                            <img src="{{ asset('/assets/images/layout-1/logo/logo.png') }}" class="img-fluid  " alt="logo">
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-12 pr-lg-0">
@@ -4869,11 +4869,11 @@
                     <div class="col-xl-6 col-md-4 col-sm-12">
                         <div class="payment-card-bottom">
                             <ul>
-                                <li><a href="#"><img src="../assets/images/layout-1/pay/1.png" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="../assets/images/layout-1/pay/2.png" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="../assets/images/layout-1/pay/3.png" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="../assets/images/layout-1/pay/4.png" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="../assets/images/layout-1/pay/5.png" class="img-fluid" alt="pay"></a></li>
+                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/1.png') }}" class="img-fluid" alt="pay"></a></li>
+                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/2.png') }}" class="img-fluid" alt="pay"></a></li>
+                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/3.png') }}" class="img-fluid" alt="pay"></a></li>
+                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/4.png') }}" class="img-fluid" alt="pay"></a></li>
+                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/5.png') }}" class="img-fluid" alt="pay"></a></li>
                             </ul>
                         </div>
                     </div>
