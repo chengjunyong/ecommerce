@@ -2,21 +2,6 @@
 
 @section('layout')
 
-<style>
-  
-  .buynow_float { width: 20px; height: 20px; color: #fff; background: #ff6000; border-radius: 50%; position: absolute; left: calc(50% - 10px); opacity: 0; box-shadow: 0px 0px 10px 10px #ff6000; }
-
-  .buynow_float.active { animation: buynow_fly 300ms linear forwards; }
-
-  @keyframes buynow_fly
-  {
-    0% { top: 0px; left: calc(50% - 10px); opacity: 0; }
-    50% { top: -350px; left: 125px; opacity: 1; }
-    100% { top: -700px; left: 250px; opacity: 0; }
-  }
-
-</style>
-
 <!-- breadcrumb start -->
 <div class="breadcrumb-main ">
     <div class="container">
@@ -255,13 +240,7 @@
                                                 <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
                                         </div>
                                     </div>
-                                    <div class="product-buttons">
-                                      <a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-normal">add to cart</a> 
-                                      <a href="#" class="btn btn-normal" id="buynow">
-                                        buy now
-                                        <i class="buynow_float">1</i>
-                                      </a>
-                                    </div>
+                                    <div class="product-buttons"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
                                     <div class="border-product">
                                         <h6 class="product-title">product details</h6>
                                         <p>Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem,</p>
@@ -1254,16 +1233,5 @@
         </div>
     </div>
 </div>
-
-<script>
-  
-  $("#buynow").click(function(){
-    $(".buynow_float").addClass("active").delay(300).queue(function(removeActive){
-      $(".buynow_float").removeClass("active");
-      removeActive();
-    });
-  });
-
-</script>
 
 @endsection
