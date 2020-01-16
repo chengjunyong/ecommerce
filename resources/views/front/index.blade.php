@@ -2,7 +2,7 @@
 
 @section('layout')
 
-<section class="theme-slider section-pt-space test2class">
+<section class="theme-slider section-pt-space">
     <div class="custom-container">
         <div class="row">
             <div class="col-xl-8 col-lg-9 offset-xl-2 px-abjust">
