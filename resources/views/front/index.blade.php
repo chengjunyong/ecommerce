@@ -235,7 +235,7 @@
                         </g>
                     </svg>
                     <div class="media-body">
-                        <h5>EASY RETURN</h5>
+                        <h5>ONLINE PAYMENT & CASH ON DELIVERY</h5>
                     </div>
                 </div>
             </div>
@@ -261,7 +261,7 @@
 </g>
 </svg>
                     <div class="media-body">
-                        <h5>ONLINE PAYMENT</h5>
+                        <h5>CUSTOMER SERVICE</h5>
                     </div>
                 </div>
             </div>
@@ -4844,10 +4844,9 @@
                                 </div>
                                 <div class="footer-contant">
                                     <ul class="contact-list">
-                                        <li><i class="fa fa-map-marker"></i>big deal store demo store <br> india-<span>3654123</span></li>
-                                        <li><i class="fa fa-phone"></i>call us: <span>123-456-7898</span></li>
-                                        <li><i class="fa fa-envelope-o"></i>email us: support@bigdeal.com</li>
-                                        <li><i class="fa fa-fax"></i>fax <span>123456</span></li>
+                                        <li><i class="fa fa-map-marker"></i>Demo Store Homeu</li>
+                                        <li><i class="fa fa-phone"></i>Contact Us: <span>09-12345678</span></li>
+                                        <li><i class="fa fa-envelope-o"></i>Email Us: support@homeu.com.my</li>
                                     </ul>
                                 </div>
                             </div>

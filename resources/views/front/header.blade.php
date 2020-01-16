@@ -39,10 +39,9 @@
                   english <i class="fa fa-angle-down" aria-hidden="true"></i>
                 </span>
                 <ul class="language-dropdown-open">
-                  <li><a href="#">hindi</a></li>
-                  <li><a href="#">english</a></li>
-                  <li><a href="#">marathi</a></li>
-                  <li><a href="#">spanish</a></li>
+                  <li><a href="#">English</a></li>
+                  <li><a href="#">Chinese</a></li>
+                  <li><a href="#">Malay</a></li>
                 </ul>
               </div>
               <div class="curroncy-dropdown">
