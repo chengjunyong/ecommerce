@@ -45,10 +45,10 @@
 
   <!-- Bootstrap js-->
   <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-  <script src="../assets/js/jquery.elevatezoom.js"></script>
+  <script src="{{ asset('/assets/js/jquery.elevatezoom.js') }}"></script>
 
   <!-- elevatezoom js-->
-  <script src="../assets/js/jquery.elevatezoom.js"></script>
+  <script src="{{ asset('/assets/js/jquery.elevatezoom.js') }}"></script>
 
   <!-- Bootstrap js-->
   <script src="{{ asset('assets/js/bootstrap-notify.min.js') }}"></script>
