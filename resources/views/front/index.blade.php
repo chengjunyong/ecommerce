@@ -4863,7 +4863,7 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-8 col-sm-12">
                         <div class="footer-end">
-                            <p><span>2018 - 19</span> Copy Right by Themeforest Powered by pixel strap</p>
+                            <p><span>2020</span> Copyright & Powered by Homeu</p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-4 col-sm-12">
