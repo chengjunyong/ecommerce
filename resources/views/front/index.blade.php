@@ -5226,7 +5226,7 @@
 
  <!-- notification product -->
   <div class="product-notification" id="dismiss">
-    <span  onclick="dismiss();" class="close" aria-hidden="true">×</span>
+    <span onclick="dismiss();" class="close" aria-hidden="true">×</span>
     <div class="media">
       <img class="mr-2" src="../assets/images/layout-1/product/5.jpg" alt="Generic placeholder image">
       <div class="media-body">
