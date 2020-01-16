@@ -1319,7 +1319,7 @@
     /*=====================
      15. Add to cart
      ==========================*/
-    $('.product-box button .ti-bag').on('click', function () {
+    $('.product-box button .ti-bag, .add_cart_btn').on('click', function () {
         $.notify({
             icon: 'fa fa-check',
             title: 'Success!',
@@ -1330,7 +1330,8 @@
             type: "success",
             allow_dismiss: true,
             newest_on_top: false,
-            showProgressbar: true,
+            // showProgressbar: true,
+            showProgressbar: false,
             placement: {
                 from: "top",
                 align: "right"
@@ -1338,7 +1339,7 @@
             offset: 20,
             spacing: 10,
             z_index: 1031,
-            delay: 5000,
+            delay: 2000,
             animate: {
                 enter: 'animated fadeInDown',
                 exit: 'animated fadeOutUp'
