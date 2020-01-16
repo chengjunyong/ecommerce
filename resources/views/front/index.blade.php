@@ -4862,7 +4862,7 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-8 col-sm-12">
                         <div class="footer-end">
-                            <p><span>2020</span> Copyright & Powered by Homeu</p>
+                            <p><span>2018 - 19</span> Copy Right by Themeforest Powered by pixel strap</p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-4 col-sm-12">
@@ -5225,7 +5225,7 @@
 
  <!-- notification product -->
   <div class="product-notification" id="dismiss">
-    <span onclick="dismiss();" class="close" aria-hidden="true">×</span>
+    <span  onclick="dismiss();" class="close" aria-hidden="true">×</span>
     <div class="media">
       <img class="mr-2" src="../assets/images/layout-1/product/5.jpg" alt="Generic placeholder image">
       <div class="media-body">

@@ -17,6 +17,7 @@ Route::get('/index3', 'frontController@getFrontIndex3')->name('getFrontIndex3');
 Route::get('/index4', 'frontController@getFrontIndex4')->name('getFrontIndex4');
 Route::get('/index5', 'frontController@getFrontIndex5')->name('getFrontIndex5');
 Route::get('/index6', 'frontController@getFrontIndex6')->name('getFrontIndex6');
+Route::get('/category', 'frontController@getCategoryPage')->name('getCategoryPage');
 
 Route::get('/newpage', 'frontController@getNewPage')->name('getNew');
 
