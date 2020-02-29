@@ -1277,7 +1277,7 @@
      14. RTL & Dark Light
      ==========================*/
 
-    //$('<div class="theme-pannel-main"><ul><li id="rtl_btn"><a href="javascript:void(0)" class="btn setting_btn"><span class="rtl-txt">Rtl</span></a></li><li id="ltr_btn"><a href="javascript:void(0)" class="btn setting_btn"><span class="rtl-txt">Ltr</span></a></li><li class="sidebar-btn dark-light-btn"><a href="javascript:void(0)" class="dark-light"><span class="theme-layout-version">Dark</span></a></li></ul></div><div class="color-picker"> <a href="#" class="handle title"> <img src="../assets/images/paint.png"/> </a> <div> <h4>Choose color</h4> <ul class="colors"> <li class="color1"></li><li class="color2"></li><li class="color3"></li><li class="color4"></li><li class="color5"></li><li class="color6"></li></ul> </div></div>').appendTo($('body'));
+    $('<div class="theme-pannel-main"><ul><li id="rtl_btn"><a href="javascript:void(0)" class="btn setting_btn"><span class="rtl-txt">Rtl</span></a></li><li id="ltr_btn"><a href="javascript:void(0)" class="btn setting_btn"><span class="rtl-txt">Ltr</span></a></li><li class="sidebar-btn dark-light-btn"><a href="javascript:void(0)" class="dark-light"><span class="theme-layout-version">Dark</span></a></li></ul></div><div class="color-picker"> <a href="#" class="handle title"> <img src="../assets/images/paint.png"/> </a> <div> <h4>Choose color</h4> <ul class="colors"> <li class="color1"></li><li class="color2"></li><li class="color3"></li><li class="color4"></li><li class="color5"></li><li class="color6"></li></ul> </div></div>').appendTo($('body'));
     (function() {
     })();
     $('#ltr_btn').hide();
@@ -1319,7 +1319,7 @@
     /*=====================
      15. Add to cart
      ==========================*/
-    $('.product-box button .ti-bag, .add_cart_btn').on('click', function () {
+    $('.product-box button .ti-bag').on('click', function () {
         $.notify({
             icon: 'fa fa-check',
             title: 'Success!',
@@ -1330,8 +1330,7 @@
             type: "success",
             allow_dismiss: true,
             newest_on_top: false,
-            // showProgressbar: true,
-            showProgressbar: false,
+            showProgressbar: true,
             placement: {
                 from: "top",
                 align: "right"
@@ -1339,7 +1338,7 @@
             offset: 20,
             spacing: 10,
             z_index: 1031,
-            delay: 2000,
+            delay: 5000,
             animate: {
                 enter: 'animated fadeInDown',
                 exit: 'animated fadeOutUp'

@@ -34,4 +34,8 @@ Route::prefix('checkout')->group(function () {
   Route::get('/success', 'itemController@getCheckoutSuccessIndex')->name('getCheckoutSuccessIndex');
 });
 
+Route::prefix('/admin')->group(function(){
+  Route::get('/', 'adminController@getIndex')->name('getIndex');
+});
+
 
