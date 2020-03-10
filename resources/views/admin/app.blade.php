@@ -113,6 +113,7 @@
 
 <!--script admin-->
 <script src="{{ asset('assets/js/admin-script.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 </html>

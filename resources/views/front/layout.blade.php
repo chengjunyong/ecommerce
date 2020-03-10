@@ -8,4 +8,8 @@
 
 @yield('layout')
 
+<form id="logout_form" method="POST" action="{{ route('logout') }}">
+  @csrf
+</form>
+
 @endsection

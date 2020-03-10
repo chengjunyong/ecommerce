@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\payment;
+use Illuminate\Support\Facades\Auth;
 
 class frontController extends Controller
 {
@@ -61,15 +61,20 @@ class frontController extends Controller
     return view('front.index6.index6');
   }
 
-	public function getNewPage()
-	{
-		$payment_list = payment::get();
-
-		return view('front.newpage', compact('payment_list'));
-	}
-
   public function getCategoryPage()
   {
     return view('front.category');
+  }
+
+  public function getRegisterPage()
+  {
+    return view('front.register');
+  }
+
+  public function getUserProfile()
+  {
+    $user = Auth::user();
+
+    return view('front.profile', compact('user'));
   }
 }

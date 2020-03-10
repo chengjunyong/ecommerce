@@ -64,7 +64,87 @@
 @yield('content')
 
 <script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 
+<script>
+  
+  $(document).ready(function(){
+
+    $("#login_button").click(function(){
+      var error = 0;
+      if($("#login_form input[name=email]").val() == "")
+      {
+        error = 1;
+        var html = "";
+        html += "<span class='invalid-feedback' role='alert'>";
+        html += "<strong>Please fill up the email.</strong>";
+        html += "</span>";
+
+        $("#login_form input[name=email]").addClass("is-invalid").next("span").remove();
+        $("#login_form input[name=email]").after(html);
+      }
+
+      if($("#login_form input[name=password]").val() == "")
+      {
+        error = 1;
+        var html = "";
+        html += "<span class='invalid-feedback' role='alert'>";
+        html += "<strong>Please fill up the password.</strong>";
+        html += "</span>";
+
+        $("#login_form input[name=password]").addClass("is-invalid").next("span").remove();
+        $("#login_form input[name=password]").after(html);
+      }
+
+      if(error == 1)
+      {
+        return;
+      }
+
+      $("#login_form input[name=password], #login_form input[name=email]").removeClass("is-invalid").children("span").remove();
+
+      var html = "<i class='fa fa-circle-o-notch fa-spin'></i>";
+      $(this).html(html);
+
+      $.post("{{ route('login') }}", $("#login_form").serialize(), function(data){
+
+        if(data.error == 1)
+        {
+          $("#login_button").html("Login");
+
+          var html = "";
+          html += "<span class='invalid-feedback' role='alert'>";
+          html += "<strong>Email or password is wrong, please try again.</strong>";
+          html += "</span>";
+          $("#login_form input[name=password]").addClass("is-invalid").next("span").remove();
+          $("#login_form input[name=password]").after(html);
+          return;
+        }
+        else
+        {
+          location.reload();
+        }
+
+      }).fail(function(){
+
+        $("#login_button").html("Login");
+
+        var html = "";
+        html += "<span class='invalid-feedback' role='alert'>";
+        html += "<strong>Email or password is wrong, please try again.</strong>";
+        html += "</span>";
+        $("#login_form input[name=password]").addClass("is-invalid").next("span").remove();
+        $("#login_form input[name=password]").after(html);
+      });
+    });
+
+    $("#logout_btn").click(function(){
+      $("#logout_form").submit();
+    });
+
+  });
+
+</script>
 
 </body>
 </html>
