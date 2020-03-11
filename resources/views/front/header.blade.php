@@ -44,7 +44,7 @@
                   <li><a href="#">Malay</a></li>
                 </ul>
               </div>
-              <!-- <div class="curroncy-dropdown">
+              <div class="curroncy-dropdown">
                 <span class="curroncy-dropdown-click">
                   usd<i class="fa fa-angle-down" aria-hidden="true"></i>
                 </span>
@@ -53,7 +53,7 @@
                   <li><a href="#"><i class="fa fa-usd"></i>usd</a></li>
                   <li><a href="#"><i class="fa fa-eur"></i>eur</a></li>
                 </ul>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
