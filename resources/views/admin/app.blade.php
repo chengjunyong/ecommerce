@@ -116,6 +116,7 @@
 
 <!--script admin-->
 <script src="{{ asset('assets/js/admin-script.js') }}"></script>
+<script src="{{ asset('assets/js/main.js') }}"></script>
 
 <!-- Jsgrid js-->
 <script src="{{ asset('assets/js/jsgrid/jsgrid.min.js') }}"></script>
