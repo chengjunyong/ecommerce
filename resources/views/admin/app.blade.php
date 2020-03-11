@@ -10,7 +10,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ asset('assets/images/favicon/favicon.ico') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon/favicon.ico') }}" type="image/x-icon">
-    <title>Bigdeal - Premium Admin Template</title>
+    <title>Homeu</title>
 
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
@@ -39,6 +39,9 @@
 
     <!-- App css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/admin.css') }}">
+
+     <!-- jsgrid css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jsgrid.css') }}">
 </head>
 
 <body>
@@ -113,6 +116,11 @@
 
 <!--script admin-->
 <script src="{{ asset('assets/js/admin-script.js') }}"></script>
+
+<!-- Jsgrid js-->
+<script src="{{ asset('assets/js/jsgrid/jsgrid.min.js') }}"></script>
+<script src="{{ asset('assets/js/jsgrid/griddata-manage-product.js') }}"></script>
+<script src="{{ asset('assets/js/jsgrid/jsgrid-manage-product.js') }}"></script>
 
 </body>
 </html>

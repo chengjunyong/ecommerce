@@ -11,7 +11,7 @@
                         <div class="col-lg-6">
                             <div class="page-header-left">
                                 <h3>Dashboard
-                                    <small>Bigdeal Admin panel</small>
+                                    <small>Homeu Dashboard Panel</small>
                                 </h3>
                             </div>
                         </div>
@@ -33,8 +33,8 @@
                         <div class="card o-hidden  widget-cards">
                             <div class="bg-secondary card-body">
                                 <div class="media static-top-widget">
-                                    <div class="media-body"><span class="m-0">Products</span>
-                                        <h3 class="mb-0">$ <span class="counter">9856</span><small> This Month</small></h3>
+                                    <div class="media-body"><span class="m-0">Monthly Sales</span>
+                                        <h3 class="mb-0">Rm <span class="counter">2463</span><small> This Month</small></h3>
                                     </div>
                                     <div class="icons-widgets">
                                         <i data-feather="box"></i>
@@ -47,8 +47,8 @@
                         <div class="card o-hidden widget-cards">
                             <div class="bg-primary card-body">
                                 <div class="media static-top-widget">
-                                    <div class="media-body"><span class="m-0">Messages</span>
-                                        <h3 class="mb-0">$ <span class="counter">893</span><small> This Month</small></h3>
+                                    <div class="media-body"><span class="m-0">Order</span>
+                                        <h3 class="mb-0"><span class="counter">893</span><small> This Month</small></h3>
                                     </div>
                                     <div class="icons-widgets">
                                         <i data-feather="message-square"></i>
@@ -61,8 +61,8 @@
                         <div class="card o-hidden widget-cards">
                             <div class="bg-warning card-body">
                                 <div class="media static-top-widget">
-                                    <div class="media-body"><span class="m-0">Earnings</span>
-                                        <h3 class="mb-0">$ <span class="counter">6659</span><small> This Month</small></h3>
+                                    <div class="media-body"><span class="m-0">Weekly Sales</span>
+                                        <h3 class="mb-0">Rm <span class="counter">386</span><small> This Week</small></h3>
                                     </div>
                                     <div class="icons-widgets">
                                         <i data-feather="navigation"></i>
@@ -75,8 +75,8 @@
                         <div class="card o-hidden widget-cards">
                             <div class="bg-success card-body">
                                 <div class="media static-top-widget">
-                                    <div class="media-body"><span class="m-0">New Vendors</span>
-                                        <h3 class="mb-0">$ <span class="counter">45631</span><small> This Month</small></h3>
+                                    <div class="media-body"><span class="m-0">New Users</span>
+                                        <h3 class="mb-0"> <span class="counter">1248</span><small> This Month</small></h3>
                                     </div>
                                     <div class="icons-widgets">
                                         <i data-feather="users"></i>
@@ -105,11 +105,11 @@
                                     <div class="media">
                                         <div class="timeline-line"></div>
                                         <div class="timeline-icon-primary">
-                                            <i data-feather="map-pin"></i>
+                                            <i data-feather="shopping-cart"></i>
                                         </div>
                                         <div class="media-body">
-                                            <span class="font-primary">Delivered</span>
-                                            <p>56 mins ago</p>
+                                            <span class="font-primary">Aman Bin Abdullah make a purchase</span>
+                                            <p>3 mins ago</p>
                                         </div>
                                         <span class="pull-right text-muted">Today</span>
                                     </div>
@@ -118,30 +118,30 @@
                                             <i data-feather="shopping-cart"></i>
                                         </div>
                                         <div class="media-body">
-                                            <span class="font-secondary">In Transit</span>
-                                            <p>18 Hour ago</p>
+                                            <span class="font-secondary">Ethan make a purchase</span>
+                                            <p>5 mins ago</p>
+                                        </div>
+                                        <span class="pull-right text-muted">Today</span>
+                                    </div>
+                                    <div class="media">
+                                        <div class="timeline-icon-warning">
+                                            <i data-feather="shopping-cart"></i>
+                                        </div>
+                                        <div class="media-body">
+                                            <span class="font-warning">Trex make a purchase</span>
+                                            <p>1 Days Ago</p>
                                         </div>
                                         <span class="pull-right text-muted">Yesterday</span>
                                     </div>
                                     <div class="media">
-                                        <div class="timeline-icon-warning">
-                                            <i data-feather="box"></i>
-                                        </div>
-                                        <div class="media-body">
-                                            <span class="font-warning">Dispatched</span>
-                                            <p>3 Days Ago</p>
-                                        </div>
-                                        <span class="pull-right text-muted">12 Sep</span>
-                                    </div>
-                                    <div class="media">
                                         <div class="timeline-icon-success">
-                                            <i data-feather="user"></i>
+                                            <i data-feather="shopping-cart"></i>
                                         </div>
                                         <div class="media-body">
-                                            <span class="font-success">Order Received</span>
-                                            <p>8 Days Ago</p>
+                                            <span class="font-success">Iris make a purchase</span>
+                                            <p>2 Days Ago</p>
                                         </div>
-                                        <span class="pull-right text-muted">05 Sep</span>
+                                        <span class="pull-right text-muted">3 March 2020</span>
                                     </div>
                                 </div>
                                 <div class="code-box-copy">
@@ -234,7 +234,6 @@
                                 <h5>Product Value</h5>
                                 <div class="chart-value-box pull-right">
                                     <div class="value-square-box-success"></div><span class="f-12 f-w-600">Physical</span>
-                                    <div class="value-square-box-secondary ml-3"></div><span class="f-12 f-w-600">Digital</span>
                                 </div>
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
@@ -438,7 +437,7 @@
                     <div class="col-xl-8 xl-50">
                         <div class="card height-equal">
                             <div class="card-header">
-                                <h5>Empolyee Status</h5>
+                                <h5>Catagory Sales</h5>
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
@@ -455,10 +454,10 @@
                                     <table class="table table-bordernone mb-0">
                                         <thead>
                                         <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Designation</th>
-                                            <th scope="col">Skill Level</th>
-                                            <th scope="col">Experience</th>
+                                            <th scope="col">Catagory</th>
+                                            <th scope="col">Quantity Items</th>
+                                            <th scope="col">Meter</th>
+                                            <th scope="col">Sales</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -466,11 +465,11 @@
                                             <td class="bd-t-none u-s-tb">
                                                 <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="../assets/images/dashboard/user2.jpg" alt="" data-original-title="" title="">
                                                     <div class="d-inline-block">
-                                                        <h6>John Deo <span class="text-muted digits">(14+ Online)</span></h6>
+                                                        <h6>Meat</span></h6>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>Designer</td>
+                                            <td>1145</td>
                                             <td>
                                                 <div class="progress-showcase">
                                                     <div class="progress" style="height: 8px;">
@@ -478,17 +477,17 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="digits">2 Year</td>
+                                            <td class="digits">Rm 10563</td>
                                         </tr>
                                         <tr>
                                             <td class="bd-t-none u-s-tb">
                                                 <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="../assets/images/dashboard/man.png" alt="" data-original-title="" title="">
                                                     <div class="d-inline-block">
-                                                        <h6>Mohsib lara<span class="text-muted digits">(99+ Online)</span></h6>
+                                                        <h6>Paper Goods</h6>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>Tester</td>
+                                            <td>350</td>
                                             <td>
                                                 <div class="progress-showcase">
                                                     <div class="progress" style="height: 8px;">
@@ -496,17 +495,17 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="digits">5 Month</td>
+                                            <td class="digits">Rm 1568</td>
                                         </tr>
                                         <tr>
                                             <td class="bd-t-none u-s-tb">
                                                 <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="../assets/images/dashboard/user.png" alt="" data-original-title="" title="">
                                                     <div class="d-inline-block">
-                                                        <h6>Hileri Soli <span class="text-muted digits">(150+ Online)</span></h6>
+                                                        <h6>Cleaners</h6>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>Designer</td>
+                                            <td>90</td>
                                             <td>
                                                 <div class="progress-showcase">
                                                     <div class="progress" style="height: 8px;">
@@ -514,17 +513,17 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="digits">3 Month</td>
+                                            <td class="digits">Rm 856</td>
                                         </tr>
                                         <tr>
                                             <td class="bd-t-none u-s-tb">
                                                 <div class="align-middle image-sm-size"><img class="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded" src="../assets/images/dashboard/designer.jpg" alt="" data-original-title="" title="">
                                                     <div class="d-inline-block">
-                                                        <h6>Pusiz bia <span class="text-muted digits">(14+ Online)</span></h6>
+                                                        <h6>Frozen Foods</h6>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>Designer</td>
+                                            <td>76</td>
                                             <td>
                                                 <div class="progress-showcase">
                                                     <div class="progress" style="height: 8px;">
@@ -532,7 +531,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="digits">5 Year</td>
+                                            <td class="digits">Rm 923</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -631,145 +630,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Top Selling Country</h5>
-                                <div class="card-header-right">
-                                    <ul class="list-unstyled card-option">
-                                        <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
-                                        <li><i class="icofont icofont-maximize full-card"></i></li>
-                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
-                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
-                                        <li><i class="icofont icofont-error close-card"></i></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-xl-8">
-                                        <div class="jvector-map-height" id="world"></div>
-                                    </div>
-                                    <div class="col-xl-4">
-                                        <div class="table-responsive map-table">
-                                            <table class="table mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Country</th>
-                                                        <th>2018</th>
-                                                        <th>2019</th>
-                                                        <th>Change</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Bhopal</td>
-                                                        <td>1,048</td>
-                                                        <td>2,213</td>
-                                                        <td>6.8%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Saudi Arbia</td>
-                                                        <td>576</td>
-                                                        <td>1,297</td>
-                                                        <td>4.3%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Kazakstan</td>
-                                                        <td>879</td>
-                                                        <td>1,985</td>
-                                                        <td>7.0%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Canada</td>
-                                                        <td>1,871</td>
-                                                        <td>2,546</td>
-                                                        <td>6.2%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Brazil</td>
-                                                        <td>957</td>
-                                                        <td>1,975</td>
-                                                        <td>5.6%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Russia</td>
-                                                        <td>1,480</td>
-                                                        <td>1,631</td>
-                                                        <td>8.7%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="code-box-copy">
-                                    <button class="code-box-copy__btn btn-clipboard" data-clipboard-target="#example-hea6" title="" data-original-title="Copy"><i class="icofont icofont-copy-alt"></i></button>
-                                    <pre class=" language-html"><code class=" language-html" id="example-head6">
-&lt;div class="row"&gt;
-    &lt;div class="col-xl-8"&gt;
-       &lt;div class="jvector-map-height" id="world"&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="col-xl-4"&gt;
-       &lt;div class="table-responsive map-table"&gt;
-          &lt;table class="table"&gt;
-             &lt;thead&gt;
-                &lt;tr&gt;
-                   &lt;th&gt;Country&lt;/th&gt;
-                   &lt;th&gt;2018&lt;/th&gt;
-                   &lt;th&gt;2019&lt;/th&gt;
-                   &lt;th&gt;Change&lt;/th&gt;
-                &lt;/tr&gt;
-             &lt;/thead&gt;
-             &lt;tbody&gt;
-                &lt;tr&gt;
-                   &lt;td&gt;Bhopal&lt;/td&gt;
-                   &lt;td&gt;1,048&lt;/td&gt;
-                   &lt;td&gt;2,213&lt;/td&gt;
-                   &lt;td&gt;6.8%&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                   &lt;td&gt;Saudi Arbia&lt;/td&gt;
-                   &lt;td&gt;576&lt;/td&gt;
-                   &lt;td&gt;1,297&lt;/td&gt;
-                   &lt;td&gt;4.3%&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                   &lt;td&gt;Kazakstan&lt;/td&gt;
-                   &lt;td&gt;879&lt;/td&gt;
-                   &lt;td&gt;1,985&lt;/td&gt;
-                   &lt;td&gt;7.0%&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Canada&lt;/td&gt;
-                    &lt;td&gt;1,871&lt;/td&gt;
-                    &lt;td&gt;2,546&lt;/td&gt;
-                    &lt;td&gt;6.2%&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                    &lt;td&gt;Brazil&lt;/td&gt;
-                    &lt;td&gt;957&lt;/td&gt;
-                    &lt;td&gt;1,975&lt;/td&gt;
-                    &lt;td&gt;5.6%&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                   &lt;td&gt;Russia&lt;/td&gt;
-                   &lt;td&gt;1,480&lt;/td&gt;
-                   &lt;td&gt;1,631&lt;/td&gt;
-                   &lt;td&gt;8.7%&lt;/td&gt;
-                &lt;/tr&gt;
-             &lt;/tbody&gt;
-          &lt;/table&gt;
-       &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-                                    </code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <!-- Container-fluid Ends-->

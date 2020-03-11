@@ -38,4 +38,8 @@ Route::prefix('/admin')->group(function(){
   Route::get('/', 'adminController@getIndex')->name('getIndex');
 });
 
+Route::prefix('/admin')->group(function(){
+  Route::get('/category', 'adminController@getCategory')->name('getCategory');
+});
+
 
