@@ -286,32 +286,32 @@
                                         <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td class="digits">$120.00</td>
-                                            <td class="font-danger">Bank Transfers</td>
+                                            <td class="digits">Rm 120.00</td>
+                                            <td class="font-danger">Cash On Delivery</td>
                                             <td class="digits">On Way</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td class="digits">$90.00</td>
-                                            <td class="font-secondary">Ewallets</td>
+                                            <td class="digits">Rm 90.00</td>
+                                            <td class="font-secondary">Cash On Delivery</td>
                                             <td class="digits">Delivered</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
-                                            <td class="digits">$240.00</td>
-                                            <td class="font-warning">Cash</td>
-                                            <td class="digits">Delivered</td>
+                                            <td class="digits">Rm 240.00</td>
+                                            <td class="font-warning">Cash On Delivery</td>
+                                            <td class="digits">Pending</td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
-                                            <td class="digits">$120.00</td>
-                                            <td class="font-danger">Direct Deposit</td>
-                                            <td class="digits">$6523</td>
+                                            <td class="digits">Rm 120.00</td>
+                                            <td class="font-danger">Cash On Delivery</td>
+                                            <td class="digits">On way</td>
                                         </tr>
                                         <tr>
                                             <td>5</td>
                                             <td class="digits">$50.00</td>
-                                            <td class="font-primary">Bank Transfers</td>
+                                            <td class="font-primary">Cash On Delivery</td>
                                             <td class="digits">Delivered</td>
                                         </tr>
                                         </tbody>

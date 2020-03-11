@@ -44,12 +44,12 @@ Route::prefix('checkout')->group(function () {
 
 Route::prefix('/admin')->group(function(){
   Route::get('/', 'adminController@getIndex')->name('getIndex');
-});
-
-Route::prefix('/admin')->group(function(){
   Route::get('/category', 'adminController@getCategory')->name('getCategory');
+  Route::get('/productlist','adminController@getProductList')->name('getProductList');
+  Route::get('/productdetail','adminController@getProductDetail')->name('getProductDetail');
+  Route::get('/addproduct','adminController@getAddProduct')->name('getAddProduct');
+  Route::get('/orders','adminController@getOrders')->name('getOrders');
 });
-
 
 Auth::routes();
 

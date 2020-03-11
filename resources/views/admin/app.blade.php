@@ -42,6 +42,18 @@
 
      <!-- jsgrid css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jsgrid.css') }}">
+
+     <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/themify-icons.css') }}">
+
+    <!-- owlcarousel css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owlcarousel.css') }}">
+
+    <!-- Rating css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/rating.css') }}">
+
+    <!-- Datatables css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
 </head>
 
 <body>
@@ -102,6 +114,7 @@
 <script src="{{ asset('assets/js/chart/flot-chart/jquery.flot.categories.js') }}"></script>
 <script src="{{ asset('assets/js/chart/flot-chart/jquery.flot.stack.js') }}"></script>
 <script src="{{ asset('assets/js/chart/flot-chart/jquery.flot.pie.js') }}"></script>
+
 <!--dashboard custom js-->
 <script src="{{ asset('assets/js/dashboard/default.js') }}"></script>
 
@@ -111,9 +124,6 @@
 <!--height equal js-->
 <script src="{{ asset('assets/js/equal-height.js') }}"></script>
 
-<!-- lazyload js-->
-<script src="{{ asset('assets/js/lazysizes.min.js') }}"></script>
-
 <!--script admin-->
 <script src="{{ asset('assets/js/admin-script.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -122,6 +132,26 @@
 <script src="{{ asset('assets/js/jsgrid/jsgrid.min.js') }}"></script>
 <script src="{{ asset('assets/js/jsgrid/griddata-manage-product.js') }}"></script>
 <script src="{{ asset('assets/js/jsgrid/jsgrid-manage-product.js') }}"></script>
+
+<!--right sidebar js-->
+<script src="{{ asset('assets/js/chat-menu.js') }}"></script>
+
+<!-- Touchspin Js-->
+<script src="{{ asset('assets/js/touchspin/vendors.min.js') }}"></script>
+<script src="{{ asset('assets/js/touchspin/touchspin.js') }}"></script>
+<script src="{{ asset('assets/js/touchspin/input-groups.min.js') }}"></script>
+
+<!-- Rating Js-->
+<script src="{{ asset('assets/js/rating/jquery.barrating.js') }}"></script>
+<script src="{{ asset('assets/js/rating/rating-script.js') }}"></script>
+
+<!-- Owlcarousel js-->
+<script src="{{ asset('assets/js/owlcarousel/owl.carousel.js') }}"></script>
+<script src="{{ asset('assets/js/dashboard/product-carousel.js') }}"></script>
+
+<!-- Datatable js-->
+<script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/js/datatables/custom-basic.js') }}"></script>
 
 </body>
 </html>
