@@ -4818,22 +4818,21 @@
                 </a>
             </div>
         </div>
-        <form class="theme-form" id="login_form">
-            @csrf
+        <form class="theme-form">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" placeholder="Email" name="email" required>
+                <input type="text" class="form-control" id="email" placeholder="Email" required="">
             </div>
             <div class="form-group">
                 <label for="review">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+                <input type="password" class="form-control" id="review" placeholder="Enter your password" required="">
             </div>
             <div class="form-group">
-                <button type="button" id="login_button" class="btn btn-rounded btn-block ">Login</button>
+                <a href="#" class="btn btn-rounded btn-block ">Login</a>
             </div>
             <div>
                 <h5 class="forget-class"><a href="forget-pwd.html" class="d-block">forget password?</a></h5>
-                <h6 class="forget-class"><a href="{{ route('getRegisterPage') }}" class="d-block">new to store? Signup now</a></h6>
+                <h6 class="forget-class"><a href="register.html" class="d-block">new to store? Signup now</a></h6>
             </div>
         </form>
     </div>

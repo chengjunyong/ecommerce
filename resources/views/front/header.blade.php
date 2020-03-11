@@ -401,12 +401,6 @@
                       <li><a href="blog-details.html">blog details</a></li>
                     </ul>
                   </li>
-
-                  @if(Auth::check())
-                    <li>
-                      <a href="#" id="logout_btn">Logout</a>
-                    </li>
-                  @endif
                   <!--blog-meu end-->
                 </ul>
             	</nav>
@@ -414,13 +408,8 @@
             <div>
               <div class="icon-nav">
                 <ul>
-                  @if(Auth::check())
-                    <li class="mobile-user onhover-dropdown"><a href="{{ route('getUserProfile') }}"><i class="icon-user" style="color: orange;"></i></a>
-                    </li>
-                  @else
-                    <li class="mobile-user onhover-dropdown" onclick="openAccount()"><a href="#"><i class="icon-user"></i></a>
-                    </li>
-                  @endif
+                  <li class="mobile-user onhover-dropdown" onclick="openAccount()"><a href="#"><i class="icon-user"></i></a>
+                  </li>
                   <li class="mobile-wishlist" onclick="openWishlist()">
                     <a href="#">
                       <i class="icon-heart"></i>

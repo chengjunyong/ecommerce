@@ -21,14 +21,6 @@ Route::get('/category', 'frontController@getCategoryPage')->name('getCategoryPag
 
 Route::get('/newpage', 'frontController@getNewPage')->name('getNew');
 
-Route::get('/register_now', 'frontController@getRegisterPage')->name('getRegisterPage');
-
-Route::group(['middleware' => ['auth']], function () {
-  Route::get('/profile', 'frontController@getUserProfile')->name('getUserProfile');
-});
-
-
-
 Route::prefix('item')->group(function () {
   Route::get('{id}', 'itemController@getItemDetail')->name('getItemDetail');
 });
@@ -47,7 +39,3 @@ Route::prefix('/admin')->group(function(){
 });
 
 
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
