@@ -11,7 +11,7 @@
                         <div class="col-lg-6">
                             <div class="page-header-left">
                                 <h3>Orders
-                                    <small>Bigdeal Admin panel</small>
+                                    <small>Homeu Admin panel</small>
                                 </h3>
                             </div>
                         </div>

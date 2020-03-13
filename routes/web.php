@@ -49,6 +49,16 @@ Route::prefix('/admin')->group(function(){
   Route::get('/productdetail','adminController@getProductDetail')->name('getProductDetail');
   Route::get('/addproduct','adminController@getAddProduct')->name('getAddProduct');
   Route::get('/orders','adminController@getOrders')->name('getOrders');
+  Route::get('/transaction','adminController@getTransaction')->name('getTransaction');
+  Route::get('/couponlist','adminController@getCouponList')->name('getCouponList');
+  Route::get('/couponcreate','adminController@getCouponCreate')->name('getCouponCreate');
+  Route::get('/userlist','adminController@getUserList')->name('getUserList');
+  Route::get('/createuser','adminController@getCreateUser')->name('getCreateUser');
+  Route::get('/report','adminController@getReport')->name('getReport');
+  Route::get('/profile','adminController@getProfile')->name('getProfile');
+  Route::get('/invoice','adminController@getInvoice')->name('getInvoice');
+  Route::get('/login','adminController@getLogin')->name('getLogin');
+  Route::get('../','adminController@getHome')->name('getHome');
 });
 
 Auth::routes();

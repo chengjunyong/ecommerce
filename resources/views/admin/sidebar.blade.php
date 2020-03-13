@@ -21,32 +21,32 @@
             <li><a class="sidebar-header" href=""><i data-feather="dollar-sign"></i><span>Sales</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
                     <li><a href="{{ route('getOrders') }}"><i class="fa fa-circle"></i>Orders</a></li>
-                    <li><a href="transactions.html"><i class="fa fa-circle"></i>Transactions</a></li>
+                    <li><a href="{{ route('getTransaction') }}"><i class="fa fa-circle"></i>Transactions</a></li>
                 </ul>
             </li>
             <li><a class="sidebar-header" href=""><i data-feather="tag"></i><span>Coupons</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="coupon-list.html"><i class="fa fa-circle"></i>List Coupons</a></li>
-                    <li><a href="coupon-create.html"><i class="fa fa-circle"></i>Create Coupons </a></li>
+                    <li><a href="{{ route('getCouponList') }}"><i class="fa fa-circle"></i>List Coupons</a></li>
+                    <li><a href="{{ route('getCouponCreate') }}"><i class="fa fa-circle"></i>Create Coupons </a></li>
                 </ul>
             </li>
        
             <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="user-list.html"><i class="fa fa-circle"></i>User List</a></li>
-                    <li><a href="create-user.html"><i class="fa fa-circle"></i>Create User</a></li>
+                    <li><a href="{{ route('getUserList') }}"><i class="fa fa-circle"></i>User List</a></li>
+                    <li><a href="{{ route('getCreateUser') }}"><i class="fa fa-circle"></i>Create User</a></li>
                 </ul>
             </li>
             
-            <li><a class="sidebar-header" href="reports.html"><i data-feather="bar-chart"></i><span>Reports</span></a></li>
+            <li><a class="sidebar-header" href="{{ route('getReport') }}"><i data-feather="bar-chart"></i><span>Reports</span></a></li>
             <li><a class="sidebar-header" href=""><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
-                    <li><a href="profile.html"><i class="fa fa-circle"></i>Profile</a></li>
+                    <li><a href="{{ route('getProfile') }}"><i class="fa fa-circle"></i>Profile</a></li>
                 </ul>
             </li>
-            <li><a class="sidebar-header" href="invoice.html"><i data-feather="archive"></i><span>Invoice</span></a>
+            <li><a class="sidebar-header" href="{{ route('getInvoice') }}"><i data-feather="archive"></i><span>Invoice</span></a>
             </li>
-            <li><a class="sidebar-header" href="login.html"><i data-feather="log-in"></i><span>Logout</span></a>
+            <li><a class="sidebar-header" href="{{ route('getLogin') }}"><i data-feather="log-in"></i><span>Logout</span></a>
             </li>
         </ul>
     </div>

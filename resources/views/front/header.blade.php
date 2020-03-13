@@ -6,17 +6,7 @@
         <div class="col-xl-5 col-md-7 col-sm-6">
           <div class="top-header-left">
             <div class="shpping-order">
-              <h6>free shipping on order over $99 </h6>
-            </div>
-            <div class="app-link">
-              <h6>
-                Download aap
-              </h6>
-              <ul>
-                <li><a><i class="fa fa-apple" ></i></a></li>
-                <li><a><i class="fa fa-android" ></i></a></li>
-                <li><a><i class="fa fa-windows" ></i></a></li>
-              </ul>
+              <h6>free shipping on order over Rm 199 </h6>
             </div>
           </div>
         </div>
@@ -24,10 +14,7 @@
           <div class="top-header-right">
             <div class="top-menu-block">
               <ul>
-                <li><a href="#">gift cards</a></li>
-                <li><a href="#">Notifications</a></li>
                 <li><a href="#">help & contact</a></li>
-                <li><a href="#">todays deal</a></li>
                 <li><a href="#">track order</a></li>
                 <li><a href="#">shipping </a></li>
                 <li><a href="#">easy returns</a></li>
@@ -40,18 +27,7 @@
                 </span>
                 <ul class="language-dropdown-open">
                   <li><a href="#">English</a></li>
-                  <li><a href="#">Chinese</a></li>
                   <li><a href="#">Malay</a></li>
-                </ul>
-              </div>
-              <div class="curroncy-dropdown">
-                <span class="curroncy-dropdown-click">
-                  usd<i class="fa fa-angle-down" aria-hidden="true"></i>
-                </span>
-                <ul class="curroncy-dropdown-open">
-                  <li><a href="#"><i class="fa fa-inr"></i>inr</a></li>
-                  <li><a href="#"><i class="fa fa-usd"></i>usd</a></li>
-                  <li><a href="#"><i class="fa fa-eur"></i>eur</a></li>
                 </ul>
               </div>
             </div>
@@ -105,7 +81,7 @@
             </div>
             <div class="brand-logo">
               <a href="{{ route('getFrontIndex') }}" target="_blank">
-                <img src="{{ asset('/assets/images/layout-1/logo/logo.png') }}" class="img-fluid  " alt="logo-header">
+                <img src="{{ asset('/assets/images/layout-2/logo/logo2.png') }}" width="200" height="60" class="img-fluid  " alt="logo-header">
               </a>
           	</div>
       		</div>
@@ -121,12 +97,12 @@
                   <li>
                     <a href="#">Home</a>
                     <ul>
-                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">layout 1</a></li>
-                      <li><a target="_blank" href="{{ route('getFrontIndex2') }}">layout 2</a></li>
-                      <li><a target="_blank" href="{{ route('getFrontIndex3') }}">layout 3</a></li>
-                      <li><a target="_blank" href="{{ route('getFrontIndex4') }}">layout 4</a></li>
-                      <li><a target="_blank" href="{{ route('getFrontIndex5') }}">layout 5</a></li>
-                      <li><a target="_blank" href="{{ route('getFrontIndex6') }}">layout 6</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">Example 1</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">Example 2</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">Example 3</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">Example 4</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">Example 5</a></li>
+                      <li><a target="_blank" href="{{ route('getFrontIndex') }}">Example 6</a></li>
                     </ul>
                   </li>
                   <!--HOME-END-->
@@ -391,16 +367,7 @@
                   </li>
                   <!--product-end end-->
 
-                  <!--blog-meu start-->
-                  <li>
-                    <a href="#">blog</a>
-                    <ul>
-                      <li><a href="blog(left-sidebar).html">left sidebar</a></li>
-                      <li><a href="blog(right-sidebar).html">right sidebar</a></li>
-                      <li><a href="blog(no-sidebar).html">no sidebar</a></li>
-                      <li><a href="blog-details.html">blog details</a></li>
-                    </ul>
-                  </li>
+                  <!--blog-meu start-->               
 
                   @if(Auth::check())
                     <li>
@@ -510,13 +477,7 @@
                         <span class="search"><i class="fa fa-search"></i></span>
                       </div>
                       <input type="text" class="form-control" placeholder="Search a Product" >
-                      <div class="input-group-prepend">
-                        <select>
-                          <option>All Category</option>
-                          <option>indurstrial</option>
-                          <option>sports</option>
-                        </select>
-                      </div>
+                        
                     </div>
                   </form>
                 </div>

@@ -4484,7 +4484,7 @@
                 <div class="contact-banner-contain">
                     <div class="contact-banner-img"><img src="{{ asset('/assets/images/layout-1/call-img.png') }}" alt="call-banner"></div>
                     <div> <h3>if you have any question please call us</h3></div>
-                    <div><h2>123-456-7890</h2></div>
+                    <div><h2>09-5885151</h2></div>
                 </div>
             </div>
         </div>
@@ -4494,52 +4494,6 @@
 
 <!--footer start-->
 <footer>
-    <div class="app-link-block">
-        <div class="container">
-            <div class="row">
-                <div class="app-link-bloc-contain">
-                    <div class="app-item-group">
-                        <div class="app-item">
-                            <img src="{{ asset('/assets/images/layout-1/app/1.png') }}" class="img-fluid  " alt="app-banner">
-                        </div>
-                        <div class="app-item">
-                            <img src="{{ asset('/assets/images/layout-1/app/2.png') }}" class="img-fluid  " alt="app-banner">
-                        </div>
-                    </div>
-                    <div class="app-item-group ">
-                        <div class="sosiyal-block" >
-                            <h6>follow us</h6>
-                            <ul class="sosiyal">
-                                <li><a href="#"><i class="fa fa-facebook" ></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus" ></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter" ></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram" ></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" ></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-1 section-mb-space">
-        <div class="container">
-            <div class="logo-contain">
-                <div class="row">
-                    <div class="col-lg-3 col-md-12 ">
-                        <div class="logo-block">
-                            <img src="{{ asset('/assets/images/layout-1/logo/logo.png') }}" class="img-fluid  " alt="logo">
-                        </div>
-                    </div>
-                    <div class="col-lg-9 col-md-12 pr-lg-0">
-                        <div class="logo-detail">
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="footer-1 section-mb-space">
         <div class="container">
             <div class="footer-box">
@@ -4955,14 +4909,12 @@
                 <h5>language</h5>
                 <ul>
                     <li><a href="#">english</a></li>
-                    <li><a href="#">french</a></li>
                 </ul>
                 <h5>currency</h5>
                 <ul>
                     <li><a href="#">uro</a></li>
                     <li><a href="#">rupees</a></li>
                     <li><a href="#">pound</a></li>
-                    <li><a href="#">doller</a></li>
                 </ul>
             </div>
         </div>
@@ -4978,7 +4930,7 @@
       <img class="mr-2" src="../assets/images/layout-1/product/5.jpg" alt="Generic placeholder image">
       <div class="media-body">
         <h5 class="mt-0 mb-1">Latest trending</h5>
-        Cras sit amet nibh libero, in gravida nulla.
+        Your Ads.
       </div>
     </div>
   </div>

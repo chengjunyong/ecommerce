@@ -54,6 +54,7 @@
 
     <!-- Datatables css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+
 </head>
 
 <body>
@@ -130,6 +131,8 @@
 
 <!-- Jsgrid js-->
 <script src="{{ asset('assets/js/jsgrid/jsgrid.min.js') }}"></script>
+<script src="{{ asset('assets/js/jsgrid/griddata-discount-coupon.js') }}"></script>
+<script src="{{ asset('assets/js/jsgrid/jsgrid-discount-coupon.js') }}"></script>
 <script src="{{ asset('assets/js/jsgrid/griddata-manage-product.js') }}"></script>
 <script src="{{ asset('assets/js/jsgrid/jsgrid-manage-product.js') }}"></script>
 
@@ -152,6 +155,19 @@
 <!-- Datatable js-->
 <script src="{{ asset('assets/js/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/js/datatables/custom-basic.js') }}"></script>
+
+<script src="{{ asset('assets/js/jsgrid/griddata-reports.js') }}"></script>
+<script src="{{ asset('assets/js/jsgrid/jsgrid-reports.js') }}"></script>
+
+<!--Report chart-->
+<script src="{{ asset('assets/js/admin-reports.js') }}"></script>
+
+<!-- Google chart js-->
+<script src="{{ asset('assets/js/chart/google/google-chart-loader.js') }}"></script>
+
+<!-- Chartjs -->
+<script src="{{ asset('assets/js/chart/chartjs/chart.min.js') }}"></script>
+
 
 </body>
 </html>
