@@ -59,6 +59,9 @@ Route::prefix('/admin')->group(function(){
   Route::get('/invoice','adminController@getInvoice')->name('getInvoice');
   Route::get('/login','adminController@getLogin')->name('getLogin');
   Route::get('../','adminController@getHome')->name('getHome');
+
+  // add product route
+  Route::post('/postAddProduct', 'adminController@postAddProduct')->name('postAddProduct');
 });
 
 Auth::routes();

@@ -1,8 +1,26 @@
 <?php
 
+// migration
+// 1) run migration
+// php artisan migrate
+// 2) make migration
+// php artisan make:migration [naming]
+// 3) reverse migration
+// php artisan migrate:rollback
+
+// model
+// 1) make model
+// php artisan make:model [naming]
+
+// clear cache
+// php artisan config:cache
+
+// composer dump-autoload
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\product;
 
 class adminController extends Controller
 {
@@ -18,7 +36,9 @@ class adminController extends Controller
 
     public function getProductList()
     {
-    	return view('admin.productlist');
+      $product_list = product::where('active', 1)->get();
+
+    	return view('admin.productlist')->with(['product_list' => $product_list]);
     }
 
     public function getProductDetail()
@@ -28,7 +48,7 @@ class adminController extends Controller
 
     public function getAddProduct()
     {
-    	return view('admin.addproduct');
+    	return view('admin.addproduct', compact('response'));
     }
 
     public function getOrders()
@@ -84,6 +104,17 @@ class adminController extends Controller
     public function getHome()
     {
         return view('front.index');
+    }
+
+    public function postAddProduct(Request $request)
+    {
+      product::create([
+        'name' => $request->name,
+        'price' => $request->price,
+        'sku' => $request->sku
+      ]);
+
+      return redirect()->route('getAddProduct');
     }
 
 

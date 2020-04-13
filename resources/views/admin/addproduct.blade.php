@@ -57,21 +57,23 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-7">
-                                        <form class="needs-validation add-product-form" novalidate="">
+                                        <form class="needs-validation add-product-form" method="POST" action="{{ route('postAddProduct') }}">
+                                            @csrf
                                             <div class="form">
                                                 <div class="form-group mb-3 row">
                                                     <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Product Title :</label>
-                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom01" type="text" required="">
+                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom01" type="text" required="" name="name" value="{{ old('name') }}">
                                                     <div class="valid-feedback">Looks good!</div>
+                                                    
                                                 </div>
                                                 <div class="form-group mb-3 row">
                                                     <label for="validationCustom02" class="col-xl-3 col-sm-4 mb-0">Price :</label>
-                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom02" type="text" required="">
+                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom02" type="text" required="" name="price" value="{{ old('price') }}">
                                                     <div class="valid-feedback">Looks good!</div>
                                                 </div>
                                                 <div class="form-group mb-3 row">
                                                     <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Product Code :</label>
-                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="">
+                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="" name="sku" value="{{ old('sku') }}">
                                                     <div class="invalid-feedback offset-sm-4 offset-xl-3">Please choose Valid Code.</div>
                                                 </div>
                                                 <div class="form-group mb-3 row">
