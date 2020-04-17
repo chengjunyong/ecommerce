@@ -21,7 +21,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\product;
+use App\product_image;
 use App\category;
+use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
 {
@@ -51,7 +53,10 @@ class adminController extends Controller
 
     public function getAddProduct()
     {
-    	return view('admin.addproduct', compact('response'));
+      $category_list = category::get();
+      $product_image_list = product_image::get();
+
+    	return view('admin.addproduct', compact('category_list', 'product_image_list'));
     }
 
     public function getOrders()
@@ -111,11 +116,24 @@ class adminController extends Controller
 
     public function postAddProduct(Request $request)
     {
-        product::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'sku' => $request->sku
+      $product_detail = product::create([
+        'name' => $request->name,
+        'price' => $request->price,
+        'sku' => $request->sku,
+        'category_id' => $request->category_id
+      ]);
+
+      foreach($request->my_file as $file)
+      {
+        $ext = $file->getClientOriginalExtension();
+        $path = $file->store('temp');
+
+        product_image::create([
+          'product_id' => $product_detail->id,
+          'image_type' => null,
+          'path' => $path
         ]);
+      }
 
       return redirect()->route('getAddProduct');
     }

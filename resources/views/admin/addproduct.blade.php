@@ -41,7 +41,7 @@
                                         <div class="add-product">
                                             <div class="row">
                                                 <div class="col-xl-9 xl-50 col-sm-6 col-9">
-                                                    <img src="../assets/images/pro3/1.jpg" alt="" class="img-fluid image_zoom_1 blur-up lazyloaded">
+                                                    <img src="{{ Storage::url($product_image_list[0]->path) }}" alt="" class="img-fluid image_zoom_1 blur-up lazyloaded">
                                                 </div>
                                                 <div class="col-xl-3 xl-50 col-sm-6 col-3">
                                                     <ul class="file-upload-product">
@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-7">
-                                        <form class="needs-validation add-product-form" method="POST" action="{{ route('postAddProduct') }}">
+                                        <form class="needs-validation add-product-form" method="POST" action="{{ route('postAddProduct') }}" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form">
                                                 <div class="form-group mb-3 row">
@@ -78,13 +78,17 @@
                                                 </div>
                                                 <div class="form-group mb-3 row">
                                                     <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Category :</label>
-                                                    <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1">
-                                                        <option>Category1</option>
-                                                        <option>Category2</option>
-                                                        <option>Category3</option>
-                                                        <option>Category4</option>
+                                                    <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="category_id">
+                                                        <option value="0">Please select</option>
+                                                        @foreach($category_list as $category)
+                                                          <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                        @endforeach
                                                     </select>
                                                     <div class="valid-feedback">Looks good!</div>
+                                                </div>
+                                                <div class="form-group mb-3 row">
+                                                  <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Import file :</label>
+                                                  <input type="file" name="my_file[]" multiple="multiple" />
                                                 </div>
                                             </div>
                                             <div class="form">
