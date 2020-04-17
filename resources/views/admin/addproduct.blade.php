@@ -41,7 +41,7 @@
                                         <div class="add-product">
                                             <div class="row">
                                                 <div class="col-xl-9 xl-50 col-sm-6 col-9">
-                                                    <img src="{{ Storage::url($product_image_list[0]->path) }}" alt="" class="img-fluid image_zoom_1 blur-up lazyloaded">
+                                                    <img src="#" alt="" class="img-fluid image_zoom_1 blur-up lazyloaded">
                                                 </div>
                                                 <div class="col-xl-3 xl-50 col-sm-6 col-3">
                                                     <ul class="file-upload-product">
