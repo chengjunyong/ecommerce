@@ -1,5 +1,10 @@
 @extends('admin.layout')
 @section('layout')
+<style>
+.jsgrid-cell{
+    text-align: center !important;
+}
+</style>
 <div class="page-body">
     <!-- Container-fluid starts-->
     <div class="container-fluid">
@@ -37,230 +42,82 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Product</h5>
+                                            <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Category</h5>
                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="needs-validation">
+                                            <form class="needs-validation" method="post" action="{{ route('addCategory') }}">
+                                                @csrf
                                                 <div class="form">
                                                     <div class="form-group">
                                                         <label for="validationCustom01" class="mb-1">Category Name :</label>
-                                                        <input class="form-control" id="validationCustom01" type="text">
-                                                    </div>
-                                                    <div class="form-group mb-0">
-                                                        <label for="validationCustom02" class="mb-1">Category Image :</label>
-                                                        <input class="form-control" id="validationCustom02" type="file">
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                        <input class="form-control" id="validationCustom01" type="text" name="category_name" required="true">
+                                                    </div>                                                  
+                                                </div>                           
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn btn-primary" type="button">Save</button>
+                                            <button class="btn btn-primary" type="submit">Save</button>
                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            
+                        <div class="table-responsive">  
                             <div id="basicScenario" class="product-physical jsgrid" style="position: relative; height: auto; width: 100%;">
                                 <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                                     <table class="jsgrid-table">
                                         <tr class="jsgrid-header-row">
-                                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 50px;">Image</th>
-                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 100px;">Name</th>
-                                            <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable" style="width: 50px;">Price</th>
-                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Status</th>
-                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Category</th>
-                                            <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Switch to inserting"></th>
-                                        </tr>
-                                        <tr class="jsgrid-filter-row" style="display: table-row;">
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"></td>
-                                            <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
-                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;"><input type="number"></td>
-                                            <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
-                                            <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
-                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-search-button" type="button" title="Search"><input class="jsgrid-button jsgrid-clear-filter-button" type="button" title="Clear filter"></td>
-                                        </tr>
-                                        <tr class="jsgrid-insert-row" style="display: none;">
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><input type="file"></td>
-                                            <td class="jsgrid-cell" style="width: 100px;"><input type="text"></td>
-                                            <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;"><input type="number"></td>
-                                            <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
-                                            <td class="jsgrid-cell" style="width: 50px;"><input type="text"></td>
-                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-insert-button" type="button" title="Insert"></td>
+                                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 50px;">Category Id</th>                                            
+                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;text-align: center">Category Name</th>
+                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Create Date</th>
+                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Edit</th>
                                         </tr>
                                     </table>
                                 </div>
                                 <div class="jsgrid-grid-body">
                                     <table class="jsgrid-table">
                                         <tbody>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/1.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Headphones</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$20.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
+                                            @if(isset($category))
+                                                <?php $a=0; ?>
+                                                @foreach($category as $result)
+                                                    @if($a==0)
+                                                        <?php $a=1; ?>
+                                                        <tr class="jsgrid-row">
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_id }}</td>
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_name }}</td>                                    
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->created_at }}</td>
+                                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                                                                <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
+                                                                <input class="jsgrid-button jsgrid-update-button" type="button" title="Update" hidden="true">
+                                                                <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
+                                                                <input class="jsgrid-button jsgrid-cancel-edit-button" type="button" title="Cancel edit" hidden="true">
+                                                            </td>
+                                                        </tr>                                                       
+                                                    @else
+                                                        <?php $a=0; ?>
+                                                        <tr class="jsgrid-alt-row">
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_id }}</td>
+                                                            <td class="jsgrid-cell" style="width: 50px;" >{{ $result->category_name }}</td>
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->created_at }}</td>
+                                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                                                                <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
+                                                                <input class="jsgrid-button jsgrid-update-button" type="button" title="Update" hidden="true">
+                                                                <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
+                                                                <input class="jsgrid-button jsgrid-cancel-edit-button" type="button" title="Cancel edit" hidden="true">
+                                                            </td>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                            <!-- <tr class="jsgrid-row">
+                                                <td class="jsgrid-cell" style="width: 50px;">123</td>
                                                 <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/2.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Honor Mobile</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$462.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/3.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Samsung LED TV</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$652.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-warning f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/4.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Motorola Bluetooth</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$25.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/5.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Apple 6s</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$782.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-danger f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/6.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Printer</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$4825.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-warning f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/7.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Canon Camera</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$2461.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/8.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">High Quality Headphones</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$761.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-danger f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/9.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Home Theater Speakers</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$672.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/10.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Diamond Ring</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$237.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-warning f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Jewellery</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/11.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Diamond Nacklace</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$3579.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-warning f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Jewellery</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/12.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Diamond Earrings</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$3145.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Jewellery</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/13.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Night lamp</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$84.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">furniture</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/14.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">men's shoes</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$67.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-warning f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">shoes</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/15.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Ledi's red top</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$234.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">clothes</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/16.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">latest ledis shoes</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$357.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">shoes</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/17.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Woman one pis</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$682.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-danger f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">clothes</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/18.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Mouse</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$24.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-success f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/19.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Coffee maker</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$9721.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-danger f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">electronics</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
-                                            <tr class="jsgrid-alt-row">
-                                                <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><img src="../assets/images/dashboard/product/20.jpg" class="blur-up lazyloaded" style="height: 50px; width: 50px;"></td>
-                                                <td class="jsgrid-cell" style="width: 100px;">Diamond Nacklace</td>
-                                                <td class="jsgrid-cell jsgrid-align-right" style="width: 50px;">$3579.00</td>
-                                                <td class="jsgrid-cell" style="width: 50px;"><i class="fa fa-circle font-warning f-12"></i></td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Jewellery</td>
-                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></td>
-                                            </tr>
+                                                <td class="jsgrid-cell" style="width: 50px;">2020-april-16</td>
+                                            </tr> -->
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="jsgrid-pager-container" style="">
-                                    <div class="jsgrid-pager">Pages: <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a></span> <span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a></span> <span class="jsgrid-pager-page jsgrid-pager-current-page">1</span><span class="jsgrid-pager-page"><a href="javascript:void(0);">2</a></span> <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a></span> <span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a></span> &nbsp;&nbsp; 1 of 2 </div>
                                 </div>
                                 <div class="jsgrid-load-shader" style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;"></div>
                                 <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...</div>
@@ -273,4 +130,83 @@
     </div>
     <!-- Container-fluid Ends-->
 </div>
+<script>
+$(document).ready(function(){    
+    $(".jsgrid-edit-button").click(function(){
+        var id = $(this).parents().eq(0).siblings().eq(0).html();
+        var old = $(this).parents().eq(0).siblings().eq(1).html();
+        $(this).parents().eq(0).siblings().eq(1).html("<input type=text class=edit id="+id+" old="+old+">");
+        $(this).attr("hidden","true");
+        $(this).siblings().eq(0).removeAttr("hidden");
+        $(this).siblings().eq(1).attr("hidden","true");
+        $(this).siblings().eq(2).removeAttr("hidden");
+    });
+
+    $(".jsgrid-update-button").click(function(){
+        let id = $(this).parents().eq(0).siblings().eq(1).find('input').attr("id");
+        let input = $(this).parents().eq(0).siblings().eq(1).find('input').val();
+        let path = $(this).parents().eq(0).siblings().eq(1);
+        let h0 = $(this);
+        let h1 = $(this).siblings().eq(0);
+        let h2 = $(this).siblings().eq(1);
+        let h3 = $(this).siblings().eq(2);
+        let token = $('input[name=_token]').val();
+
+        if(!input || input == " "){
+            alert("Please make sure the input is not empty and not start with space");
+        }else{
+            $.post("{{ route('updateCategory') }}",
+                {
+                    input  : input,
+                    id     : id,
+                    _token : token
+                },
+                function(data)
+                {
+                    if(data == "true"){
+                        path.html(input);
+                        h0.attr("hidden","true");
+                        h1.removeAttr("hidden");
+                        h2.removeAttr("hidden");
+                        h3.attr("hidden","true");
+                    }else{
+                        alert("Update unsuccessful, Please contact IT services to assist");
+                    }
+                },"html");
+        }
+    });
+
+    $(".jsgrid-cancel-edit-button").click(function(){
+        $(this).attr("hidden","true");
+        $(this).siblings().eq(0).removeAttr("hidden");
+        $(this).siblings().eq(1).attr("hidden","true");
+        $(this).siblings().eq(2).removeAttr("hidden");
+        var old = $(this).parents().eq(0).siblings().eq(1).children().attr("old");
+        $(this).parents().eq(0).siblings().eq(1).html(old);
+    });
+
+    $(".jsgrid-delete-button").click(function(){
+        let id = $(this).parents().eq(0).siblings().eq(0).html();
+        let token = $('input[name=_token]').val();
+        var answer = prompt("Please make sure you want to deletethe category, It make cause your product not working. Type 'DELETE' to confirm (Case sensitive)");
+        if(answer == "DELETE"){
+            $.post("{{ route('deleteCategory') }}",
+            {
+                id : id,
+                _token : token
+            },function(data){
+                if(data == "true"){
+                    location.reload();
+                }else{
+                    alert("Delete unsuccessful, Please contact IT services to assist");
+                }
+            },"html");
+        }else if(answer != null){
+            alert("Please make sure your spelling is correct (Case sensitive)");
+        }
+
+    });
+
+});
+</script>
 @endsection

@@ -21,6 +21,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\product;
+use App\category;
 
 class adminController extends Controller
 {
@@ -31,7 +32,9 @@ class adminController extends Controller
 
     public function getCategory()
     {
-    	return view('admin.category');
+        $category = category::get();
+
+    	return view('admin.category',compact('category'));
     }
 
     public function getProductList()
@@ -108,14 +111,40 @@ class adminController extends Controller
 
     public function postAddProduct(Request $request)
     {
-      product::create([
-        'name' => $request->name,
-        'price' => $request->price,
-        'sku' => $request->sku
-      ]);
+        product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'sku' => $request->sku
+        ]);
 
       return redirect()->route('getAddProduct');
     }
 
+    public function addCategory(Request $request)
+    {
+        category::create([
+            'category_name' => $request->category_name
+        ]);
+
+        return redirect()->route('getCategory');
+    }
+
+    public function updateCategory(Request $request)
+    {
+        if(category::where('category_id',$request->id)->update(['category_name' => $request->input])){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
+    public function deleteCategory(Request $request)
+    {
+        if(category::where('category_id',$request->id)->delete()){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
 
 }

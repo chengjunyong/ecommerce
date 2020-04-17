@@ -55,6 +55,9 @@
     <!-- Datatables css-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
 
+    <!-- latest jquery-->
+    <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+
 </head>
 
 <body>
@@ -66,8 +69,7 @@
 
 </div>
 
-<!-- latest jquery-->
-<script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+
 
 <!-- Bootstrap js-->
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
@@ -133,8 +135,6 @@
 <script src="{{ asset('assets/js/jsgrid/jsgrid.min.js') }}"></script>
 <script src="{{ asset('assets/js/jsgrid/griddata-discount-coupon.js') }}"></script>
 <script src="{{ asset('assets/js/jsgrid/jsgrid-discount-coupon.js') }}"></script>
-<script src="{{ asset('assets/js/jsgrid/griddata-manage-product.js') }}"></script>
-<script src="{{ asset('assets/js/jsgrid/jsgrid-manage-product.js') }}"></script>
 
 <!--right sidebar js-->
 <script src="{{ asset('assets/js/chat-menu.js') }}"></script>

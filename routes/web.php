@@ -62,6 +62,16 @@ Route::prefix('/admin')->group(function(){
 
   // add product route
   Route::post('/postAddProduct', 'adminController@postAddProduct')->name('postAddProduct');
+
+  // add category
+  Route::post('/addCategory','adminController@addCategory')->name('addCategory');
+
+  //ajax update category name
+  Route::post('/updateCategory','adminController@updateCategory')->name('updateCategory');
+
+  //ajax delete category
+  Route::post('/deleteCategory','adminController@deleteCategory')->name('deleteCategory');
+  
 });
 
 Auth::routes();
