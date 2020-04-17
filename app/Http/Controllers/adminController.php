@@ -120,7 +120,8 @@ class adminController extends Controller
         'name' => $request->name,
         'price' => $request->price,
         'sku' => $request->sku,
-        'category_id' => $request->category_id
+        'category_id' => $request->category_id,
+        'description' => $request->description
       ]);
 
       foreach($request->my_file as $file)
