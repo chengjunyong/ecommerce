@@ -1,135 +1,191 @@
 @extends('admin.layout')
-
-
+<!-- Dropzone css-->
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dropzone.css') }}">
+<!--dropzone js-->
+<script src="{{ asset('assets/js/dropzone/dropzone.js') }}"></script>
+<script src="{{ asset('assets/js/dropzone/dropzone-script.js') }}"></script>
 @section('layout')
 
+
 <div class="page-body">
+  <!-- Container-fluid starts-->
+  <div class="container-fluid">
+      <div class="page-header">
+          <div class="row">
+              <div class="col-lg-6">
+                  <div class="page-header-left">
+                      <h3>Add Products
+                          <small>Homeu admin panel</small>
+                      </h3>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <ol class="breadcrumb pull-right">
+                      <li class="breadcrumb-item"><a href="{{ route('getIndex') }}"><i data-feather="home"></i></a></li>
+                      <li class="breadcrumb-item active">Add Product</li>
+                  </ol>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!-- Container-fluid Ends-->
 
-            <!-- Container-fluid starts-->
-            <div class="container-fluid">
-                <div class="page-header">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="page-header-left">
-                                <h3>Add Products
-                                    <small>Homeu Admin panel</small>
-                                </h3>
-                            </div>
+  <!-- Container-fluid starts-->
+  <div class="container-fluid">
+      <div class="row product-adding">
+          <div class="col-xl-6">
+              <div class="card">
+                  <div class="card-header">
+                      <h5>General</h5>
+                  </div>
+                  <div class="card-body">
+                      <div class="digital-add needs-validation">
+                        <form id="form" action="{{ route('postAddProduct') }}" method="post" enctype="multipart/form-data" class="col-form-label pt-0"> 
+                         @csrf                    
+                          <div class="form-group">
+                              <label for="validationCustom01" class="col-form-label pt-0"><span>*</span> Product Name</label>
+                              <input class="form-control" id="validationCustom01" type="text" required name="product_name">
+                          </div>
+                          <div class="form-group">
+                              <label for="validationCustomtitle" class="col-form-label pt-0"><span>*</span> SKU</label>
+                              <input class="form-control" id="validationCustomtitle" type="text" required name="sku">
+                          </div>
+                          <div class="form-group">
+                              <label class="col-form-label"><span>*</span> Categories</label>
+                              <select class="custom-select" required="" name="category_id">
+                                    @foreach($category_list as $list)
+                                      <option value={{ $list->category_id }}> {{ $list->category_name }}</option>
+                                    @endforeach
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-form-label">Stock Status</label>
+                              <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                  <label class="d-block" for="unlimited">
+                                      <input class="radio_animated" id="unlimited" type="radio" name="s_status" checked>
+                                      Unlimited
+                                  </label>
+                                  <label class="d-block" for="limited">
+                                      <input class="radio_animated" id="limited" type="radio" name="s_status">
+                                      Limited
+                                  </label>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-form-label">Quantity Stock</label>
+                              <input class="form-control" id="quantity" type="number" required name="stock" readonly>
+                          </div>
+                          <div class="form-group">
+                              <label for="validationCustom02" class="col-form-label"><span>*</span> Product Price (2 decimal point)</label>
+                              <input class="form-control" id="price_custom" type="number" required step=".00" min=0>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-form-label"><span>*</span> Status</label>
+                              <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                  <label class="d-block" for="edo-ani">
+                                      <input class="radio_animated" id="edo-ani" type="radio" name="active" value="1" checked>
+                                      Active
+                                  </label>
+                                  <label class="d-block" for="edo-ani1">
+                                      <input class="radio_animated" id="edo-ani1" type="radio" name="active" value=0>
+                                      Deactive
+                                  </label>
+                              </div>
+                          </div>
+                         <label class="col-form-label pt-0"> Product Image Upload</label>
+                         <div class="dropzone digits dz-message needsclick"><i class="fa fa-cloud-upload"></i>
+                            <input class="mb-0 f-w-600" type="file" id="image" name="image[]" multiple="" accept="image/gif, image/jpeg, image/png">
                         </div>
-                        <div class="col-lg-6">
-                            <ol class="breadcrumb pull-right">
-                                <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-                                <li class="breadcrumb-item active">Add Product</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Container-fluid Ends-->
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xl-6">
+              <div class="card">
+                  <div class="card-header">
+                      <h5>Add Description</h5>
+                  </div>
+                  <div class="card-body">
+                      <div class="digital-add needs-validation">
+                          <div class="form-group mb-0">
+                              <div class="description-sm">
+                                  <textarea id="editor1" name="description" cols="10" rows="15"></textarea>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card">
+                  <div class="card-header">
+                      <h5>Image Preview</h5>
+                  </div>
+                  <div class="card-body">
+                      <div class="digital-add needs-validation">
+                          <div class="form-group mb-0">
+                              <div class="description-sm">
+                                  <div id="imglist">
+                                    
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div> 
+          </div>
+          <div class="col-xl-12" style="text-align: center">
+              <div class="card">
+                  <div class="card-header">
+                      <button id="submit" type="submit" class="btn btn-primary">Add</button>
+                      <input id="discard" class="btn btn-light" type="reset" value="Discard"/>
+                  </div>
+              </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  <!-- Container-fluid Ends-->
+</div>
+<script>
+$(document).ready(function(){
+  $("#unlimited").click(function(){
+    $("#quantity").attr("readonly",true);
+  });
 
-            <!-- Container-fluid starts-->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5>Add Product</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row product-adding">
-                                    <div class="col-xl-5">
-                                        <div class="add-product">
-                                            <div class="row">
-                                                <div class="col-xl-9 xl-50 col-sm-6 col-9">
-                                                    <img src="#" alt="" class="img-fluid image_zoom_1 blur-up lazyloaded">
-                                                </div>
-                                                <div class="col-xl-3 xl-50 col-sm-6 col-3">
-                                                    <ul class="file-upload-product">
-                                                        <li><div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div></li>
-                                                        <li><div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div></li>
-                                                        <li><div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div></li>
-                                                        <li><div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div></li>
-                                                        <li><div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div></li>
-                                                        <li><div class="box-input-file"><input class="upload" type="file"><i class="fa fa-plus"></i></div></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-7">
-                                        <form class="needs-validation add-product-form" method="POST" action="{{ route('postAddProduct') }}" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="form">
-                                                <div class="form-group mb-3 row">
-                                                    <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Product Title :</label>
-                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom01" type="text" required="" name="name" value="{{ old('name') }}">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                    
-                                                </div>
-                                                <div class="form-group mb-3 row">
-                                                    <label for="validationCustom02" class="col-xl-3 col-sm-4 mb-0">Price :</label>
-                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom02" type="text" required="" name="price" value="{{ old('price') }}">
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="form-group mb-3 row">
-                                                    <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Product Code :</label>
-                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustomUsername" type="text" required="" name="sku" value="{{ old('sku') }}">
-                                                    <div class="invalid-feedback offset-sm-4 offset-xl-3">Please choose Valid Code.</div>
-                                                </div>
-                                                <div class="form-group mb-3 row">
-                                                    <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Category :</label>
-                                                    <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="category_id">
-                                                        <option value="0">Please select</option>
-                                                        @foreach($category_list as $category)
-                                                          <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                    <div class="valid-feedback">Looks good!</div>
-                                                </div>
-                                                <div class="form-group mb-3 row">
-                                                  <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">Import file :</label>
-                                                  <input type="file" name="my_file[]" multiple="multiple" />
-                                                </div>
-                                            </div>
-                                            <div class="form">
-                                                <div class="form-group row">
-                                                    <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0">Select type :</label>
-                                                    <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1">
-                                                        <option>Small</option>
-                                                        <option>Medium</option>
-                                                        <option>Large</option>
-                                                        <option>Extra Large</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-xl-3 col-sm-4 mb-0">Total Products :</label>
-                                                    <fieldset class="qty-box col-xl-9 col-xl-8 col-sm-7 pl-0">
-                                                        <div class="input-group">
-                                                            <input class="touchspin" type="text" value="1">
-                                                        </div>
-                                                    </fieldset>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-xl-3 col-sm-4">Add Description :</label>
-                                                    <div class="col-xl-8 col-sm-7 pl-0 description-sm">
-                                                        <textarea id="editor1" name="editor1" cols="70" rows="8"></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="offset-xl-3 offset-sm-4">
-                                                <button type="submit" class="btn btn-primary">Add</button>
-                                                <button type="button" class="btn btn-light">Discard</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Container-fluid Ends-->
+  $("#limited").click(function(){
+    $("#quantity").attr("readonly",false);
+  });
 
-        </div>
+  $("#discard").click(function(){
+    $("#quantity").attr("readonly",true);
+    $("#imglist").html("");
+  });
+
+});
+
+function readURL(input) {
+  $('#imglist').html("");
+  for(var a = 0;a<input.files.length;a++){
+    if (input.files && input.files[a]) {
+      var reader = new FileReader();
+      
+      reader.onload = function(e) {
+        $('#imglist').append("<img src="+e.target.result+" width=200 height=150>");
+      }
+      
+      reader.readAsDataURL(input.files[a]); // convert to base64 string
+    }
+  }
+}
+
+$("#image").change(function() {
+  readURL(this);
+});
+
+
+
+</script>
+
+
 
 @endsection

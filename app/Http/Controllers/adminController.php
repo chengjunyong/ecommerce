@@ -116,27 +116,38 @@ class adminController extends Controller
 
     public function postAddProduct(Request $request)
     {
-      $product_detail = product::create([
-        'name' => $request->name,
-        'price' => $request->price,
-        'sku' => $request->sku,
-        'category_id' => $request->category_id,
-        'description' => $request->description
-      ]);
 
-      foreach($request->my_file as $file)
-      {
-        $ext = $file->getClientOriginalExtension();
-        $path = $file->store('temp');
-
-        product_image::create([
-          'product_id' => $product_detail->id,
-          'image_type' => null,
-          'path' => $path
-        ]);
-      }
 
       return redirect()->route('getAddProduct');
+
+
+
+
+
+
+      //Sample Below {
+      // $product_detail = product::create([
+      //   'name' => $request->name,
+      //   'price' => $request->price,
+      //   'sku' => $request->sku,
+      //   'category_id' => $request->category_id,
+      //   'description' => $request->description
+      // ]);
+
+      // foreach($request->my_file as $file)
+      // {
+      //   $ext = $file->getClientOriginalExtension();
+      //   $path = $file->store('temp');
+
+      //   product_image::create([
+      //     'product_id' => $product_detail->id,
+      //     'image_type' => null,
+      //     'path' => $path
+      //   ]);
+      // }
+
+      // return redirect()->route('getAddProduct');
+      //}End Here
     }
 
     public function addCategory(Request $request)
