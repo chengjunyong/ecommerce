@@ -15,7 +15,7 @@
                                         <div class="footer-contant">
                                             <ul>
                                                 <li><a href="#">about us</a></li>
-                                                <li><a href="#">contact us</a></li>
+                                                <li><a href="{{ route('getContactUsPage') }}">contact us</a></li>
                                                 <li><a href="#">terms & conditions</a></li>
                                                 <li><a href="#">returns & exchanges</a></li>
                                                 <li><a href="#">shipping & delivery</a></li>
@@ -47,7 +47,7 @@
                         <div class="footer-sub-box footer-contant-box">
                             <div>
                                 <div class="footer-title">
-                                    <h5><a href="{{ route('getContactUsPage') }}">contact us</a></h5>
+                                    <h5>contact us</h5>
                                 </div>
                                 <div class="footer-contant">
                                     <ul class="contact-list">
