@@ -18,16 +18,23 @@ Route::get('/index4', 'frontController@getFrontIndex4')->name('getFrontIndex4');
 Route::get('/index5', 'frontController@getFrontIndex5')->name('getFrontIndex5');
 Route::get('/index6', 'frontController@getFrontIndex6')->name('getFrontIndex6');
 Route::get('/category', 'frontController@getCategoryPage')->name('getCategoryPage');
+Route::get('/contact_us', 'frontController@getContactUsPage')->name('getContactUsPage');
+Route::get('/edit_info', 'frontController@getEditInfo')->name('getEditInfo');
+Route::get('/order_tracking', 'frontController@getOrderTracking')->name('getOrderTracking');
+Route::get('/order_tracking_detail', 'frontController@getOrderTrackingDetail')->name('getOrderTrackingDetail');
+Route::get('/receipt', 'frontController@getOrderReceipt')->name('getOrderReceipt');
+Route::get('/FAQ', 'frontController@getFAQ')->name('getFAQ');
+Route::get('/forgot_password', 'frontController@getForgotPassword')->name('getForgotPassword');
+Route::get('/order_history', 'frontController@getOrderHistory')->name('getOrderHistory');
+Route::get('/wishlist', 'frontController@getWishList')->name('getWishList');
 
 Route::get('/newpage', 'frontController@getNewPage')->name('getNew');
 
-Route::get('/register_now', 'frontController@getRegisterPage')->name('getRegisterPage');
+Route::get('/registernow', 'frontController@getRegisterPage')->name('getRegisterPage');
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile', 'frontController@getUserProfile')->name('getUserProfile');
 });
-
-
 
 Route::prefix('item')->group(function () {
   Route::get('{id}', 'itemController@getItemDetail')->name('getItemDetail');

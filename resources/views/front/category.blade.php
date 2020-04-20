@@ -187,7 +187,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="top-banner-wrapper">
-                                    <a href="#"><img src="../assets/images/category/1.jpg" class="img-fluid " alt=""></a>
+                                    <a href="#"><img src="../assets/images/category/1.jpg" class="img-fluid  w-100" alt="cat-banner"></a>
                                     <div class="top-banner-content small-section">
                                         <h4>fashion</h4>
                                         <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
@@ -196,11 +196,6 @@
                                 </div>
                                 <div class="collection-product-wrapper">
                                     <div class="product-top-filter">
-                                        <div class="row">
-                                            <div class="col-xl-12">
-                                                <div class="filter-main-btn"><span class="filter-btn  "><i class="fa fa-filter" aria-hidden="true"></i> Filter</span></div>
-                                            </div>
-                                        </div>
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="product-filter-content">
@@ -214,10 +209,10 @@
                                                     </div>
                                                     <div class="collection-grid-view">
                                                         <ul>
-                                                            <li><img src="../assets/images/category/icon/2.png" alt="" class="product-2-layout-view"></li>
-                                                            <li><img src="../assets/images/category/icon/3.png" alt="" class="product-3-layout-view"></li>
-                                                            <li><img src="../assets/images/category/icon/4.png" alt="" class="product-4-layout-view"></li>
-                                                            <li><img src="../assets/images/category/icon/6.png" alt="" class="product-6-layout-view"></li>
+                                                            <li><img src="../assets/images/category/icon/2.png" alt="grid-view" class="product-2-layout-view"></li>
+                                                            <li><img src="../assets/images/category/icon/3.png" alt="grid-view" class="product-3-layout-view"></li>
+                                                            <li><img src="../assets/images/category/icon/4.png" alt="grid-view" class="product-4-layout-view"></li>
+                                                            <li><img src="../assets/images/category/icon/6.png" alt="grid-view" class="product-6-layout-view"></li>
                                                         </ul>
                                                     </div>
                                                     <div class="product-page-per-view">
@@ -238,9 +233,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="product-wrapper-grid">
+                                    <div class="product-wrapper-grid category-6">
                                         <div class="row">
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                             <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -297,7 +292,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -354,15 +349,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
                                                             <div class="product-front">
-                                                                <img src="../assets/images/layout-1/product/3.jpg" class="img-fluid  " alt="product">
+                                                                <img src="../assets/images/layout-1/product/3.jpg" class="img-fluid      " alt="product">
                                                             </div>
                                                             <div class="product-back">
-                                                                <img src="../assets/images/layout-1/product/a3.jpg" class="img-fluid  " alt="product">
+                                                                <img src="../assets/images/layout-1/product/a3.jpg" class="img-fluid      " alt="product">
                                                             </div>
                                                         </div>
                                                         <div class="product-detail detail-center ">
@@ -411,15 +406,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
                                                             <div class="product-front">
-                                                                <img src="../assets/images/layout-1/product/4.jpg" class="img-fluid  " alt="product">
+                                                                <img src="../assets/images/layout-1/product/4.jpg" class="img-fluid    " alt="product">
                                                             </div>
                                                             <div class="product-back">
-                                                                <img src="../assets/images/layout-1/product/a4.jpg" class="img-fluid  " alt="product">
+                                                                <img src="../assets/images/layout-1/product/a4.jpg" class="img-fluid    " alt="product">
                                                             </div>
                                                         </div>
                                                         <div class="product-detail detail-center ">
@@ -468,7 +463,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -489,13 +484,13 @@
                                                                         <i class="fa fa-star"></i>
                                                                         <i class="fa fa-star"></i>
                                                                     </div>
+                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
                                                                     <a href="">
                                                                         <h6 class="price-title">
                                                                             reader will be distracted.
                                                                         </h6>
                                                                     </a>
                                                                 </div>
-                                                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
                                                                 <div class="detail-right">
                                                                     <div class="check-price">
                                                                         $ 56.21
@@ -525,7 +520,64 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
+                                                <div class="product">
+                                                    <div class="product-box">
+                                                        <div class="product-imgbox">
+                                                            <div class="product-front">
+                                                                <img src="../assets/images/layout-1/product/2.jpg" class="img-fluid  " alt="product">
+                                                            </div>
+                                                            <div class="product-back">
+                                                                <img src="../assets/images/layout-1/product/a2.jpg" class="img-fluid  " alt="product">
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-detail detail-center ">
+                                                            <div class="detail-title">
+                                                                <div class="detail-left">
+                                                                    <div class="rating-star">
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                    </div>
+                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                                                                    <a href="">
+                                                                        <h6 class="price-title">
+                                                                            reader will be distracted.
+                                                                        </h6>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="detail-right">
+                                                                    <div class="check-price">
+                                                                        $ 56.21
+                                                                    </div>
+                                                                    <div class="price">
+                                                                        <div class="price">
+                                                                            $ 24.05
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="icon-detail">
+                                                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
+                                                                    <i class="ti-bag" ></i>
+                                                                </button>
+                                                                <a href="javascript:void(0)" title="Add to Wishlist">
+                                                                    <i class="ti-heart" aria-hidden="true"></i>
+                                                                </a>
+                                                                <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                                    <i class="ti-search" aria-hidden="true"></i>
+                                                                </a>
+                                                                <a href="compare.html" title="Compare">
+                                                                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -582,7 +634,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -639,7 +691,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -696,7 +748,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -753,7 +805,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
@@ -810,72 +862,15 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                                            <div class="col-xl-2 col-lg-3 col-md-4 col-6 col-grid-box">
                                                 <div class="product">
                                                     <div class="product-box">
                                                         <div class="product-imgbox">
                                                             <div class="product-front">
-                                                                <img src="../assets/images/layout-1/product/3.jpg" class="img-fluid  " alt="product">
+                                                                <img src="../assets/images/layout-1/product/6.jpg" class="img-fluid  " alt="product">
                                                             </div>
                                                             <div class="product-back">
-                                                                <img src="../assets/images/layout-1/product/a3.jpg" class="img-fluid  " alt="product">
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-detail detail-center ">
-                                                            <div class="detail-title">
-                                                                <div class="detail-left">
-                                                                    <div class="rating-star">
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                        <i class="fa fa-star"></i>
-                                                                    </div>
-                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                                                                    <a href="">
-                                                                        <h6 class="price-title">
-                                                                            reader will be distracted.
-                                                                        </h6>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="detail-right">
-                                                                    <div class="check-price">
-                                                                        $ 56.21
-                                                                    </div>
-                                                                    <div class="price">
-                                                                        <div class="price">
-                                                                            $ 24.05
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="icon-detail">
-                                                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                                                    <i class="ti-bag" ></i>
-                                                                </button>
-                                                                <a href="javascript:void(0)" title="Add to Wishlist">
-                                                                    <i class="ti-heart" aria-hidden="true"></i>
-                                                                </a>
-                                                                <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                                                    <i class="ti-search" aria-hidden="true"></i>
-                                                                </a>
-                                                                <a href="compare.html" title="Compare">
-                                                                    <i class="fa fa-exchange" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-3 col-md-4 col-6  col-grid-box">
-                                                <div class="product">
-                                                    <div class="product-box">
-                                                        <div class="product-imgbox">
-                                                            <div class="product-front">
-                                                                <img src="../assets/images/layout-1/product/1.jpg" class="img-fluid  " alt="product">
-                                                            </div>
-                                                            <div class="product-back">
-                                                                <img src="../assets/images/layout-1/product/a1.jpg" class="img-fluid  " alt="product">
+                                                                <img src="../assets/images/layout-1/product/a6.jpg" class="img-fluid  " alt="product">
                                                             </div>
                                                         </div>
                                                         <div class="product-detail detail-center ">

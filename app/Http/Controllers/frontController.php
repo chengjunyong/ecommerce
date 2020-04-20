@@ -75,6 +75,54 @@ class frontController extends Controller
   {
     $user = Auth::user();
 
-    return view('front.profile', compact('user'));
+    return view('front.dashboard', compact('user'));
+  }
+
+  public function getEditInfo()
+  {
+    $user = Auth::user();
+
+    return view('front.edit_info', compact('user'));
+  }
+
+  public function getContactUsPage()
+  {
+    return view('front.contact_us');
+  }
+
+  public function getOrderTracking()
+  {
+    return view('front.order_tracking');
+  }
+
+  public function getOrderTrackingDetail()
+  {
+    $tracking_no = $_GET['tracking_no'];
+    return view('front.order_tracking_detail');
+  }
+
+  public function getOrderReceipt()
+  {
+    return view('front.order_receipt');
+  }
+
+  public function getFAQ()
+  {
+    return view('front.faq');
+  }
+
+  public function getForgotPassword()
+  {
+    return view('front.forgot_password');
+  }
+
+  public function getOrderHistory()
+  {
+    return view('front.order_history');
+  }
+
+  public function getWishList()
+  {
+    return view('front.wishlist');
   }
 }
