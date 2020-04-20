@@ -6,7 +6,18 @@
 <script src="{{ asset('assets/js/dropzone/dropzone-script.js') }}"></script>
 @section('layout')
 
+<style>
+.fade{
+  animation: fadeout 2.5s;
+}
 
+
+@keyframes fadeout{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+
+</style>
 <div class="page-body">
   <!-- Container-fluid starts-->
   <div class="container-fluid">
@@ -37,6 +48,11 @@
               <div class="card">
                   <div class="card-header">
                       <h5>General</h5>
+                      @if(session()->has('success'))
+                        <div class="highlight fade" style="position:fixed;left:55%;top:15%;z-index: 999;left:50%;top:15%;padding:5px 60px 5px 60px;background-color:#bfbfd6;border-radius: 20px;">
+                          <lable><b>{{ session()->get('success') }}</b></lable>
+                        </div>
+                      @endif
                   </div>
                   <div class="card-body">
                       <div class="digital-add needs-validation">
@@ -77,7 +93,7 @@
                           </div>
                           <div class="form-group">
                               <label for="validationCustom02" class="col-form-label"><span>*</span> Product Price (2 decimal point)</label>
-                              <input class="form-control" id="price_custom" type="number" required step=".00" min=0>
+                              <input name="price" class="form-control" id="price_custom" type="number" required step=".01" min=0>
                           </div>
                           <div class="form-group">
                               <label class="col-form-label"><span>*</span> Status</label>
@@ -146,6 +162,8 @@
   </div>
   <!-- Container-fluid Ends-->
 </div>
+
+
 <script>
 $(document).ready(function(){
   $("#unlimited").click(function(){

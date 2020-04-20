@@ -54,9 +54,8 @@ class adminController extends Controller
     public function getAddProduct()
     {
       $category_list = category::get();
-      $product_image_list = product_image::get();
 
-    	return view('admin.addproduct', compact('category_list', 'product_image_list'));
+    	return view('admin.addproduct', compact('category_list'));
     }
 
     public function getOrders()
@@ -116,12 +115,36 @@ class adminController extends Controller
 
     public function postAddProduct(Request $request)
     {
+      if($request->stock == null){
+        $stock = -1;
+      }else{
+        $stock = $request->stock;
+      }
 
+      $product = product::create([
+        'name'=> $request->product_name,
+        'description' => $request->description,
+        'sku'=> $request->sku,
+        'category_id'=> $request->category_id,
+        'stock' => $stock,
+        'price' => $request->price,
+        'active' => $request->active
+      ]);
 
-      return redirect()->route('getAddProduct');
+      if(isset($request->image)){
+        $i = 1;
+        foreach ($request->image as $image) {
+          $filename = $product->id."_".$i.".".$image->getClientOriginalExtension();
+          product_image::create([
+            'product_id' => $product->id,
+            'path' => $filename
+          ]);
+          $image->move(public_path('storage'), $filename);
+          $i++;
+        }
+      }
 
-
-
+      return back()->with("success","Product Add Successful");
 
 
 
@@ -148,6 +171,8 @@ class adminController extends Controller
 
       // return redirect()->route('getAddProduct');
       //}End Here
+
+
     }
 
     public function addCategory(Request $request)
