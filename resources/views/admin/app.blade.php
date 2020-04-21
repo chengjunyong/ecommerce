@@ -18,7 +18,7 @@
 
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css') }}">
-
+    
     <!-- Flag icon-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/flag-icon.css') }}">
 
@@ -68,8 +68,6 @@
   @yield('content')
 
 </div>
-
-
 
 <!-- Bootstrap js-->
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>

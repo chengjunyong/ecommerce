@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-6">
                     <ol class="breadcrumb pull-right">
-                        <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('getIndex') }}"><i data-feather="home"></i></a></li>
                         <li class="breadcrumb-item">Category</li>
                     </ol>
                 </div>
@@ -110,12 +110,7 @@
                                                         </tr>
                                                     @endif
                                                 @endforeach
-                                            @endif
-                                            <!-- <tr class="jsgrid-row">
-                                                <td class="jsgrid-cell" style="width: 50px;">123</td>
-                                                <td class="jsgrid-cell" style="width: 50px;">Electronics</td>
-                                                <td class="jsgrid-cell" style="width: 50px;">2020-april-16</td>
-                                            </tr> -->
+                                            @endif                                 
                                         </tbody>
                                     </table>
                                 </div>

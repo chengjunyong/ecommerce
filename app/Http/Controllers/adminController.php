@@ -41,9 +41,27 @@ class adminController extends Controller
 
     public function getProductList()
     {
-      $product_list = product::where('active', 1)->get();
+      $product_list = product::join('category', 'category.category_id', '=', 'product.category_id')->select('product.*', 'category.category_name as category_name')->paginate(15);
 
-    	return view('admin.productlist')->with(['product_list' => $product_list]);
+      // $product_list = product::get();
+
+      // foreach($product_list as $product)
+      // {
+      //   $product->category_name = "";
+      //   $category_detail = category::where('category_id', $product->category_id)->first();
+      //   if($category_detail)
+      //   {
+      //     $product->category_name = $category_detail->category_name;
+      //   }
+      // }
+
+      // dd($product_list);
+
+      // dd($product_list->getUrlRange(0, 15))
+
+      dd($product_list->total());
+
+    	return view('admin.productlist',compact('product_list'));
     }
 
     public function getProductDetail()
