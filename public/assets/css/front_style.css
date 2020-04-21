@@ -1,0 +1,6 @@
+/* customize style */
+.icon_dropdown { position: relative; font-family: PT Sans,sans-serif; }
+.icon_dropdown ul { display: none; position: absolute; min-width: 10em; max-width: 20em; margin-top: 20px; right: 10px; padding: 15px 0px 15px 0px; background: #fff; border: 5px solid #f2f2f2; }
+.icon_dropdown ul.active { display: block; }
+.icon_dropdown ul li a { display: inline-block; color: #444; font-size: 14px; font-weight: 400; text-transform: capitalize; padding: 5px 25px; line-height: 23px; }
+.icon_dropdown ul li a:hover { margin-left: 5px; }

@@ -20,6 +20,7 @@ Route::get('/index6', 'frontController@getFrontIndex6')->name('getFrontIndex6');
 Route::get('/category', 'frontController@getCategoryPage')->name('getCategoryPage');
 Route::get('/contact_us', 'frontController@getContactUsPage')->name('getContactUsPage');
 Route::get('/edit_info', 'frontController@getEditInfo')->name('getEditInfo');
+Route::get('/edit_address', 'frontController@getEditAddress')->name('getEditAddress');
 Route::get('/order_tracking', 'frontController@getOrderTracking')->name('getOrderTracking');
 Route::get('/order_tracking_detail', 'frontController@getOrderTrackingDetail')->name('getOrderTrackingDetail');
 Route::get('/receipt', 'frontController@getOrderReceipt')->name('getOrderReceipt');

@@ -80,7 +80,7 @@
                             <div>
                                 <div class="box">
                                     <div class="box-title">
-                                        <h3>Address Book</h3><a href="#">Manage Addresses</a></div>
+                                        <h3>Address Book</h3><a href="{{ route('getEditAddress') }}">Manage Addresses</a></div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <h6>Default Billing Address</h6><address>You have not set a default billing address.<br><a href="#">Edit Address</a></address></div>

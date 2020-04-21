@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use View;
 
 class frontController extends Controller
 {
+  public function __construct()
+  {
+    $category_list = category::get();
+
+    // all view will have this category list
+    \View::share('category_list', $category_list);
+  }
+
 	public function getFrontIndex()
 	{
     $banner = array(
@@ -83,6 +93,11 @@ class frontController extends Controller
     $user = Auth::user();
 
     return view('front.edit_info', compact('user'));
+  }
+
+  public function getEditAddress()
+  {
+    return view('front.edit_address');
   }
 
   public function getContactUsPage()

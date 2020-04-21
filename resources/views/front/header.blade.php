@@ -371,7 +371,7 @@
 
                   @if(Auth::check())
                     <li>
-                      <a href="#" id="logout_btn">Logout</a>
+                      <a href="#" onclick="logout_now()">Logout</a>
                     </li>
                   @endif
                   <!--blog-meu end-->
@@ -382,14 +382,19 @@
               <div class="icon-nav">
                 <ul>
                   @if(Auth::check())
-                    <li class="mobile-user onhover-dropdown"><a href="{{ route('getUserProfile') }}"><i class="icon-user" style="color: orange;"></i></a>
+                    <li class="mobile-user onhover-dropdown icon_dropdown"><a href="#"><i class="icon-user" style="color: orange;"></i></a>
+                      <ul>
+                        <li><a href="{{ route('getUserProfile') }}">My profile</a></li>
+                        <li><a href="#" onclick="logout_now()">Logout</a></li>
+                      </ul>
                     </li>
                   @else
                     <li class="mobile-user onhover-dropdown" onclick="openAccount()"><a href="#"><i class="icon-user"></i></a>
                     </li>
                   @endif
-                  <li class="mobile-wishlist" onclick="openWishlist()">
-                    <a href="#">
+                  <!-- <li class="mobile-wishlist" onclick="openWishlist()"> -->
+                  <li class="mobile-wishlist">
+                    <a href="{{ route('getWishList') }}">
                       <i class="icon-heart"></i>
                       <div class="cart-item"><div>0 item<span>wishlist</span></div></div>
                     </a>
@@ -443,28 +448,26 @@
                   </nav>
                   <div class="collapse nav-desk" id="navbarToggleExternalContent">
                     <ul class="nav-cat title-font">
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage') }}">western ware</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/02.png') }}" alt="catergory-product"> <a>TV, Appliances</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/03.png') }}" alt="catergory-product"> <a>Pets Products</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/04.png') }}" alt="catergory-product"> <a>Car, Motorbike</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/05.png') }}" alt="catergory-product"> <a>Industrial Products</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/06.png') }}" alt="catergory-product"> <a>Beauty, Health Products</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/07.png') }}" alt="catergory-product"> <a>Grocery Products </a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>Sports</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/09.png') }}" alt="catergory-product"> <a>Bags, Luggage</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/10.png') }}" alt="catergory-product"> <a>Movies, Music </a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/11.png') }}" alt="catergory-product"> <a>Video Games</a></li>
-                      <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>Sports</a></li>
-                      <li class="mor-slide-open">
-                        <ul>
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>Sports</a></li>
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/09.png') }}" alt="catergory-product"> <a>Bags, Luggage</a></li>
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/10.png') }}" alt="catergory-product"> <a>Movies, Music </a></li>
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/11.png') }}" alt="catergory-product"> <a>Video Games</a></li>
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/12.png') }}" alt="catergory-product"> <a>Toys, Baby Products</a></li>
-                        </ul>
-                      </li>
-                      <li> <a class="mor-slide-click">mor category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
+
+                      @if(count($category_list) <= 12)
+                        @foreach($category_list as $category)
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage') }}">{{ $category->category_name }}</a></li>
+                        @endforeach
+                      @else
+                        @for ($i = 0; $i < 12; $i++)
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage') }}">{{ $category_list[$i]->category_name }}</a></li>
+                        @endfor
+
+                        <li class="mor-slide-open">
+                          <ul>
+                            @for($b = 12; $b < count($category_list); $b++)
+                              <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>{{ $category_list[$b]->category_name }}</a></li>
+                            @endfor
+                          </ul>
+                        </li>
+
+                        <li> <a class="mor-slide-click">mor category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
+                      @endif
                     </ul>
                   </div>
                 </div>

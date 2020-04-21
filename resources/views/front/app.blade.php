@@ -31,6 +31,8 @@
   <!-- Theme css -->
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color1.css') }}" media="screen" id="color">
 
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/front_style.css') }}" media="screen" id="color">
+
   <!-- latest jquery-->
   <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 
@@ -57,6 +59,8 @@
   <script src="{{ asset('assets/js/slider-animat-three.js') }}"></script>
   
   <script src="{{ asset('assets/js/modal.js') }}"></script>
+
+  <script src="{{ asset('assets/js/front.js') }}"></script>
 
 </head>
 <body class="bg-light ">
@@ -138,11 +142,12 @@
       });
     });
 
-    $("#logout_btn").click(function(){
-      $("#logout_form").submit();
-    });
-
   });
+
+  function logout_now()
+  {
+    $("#logout_form").submit();
+  }
 
 </script>
 
