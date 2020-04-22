@@ -361,12 +361,6 @@
                   <!--product-end end-->
 
                   <!--blog-meu start-->               
-
-                  @if(Auth::check())
-                    <li>
-                      <a href="#" onclick="logout_now()">Logout</a>
-                    </li>
-                  @endif
                   <!--blog-meu end-->
                 </ul>
             	</nav>
