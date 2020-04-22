@@ -147,7 +147,6 @@ class adminController extends Controller
         'active' => $request->active
       ]);
 
-      // 
       foreach($request->image as $image)
       {
         $product_image_detail = product_image::create([
@@ -159,20 +158,7 @@ class adminController extends Controller
           'path' => $path
         ]);
       }
-      // end
 
-      // if(isset($request->image)){
-      //   $i = 1;
-      //   foreach ($request->image as $image) {
-      //     $filename = $product->id."_".$i.".".$image->getClientOriginalExtension();
-      //     product_image::create([
-      //       'product_id' => $product->id,
-      //       'path' => $filename
-      //     ]);
-      //     $image->move(public_path('storage'), $filename);
-      //     $i++;
-      //   }
-      // }
       return back()->with("success","Product Add Successful");
     }
 
@@ -258,26 +244,38 @@ class adminController extends Controller
       if($request->removeImage){ 
         product_image::whereIn('id', $request->removeImage)->delete();
       }
-        if(isset($request)){
-          if($request->stock == null){
-            $stock = -1;
-          }else{
-            $stock = $request->stock;
-          }
-          product::where('id','=',$request->product_id)
-                    ->update([
-                      'name' => $request->product_name,
-                      'description' => $request->description,
-                      'price' => $request->price,
-                      'stock' => $stock,
-                      'sku' => $request->product_sku,
-                      'category_id' => $request->category
-                    ]);
 
-          return $this->getProductList();
-        }else{
-          return back();
+      if($request->image){
+        foreach($request->image as $image){  
+          $product_detail = product_image::create([
+            'product_id' => $request->product_id
+          ]);
+
+          $path = $image->storeAs('/image', $product_detail->product_id."_".$product_detail->id.".".$image->getClientOriginalExtension());
+          product_image::where('id', $product_detail->id)
+                    ->update([
+                      'path' => $path
+                      ]);
         }
+      }
+
+      if($request->stock == null){
+        $stock = -1;
+      }else{
+        $stock = $request->stock;
+      }
+      product::where('id','=',$request->product_id)
+                ->update([
+                  'name' => $request->product_name,
+                  'description' => $request->description,
+                  'price' => $request->price,
+                  'stock' => $stock,
+                  'sku' => $request->product_sku,
+                  'category_id' => $request->category
+                ]);
+
+      return $this->getProductList();
+        
 
     }
 
