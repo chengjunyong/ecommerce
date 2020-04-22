@@ -38,15 +38,18 @@
                 </div>
                 <div>
                     <button class="btn btn-primary" style="float:left;margin-left:3vw" id="multiple_delete">Delete</button>
-                    <input class="form-control" type="text" name="product_name" placeholder="Name or SKU" style="width:20%;float:right;margin-right:3vw">
-                    <button class="btn btn-primary" style="float:right;margin-right:4px"><i class="fas fa-search"></i></button>
+                    <form action="{{ route('searchProduct')}}" method="post">
+                        @csrf
+                        <input class="form-control" type="text" name="product_name" placeholder="Name or SKU" style="width:20%;float:right;margin-right:3vw">
+                        <button class="btn btn-primary" style="float:right;margin-right:4px"><i class="fas fa-search"></i></button>
+                    </form>
                 </div>
                 <div class="card-body">
                     <div id="basicScenario" class="product-list digital-product">
                         <div class="jsgrid-grid-header jsgrid-grid-header-scrollbar">
                             <table class="jsgrid-table">
-                                <tr class="jsgrid-header-row">
-                                    <th class="jsgrid-header-cell jsgrid-align-right" style="width:7%;">                                       
+                                <tr class="jsgrid-header-row">                               
+                                    <th class="jsgrid-header-cell jsgrid-align-right" style="width:7%">                                       
                                         <span style="margin-right: 5px">All</span><input id="all" type="checkbox">
                                     </th>
                                     <th class="jsgrid-header-cell jsgrid-align-right" style="width:5%;">
@@ -76,9 +79,9 @@
                                     @foreach($product_list as $result)
                                         <tr class="jsgrid-row">
                                             <td class="jsgrid-cell">
-                                                <input class="admin_check" type="checkbox" value="{{ $result->id }}" id="{{ $result->id }}">
+                                                <input class="admin_check" type="checkbox" value="{{ $result->id }}" name="bulk_check[]">
                                             </td>
-                                            <td class="jsgrid-cell">
+                                            <td class="jsgrid-cell" product_id="{{ $result->id }}">
                                                 {{ $result->id }}
                                             </td>
                                             <td class="jsgrid-cell">
@@ -101,8 +104,8 @@
                                                 {{ $result->updated_at }}
                                             </td>
                                             <td class="jsgrid-cell" style="font-size:20px">
-                                                <input class="fas fa-edit" type="button">
-                                                <input class='fas fa-trash-alt' type="button">
+                                                <button class="edit" style="border:0px;background:white;"><i class="fas fa-edit edit" ></i></button>
+                                                <button class="delete" style="border:0px;background:white;"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -143,14 +146,53 @@ $(document).ready(function(){
     })
 
     $("#multiple_delete").click(function(){
-        var b = $(".admin_check");
-        for(var a=0;a<b.length;a++){
-            if($(b[a]).prop("checked") == true){
-                console.log($(b[a]).val())
-            }
-        }
+        if($(".admin_check:checked").length == 0){
+            alert("Please select atleast 1 product");
+        }else{
+            let token = $('input[name=_token]').val();
+            var product_id = [];
+            $(".admin_check:checked").each(function(){
+                product_id.push($(this).val());
+            });
 
+            $.post("{{ route('bulkDelete') }}",
+            {
+                _token : token,
+                product_id : product_id
+
+            },function(data){
+                if(data == "true"){
+                    alert("Data delete successful");
+                    location.reload();
+                }else{
+                    alert("Something Wrong, please contact IT services");
+                }
+            },"html");
+
+        }
     });
+
+    $(".delete").click(function(){
+        if(confirm("You want to delete this product ?")){
+           let target = $(this).parents().eq(1).children().eq(1).attr("product_id");
+           let token = $('input[name=_token]').val();
+
+           $.post("{{ route('deleteSingleProduct') }}",
+           {
+            _token : token,
+            product_id : target
+
+           },function(data){
+                if(data == "true"){
+                    alert("Delete successful");
+                    location.reload();
+                }else{
+                    alerT("Delete unsuccessful");
+                }
+           },"html");
+       }
+    });
+
 });
 </script>
 @endsection

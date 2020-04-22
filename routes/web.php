@@ -79,7 +79,16 @@ Route::prefix('/admin')->group(function(){
 
   //ajax delete category
   Route::post('/deleteCategory','adminController@deleteCategory')->name('deleteCategory');
-  
+
+  //ajax bulk delete product
+  Route::post('/bulkDeleteProduct','adminController@bulkDelete')->name('bulkDelete');
+
+  //search product
+  Route::post('/productlist','adminController@searchProduct')->name('searchProduct');
+
+  //delete single product
+  Route::post('/deleteProduct','adminController@deleteSingleProduct')->name('deleteSingleProduct');
+
 });
 
 Auth::routes();

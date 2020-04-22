@@ -159,36 +159,7 @@ class adminController extends Controller
           $i++;
         }
       }
-
       return back()->with("success","Product Add Successful");
-
-
-
-      //Sample Below {
-      // $product_detail = product::create([
-      //   'name' => $request->name,
-      //   'price' => $request->price,
-      //   'sku' => $request->sku,
-      //   'category_id' => $request->category_id,
-      //   'description' => $request->description
-      // ]);
-
-      // foreach($request->my_file as $file)
-      // {
-      //   $ext = $file->getClientOriginalExtension();
-      //   $path = $file->store('temp');
-
-      //   product_image::create([
-      //     'product_id' => $product_detail->id,
-      //     'image_type' => null,
-      //     'path' => $path
-      //   ]);
-      // }
-
-      // return redirect()->route('getAddProduct');
-      //}End Here
-
-
     }
 
     public function addCategory(Request $request)
@@ -216,6 +187,47 @@ class adminController extends Controller
         }else{
             return "false";
         }
+    }
+
+    public function bulkDelete(Request $request)
+    {
+      if(isset($request->product_id)){
+        if(product::whereIn('id',$request->product_id)->delete()){
+          return "true";
+        }else{
+          return "false";
+        }
+      }else{
+        return "false";
+      }
+    }
+
+    public function deleteSingleProduct(Request $request)
+    {
+      if($request->product_id == null){
+        return $this->getProductList();
+      }else{
+        if(product::where('id','=',$request->product_id)->delete()){
+          return "true";
+        }else{
+          return "false";
+        }
+      }
+    }
+
+    public function searchProduct(Request $request)
+    {
+      if(isset($request->product_name)){
+        $result = product::join('category', 'category.category_id', '=', 'product.category_id')
+                        ->select('product.*', 'category.category_name as category_name')
+                        ->where('product.name','like','%'.$request->product_name.'%')
+                        ->orWhere('product.sku','like','%'.$request->product_name.'%')
+                        ->paginate(15);
+
+        return view('admin.productlist')->with('product_list',$result);
+      }
+
+        return $this->getProductList();
     }
 
 }
