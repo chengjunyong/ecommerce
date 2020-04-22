@@ -58,6 +58,10 @@
     <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}" />
+    <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
+
 </head>
 
 <body>
