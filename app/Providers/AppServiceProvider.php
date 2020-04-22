@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use View;
+use App\category;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +26,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+      Schema::defaultStringLength(191);
+
+      view()->composer('*', function ($view) 
+      {
+        $category_list = category::get();
+        $view->with('category_list', $category_list ); 
+      }); 
     }
 }

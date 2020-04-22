@@ -3,20 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\category;
+use App\product;
+use App\product_image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use View;
 
 class frontController extends Controller
 {
-  public function __construct()
-  {
-    $category_list = category::get();
-
-    // all view will have this category list
-    \View::share('category_list', $category_list);
-  }
-
 	public function getFrontIndex()
 	{
     $banner = array(
@@ -71,9 +64,32 @@ class frontController extends Controller
     return view('front.index6.index6');
   }
 
-  public function getCategoryPage()
+  public function getCategoryPage($id)
   {
-    return view('front.category');
+    $product_list = product::where('category_id', $id)->get();
+
+    $product_id_array = array();
+    foreach($product_list as $product)
+    {
+      array_push($product_id_array, $product->id);
+    }
+
+    $product_image_list = product_image::whereIn('product_id', $product_id_array)->get();
+
+    foreach($product_list as $product)
+    {
+      $product_image = array();
+      foreach($product_image_list as $image)
+      {
+        if($image->product_id == $product->id)
+        {
+          array_push($product_image, $image);
+        }
+      }
+      $product->image = $product_image;
+    }
+
+    return view('front.category', compact('product_list'));
   }
 
   public function getRegisterPage()

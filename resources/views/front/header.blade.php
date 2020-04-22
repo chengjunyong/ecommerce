@@ -50,33 +50,26 @@
                     back <i class="fa fa-angle-right pl-2"></i>
                   </div>
                 </li>
-                <li><a href="{{ route('getCategoryPage') }}">western ware</a></li>
-                <li><a href="#">TV, Appliances</a></li>
-                <li><a href="#">Pets Products</a></li>
-                <li><a href="#">Car, Motorbike</a></li>
-                <li><a href="#">Industrial Products</a></li>
-                <li><a href="#">Beauty, Health Products</a></li>
-                <li><a href="#">Grocery Products </a></li>
-                <li><a href="#">Sports</a></li>
-                <li><a href="#">Bags, Luggage</a></li>
-                <li><a href="#">Movies, Music </a></li>
-                <li><a href="#">Video Games</a></li>
-                <li><a href="#">Toys, Baby Products</a></li>
-                <li class="mor-slide-open">
-		              <ul>
-		                <li><a href="#">Bags, Luggage</a></li>
-		                <li><a href="#">Movies, Music </a></li>
-		                <li><a href="#">Video Games</a></li>
-		                <li><a href="#">Toys, Baby Products</a></li>
-		              </ul>
-		          	</li>
-                <li>
-                  <a class="mor-slide-click">
-                    mor category
-                    <i class="fa fa-angle-down pro-down" ></i>
-                    <i class="fa fa-angle-up pro-up" ></i>
-                  </a>
-                </li>
+
+                @if(count($category_list) <= 12)
+                  @foreach($category_list as $category)
+                    <li> <a href="{{ route('getCategoryPage', ['id' => $category->category_id]) }}">{{ $category->category_name }}</a></li>
+                  @endforeach
+                @else
+                  @for ($i = 0; $i < 12; $i++)
+                    <li> <a href="{{ route('getCategoryPage', ['id' => $category_list[$i]->category_id]) }}">{{ $category_list[$i]->category_name }}</a></li>
+                  @endfor
+
+                  <li class="mor-slide-open">
+                    <ul>
+                      @for($b = 12; $b < count($category_list); $b++)
+                        <li> <a href="{{ route('getCategoryPage', ['id' => $category_list[$b]->category_id]) }}">{{ $category_list[$b]->category_name }}</a></li>
+                      @endfor
+                    </ul>
+                  </li>
+
+                  <li> <a class="mor-slide-click">mor category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
+                @endif
               </ul>
             </div>
             <div class="brand-logo">
@@ -451,17 +444,17 @@
 
                       @if(count($category_list) <= 12)
                         @foreach($category_list as $category)
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage') }}">{{ $category->category_name }}</a></li>
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage', ['id' => $category->category_id]) }}">{{ $category->category_name }}</a></li>
                         @endforeach
                       @else
                         @for ($i = 0; $i < 12; $i++)
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage') }}">{{ $category_list[$i]->category_name }}</a></li>
+                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage', ['id' => $category_list[$i]->category_id]) }}">{{ $category_list[$i]->category_name }}</a></li>
                         @endfor
 
                         <li class="mor-slide-open">
                           <ul>
                             @for($b = 12; $b < count($category_list); $b++)
-                              <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a>{{ $category_list[$b]->category_name }}</a></li>
+                              <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage', ['id' => $category_list[$b]->category_id]) }}">{{ $category_list[$b]->category_name }}</a></li>
                             @endfor
                           </ul>
                         </li>
