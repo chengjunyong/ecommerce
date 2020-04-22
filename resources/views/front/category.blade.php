@@ -150,6 +150,8 @@
                                                       <!-- <a href="compare.html" title="Compare">
                                                         <i class="fa fa-exchange" aria-hidden="true"></i>
                                                       </a> -->
+
+                                                      
                                                     </div>
                                                   </div>
                                                 </div>
@@ -348,7 +350,7 @@
 <script>
   
   var product_list = @json($product_list);
-  console.log(product_list);
+
   $(".show_product_detail").click(function(){
     var product_id = $(this).attr("product_id");
 
@@ -379,7 +381,7 @@
         break;
       }
     }
-  })
+  });
 
 </script>
 
