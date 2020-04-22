@@ -1,9 +1,7 @@
 @extends('admin.layout')
 
 @section('layout')
-<!-- Font Awesome-->
-<link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}" />
-<script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
+
 
 <div class="page-body">
 <!-- Container-fluid starts-->
@@ -104,7 +102,7 @@
                                                 {{ $result->updated_at }}
                                             </td>
                                             <td class="jsgrid-cell" style="font-size:20px">
-                                                <button class="edit" style="border:0px;background:white;"><i class="fas fa-edit edit" ></i></button>
+                                                <a href="{{ route('editProduct')}}?product_id={{ $result->id }}"><button class="edit" style="border:0px;background:white;"><i class="fas fa-edit edit" ></i></button></a>
                                                 <button class="delete" style="border:0px;background:white;"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>

@@ -230,4 +230,38 @@ class adminController extends Controller
         return $this->getProductList();
     }
 
+    public function editProduct(Request $request)
+    {   
+        $product_detail = product::where('id','=',$request->product_id)->get();
+        $category_list = category::get();
+        $images = product_image::where('product_id','=',$request->product_id)->get();
+
+        return view('admin.editproduct',compact('category_list','product_detail','images'));
+    }
+
+    public function editPostProduct(Request $request)
+    {
+        if(isset($request)){
+          if($request->stock == null){
+            $stock = -1;
+          }else{
+            $stock = $request->stock;
+          }
+          product::where('id','=',$request->product_id)
+                    ->update([
+                      'name' => $request->product_name,
+                      'description' => $request->description,
+                      'price' => $request->price,
+                      'stock' => $stock,
+                      'sku' => $request->product_sku,
+                      'category_id' => $request->category
+                    ]);
+
+          return $this->getProductList();
+        }else{
+          return back();
+        }
+
+    }
+
 }

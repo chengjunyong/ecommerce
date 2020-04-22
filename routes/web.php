@@ -89,6 +89,12 @@ Route::prefix('/admin')->group(function(){
   //delete single product
   Route::post('/deleteProduct','adminController@deleteSingleProduct')->name('deleteSingleProduct');
 
+  //get product id
+  Route::get('/editProduct','adminController@editProduct')->name('editProduct');
+
+  //post product information
+  Route::post('/editProduct','adminController@editPostProduct')->name('editPostProduct');
+
 });
 
 Auth::routes();
