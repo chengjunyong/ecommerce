@@ -30,18 +30,32 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-10 col-xs-12">
                     <div class="product-right-slick">
-                      @foreach($product_detail->image as $image)
-                        <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
-                      @endforeach
+                      @if(count($product_detail->image) > 0)
+                        @foreach($product_detail->image as $image)
+                          <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                        @endforeach
+                      @else
+                        <div><img src="../assets/images/product-sidebar/001.jpg" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                        <div><img src="../assets/images/product-sidebar/002.jpg" alt="" class="img-fluid  image_zoom_cls-1"></div>
+                        <div><img src="../assets/images/product-sidebar/003.jpg" alt="" class="img-fluid  image_zoom_cls-2"></div>
+                        <div><img src="../assets/images/product-sidebar/004.jpg" alt="" class="img-fluid  image_zoom_cls-3"></div>
+                      @endif
                     </div>
                 </div>
                 <div class="col-lg-1 col-sm-2 col-xs-12">
                     <div class="row">
                         <div class="col-12 p-0">
                             <div class="slider-right-nav">
-                              @foreach($product_detail->image as $image)
-                                <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
-                              @endforeach
+                              @if(count($product_detail->image) > 0)
+                                @foreach($product_detail->image as $image)
+                                  <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                                @endforeach
+                              @else
+                                <div><img src="../assets/images/product-sidebar/001.jpg" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                                <div><img src="../assets/images/product-sidebar/002.jpg" alt="" class="img-fluid  image_zoom_cls-1"></div>
+                                <div><img src="../assets/images/product-sidebar/003.jpg" alt="" class="img-fluid  image_zoom_cls-2"></div>
+                                <div><img src="../assets/images/product-sidebar/004.jpg" alt="" class="img-fluid  image_zoom_cls-3"></div>
+                              @endif
                             </div>
                         </div>
                     </div>
@@ -71,7 +85,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="border-product">
+                        <!-- <div class="border-product">
                             <div class="product-icon">
                                 <ul class="product-social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -84,8 +98,8 @@
                                     <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
                                 </form>
                             </div>
-                        </div>
-                        <div class="border-product">
+                        </div> -->
+                        <!-- <div class="border-product">
                             <h6 class="product-title">100% SECURE PAYMENT</h6>
                             <div class="payment-card-bottom">
                                 <ul>
@@ -106,13 +120,13 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="product-right product-form-box">
-                        <h4><del>{{ $product_detail->price }}</del><span>0% off</span></h4>
-                        <h3>{{ $product_detail->price }}</h3>
+                        <h4><del>RM {{ $product_detail->price }}</del><span>0% off</span></h4>
+                        <h3>RM {{ $product_detail->price }}</h3>
                         <ul class="color-variant">
                             <li class="bg-light0"></li>
                             <li class="bg-light1"></li>
@@ -184,7 +198,7 @@
                             <p>{{ $product_detail->description }}</p>
                         </div>
                         <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
-                            <p>{{ $product_detail->description }}</p>
+                            <!-- <p>{{ $product_detail->description }}</p> -->
                             <div class="single-product-tables">
                                 <table>
                                     <tbody>
