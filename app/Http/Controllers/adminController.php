@@ -59,8 +59,6 @@ class adminController extends Controller
 
       // dd($product_list->getUrlRange(0, 15))
 
-      dd($product_list->total());
-
     	return view('admin.productlist',compact('product_list'));
     }
 

@@ -2,8 +2,9 @@
 
 @section('layout')
 <!-- Font Awesome-->
-<link rel="stylesheet" href="{{ asset('assets/css/all.min.css') }}" />
-<script src="{{ asset('assets/js/all.min.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}" />
+<script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
+
 <div class="page-body">
 <!-- Container-fluid starts-->
 <div class="container-fluid">
