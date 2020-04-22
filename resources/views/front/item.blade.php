@@ -127,11 +127,11 @@
                     <div class="product-right product-form-box">
                         <h4><del>RM {{ $product_detail->price }}</del><span>0% off</span></h4>
                         <h3>RM {{ $product_detail->price }}</h3>
-                        <ul class="color-variant">
+                        <!-- <ul class="color-variant">
                             <li class="bg-light0"></li>
                             <li class="bg-light1"></li>
                             <li class="bg-light2"></li>
-                        </ul>
+                        </ul> -->
                         <div class="product-description border-product">
                             <h6 class="product-title">Time Reminder</h6>
                             <div class="timer">

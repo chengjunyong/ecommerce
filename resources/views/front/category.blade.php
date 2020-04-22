@@ -144,7 +144,7 @@
                                                       <a href="javascript:void(0)" title="Add to Wishlist">
                                                         <i class="ti-heart" aria-hidden="true"></i>
                                                       </a>
-                                                      <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
+                                                      <a href="#" product_id="{{ $product->id }}" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
                                                         <i class="ti-search" aria-hidden="true"></i>
                                                       </a>
                                                       <!-- <a href="compare.html" title="Compare">
@@ -344,6 +344,44 @@
 <!-- section End -->
 
 @include('front.footer')
+
+<script>
+  
+  var product_list = @json($product_list);
+  console.log(product_list);
+  $(".show_product_detail").click(function(){
+    var product_id = $(this).attr("product_id");
+
+    for(var a = 0; a < product_list.length; a++)
+    {
+      var product = product_list[a];
+      if(product.id == product_id)
+      {
+        if(product.image.length > 0)
+        {
+          var product_image = "{{ storage::url(':product_path') }}";
+          product_image = product_image.replace(':product_path', product.image[0].path);
+        }
+        else
+        {
+          var product_image = "../assets/images/layout-1/product/1.jpg";
+        }
+        
+        $(".quick-view-modal").find(".quick-view-img").children("img").attr("src", product_image);
+        $(".quick-view-modal").find(".product-right").children("h2").html(product.name);
+        $(".quick-view-modal").find(".product-right").children("h3").html(product.price);
+        $(".quick-view-modal").find(".border-product").children("p").html(product.description);
+
+        var route_url = "{{ route('getItemDetail', ['id' => ':id']) }}";
+        route_url = route_url.replace(':id', product.id);
+
+        $("#view_product_detail").attr("href", route_url);
+        break;
+      }
+    }
+  })
+
+</script>
 
 @endsection
 
