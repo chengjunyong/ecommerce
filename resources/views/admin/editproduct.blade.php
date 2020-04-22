@@ -79,7 +79,7 @@
 	                                <div class="row" style="margin: 15px 0 15px -15px">
 	                                		<h4>Upload Another Photo</h4>	
 	                                </div>
-	                                <form class="needs-validation add-product-form" action="{{ route('editPostProduct') }}" method="post" enctype="multipart/form-data">
+	                                <form id="editform" class="needs-validation add-product-form" action="{{ route('editPostProduct') }}" method="post" enctype="multipart/form-data">
 	                             		<div>
 	                                		<input type="file" name="image[]" multiple>
 	                                </div>
@@ -116,7 +116,7 @@
 	                                            @endforeach
 	                                        </select>
 	                                    </div>
-	                                </div>
+	                                </div>	
 	                                <div class="form">
 	                                    <div class="form-group row">
 	                                        <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Stock Status</label>
@@ -128,7 +128,7 @@
 		                                  				<input class="radio_animated" id="unlimited" type="radio" name="s_status">Unlimited
 		                                  			@endif
 		                                  		</label>
-		                                  		<label class="d-block" for="limited">
+		                                  		<label class="d-block" for="limited" style="margin-left: 10px;">
 		                                  			@if($product_detail[0]->stock != -1)
 		                                      			<input class="radio_animated" id="limited" type="radio" name="s_status" checked>Limited
 		                                  			@else
@@ -161,7 +161,7 @@
 	                  						<div class="form-group mb-3 row">
 			                 						<input class="btn btn-primary" type="submit" value="Edit">
 			                 						<input class="btn btn-light" type="reset" value="Discard"> 
-			                 					</div>  
+			                 					</div>     
 		                 					</div>     
 	                            </form>
 	                        </div>
@@ -179,8 +179,10 @@ $(document).ready(function(){
 	var image = []; 
 
 	$(".overlay").click(function(){
-		image.push($(this).attr("value"));
+		// image.push($(this).attr("value"));
 		$(this).parents().eq(0).remove();
+		$("#editform").append('<input type=hidden name=removeImage[] value="'+ $(this).attr("value")+'">');	
+
 	});
 
 

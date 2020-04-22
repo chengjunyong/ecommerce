@@ -147,18 +147,32 @@ class adminController extends Controller
         'active' => $request->active
       ]);
 
-      if(isset($request->image)){
-        $i = 1;
-        foreach ($request->image as $image) {
-          $filename = $product->id."_".$i.".".$image->getClientOriginalExtension();
-          product_image::create([
-            'product_id' => $product->id,
-            'path' => $filename
-          ]);
-          $image->move(public_path('storage'), $filename);
-          $i++;
-        }
+      // 
+      foreach($request->image as $image)
+      {
+        $product_image_detail = product_image::create([
+          'product_id' => $product->id,
+        ]);
+
+        $path = $image->storeAs('/image', $product->id."_".$product_image_detail->id.".".$image->getClientOriginalExtension());
+        product_image::where('id', $product_image_detail->id)->update([
+          'path' => $path
+        ]);
       }
+      // end
+
+      // if(isset($request->image)){
+      //   $i = 1;
+      //   foreach ($request->image as $image) {
+      //     $filename = $product->id."_".$i.".".$image->getClientOriginalExtension();
+      //     product_image::create([
+      //       'product_id' => $product->id,
+      //       'path' => $filename
+      //     ]);
+      //     $image->move(public_path('storage'), $filename);
+      //     $i++;
+      //   }
+      // }
       return back()->with("success","Product Add Successful");
     }
 
@@ -241,6 +255,9 @@ class adminController extends Controller
 
     public function editPostProduct(Request $request)
     {
+      if($request->removeImage){ 
+        product_image::whereIn('id', $request->removeImage)->delete();
+      }
         if(isset($request)){
           if($request->stock == null){
             $stock = -1;
