@@ -359,7 +359,7 @@
       {
         if(product.image.length > 0)
         {
-          var product_image = "{{ storage::url(':product_path') }}";
+          var product_image = "{{ Storage::url(':product_path') }}";
           product_image = product_image.replace(':product_path', product.image[0].path);
         }
         else
