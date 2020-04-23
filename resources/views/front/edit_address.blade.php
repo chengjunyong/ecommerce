@@ -13,7 +13,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="home-ploat">flat / plot</label>
-                                <input type="text" class="form-control" id="home-ploat" placeholder="company name" required="">
+                                <input type="text" class="form-control" id="home-ploat" placeholder="Example : No3-A-2" required="">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -24,33 +24,20 @@
                         </div>
                         <div class="col-md-6">
                            <div class="form-group">
-                               <label for="zip-code">Zip Code *</label>
-                               <input type="text" class="form-control" id="zip-code" placeholder="zip-code" required="">
+                               <label for="zip-code">Post Code *</label>
+                               <input type="text" class="form-control" id="zip-code" placeholder="Example : 2xxxx" required="">
                            </div>
-                        </div>
-                        <div class="col-md-6 select_input">
-                            <div class="form-group">
-                                <label >Country *</label>
-                                <select class="form-control" size="1">
-                                    <option value="India">India</option>
-                                    <option value="UAE">UAE</option>
-                                    <option value="U.K">U.K</option>
-                                    <option value="US">US</option>
-                                </select>
-                            </div>
                         </div>
                         <div class="col-md-6">
                            <div class="form-group">
                                <label for="city">City *</label>
-                               <input type="text" class="form-control" id="city" placeholder="City" required="">
+                               <input type="text" class="form-control" id="city" placeholder="Example : Kuantan" required="">
                            </div>
                         </div>
-                        <div class="col-md-6">
-                           <div class="form-group">
-                               <label for="region-state">Region/State *</label>
-                               <input type="text" class="form-control" id="region-state" placeholder="Region/state" required="">
-                           </div>
+                        <div class="col-md-6 select_input">
+                            
                         </div>
+                        
                         <div class="col-md-12">
                             <button class="btn btn-sm btn-normal mb-lg-5" type="submit">Save setting</button>
                         </div>

@@ -71,36 +71,34 @@
                             <table>
                                 <tbody>
                                 <tr>
-                                    <td>Febric:</td>
-                                    <td>Chiffon</td>
+                                    <td>Variance:</td>
+                                    <td>Sample Variance</td>
                                 </tr>
                                 <tr>
-                                    <td>Color:</td>
-                                    <td>Red</td>
+                                    <td>Variance:</td>
+                                    <td>Sample Variance</td>
                                 </tr>
                                 <tr>
-                                    <td>Material:</td>
-                                    <td>Crepe printed</td>
+                                    <td>Variance:</td>
+                                    <td>Sample Variance</td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <!-- <div class="border-product">
+                        <div class="border-product">
                             <div class="product-icon">
                                 <ul class="product-social">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-rss"></i></a></li>
                                 </ul>
                                 <form class="d-inline-block">
                                     <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
                                 </form>
                             </div>
-                        </div> -->
-                        <!-- <div class="border-product">
-                            <h6 class="product-title">100% SECURE PAYMENT</h6>
+                        </div>
+                        <div class="border-product">
+                            <h6 class="product-title">100% SECURE PAYMENT & CASH ON DELIVERY</h6>
                             <div class="payment-card-bottom">
                                 <ul>
                                     <li>
@@ -120,7 +118,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -138,7 +136,7 @@
                                 <p id="demo"><span>25 <span class="padding-l">:</span> <span class="timer-cal">Days</span> </span><span>22 <span class="padding-l">:</span> <span class="timer-cal">Hrs</span> </span><span>13 <span class="padding-l">:</span> <span class="timer-cal">Min</span> </span><span>57 <span class="timer-cal">Sec</span></span>
                                 </p>
                             </div>
-                            <h6 class="product-title">select size</h6>
+                            <h6 class="product-title">Variance 1</h6>
                             <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -152,10 +150,10 @@
                             </div>
                             <div class="size-box">
                                 <ul>
-                                    <li class="active"><a href="#">s</a></li>
-                                    <li><a href="#">m</a></li>
-                                    <li><a href="#">l</a></li>
-                                    <li><a href="#">xl</a></li>
+                                    <li class="active"><a href="#">0</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
                                 </ul>
                             </div>
                             <h6 class="product-title">quantity</h6>
@@ -183,7 +181,7 @@
                         <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">Description</a>
                             <div class="material-border"></div>
                         </li>
-                        <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-toggle="tab" href="#top-profile" role="tab" aria-selected="false">Details</a>
+                        <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-toggle="tab" href="#top-profile" role="tab" aria-selected="false">Variance Details</a>
                             <div class="material-border"></div>
                         </li>
                         <!-- <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-toggle="tab" href="#top-contact" role="tab" aria-selected="false">Video</a>
@@ -203,28 +201,28 @@
                                 <table>
                                     <tbody>
                                     <tr>
-                                        <td>Febric</td>
-                                        <td>Chiffon</td>
+                                        <td>Variance</td>
+                                        <td>Sample Variance</td>
                                     </tr>
                                     <tr>
-                                        <td>Color</td>
-                                        <td>Red</td>
+                                        <td>Variance</td>
+                                        <td>Sample Variance</td>
                                     </tr>
                                     <tr>
-                                        <td>Material</td>
-                                        <td>Crepe printed</td>
+                                        <td>Variance</td>
+                                        <td>Sample Variance</td>
                                     </tr>
                                     </tbody>
                                 </table>
                                 <table>
                                     <tbody>
                                     <tr>
-                                        <td>Length</td>
-                                        <td>50 Inches</td>
+                                        <td>Variance</td>
+                                        <td>Sample Variance</td>
                                     </tr>
                                     <tr>
-                                        <td>Size</td>
-                                        <td>S, M, L .XXL</td>
+                                        <td>Variance</td>
+                                        <td>Sample Variance</td>
                                     </tr>
                                     </tbody>
                                 </table>

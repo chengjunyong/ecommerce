@@ -33,9 +33,7 @@
                                                 <li><a href="#">store location</a></li>
                                                 <li><a href="#"> my account</a></li>
                                                 <li><a href="{{ route('getOrderTracking') }}"> orders tracking</a></li>
-                                                <li><a href="#"> size guide</a></li>
                                                 <li><a href="{{ route('getFAQ') }}">FAQ </a></li>
-                                                <li><a href="#">new products</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -52,7 +50,7 @@
                                 <div class="footer-contant">
                                     <ul class="contact-list">
                                         <li><i class="fa fa-map-marker"></i>Demo Store Homeu</li>
-                                        <li><i class="fa fa-phone"></i>Contact Us: <span>09-12345678</span></li>
+                                        <li><i class="fa fa-phone"></i>Contact Us: <span>09-xxxxxxx</span></li>
                                         <li><i class="fa fa-envelope-o"></i>Email Us: support@homeu.com.my</li>
                                     </ul>
                                 </div>
@@ -73,15 +71,6 @@
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-4 col-sm-12">
-                        <div class="payment-card-bottom">
-                            <ul>
-                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/1.png') }}" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/2.png') }}" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/3.png') }}" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/4.png') }}" class="img-fluid" alt="pay"></a></li>
-                                <li><a href="#"><img src="{{ asset('/assets/images/layout-1/pay/5.png') }}" class="img-fluid" alt="pay"></a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>

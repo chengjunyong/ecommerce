@@ -147,16 +147,16 @@
     <div class="brand-panel-box">
         <div class="brand-panel-contain">
             <ul>
-                <li><a href="#">top brand</a></li>
+                <li><a href="#">brand</a></li>
                 <li><a>:</a></li>
-                <li><a href="#">aerie</a></li>
-                <li><a href="#">baci lingrie</a></li>
-                <li><a href="#">gerbe</a></li>
-                <li><a href="#">jolidon</a></li>
-                <li><a href="#">oysho</a></li>
-                <li><a href="#">ultimo</a></li>
-                <li><a href="#">vassarette</a></li>
-                <li><a href="#">wonderbra</a></li>
+                <li><a href="#">Brand 1</a></li>
+                <li><a href="#">Brand 2</a></li>
+                <li><a href="#">Brand 3</a></li>
+                <li><a href="#">Brand 4</a></li>
+                <li><a href="#">Brand 5</a></li>
+                <li><a href="#">Brand 6</a></li>
+                <li><a href="#">Brand 7</a></li>
+                <li><a href="#">Brand 8</a></li>
             </ul>
         </div>
     </div>
@@ -235,7 +235,7 @@
                         </g>
                     </svg>
                     <div class="media-body">
-                        <h5>ONLINE PAYMENT & CASH ON DELIVERY</h5>
+                        <h5>CASH ON DELIVERY</h5>
                     </div>
                 </div>
             </div>
@@ -289,18 +289,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Random 1 Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -312,18 +305,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                               
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Random 1 Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -331,7 +317,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media-view">
-                                    <h5>View More</h5>
+                                    <h5>Get It</h5>
                                 </div>
                             </div>
                         </div>
@@ -349,18 +335,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Random 1 Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -372,18 +351,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Random 1 Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -391,7 +363,7 @@
                             </div>
                             <div class="media-banner-box">
                                 <div class="media-view">
-                                    <h5>View More</h5>
+                                    <h5>Get It</h5>
                                 </div>
                             </div>
                         </div>
@@ -400,8 +372,8 @@
             </div>
             <div class="col-lg-2 col-sm-6  col-12">
                 <div class="Jewellery-banner">
-                    <a>save 30% off</a>
-                    <h6>Jewellery</h6>
+                    <a>save 10% off</a>
+                    <h6>Frozen Meal</h6>
                 </div>
             </div>
             <div class="col-lg-7  col-sm-12 col-12  ">
@@ -424,7 +396,7 @@
                                         </div>
                                         <div class="col-lg-6 col-sm-6">
                                             <div class="hot-deal-center">
-                                                <div>
+                                                <div>   
                                                     <div class="timer">
                                                         <p class="demo">
                                                    <span>
@@ -448,23 +420,17 @@
                                                     </span>
                                                         </p>
                                                     </div>
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <div>
-                                                        <h5>simply dummy text of the printing</h5>
+                                                        <h5>simply dummy text</h5>
                                                     </div>
                                                     <div>
                                                         <p>
-                                                            it is a long established fact that a reader.
+                                                            Product Description.
                                                         </p>
                                                         <div class="price">
-                                                            <span>$45.00</span>
-                                                            <span>$50.30</span>
+                                                            <span>Rm 45.00</span>
+                                                            <span>Rm 50.30</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -521,23 +487,17 @@
                                                     </span>
                                                         </p>
                                                     </div>
-                                                    <div class="rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <div>
-                                                        <h5>simply dummy text of the printing</h5>
+                                                        <h5>simply dummy text</h5>
                                                     </div>
                                                     <div>
                                                         <p>
-                                                            it is a long established fact that a reader.
+                                                            Product Description
                                                         </p>
                                                         <div class="price">
-                                                            <span>$45.00</span>
-                                                            <span>$50.30</span>
+                                                            <span>Rm 45.00</span>
+                                                            <span>Rm 50.30</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -594,8 +554,8 @@
                     </div>
                     <div class="collection-banner-contain">
                         <div>
-                            <h3>classic</h3>
-                            <h4>Wooden Chair</h4>
+                            <h3>Random</h3>
+                            <h4>Category</h4>
                             <div class="shop">
                                 <a>
                                     shop now
@@ -613,8 +573,8 @@
                     </div>
                     <div class="collection-banner-contain">
                         <div>
-                            <h3>food</h3>
-                            <h4>Grocery Items</h4>
+                            <h3>Random</h3>
+                            <h4>Category</h4>
                             <div class="shop">
                                 <a>
                                     shop now
@@ -632,8 +592,8 @@
                     </div>
                     <div class="collection-banner-contain">
                         <div>
-                            <h3>digital</h3>
-                            <h4>cctv camera</h4>
+                            <h3>Random</h3>
+                            <h4>Category</h4>
                             <div class="shop">
                                 <a>
                                     shop now
@@ -656,12 +616,12 @@
         <div class="tab-product-main">
             <div class="tab-prodcut-contain">
                 <ul class="tabs tab-title">
-                    <li class="current"><a href="tab-1">fashion</a></li>
-                    <li class=""><a href="tab-2">electronic</a></li>
-                    <li class=""><a href="tab-3">footware</a></li>
-                    <li class=""><a href="tab-4">sports</a></li>
-                    <li class=""><a href="tab-5">toys</a></li>
-                    <li class=""><a href="tab-6">books</a></li>
+                    <li class="current"><a href="tab-1">Category 1</a></li>
+                    <li class=""><a href="tab-2">Category 2</a></li>
+                    <li class=""><a href="tab-3">Category 3</a></li>
+                    <li class=""><a href="tab-4">Category 4</a></li>
+                    <li class=""><a href="tab-5">Category 5</a></li>
+                    <li class=""><a href="tab-6">Category 6</a></li>
                 </ul>
             </div>
         </div>
@@ -707,26 +667,19 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -762,26 +715,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -820,26 +767,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -875,26 +816,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -936,26 +871,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -991,26 +920,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1046,26 +969,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1101,26 +1018,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1160,26 +1071,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1220,26 +1125,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1275,26 +1174,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1333,26 +1226,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1388,26 +1275,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1449,26 +1330,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1504,26 +1379,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1559,26 +1428,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1618,26 +1481,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1673,26 +1530,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1733,26 +1584,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1788,26 +1633,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1846,26 +1685,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1901,26 +1734,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1962,26 +1789,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2017,26 +1838,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2076,26 +1891,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2131,26 +1940,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2186,26 +1989,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2246,26 +2043,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2301,26 +2092,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2359,26 +2144,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2414,26 +2193,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2475,26 +2248,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2540,26 +2307,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2595,26 +2356,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2650,26 +2405,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2705,26 +2454,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2765,26 +2508,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2820,26 +2557,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2878,26 +2609,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2933,26 +2658,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2992,26 +2711,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3053,26 +2766,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3108,26 +2815,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3163,26 +2864,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3218,26 +2913,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3278,26 +2967,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3333,26 +3016,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3391,26 +3068,20 @@
                                         <div class="product-detail">
                                             <div class="detail-title">
                                                 <div class="detail-left">
-                                                    <div class="rating-star">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                     <a href="">
                                                         <h6 class="price-title">
-                                                            reader will be distracted.
+                                                            Product Name
                                                         </h6>
                                                     </a>
                                                 </div>
                                                 <div class="detail-right">
                                                     <div class="check-price">
-                                                        $ 56.21
+                                                        Rm 56.21
                                                     </div>
                                                     <div class="price">
                                                         <div class="price">
-                                                            $ 24.05
+                                                            Rm 24.05
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3444,10 +3115,8 @@
             </div>
             <div class="col-md-12 col-lg-4 ">
                 <div class="deal-banner-containe">
-                    <diV class="deal-btn">
-                        <a class="btn-white">
-                            View more
-                        </a>
+                    <div class="deal-btn">
+    
                     </div>
                 </div>
             </div>
@@ -3470,7 +3139,7 @@
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
-                                        flower
+                                        Another Category (short link)
                                     </div>
                                 </div>
                             </a>
@@ -3484,7 +3153,7 @@
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
-                                        Furniture
+                                        Another Category (short link)
                                     </div>
                                 </div>
                             </a>
@@ -3498,7 +3167,7 @@
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
-                                        Bag
+Another Category (short link)
                                     </div>
                                 </div>
                             </a>
@@ -3512,7 +3181,7 @@
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
-                                        Tools
+Another Category (short link)
                                     </div>
                                 </div>
                             </a>
@@ -3526,7 +3195,7 @@
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
-                                        Grocery
+                                        Another Category (short link)
                                     </div>
                                 </div>
                             </a>
@@ -3540,7 +3209,7 @@
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
-                                        camera
+                                        Another Category (short link)
                                     </div>
                                 </div>
                             </a>
@@ -3554,7 +3223,7 @@
                                 </div>
                                 <div>
                                     <div class="btn-rounded">
-                                        cardigans
+                                        Another Category (short link)
                                     </div>
                                 </div>
                             </a>
@@ -3586,18 +3255,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3609,18 +3271,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3646,18 +3301,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3669,18 +3317,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3697,7 +3338,7 @@
                         <div class="media-banner">
                             <div class="media-banner-box">
                                 <div class="media-heading">
-                                    <h5>Best Sellers</h5>
+                                    <h5>Best Seller</h5>
                                 </div>
                             </div>
                             <div class="media-banner-box">
@@ -3706,18 +3347,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3729,18 +3363,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3766,18 +3393,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3789,18 +3409,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3826,18 +3439,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3849,18 +3455,11 @@
                                     <div class="media-body">
                                         <div class="media-contant">
                                             <div>
-                                                <div class="rating">
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                    <i class="fa fa-star" ></i>
-                                                </div>
+                                                
                                                 <p>
-                                                    Generator
-                                                    on Internet.
+                                                    Specify Product
                                                 </p>
-                                                <h6>$153.00</h6>
+                                                <h6>Rm 153.00</h6>
                                             </div>
                                         </div>
                                     </div>
@@ -3879,105 +3478,6 @@
     </div>
 </section>
 <!--media-banner end-->
-
-<!--blog start-->
-<section class="blog ">
-    <!--title start-->
-    <div class="title3">
-        <h4>Upcoming Offer ! ! !</h4>
-    </div>
-</section>
-<!--blog end-->
-
-<!--box categroy start-->
-<section class="box-category section-pt-space">
-    <div class="container-fluid ">
-        <div class="row">
-            <div class="col pl-0">
-                <div class="slide-10 no-arrow">
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>10% off</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>under @99</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>free shipping</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>extra 10% off</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>$79 cashback</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>80% off</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>on sale</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>only $49</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>under @150</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>save money</h4>
-                            </div>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="#">
-                            <div class="box-category-contain">
-                                <h4>80% off</h4>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--box category end-->
 
 <!--title start-->
 <div class="title1 section-my-space">
@@ -4025,26 +3525,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4080,26 +3574,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4138,26 +3626,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4193,26 +3675,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4254,26 +3730,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4309,26 +3779,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4364,26 +3828,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4419,26 +3877,20 @@
                             <div class="product-detail">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
+                                        
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Product Name
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            Rm 56.21
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                Rm 24.05
                                             </div>
                                         </div>
                                     </div>
@@ -4484,7 +3936,7 @@
                 <div class="contact-banner-contain">
                     <div class="contact-banner-img"><img src="{{ asset('/assets/images/layout-1/call-img.png') }}" alt="call-banner"></div>
                     <div> <h3>if you have any question please call us</h3></div>
-                    <div><h2>09-5885151</h2></div>
+                    <div><h2>09-xxxxxxx</h2></div>
                 </div>
             </div>
         </div>

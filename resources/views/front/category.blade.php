@@ -36,8 +36,8 @@
                                 <div class="top-banner-wrapper">
                                     <a href="#"><img src="../assets/images/category/1.jpg" class="img-fluid " alt=""></a>
                                     <div class="top-banner-content small-section">
-                                        <h4>fashion</h4>
-                                        <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+                                        <h4>Sample Category</h4>
+                                        <h5>Some Description on your category</h5>
                                         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                                     </div>
                                 </div>
@@ -197,44 +197,28 @@
                                 <div class="collection-brand-filter">
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="zara">
-                                        <label class="custom-control-label" for="zara">zara</label>
+                                        <label class="custom-control-label" for="zara">Brand 1</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="vera-moda">
-                                        <label class="custom-control-label" for="vera-moda">vera-moda</label>
+                                        <label class="custom-control-label" for="vera-moda">Brand 2</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="forever-21">
-                                        <label class="custom-control-label" for="forever-21">forever-21</label>
+                                        <label class="custom-control-label" for="forever-21">Brand 3</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="roadster">
-                                        <label class="custom-control-label" for="roadster">roadster</label>
+                                        <label class="custom-control-label" for="roadster">Brand 4</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="only">
-                                        <label class="custom-control-label" for="only">only</label>
+                                        <label class="custom-control-label" for="only">Brand 5</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- color filter start here -->
-                        <div class="collection-collapse-block open">
-                            <h3 class="collapse-block-title">colors</h3>
-                            <div class="collection-collapse-block-content">
-                                <div class="color-selector">
-                                    <ul>
-                                        <li class="color-1 active"></li>
-                                        <li class="color-2"></li>
-                                        <li class="color-3"></li>
-                                        <li class="color-4"></li>
-                                        <li class="color-5"></li>
-                                        <li class="color-6"></li>
-                                        <li class="color-7"></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <!-- price filter start here -->
                         <div class="collection-collapse-block border-0 open">
                             <h3 class="collapse-block-title">price</h3>
@@ -242,23 +226,23 @@
                                 <div class="collection-brand-filter">
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="hundred">
-                                        <label class="custom-control-label" for="hundred">$10 - $100</label>
+                                        <label class="custom-control-label" for="hundred">Rm 10 - Rm 100</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="twohundred">
-                                        <label class="custom-control-label" for="twohundred">$100 - $200</label>
+                                        <label class="custom-control-label" for="twohundred">Rm 100 - Rm 200</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="threehundred">
-                                        <label class="custom-control-label" for="threehundred">$200 - $300</label>
+                                        <label class="custom-control-label" for="threehundred">Rm 200 - Rm 300</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="fourhundred">
-                                        <label class="custom-control-label" for="fourhundred">$300 - $400</label>
+                                        <label class="custom-control-label" for="fourhundred">Rm 300 - Rm 400</label>
                                     </div>
                                     <div class="custom-control custom-checkbox collection-filter-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="fourhundredabove">
-                                        <label class="custom-control-label" for="fourhundredabove">$400 above</label>
+                                        <label class="custom-control-label" for="fourhundredabove">Rm 400 above</label>
                                     </div>
                                 </div>
                             </div>
@@ -273,40 +257,40 @@
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/001.jpg" alt="product"></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/002.jpg" alt="product"></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/003.jpg" alt="product"></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/003.jpg" alt="product"></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/001.jpg" alt="product"></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/002.jpg" alt="product"></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                             </div>
                         </div>
@@ -324,16 +308,16 @@
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/001.jpg" alt=""></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="media">
                                     <a href=""><img class="img-fluid " src="../assets/images/product-sidebar/003.jpg" alt=""></a>
                                     <div class="media-body align-self-center">
-                                        <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div><a href="product-page(no-sidebar).html"><h6>Slim Fit Cotton Shirt</h6></a>
-                                        <h4>$500.00</h4></div>
+                                        <a href="product-page(no-sidebar).html"><h6>Sample Product</h6></a>
+                                        <h4>Rm 50.00</h4></div>
                                 </div>
                             </div>
                         </div>
