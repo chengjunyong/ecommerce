@@ -185,6 +185,15 @@ $(document).ready(function(){
 
 	});
 
+	$("#unlimited").click(function(){
+		$("#validationCustom01").attr("readonly",true);
+		$("#validationCustom01").val("");
+	});
+
+	$("#limited").click(function(){
+		$("#validationCustom01").attr("readonly",false);
+	});
+
 
 
 });

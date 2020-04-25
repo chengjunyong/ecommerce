@@ -23,6 +23,8 @@ use Illuminate\Http\Request;
 use App\product;
 use App\product_image;
 use App\category;
+use App\coupon;
+use App\subcoupon;
 use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
@@ -90,8 +92,10 @@ class adminController extends Controller
     }
 
     public function getCouponCreate()
-    {
-        return view('admin.couponcreate');
+    { 
+        $category_list = category::get();
+
+        return view('admin.couponcreate',compact('category_list'));
     }
 
     public function getUserList()
@@ -235,7 +239,6 @@ class adminController extends Controller
         $product_detail = product::where('id','=',$request->product_id)->get();
         $category_list = category::get();
         $images = product_image::where('product_id','=',$request->product_id)->get();
-
         return view('admin.editproduct',compact('category_list','product_detail','images'));
     }
 
@@ -274,9 +277,8 @@ class adminController extends Controller
                   'category_id' => $request->category
                 ]);
 
-      return $this->getProductList();
+      return redirect(route('getProductList'));
         
-
     }
 
 }
