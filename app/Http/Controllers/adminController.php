@@ -150,19 +150,20 @@ class adminController extends Controller
         'price' => $request->price,
         'active' => $request->active
       ]);
+      if($request->image){
+        foreach($request->image as $image)
+        {
+          $product_image_detail = product_image::create([
+            'product_id' => $product->id,
+          ]);
 
-      foreach($request->image as $image)
-      {
-        $product_image_detail = product_image::create([
-          'product_id' => $product->id,
-        ]);
-
-        $path = $image->storeAs('/image', $product->id."_".$product_image_detail->id.".".$image->getClientOriginalExtension());
-        product_image::where('id', $product_image_detail->id)->update([
-          'path' => $path
-        ]);
+          $path = $image->storeAs('/image', $product->id."_".$product_image_detail->id.".".$image->getClientOriginalExtension());
+          product_image::where('id', $product_image_detail->id)->update([
+            'path' => $path
+          ]);
+        }
       }
-
+      
       return back()->with("success","Product Add Successful");
     }
 
@@ -334,7 +335,7 @@ class adminController extends Controller
         ]);
 
 
-        return view('admin.couponcreate');
+        return back()->with("success","Coupon create successful");
 
     }
 

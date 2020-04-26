@@ -200,7 +200,9 @@ $("#image").change(function() {
   readURL(this);
 });
 
-
+$("#discard").click(function(){
+  location.reload();
+});
 
 </script>
 

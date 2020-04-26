@@ -1,9 +1,19 @@
 @extends('admin.layout')
 
 @section('layout')
+<style>
+.out{
+  animation: fadeout 2.5s;
+  opacity: 0;
+}
 
+
+@keyframes fadeout{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+</style>
 <div class="page-body">
-
             <!-- Container-fluid starts-->
             <div class="container-fluid">
                 <div class="page-header">
@@ -142,7 +152,16 @@
             </div>
             <!-- Container-fluid Ends-->
 
+            @if(session()->has('success'))
+                <div class="out" style="position:fixed;left:50%;top:15%;padding:5px 60px 5px 60px;background-color:#bfbfd6;border-radius: 20px;">
+                    <lable><b>{{ session()->get('success') }}</b></lable>
+                </div>
+            @endif
+
         </div>
+        
+            
+        
 <script>
 $(document).ready(function(){
     $("#unlimited").click(function(){

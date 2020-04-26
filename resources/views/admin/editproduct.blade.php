@@ -27,7 +27,6 @@
 	.container:hover .overlay{
 		opacity: 1;
 	}
-
 </style>
 
 <div class="page-body">
@@ -70,8 +69,8 @@
 	                                		@if($images)
 	                                    	@foreach($images as $image)
 	                                    		<div class="col-3 container">
-	                                    			<img class="images" src="{{ Storage::url($image->path) }}">
-	                                    			<i class="far fa-times-circle overlay" style="font-size:35px;" value="{{ $image->id }}"></i>
+	                                    			<img class="images" src="{{ Storage::url($image->path) }}" value="{{ $image->id }}">
+	                                    			<i class="far fa-times-circle overlay" style="font-size:35px;"></i>
 	                                    		</div>
 	                                    	@endforeach
 	                                    @endif                                                              	                                 
@@ -160,7 +159,7 @@
 	                  					<div class="form">
 	                  						<div class="form-group mb-3 row">
 			                 						<input class="btn btn-primary" type="submit" value="Edit">
-			                 						<input class="btn btn-light" type="reset" value="Discard"> 
+			                 						<input class="btn btn-light" type="reset" value="Discard" id="discard"> 
 			                 					</div>     
 		                 					</div>     
 	                            </form>
@@ -178,12 +177,10 @@
 $(document).ready(function(){
 	var image = []; 
 
-	$(".overlay").click(function(){
-		// image.push($(this).attr("value"));
+	$(".images").click(function(){
 		$(this).parents().eq(0).remove();
-		$("#editform").append('<input type=hidden name=removeImage[] value="'+ $(this).attr("value")+'">');	
-
-	});
+		$("#editform").append('<input type=hidden name=removeImage[] value="'+ $(this).attr("value")+'">');
+	});	
 
 	$("#unlimited").click(function(){
 		$("#validationCustom01").attr("readonly",true);
@@ -194,7 +191,9 @@ $(document).ready(function(){
 		$("#validationCustom01").attr("readonly",false);
 	});
 
-
+	$("#discard").click(function(){
+		location.reload();
+	});
 
 });
 </script>
