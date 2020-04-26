@@ -39,7 +39,8 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade active show" id="general" role="tabpanel" aria-labelledby="general-tab">
-                                <form class="needs-validation" action="google.com" method="post">
+                                <form class="needs-validation" action="{{ route('createCoupon') }}" method="post">
+                                    @csrf
                                     <h4>Settings</h4>
                                     <div class="row">
                                         <div class="col-sm-12">
@@ -54,17 +55,17 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">Start Date</label>
-                                                <input class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="start_date" required="">
+                                                <input class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="date_start" required="">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">End Date</label>
-                                                <input class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="end_date" required="">
+                                                <input class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="date_end" required="">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">Coupon Type</label>
-                                                <input class="radio_animated" type="radio" required="" name="type" value="1" checked id="unlimited">
+                                                <input class="radio_animated" type="radio" required="" name="coupon_type" value="1" checked id="unlimited">
                                                 <label style="margin-right:10px">Unlimited</label>
-                                                <input class="radio_animated" type="radio" required="" name="type" value="0" id="limited">
+                                                <input class="radio_animated" type="radio" required="" name="coupon_type" value="0" id="limited">
                                                 <label>Limited</label>
                                             </div>                                          
                                             <div class="form-group row">
@@ -97,8 +98,9 @@
                                                 <div class="valid-feedback">Please Provide a Product Name.</div>
                                             </div> -->
                                             <div class="form-group row">
-                                                <label class="col-xl-3 col-md-4">Category</label>
+                                                <label class="col-xl-3 col-md-4">Selected Category</label>
                                                 <select class="custom-select col-md-7" required="" name="category">
+                                                    <option value="-1">All Product</option>
                                                     @foreach($category_list as $result)
                                                     <option value="{{ $result->category_id }}">{{ $result->category_name }}</option>
                                                     @endforeach
@@ -106,9 +108,9 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label for="validationCustom4" class="col-xl-3 col-md-4">Minimum Spend</label>
-                                                <input class="form-control col-md-7" id="validationCustom4" type="number" step="0.01" min="0.01" name="min_spend">
+                                                <input class="form-control col-md-7" id="validationCustom4" type="number" step="0.01" min="0.01" name="min_spend" required>
                                             </div>
-                                             <div class="form-group row">
+                                            <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">Existing Customer</label>
                                                 <div class="checkbox checkbox-primary col-md-7">
                                                     <input type="checkbox" name="exist_customer" id="exist_customer" checked>
@@ -118,14 +120,14 @@
                                             <h4><br/>Usage Limits</h4>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">Usage Type</label>
-                                                <input class="radio_animated" type="radio" required="" name="type2" value="1" checked id="u_unlimited">
+                                                <input class="radio_animated" type="radio" required="" name="usage_type" value="1" checked id="u_unlimited">
                                                 <label style="margin-right:10px">Unlimited</label>
-                                                <input class="radio_animated" type="radio" required="" name="type2" value="0" id="u_limited">
+                                                <input class="radio_animated" type="radio" required="" name="usage_type" value="0" id="u_limited">
                                                 <label>Limited</label>
                                             </div>    
                                             <div class="form-group row">
-                                                <label for="validationCustom7" class="col-xl-3 col-md-4">Per Customer</label>
-                                                <input class="form-control col-md-7" name="usage" id="usage" type="number" min="1" readonly>
+                                                <label for="validationCustom7" class="col-xl-3 col-md-4">Usage Per Customer</label>
+                                                <input class="form-control col-md-7" name="per_customer" id="per_customer" type="number" min="1" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -170,12 +172,12 @@ $(document).ready(function(){
     });
 
     $("#u_unlimited").click(function(){
-        $("#usage").val("");
-        $("#usage").attr("readonly",true);
+        $("#per_customer").val("");
+        $("#per_customer").attr("readonly",true);
     });
 
     $("#u_limited").click(function(){
-        $("#usage").attr("readonly",false);
+        $("#per_customer").attr("readonly",false);
     });
 
     $("#exist_customer").change(function(){

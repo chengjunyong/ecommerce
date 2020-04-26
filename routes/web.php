@@ -95,6 +95,9 @@ Route::prefix('/admin')->group(function(){
   //post product information
   Route::post('/editProduct','adminController@editPostProduct')->name('editPostProduct');
 
+  //post coupon information for creation
+  Route::post('/createCoupon','adminController@createCoupon')->name('createCoupon');
+
 });
 
 Auth::routes();

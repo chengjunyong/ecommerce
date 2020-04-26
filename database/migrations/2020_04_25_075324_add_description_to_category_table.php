@@ -26,7 +26,7 @@ class AddDescriptionToCategoryTable extends Migration
     public function down()
     {
         Schema::table('category', function (Blueprint $table) {
-            //
+            $table->dropColumn(['description']);
         });
     }
 }

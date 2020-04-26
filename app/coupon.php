@@ -11,7 +11,7 @@ class coupon extends Model
       'name',
       'code',
       'amount',
-      'precent',
+      'percent',
       'date_start',
       'date_end',
       'quantity',
@@ -19,6 +19,7 @@ class coupon extends Model
       'active',
       'user_exist',
       'category_id',
-      'subcategory_id'
+      'subcategory_id',
+      'minimum_spend'
     ];
 }

@@ -27,7 +27,7 @@ class AddOtherToCouponTable extends Migration
     public function down()
     {
         Schema::table('coupon', function (Blueprint $table) {
-            //
+            $table->dropColumn(['minimum_spend','maxcap']);
         });
     }
 }
