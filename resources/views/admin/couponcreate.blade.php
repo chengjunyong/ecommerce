@@ -109,8 +109,8 @@
                                             </div> -->
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">Selected Category</label>
-                                                <select class="custom-select col-md-7" required="" name="category">
-                                                    <option value="-1">All Product</option>
+                                                <select class="custom-select col-md-7" name="category">
+                                                    <option value="">All Product</option>
                                                     @foreach($category_list as $result)
                                                     <option value="{{ $result->category_id }}">{{ $result->category_name }}</option>
                                                     @endforeach
@@ -126,6 +126,10 @@
                                                     <input type="checkbox" name="exist_customer" id="exist_customer" checked>
                                                     <label for="exist_customer" id="lbl_exist">Yes</label>
                                                 </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="validationCustom4" class="col-xl-3 col-md-4">Max Cap</label>
+                                                <input disabled id="max_cap" class="form-control col-md-7" type="number" step="0.01" min="0.01" name="max_cap">
                                             </div>
                                             <h4><br/>Usage Limits</h4>
                                             <div class="form-group row">
@@ -174,19 +178,22 @@ $(document).ready(function(){
     });
 
     $("#discount_type").change(function(){
-        console.log(0);
         $("#discount_value").attr("readonly",false);
         if($("#discount_type").val() == 1){
             $("#discount_value").attr("placeholder","Please put a number in precent (0-100)");
             $("#discount_value").attr("max",100);
             $("#discount_value").attr("min",0.01);
+            $("#max_cap").prop("disabled",false);
+            $("#max_cap").prop("required",true);
         }else if($("#discount_type").val() == 2){
             $("#discount_value").attr("placeholder","Please put a number in fixed value");
             $("#discount_value").attr("min",0.01);
             $("#discount_value").attr("max","");
+            $("#max_cap").prop("disabled",true);
         }else{
             $("#discount_value").attr("placeholder","Please select option");
             $("#discount_value").attr("readonly",true);
+            $("#max_cap").prop("disabled",true);
         }
     });
 

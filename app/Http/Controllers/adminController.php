@@ -45,22 +45,6 @@ class adminController extends Controller
     {
       $product_list = product::join('category', 'category.category_id', '=', 'product.category_id')->select('product.*', 'category.category_name as category_name')->paginate(15);
 
-      // $product_list = product::get();
-
-      // foreach($product_list as $product)
-      // {
-      //   $product->category_name = "";
-      //   $category_detail = category::where('category_id', $product->category_id)->first();
-      //   if($category_detail)
-      //   {
-      //     $product->category_name = $category_detail->category_name;
-      //   }
-      // }
-
-      // dd($product_list);
-
-      // dd($product_list->getUrlRange(0, 15))
-
     	return view('admin.productlist',compact('product_list'));
     }
 
@@ -258,10 +242,7 @@ class adminController extends Controller
           ]);
 
           $path = $image->storeAs('/image', $product_detail->product_id."_".$product_detail->id.".".$image->getClientOriginalExtension());
-          product_image::where('id', $product_detail->id)
-                    ->update([
-                      'path' => $path
-                      ]);
+          product_image::where('id', $product_detail->id)->update(['path' => $path]);           
         }
       }
 
@@ -286,8 +267,6 @@ class adminController extends Controller
 
     public function createCoupon(Request $request)
     {
-
-
         if($request->coupon_quantity == ""){
           $coupon_quantity = -1;
         }else{
@@ -332,12 +311,11 @@ class adminController extends Controller
           'user_exist' => $user_exist,
           'per_customer' => $per_customer,
           'date_start' => $request->date_start,
-          'date_end' => $request->date_end
+          'date_end' => $request->date_end,
+          'maxcap' => $request->max_cap
         ]);
 
-
         return back()->with("success","Coupon create successful");
-
     }
 
     public function changeStatus(Request $request)
@@ -360,7 +338,6 @@ class adminController extends Controller
         $coupon_list = coupon::where('name','like','%'.$request->result.'%')
                               ->orWhere('code','like','%'.$request->result.'%')
                               ->paginate(15);
-
         return view('admin.couponlist',compact('coupon_list'));
       }else{
         return redirect(route('getCouponList'));

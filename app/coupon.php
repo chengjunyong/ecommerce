@@ -20,6 +20,7 @@ class coupon extends Model
       'user_exist',
       'category_id',
       'subcategory_id',
-      'minimum_spend'
+      'minimum_spend',
+      'maxcap'
     ];
 }
