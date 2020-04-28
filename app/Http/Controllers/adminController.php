@@ -88,7 +88,9 @@ class adminController extends Controller
 
     public function getCouponList()
     {
-        return view('admin.couponlist');
+        $coupon_list = coupon::paginate(15);;
+
+        return view('admin.couponlist',compact('coupon_list'));
     }
 
     public function getCouponCreate()
@@ -232,7 +234,7 @@ class adminController extends Controller
         return view('admin.productlist')->with('product_list',$result);
       }
 
-        return $this->getProductList();
+        return redirect(route('getProductList'));
     }
 
     public function editProduct(Request $request)
@@ -317,7 +319,6 @@ class adminController extends Controller
         }else{
           $per_customer = $request->per_customer;
         }
-
         
         coupon::create([
           'name' => $request->coupon_name,
@@ -337,6 +338,33 @@ class adminController extends Controller
 
         return back()->with("success","Coupon create successful");
 
+    }
+
+    public function changeStatus(Request $request)
+    {
+      coupon::where('id',$request->id)
+            ->update([
+              'active' => $request->status
+            ]);
+    }
+
+    public function deleteCoupon(Request $request)
+    {
+      coupon::where('id',$request->id)->delete();
+      return "true";
+    }
+
+    public function searchCoupon(Request $request)
+    {
+      if($request->result != null){
+        $coupon_list = coupon::where('name','like','%'.$request->result.'%')
+                              ->orWhere('code','like','%'.$request->result.'%')
+                              ->paginate(15);
+
+        return view('admin.couponlist',compact('coupon_list'));
+      }else{
+        return redirect(route('getCouponList'));
+      }
     }
 
 }

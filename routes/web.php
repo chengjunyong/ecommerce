@@ -98,6 +98,15 @@ Route::prefix('/admin')->group(function(){
   //post coupon information for creation
   Route::post('/createCoupon','adminController@createCoupon')->name('createCoupon');
 
+  //ajax change coupon status
+  Route::post('/changeStatus','adminController@changeStatus')->name('changeStatus');
+
+  //ajax delete coupon
+  Route::post('/deleteCoupon','adminController@deleteCoupon')->name('deleteCoupon');
+
+  //search coupon
+  Route::post('/searchCoupon','adminController@searchCoupon')->name('searchCoupon');
+
 });
 
 Auth::routes();
