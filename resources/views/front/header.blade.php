@@ -51,24 +51,24 @@
                   </div>
                 </li>
 
-                @if(count($category_list) <= 12)
+                @if(count($category_list) <= 7)
                   @foreach($category_list as $category)
                     <li> <a href="{{ route('getCategoryPage', ['id' => $category->category_id]) }}">{{ $category->category_name }}</a></li>
                   @endforeach
                 @else
-                  @for ($i = 0; $i < 12; $i++)
+                  @for ($i = 0; $i < 7; $i++)
                     <li> <a href="{{ route('getCategoryPage', ['id' => $category_list[$i]->category_id]) }}">{{ $category_list[$i]->category_name }}</a></li>
                   @endfor
 
                   <li class="mor-slide-open">
                     <ul>
-                      @for($b = 12; $b < count($category_list); $b++)
+                      @for($b = 7; $b < count($category_list); $b++)
                         <li> <a href="{{ route('getCategoryPage', ['id' => $category_list[$b]->category_id]) }}">{{ $category_list[$b]->category_name }}</a></li>
                       @endfor
                     </ul>
                   </li>
 
-                  <li> <a class="mor-slide-click">mor category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
+                  <li> <a class="mor-slide-click">more category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
                 @endif
               </ul>
             </div>
@@ -168,24 +168,24 @@
                   <div class="collapse nav-desk" id="navbarToggleExternalContent">
                     <ul class="nav-cat title-font">
 
-                      @if(count($category_list) <= 12)
+                      @if(count($category_list) <= 7)
                         @foreach($category_list as $category)
                           <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage', ['id' => $category->category_id]) }}">{{ $category->category_name }}</a></li>
                         @endforeach
                       @else
-                        @for ($i = 0; $i < 12; $i++)
+                        @for ($i = 0; $i < 7; $i++)
                           <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage', ['id' => $category_list[$i]->category_id]) }}">{{ $category_list[$i]->category_name }}</a></li>
                         @endfor
 
                         <li class="mor-slide-open">
                           <ul>
-                            @for($b = 12; $b < count($category_list); $b++)
+                            @for($b = 7; $b < count($category_list); $b++)
                               <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product"> <a href="{{ route('getCategoryPage', ['id' => $category_list[$b]->category_id]) }}">{{ $category_list[$b]->category_name }}</a></li>
                             @endfor
                           </ul>
                         </li>
 
-                        <li> <a class="mor-slide-click">mor category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
+                        <li> <a class="mor-slide-click">more category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
                       @endif
                     </ul>
                   </div>
