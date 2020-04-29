@@ -66,7 +66,23 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.success{
+  animation: fadeout 3.0s;
+  opacity: 0;
+}
+
+
+@keyframes fadeout{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+
 </style>
+@if(session()->has('success'))
+  <div class="highlight success" style="position:fixed;left:55%;top:15%;z-index: 999;left:50%;top:15%;padding:5px 60px 5px 60px;background-color:#bfbfd6;border-radius: 20px;">
+    <lable><b>{{ session()->get('success') }}</b></lable>
+  </div>
+@endif
 <div class="page-body">
 
             <!-- Container-fluid starts-->
@@ -148,7 +164,7 @@ input:checked + .slider:before {
                                                         @endif
                                                     </td>
                                                     <td class="jsgrid-cell" style="width: 50px;text-align: center">
-                                                        <input class="jsgrid-button jsgrid-edit-button edit" type="button" title="Edit">
+                                                        <a href="{{ route('editCoupon')}}?coupon_id={{ $result->id }}"><input class="jsgrid-button jsgrid-edit-button edit" type="button" title="Edit"></a>
                                                         <input class="jsgrid-button jsgrid-delete-button delete" type="button" title="Delete">
                                                     </td>
                                                 </tr>

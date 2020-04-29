@@ -65,11 +65,11 @@
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">Start Date</label>
-                                                <input class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="date_start" required="">
+                                                <input id="date_start" class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="date_start" required="">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">End Date</label>
-                                                <input class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="date_end" required="">
+                                                <input id="date_end" class="datepicker-here form-control digits col-md-7" type="date" data-language="en" name="date_end" required="">
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-xl-3 col-md-4">Coupon Type</label>
@@ -200,10 +200,12 @@ $(document).ready(function(){
     $("#u_unlimited").click(function(){
         $("#per_customer").val("");
         $("#per_customer").attr("readonly",true);
+        $("#per_customer").prop("required",false);
     });
 
     $("#u_limited").click(function(){
         $("#per_customer").attr("readonly",false);
+        $("#per_customer").prop("required",true);
     });
 
     $("#exist_customer").change(function(){
@@ -213,6 +215,17 @@ $(document).ready(function(){
             $("#lbl_exist").text("No");
         }
     });
+
+    $("#date_start").change(function(){
+        let a = $(this).val();
+        $("#date_end").attr('min',a);
+    });
+
+    $("#date_end").change(function(){
+        let b = $(this).val();
+        $("#date_start").attr('max',b);
+    });
+
 
 });
 </script>

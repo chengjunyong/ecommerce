@@ -107,6 +107,12 @@ Route::prefix('/admin')->group(function(){
   //search coupon
   Route::post('/searchCoupon','adminController@searchCoupon')->name('searchCoupon');
 
+  //get coupon id
+  Route::get('/editCoupon','adminController@editCoupon')->name('editCoupon');
+
+  //edit coupon
+  Route::post('/alterCoupon','adminController@alterCoupon')->name('alterCoupon');
+
 });
 
 Auth::routes();
