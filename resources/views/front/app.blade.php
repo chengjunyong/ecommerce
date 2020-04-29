@@ -74,6 +74,12 @@
   
   $(document).ready(function(){
 
+    $("#login_password").on('keypress',function(e) {
+      if(e.which == 13) {
+        $("#login_button").click();
+      }
+    });
+
     $("#login_button").click(function(){
       var error = 0;
       if($("#login_form input[name=email]").val() == "")

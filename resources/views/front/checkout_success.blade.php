@@ -29,50 +29,41 @@
                 <div class="product-order">
                     <h3>your order details</h3>
                     <div class="row product-order-detail">
-                        <div class="col-3"><img src="../assets/images/layout-4/product/1.jpg" alt="" class="img-fluid "></div>
-                        <div class="col-3 order_detail">
+                      @if($transaction)
+                        @foreach($transaction->detail as $transaction_detail)
+                          <div class="col-4 order_detail">
                             <div>
-                                <h4>product name</h4>
-                                <h5>cotton shirt</h5></div>
-                        </div>
-                        <div class="col-3 order_detail">
+                              <h4>product name</h4>
+                              <h5>{{ $transaction_detail->product_name }}</h5>
+                            </div>
+                          </div>
+                          <div class="col-4 order_detail">
                             <div>
-                                <h4>quantity</h4>
-                                <h5>1</h5></div>
-                        </div>
-                        <div class="col-3 order_detail">
-                            <div>
+                              <h4>quantity</h4>
+                              <h5>{{ $transaction_detail->quantity }}</h5>
+                            </div>
+                          </div>
+                          <div class="col-4 order_detail">
+                              <div>
                                 <h4>price</h4>
-                                <h5>$555.00</h5></div>
+                                <h5>RM {{ number_format(($transaction_detail->quantity * $transaction_detail->product_price), 2) }}</h5>
+                              </div>
+                          </div>
+                        @endforeach
+                      @else
+                        <div class="col-12 order_detail">
+                          <h4>Transaction not found.</h4>
                         </div>
-                    </div>
-                    <div class="row product-order-detail">
-                        <div class="col-3"><img src="../assets/images/layout-4/product/2.jpg" alt="" class="img-fluid "></div>
-                        <div class="col-3 order_detail">
-                            <div>
-                                <h4>product name</h4>
-                                <h5>cotton shirt</h5></div>
-                        </div>
-                        <div class="col-3 order_detail">
-                            <div>
-                                <h4>quantity</h4>
-                                <h5>1</h5></div>
-                        </div>
-                        <div class="col-3 order_detail">
-                            <div>
-                                <h4>price</h4>
-                                <h5>$555.00</h5></div>
-                        </div>
+                      @endif  
                     </div>
                     <div class="total-sec">
-                        <ul>
-                            <li>subtotal <span>$55.00</span></li>
-                            <li>shipping <span>$12.00</span></li>
-                            <li>tax(GST) <span>$10.00</span></li>
-                        </ul>
+                      <ul>
+                        <li>subtotal <span>RM {{ number_format($transaction->sub_total, 2) }}</span></li>
+                        <li>discount <span>RM {{ number_format($transaction->discount_total, 2) }}</span></li>
+                      </ul>
                     </div>
                     <div class="final-total">
-                        <h3>total <span>$77.00</span></h3></div>
+                        <h3>total <span>RM {{ number_format($transaction->total, 2) }}</span></h3></div>
                 </div>
             </div>
             <div class="col-lg-6">

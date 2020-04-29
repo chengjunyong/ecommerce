@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\category;
 use App\product;
 use App\product_image;
+use App\wishlist;
+use App\wishlist_detail;
+use App\cart;
+use App\cart_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -154,6 +158,22 @@ class frontController extends Controller
 
   public function getWishList()
   {
-    return view('front.wishlist');
+    $user = Auth::user();
+
+    $wishlist_list = [];
+    if($user)
+    {
+      $wishlist_list = wishlist::where('wishlist.user_id', $user->id)->join('wishlist_detail', 'wishlist_detail.wishlist_id', '=', 'wishlist.id')->join('product', 'wishlist_detail.product_id', '=', 'product.id')->select('wishlist_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'wishlist.id as wishlist_id')->get();
+
+      if(count($wishlist_list) > 0)
+      {
+        foreach($wishlist_list as $wishlist)
+        {
+          $wishlist->image = product_image::where('product_id', $wishlist->product_id)->first();
+        }
+      }
+    }
+
+    return view('front.wishlist', compact('wishlist_list'));
   }
 }

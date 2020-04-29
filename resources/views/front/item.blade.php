@@ -2,6 +2,12 @@
 
 @section('layout')
 
+<style>
+  
+  /*.item_img { height: 400px; object-fit: cover; max-width: none; }*/
+
+</style>
+
 <!-- breadcrumb start -->
 <div class="breadcrumb-main ">
     <div class="container">
@@ -32,13 +38,13 @@
                     <div class="product-right-slick">
                       @if(count($product_detail->image) > 0)
                         @foreach($product_detail->image as $image)
-                          <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                          <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid image_zoom_cls-0" style="height: 300px; object-fit: cover; max-width: none;"></div>
                         @endforeach
                       @else
-                        <div><img src="../assets/images/product-sidebar/001.jpg" alt="" class="img-fluid  image_zoom_cls-0"></div>
-                        <div><img src="../assets/images/product-sidebar/002.jpg" alt="" class="img-fluid  image_zoom_cls-1"></div>
-                        <div><img src="../assets/images/product-sidebar/003.jpg" alt="" class="img-fluid  image_zoom_cls-2"></div>
-                        <div><img src="../assets/images/product-sidebar/004.jpg" alt="" class="img-fluid  image_zoom_cls-3"></div>
+                        <div><img src="../assets/images/product-sidebar/001.jpg" alt="" class="img-fluid image_zoom_cls-0" style="height: 300px; object-fit: cover; max-width: none;"></div>
+                        <div><img src="../assets/images/product-sidebar/002.jpg" alt="" class="img-fluid image_zoom_cls-1" style="height: 300px; object-fit: cover; max-width: none;"></div>
+                        <div><img src="../assets/images/product-sidebar/003.jpg" alt="" class="img-fluid image_zoom_cls-2" style="height: 300px; object-fit: cover; max-width: none;"></div>
+                        <div><img src="../assets/images/product-sidebar/004.jpg" alt="" class="img-fluid image_zoom_cls-3" style="height: 300px; object-fit: cover; max-width: none;"></div>
                       @endif
                     </div>
                 </div>
@@ -93,30 +99,8 @@
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
                                 <form class="d-inline-block">
-                                    <button class="wishlist-btn"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
+                                    <button class="wishlist-btn" product_id="{{ $product_detail->id }}" type="button"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
                                 </form>
-                            </div>
-                        </div>
-                        <div class="border-product">
-                            <h6 class="product-title">100% SECURE PAYMENT & CASH ON DELIVERY</h6>
-                            <div class="payment-card-bottom">
-                                <ul>
-                                    <li>
-                                        <a href="#"><img src="../assets/images/layout-1/pay/1.png" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="../assets/images/layout-1/pay/2.png" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="../assets/images/layout-1/pay/3.png" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="../assets/images/layout-1/pay/4.png" alt=""></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img src="../assets/images/layout-1/pay/5.png" alt=""></a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -136,33 +120,13 @@
                                 <p id="demo"><span>25 <span class="padding-l">:</span> <span class="timer-cal">Days</span> </span><span>22 <span class="padding-l">:</span> <span class="timer-cal">Hrs</span> </span><span>13 <span class="padding-l">:</span> <span class="timer-cal">Min</span> </span><span>57 <span class="timer-cal">Sec</span></span>
                                 </p>
                             </div>
-                            <h6 class="product-title">Variance 1</h6>
-                            <div class="modal fade" id="sizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Sheer Straight Kurta</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        </div>
-                                        <div class="modal-body"><img src="assets/images/size-chart.jpg" alt="" class="img-fluid "></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="size-box">
-                                <ul>
-                                    <li class="active"><a href="#">0</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                </ul>
-                            </div>
                             <h6 class="product-title">quantity</h6>
                             <div class="qty-box">
                                 <div class="input-group"><span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
                                     <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
                             </div>
                         </div>
-                        <div class="product-buttons"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
+                        <div class="product-buttons" product_id="{{ $product_detail->id }}"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
                     </div>
                 </div>
             </div>
@@ -299,43 +263,22 @@
                             <div class="product-detail detail-center ">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Description.
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            RM 10.00
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                RM 10.00
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="icon-detail">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                        <i class="ti-bag" ></i>
-                                    </button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                        <i class="ti-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -353,43 +296,22 @@
                             <div class="product-detail detail-center ">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Description.
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            RM 10.00
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                RM 10.00
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="icon-detail">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                        <i class="ti-bag" ></i>
-                                    </button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                        <i class="ti-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -407,43 +329,22 @@
                             <div class="product-detail detail-center ">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Description.
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            RM 10.00
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                RM 10.00
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="icon-detail">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                        <i class="ti-bag" ></i>
-                                    </button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                        <i class="ti-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -461,43 +362,22 @@
                             <div class="product-detail detail-center ">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Description.
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            RM 10.00
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                RM 10.00
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="icon-detail">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                        <i class="ti-bag" ></i>
-                                    </button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                        <i class="ti-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -515,43 +395,22 @@
                             <div class="product-detail detail-center ">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Description.
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            RM 10.00
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                RM 10.00
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="icon-detail">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                        <i class="ti-bag" ></i>
-                                    </button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                        <i class="ti-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -569,43 +428,22 @@
                             <div class="product-detail detail-center ">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Description.
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            RM 10.00
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                RM 10.00
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="icon-detail">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                        <i class="ti-bag" ></i>
-                                    </button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                        <i class="ti-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -623,43 +461,22 @@
                             <div class="product-detail detail-center ">
                                 <div class="detail-title">
                                     <div class="detail-left">
-                                        <div class="rating-star">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
                                         <a href="">
                                             <h6 class="price-title">
-                                                reader will be distracted.
+                                                Description.
                                             </h6>
                                         </a>
                                     </div>
                                     <div class="detail-right">
                                         <div class="check-price">
-                                            $ 56.21
+                                            RM 10.00
                                         </div>
                                         <div class="price">
                                             <div class="price">
-                                                $ 24.05
+                                                RM 10.00
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="icon-detail">
-                                    <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                        <i class="ti-bag" ></i>
-                                    </button>
-                                    <a href="javascript:void(0)" title="Add to Wishlist">
-                                        <i class="ti-heart" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="#" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                                        <i class="ti-search" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="compare.html" title="Compare">
-                                        <i class="fa fa-exchange" aria-hidden="true"></i>
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -670,6 +487,68 @@
     </div>
 </section>
 <!-- related products -->
+
+<script>
+
+  var logged_user = "{{ $logged_user }}";
+  
+  $(".wishlist-btn, .product-buttons").click(function(){
+    if(logged_user == "")
+    {
+      alert("Please login before add item to wish list");
+      return;
+    }
+    var product_id = $(this).attr("product_id");
+
+    var route = "";
+    var type = 0;
+    if($(this).hasClass("wishlist-btn") == true)
+    {
+      route = "{{ route('addItemToWishlist') }}";
+      type = 1;
+    }
+    else if($(this).hasClass("product-buttons") == true)
+    {
+      route = "{{ route('addItemToCart') }}";
+      type = 2;
+    }
+
+    if(route == "")
+    {
+      alert("Something wrong.")
+      return;
+    }
+
+    $.post(route, { "_token": "{{ csrf_token() }}", "product_id" : product_id }, function(response){
+
+      if(response.error == 0)
+      {
+        if(type == 1)
+        {
+          $("#wishlist_count").html(response.wishlist_count);
+        }
+        else
+        {
+          $("#cart_count").html(response.cart_count);
+        }
+        
+        alert(response.message);
+      }
+      else
+      {
+        alert(response.message);
+      }
+
+    }).fail(function(){
+      alert("Error");
+    });
+  });
+
+  $(".product-buttons").click(function(){
+
+  });
+
+</script>
 
 @include('front.footer');
 

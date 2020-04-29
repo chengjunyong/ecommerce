@@ -39,76 +39,49 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <a href="#"><img src="../assets/images/layout-2/product/1.jpg" alt="product" class="img-fluid  "></a>
-                        </td>
-                        <td><a href="#">cotton shirt</a>
-                            <div class="mobile-cart-content row">
+                      @if(count($wishlist_list) > 0)
+                        @foreach($wishlist_list as $wishlist)
+                          <tr>
+                            <td>
+                              <a href="#"><img src="{{ $wishlist->image ? Storage::url($wishlist->image->path) : '../assets/images/layout-2/product/1.jpg' }}" alt="product" class="img-fluid"></a>
+                            </td>
+                            <td><a href="#">{{ $wishlist->product_name }}</a>
+                              <div class="mobile-cart-content row">
                                 <div class="col-xs-3">
-                                    <p>in stock</p>
+                                  <p>
+                                    @if($wishlist->stock == 0)
+                                      Out of stock
+                                    @else
+                                      In stock
+                                    @endif
+                                  </p>
                                 </div>
                                 <div class="col-xs-3">
-                                    <h2 class="td-color">$63.00</h2></div>
+                                  <h2 class="td-color">{{ $wishlist->quantity }} x RM {{ number_format($wishlist->product_price, 2) }}</h2></div>
                                 <div class="col-xs-3">
-                                    <h2 class="td-color"><a href="#" class="icon mr-1"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></h2></div>
-                            </div>
-                        </td>
-                        <td>
-                            <h2>$63.00</h2></td>
-                        <td>
-                            <p>in stock</p>
-                        </td>
-                        <td><a href="#" class="icon mr-3"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <a href="#"><img src="../assets/images/layout-2/product/2.jpg" alt="product" class="img-fluid  "></a>
-                        </td>
-                        <td><a href="#">cotton shirt</a>
-                            <div class="mobile-cart-content row">
-                                <div class="col-xs-3">
-                                    <p>in stock</p>
-                                </div>
-                                <div class="col-xs-3">
-                                    <h2 class="td-color">$63.00</h2></div>
-                                <div class="col-xs-3">
-                                    <h2 class="td-color"><a href="#" class="icon mr-1"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></h2></div>
-                            </div>
-                        </td>
-                        <td>
-                            <h2>$63.00</h2></td>
-                        <td>
-                            <p>in stock</p>
-                        </td>
-                        <td><a href="#" class="icon mr-3"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></td>
-                    </tr>
-                    </tbody>
-                    <tbody>
-                    <tr>
-                        <td>
-                            <a href="#"><img src="../assets/images/layout-1/product/3.jpg" alt="product" class="img-fluid  "></a>
-                        </td>
-                        <td><a href="#">cotton shirt</a>
-                            <div class="mobile-cart-content row">
-                                <div class="col-xs-3">
-                                    <p>in stock</p>
-                                </div>
-                                <div class="col-xs-3">
-                                    <h2 class="td-color">$63.00</h2></div>
-                                <div class="col-xs-3">
-                                    <h2 class="td-color"><a href="#" class="icon mr-1"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></h2></div>
-                            </div>
-                        </td>
-                        <td>
-                            <h2>$63.00</h2></td>
-                        <td>
-                            <p>in stock</p>
-                        </td>
-                        <td><a href="#" class="icon mr-3"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></td>
-                    </tr>
+                                  <h2 class="td-color"><a href="#" class="icon mr-1"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></h2></div>
+                              </div>
+                            </td>
+                            <td>
+                              <h2>{{ $wishlist->quantity}} x RM {{ number_format($wishlist->product_price, 2) }}</h2></td>
+                            <td>
+                              <p>
+                                @if($wishlist->stock == 0)
+                                  Out of stock
+                                @else
+                                  In stock
+                                @endif
+                              </p>
+                            </td>
+                            <td><a href="#" class="icon mr-3"><i class="ti-close"></i> </a><a href="#" class="cart"><i class="ti-shopping-cart"></i></a></td>
+                          </tr>
+                        @endforeach
+                        
+                      @else
+                        <tr>
+                          <td colspan="5"> Your wishlist is empty </td>
+                        </tr>
+                      @endif
                     </tbody>
                 </table>
             </div>

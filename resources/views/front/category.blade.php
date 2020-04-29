@@ -93,18 +93,11 @@
                                                 <div class="product-box">
                                                   <div class="product-imgbox">
                                                     <a href="{{ route('getItemDetail', ['id' => $product->id ]) }}">
-                                                      <div class="product-front">
+                                                      <div class="product-front" style="height: 220px;">
                                                         @if(count($product->image) > 0)
-                                                          <img src="{{ Storage::url($product->image[0]->path) }}" class="img-fluid  " alt="product" style="width: 100%;">
+                                                          <img src="{{ Storage::url($product->image[0]->path) }}" class="img-fluid  " alt="product" style="max-width: none; height: 100%;">
                                                         @else
-                                                          <img src="../assets/images/layout-1/product/1.jpg" class="img-fluid  " alt="product" style="width: 100%;">
-                                                        @endif
-                                                      </div>
-                                                      <div class="product-back" style="width: 100%;">
-                                                        @if(count($product->image) > 1)
-                                                          <img src="{{ Storage::url($product->image[1]->path) }}" class="img-fluid  " alt="product" style="width: 100%;">
-                                                        @else
-                                                          <img src="../assets/images/layout-1/product/a1.jpg" class="img-fluid  " alt="product" style="width: 100%;">
+                                                          <img src="../assets/images/layout-1/product/1.jpg" class="img-fluid  " alt="product" style="max-width: none; height: 100%;">
                                                         @endif
                                                       </div>
                                                     </a>
@@ -112,13 +105,6 @@
                                                   <div class="product-detail detail-center ">
                                                     <div class="detail-title">
                                                       <div class="detail-left">
-                                                        <div class="rating-star">
-                                                          <i class="fa fa-star"></i>
-                                                          <i class="fa fa-star"></i>
-                                                          <i class="fa fa-star"></i>
-                                                          <i class="fa fa-star"></i>
-                                                          <i class="fa fa-star"></i>
-                                                        </div>
                                                         <p>{{ $product->description }}</p>
                                                         <a href="">
                                                           <h6 class="price-title">

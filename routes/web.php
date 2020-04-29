@@ -35,6 +35,16 @@ Route::get('/registernow', 'frontController@getRegisterPage')->name('getRegister
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile', 'frontController@getUserProfile')->name('getUserProfile');
+  Route::prefix('item')->group(function () {
+    Route::post('add_wishlist', 'itemController@addItemToWishlist')->name('addItemToWishlist');
+    Route::post('add_cart', 'itemController@addItemToCart')->name('addItemToCart');
+  });
+
+  Route::prefix('checkout')->group(function(){
+    Route::post('submitPayment', 'itemController@submitPayment')->name('submitPayment');
+    Route::post('submitCouponcode', 'itemController@submitCouponcode')->name('submitCouponcode');
+  });
+
 });
 
 Route::prefix('item')->group(function () {
@@ -47,7 +57,7 @@ Route::prefix('cart')->group(function () {
 
 Route::prefix('checkout')->group(function () {
   Route::get('/', 'itemController@getCheckoutIndex')->name('getCheckoutIndex');
-  Route::get('/success', 'itemController@getCheckoutSuccessIndex')->name('getCheckoutSuccessIndex');
+  Route::get('/success/{id}', 'itemController@getCheckoutSuccessIndex')->name('getCheckoutSuccessIndex');
 });
 
 Route::prefix('/admin')->group(function(){

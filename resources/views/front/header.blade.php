@@ -36,7 +36,7 @@
       </div>
   </div>
 </div>
-<div class="layout-header1" style="padding: 0 0 0 0">
+<div class="layout-header1">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
@@ -98,7 +98,18 @@
                   <li class="mobile-wishlist">
                     <a href="{{ route('getWishList') }}">
                       <i class="icon-heart"></i>
-                      <div class="cart-item"><div>0 item<span>wishlist</span></div></div>
+                      <div class="cart-item">
+                        <div>
+                          <div id="wishlist_count" style="display: inline-block;">
+                            @if($wishlist_count)
+                              {{ $wishlist_count }}
+                            @else
+                              0
+                            @endif
+                          </div> 
+                          item<span>wishlist</span>
+                        </div>
+                      </div>
                     </a>
                   </li>
                   <li class="mobile-search"><a href="#"><i class="icon-search"></i></a>
@@ -124,7 +135,13 @@
                   </li>
                 </ul>
                 <div class="cart-block mobile-cart cart-hover-div" onclick="openCart()">
-                  <a href="#"><span class="cart-product">0</span><i class="icon-shopping-cart"></i></a>
+                  <a href="#"><span class="cart-product" id="cart_count">
+                    @if(count($cart_list))
+                      {{ count($cart_list) }}
+                    @else
+                      0
+                    @endif
+                  </span><i class="icon-shopping-cart"></i></a>
                 </div>
               </div>
             </div>

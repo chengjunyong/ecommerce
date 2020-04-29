@@ -100,67 +100,42 @@
         </div>
         <div class="cart_media">
             <ul class="cart_product">
-                <li>
+              @if(count($cart_list) > 0)
+                @foreach($cart_list as $cart_detail)
+                  <li>
                     <div class="media">
+                      <a href="#">
+                        <img alt="" class="mr-3" src="{{ $cart_detail->image ? Storage::url($cart_detail->image->path) : '../assets/images/layout-1/product/1.jpg' }}">
+                      </a>
+                      <div class="media-body">
                         <a href="#">
-                            <img alt="" class="mr-3" src="../assets/images/layout-1/product/1.jpg">
+                          <h4>{{ $cart_detail->product_name }}</h4>
                         </a>
-                        <div class="media-body">
-                            <a href="#">
-                                <h4>item name</h4>
-                            </a>
-                            <h4>
-                                <span>1 x $ 299.00</span>
-                            </h4>
-                        </div>
+                        <h4>
+                          <span>{{ $cart_detail->quantity }} x RM {{ number_format($cart_detail->product_price, 2) }}</span>
+                        </h4>
+                      </div>
                     </div>
                     <div class="close-circle">
-                        <a href="#">
-                            <i class="ti-trash" aria-hidden="true"></i>
-                        </a>
+                      <a href="#">
+                        <i class="ti-trash" aria-hidden="true"></i>
+                      </a>
                     </div>
-                </li>
+                  </li>
+                @endforeach
+              @else
                 <li>
-                    <div class="media">
-                        <a href="#">
-                            <img alt="" class="mr-3" src="../assets/images/layout-1/product/2.jpg">
-                        </a>
-                        <div class="media-body">
-                            <a href="#">
-                                <h4>item name</h4>
-                            </a>
-                            <h4>
-                                <span>1 x $ 299.00</span>
-                            </h4>
-                        </div>
-                    </div>
-                    <div class="close-circle">
-                        <a href="#">
-                            <i class="ti-trash" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                  <div class="media">
+                    <span>Cart is empty.</span>
+                  </div>
                 </li>
-                <li>
-                    <div class="media">
-                        <a href="#"><img alt="" class="mr-3" src="../assets/images/layout-1/product/3.jpg"></a>
-                        <div class="media-body">
-                            <a href="#">
-                                <h4>item name</h4>
-                            </a>
-                            <h4><span>1 x $ 299.00</span></h4>
-                        </div>
-                    </div>
-                    <div class="close-circle">
-                        <a href="#">
-                            <i class="ti-trash" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </li>
+              @endif
             </ul>
             <ul class="cart_total">
                 <li>
                     <div class="total">
-                        <h5>subtotal : <span>$299.00</span></h5>
+                        <h5>subtotal : 
+                          <span id="sum_cart">RM 0.00</span></h5>
                     </div>
                 </li>
                 <li>
@@ -274,7 +249,7 @@
             </div>
             <div class="form-group">
                 <label for="review">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+                <input type="password" class="form-control" name="password" placeholder="Enter your password" id="login_password" required>
             </div>
             <div class="form-group">
                 <button type="button" id="login_button" class="btn btn-rounded btn-block ">Login</button>
@@ -429,3 +404,19 @@
     </div>
   </div>
   <!-- notification product -->
+
+<script>
+  
+  var cart_list = @json($cart_list);
+  if(Object.keys(cart_list).length > 0)
+  {
+    var sum_cart = 0;
+    for(var a = 0; a < Object.keys(cart_list).length; a++)
+    {
+      sum_cart += (cart_list[a].quantity * cart_list[a].product_price);
+    }
+
+    $("#sum_cart, #cart_page_sum, #checkout_page_sum").html("RM "+sum_cart);
+  }
+
+</script>
