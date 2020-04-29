@@ -344,4 +344,68 @@ class adminController extends Controller
       }
     }
 
+    public function editCoupon(Request $request)
+    {
+      $coupon_detail = coupon::where('id',$request->coupon_id)->get();
+      $category_list = category::get();
+
+      return view('admin.couponedit',compact('coupon_detail','category_list'));
+
+    }
+
+    public function alterCoupon(Request $request)
+    {
+      if($request->coupon_quantity == ""){
+          $coupon_quantity = -1;
+        }else{
+          $coupon_quantity = $request->coupon_quantity;
+        }
+
+        if($request->discount_type == 1){
+          $amount = null;
+          $percent = $request->discount_value; 
+        }else{
+          $percent = null;
+          $amount = $request->discount_value;
+        }
+
+        if($request->coupon_status == "on"){
+          $active = 1;
+        }else{
+          $active = 0;
+        }
+
+        if($request->exist_customer == "on"){
+          $user_exist = 1;
+        }else{
+          $user_exist = 0;
+        }
+
+        if($request->per_customer == ""){
+          $per_customer = -1;
+        }else{
+          $per_customer = $request->per_customer;
+        }
+
+        coupon::where('id',$request->coupon_id)->update([
+          'name' => $request->coupon_name,
+          'code' => $request->coupon_code,
+          'quantity' => $coupon_quantity,
+          'amount' => $amount,
+          'percent' => $percent,
+          'active' => $active,
+          'category_id' => $request->category,
+          'minimum_spend' => $request->min_spend,
+          'user_exist' => $user_exist,
+          'per_customer' => $per_customer,
+          'date_start' => $request->date_start,
+          'date_end' => $request->date_end,
+          'maxcap' => $request->max_cap
+        ]);
+
+        return redirect()->route('getCouponList')->with('success','Coupon update successful');
+    }
+
+
+
 }

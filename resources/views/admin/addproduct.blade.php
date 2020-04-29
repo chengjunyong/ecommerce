@@ -16,7 +16,6 @@
   from{opacity: 1;}
   to{opacity: 0;}
 }
-
 </style>
 <div class="page-body">
   <!-- Container-fluid starts-->

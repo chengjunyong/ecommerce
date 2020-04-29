@@ -1,7 +1,7 @@
 <!-- Page Header Start-->
   <div class="page-main-header">
       <div class="main-header-left">
-          <div class="logo-wrapper"><a href="{{ route('getIndex') }}"><img class="blur-up lazyloaded" src="../assets/images/layout-2/logo/logo2.png" alt=""></a></div>
+          <div class="logo-wrapper"><a href="{{ route('getIndex') }}"><img class="blur-up lazyloaded" src="../assets/images/layout-2/logo/logo2.png" alt="" style="width:60%;margin-top: 5px"></a></div>
       </div>
       <div class="main-header-right row">
           <div class="mobile-sidebar">
