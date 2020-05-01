@@ -225,6 +225,7 @@ class itemController extends Controller
           'transaction_id' => $transaction->id,
           'category_id' => $cart->category_id,
           'sub_category_id' => null,
+          'product_id' => $cart->product_id,
           'product_name' => $cart->product_name,
           'product_price' => $cart->product_price,
           'quantity' => $cart->quantity,

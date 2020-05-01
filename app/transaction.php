@@ -13,5 +13,6 @@ class transaction extends Model
       'discount_total',
       'total',
       'status',
+      'payment_type',
     ];
 }

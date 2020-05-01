@@ -16,5 +16,6 @@ class transaction_detail extends Model
       'quantity',
       'total',
       'status',
+      'product_id',
     ];
 }
