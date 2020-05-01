@@ -123,6 +123,16 @@ Route::prefix('/admin')->group(function(){
   //edit coupon
   Route::post('/alterCoupon','adminController@alterCoupon')->name('alterCoupon');
 
+  //change order status
+  Route::post('/changeOrderStatus','adminController@changeOrderStatus')->name('changeOrderStatus');
+
+  //change order status
+  Route::post('/searchOrder','adminController@searchOrder')->name('searchOrder');
+
+  //ajax bulk change order status
+  Route::post('/bulkChangeStatus','adminController@bulkChangeStatus')->name('bulkChangeStatus');
+
+
 });
 
 Auth::routes();

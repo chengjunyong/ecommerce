@@ -25,6 +25,8 @@ use App\product_image;
 use App\category;
 use App\coupon;
 use App\subcoupon;
+use App\transaction;
+use App\transaction_detail;
 use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
@@ -62,7 +64,9 @@ class adminController extends Controller
 
     public function getOrders()
     {
-    	return view('admin.orders');
+      $transaction = transaction::orderBy('created_at','desc')->paginate(15);
+
+    	return view('admin.orders',compact('transaction'));
     }
 
     public function getTransaction()
@@ -182,6 +186,7 @@ class adminController extends Controller
 
     public function bulkDelete(Request $request)
     {
+
       if(isset($request->product_id)){
         if(product::whereIn('id',$request->product_id)->delete()){
           return "true";
@@ -406,6 +411,32 @@ class adminController extends Controller
         return redirect()->route('getCouponList')->with('success','Coupon update successful');
     }
 
+    public function changeOrderStatus(Request $request)
+    {
+      transaction::where('id',$request->id)->update([
+                    'status' => $request->status
+                  ]);
 
+    }
+
+    public function searchOrder(Request $request)
+    {
+      // dd($request->order_id);
+      if(!$request->order_id){
+        return redirect(route('getOrders'));
+      }else{
+        $transaction = transaction::where('id',$request->order_id)->paginate(15);
+        return view('admin.orders',compact('transaction'));
+       
+      }
+
+    }
+
+    public function bulkChangeStatus(Request $request)
+    {
+      if($request->order_id){
+        transaction::whereIn('id',$request->order_id)->update(['status'=>$request->status]);
+      }
+    }
 
 }
