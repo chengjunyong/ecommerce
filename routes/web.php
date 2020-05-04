@@ -63,6 +63,7 @@ Route::prefix('checkout')->group(function () {
 Route::prefix('/admin')->group(function(){
   Route::get('/', 'adminController@getIndex')->name('getIndex');
   Route::get('/category', 'adminController@getCategory')->name('getCategory');
+  Route::get('/subcategory', 'adminController@getSubCategory')->name('getSubCategory');
   Route::get('/productlist','adminController@getProductList')->name('getProductList');
   Route::get('/productdetail','adminController@getProductDetail')->name('getProductDetail');
   Route::get('/addproduct','adminController@getAddProduct')->name('getAddProduct');
@@ -132,6 +133,11 @@ Route::prefix('/admin')->group(function(){
   //ajax bulk change order status
   Route::post('/bulkChangeStatus','adminController@bulkChangeStatus')->name('bulkChangeStatus');
 
+  //get order detail based on transaction id
+  Route::get('/orderdetail','adminController@orderDetail')->name('orderDetail');
+
+  //ajax change order status
+  Route::post('/changeorderstatus','adminController@alterOrderStatus')->name('alterOrderStatus');
 
 });
 

@@ -121,7 +121,7 @@
                                                         
                                                     </select>
                                                 </td>
-                                                <td><a href="#"><i class="fas fa-search"></i></a></td>
+                                                <td><a href="{{route('orderDetail')}}?order_id={{ $result->id }}"><i class="fas fa-search"></i></a></td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -27,6 +27,7 @@ use App\coupon;
 use App\subcoupon;
 use App\transaction;
 use App\transaction_detail;
+use App\users;
 use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
@@ -41,6 +42,13 @@ class adminController extends Controller
         $category = category::get();
 
     	return view('admin.category',compact('category'));
+    }
+
+    public function getSubCategory()
+    {
+    
+
+      return view('admin.category',compact('category'));
     }
 
     public function getProductList()
@@ -416,7 +424,6 @@ class adminController extends Controller
       transaction::where('id',$request->id)->update([
                     'status' => $request->status
                   ]);
-
     }
 
     public function searchOrder(Request $request)
@@ -437,6 +444,25 @@ class adminController extends Controller
       if($request->order_id){
         transaction::whereIn('id',$request->order_id)->update(['status'=>$request->status]);
       }
+    }
+
+    public function orderDetail(Request $request)
+    { 
+        $orderdetail = transaction::join("transaction_detail","transaction.id","=","transaction_detail.transaction_id")
+                                    ->join("users","transaction.user_id","=","users.id")
+                                    ->join("product","transaction_detail.product_id","=","product.id")
+                                    ->join("product_image","transaction_detail.product_id","=","product_image.product_id")
+                                    ->select("transaction.id as id","transaction.status","transaction.sub_total","transaction.discount_total","transaction.total","transaction.payment_type","transaction.delivery_address","transaction.created_at","transaction_detail.id as sub_id","transaction_detail.product_id","transaction_detail.product_name","transaction_detail.quantity","users.fname","users.lname","users.email","users.contact","product_image.path","product.sku")       
+                                    ->where("transaction.id",$request->order_id)
+                                    ->groupBy("product_id")
+                                    ->get();
+
+      return view("admin.orderdetail",compact("orderdetail"));
+    }
+
+    public function alterOrderStatus(Request $request)
+    {
+      transaction::where('id',$request->id)->update(['status'=>$request->status]);
     }
 
 }

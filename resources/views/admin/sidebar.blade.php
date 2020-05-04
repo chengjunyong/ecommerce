@@ -13,6 +13,7 @@
                 <ul class="sidebar-submenu">
                     
                     <li><a href="{{ route('getCategory') }}"><i class="fa fa-circle"></i>Category</a></li>
+                    <li><a href="{{ route('getSubCategory') }}"><i class="fa fa-circle"></i>Sub Category</a></li>
                     <li><a href="{{ route('getProductList') }}"><i class="fa fa-circle"></i>Product List</a></li>
                     <li><a href="{{ route('getAddProduct') }}"><i class="fa fa-circle"></i>Add Product</a></li>
                         
