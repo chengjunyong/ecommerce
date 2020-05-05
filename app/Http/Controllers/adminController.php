@@ -28,6 +28,7 @@ use App\subcoupon;
 use App\transaction;
 use App\transaction_detail;
 use App\users;
+use App\subcategory;
 use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
@@ -46,15 +47,18 @@ class adminController extends Controller
 
     public function getSubCategory()
     {
-    
+        $category = category::get();
+        $subcategory = subcategory::join("category","category.category_id","=","subcategory.category_id")->select("subcategory.*","category.category_id","category.category_name")->get();
 
-      return view('admin.category',compact('category'));
+      return view('admin.subcategory',compact('category','subcategory'));
     }
 
     public function getProductList()
     {
-      $product_list = product::join('category', 'category.category_id', '=', 'product.category_id')->select('product.*', 'category.category_name as category_name')->paginate(15);
-
+      $product_list = product::join("subcategory","subcategory.subcategory_id","=","product.subcategory_id")
+                              ->join("category","category.category_id","=","subcategory.category_id")
+                              ->select("product.*","subcategory.subcategory_name","category.category_name")
+                              ->paginate(15);
     	return view('admin.productlist',compact('product_list'));
     }
 
@@ -65,9 +69,9 @@ class adminController extends Controller
 
     public function getAddProduct()
     {
-      $category_list = category::get();
+      $subcategory_list = subcategory::join("category","category.category_id","=","subcategory.category_id")->select("subcategory.*","category.category_id")->get();
 
-    	return view('admin.addproduct', compact('category_list'));
+    	return view('admin.addproduct', compact('subcategory_list'));
     }
 
     public function getOrders()
@@ -139,11 +143,14 @@ class adminController extends Controller
         $stock = $request->stock;
       }
 
+      $target = explode(",",$request->subcategory_id);
+
       $product = product::create([
         'name'=> $request->product_name,
         'description' => $request->description,
         'sku'=> $request->sku,
-        'category_id'=> $request->category_id,
+        'category_id'=>$target[1],
+        'subcategory_id'=>$target[0],
         'stock' => $stock,
         'price' => $request->price,
         'active' => $request->active
@@ -237,9 +244,9 @@ class adminController extends Controller
     public function editProduct(Request $request)
     {   
         $product_detail = product::where('id','=',$request->product_id)->get();
-        $category_list = category::get();
+        $subcategory_list = subcategory::join('category','category.category_id','=','subcategory.category_id')->select('subcategory.*','category.category_id')->get();
         $images = product_image::where('product_id','=',$request->product_id)->get();
-        return view('admin.editproduct',compact('category_list','product_detail','images'));
+        return view('admin.editproduct',compact('subcategory_list','product_detail','images'));
     }
 
     public function editPostProduct(Request $request)
@@ -264,6 +271,8 @@ class adminController extends Controller
       }else{
         $stock = $request->stock;
       }
+
+      $target = explode(',',$request->subcategory);
       product::where('id','=',$request->product_id)
                 ->update([
                   'name' => $request->product_name,
@@ -271,7 +280,8 @@ class adminController extends Controller
                   'price' => $request->price,
                   'stock' => $stock,
                   'sku' => $request->product_sku,
-                  'category_id' => $request->category
+                  'category_id' => $target[1],
+                  'subcategory_id' => $target[0]
                 ]);
 
       return redirect(route('getProductList'));
@@ -463,6 +473,31 @@ class adminController extends Controller
     public function alterOrderStatus(Request $request)
     {
       transaction::where('id',$request->id)->update(['status'=>$request->status]);
+    }
+
+    public function addSubCategory(Request $request)
+    {
+      subcategory::create(['subcategory_name'=>$request->subcategory_name,'category_id'=>$request->category_id]);
+
+      return redirect(route('getSubCategory'));
+    }
+
+    public function updateSubCategory(Request $request)
+    {
+      if(subcategory::where('subcategory_id',$request->id)->update(['subcategory_name' => $request->input])){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
+    public function deleteSubCategory(Request $request)
+    {
+      if(subcategory::where('subcategory_id',$request->id)->delete()){
+            return "true";
+        }else{
+            return "false";
+        }
     }
 
 }

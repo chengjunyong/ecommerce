@@ -139,6 +139,16 @@ Route::prefix('/admin')->group(function(){
   //ajax change order status
   Route::post('/changeorderstatus','adminController@alterOrderStatus')->name('alterOrderStatus');
 
+  //ajax change order status
+  Route::post('/addSubCategory','adminController@addSubCategory')->name('addSubCategory');
+
+  //ajax update subcategory name
+  Route::post('/updateSubCategory','adminController@updateSubCategory')->name('updateSubCategory');
+
+  //ajax delete subcategory
+  Route::post('/deleteSubCategory','adminController@deleteSubCategory')->name('deleteSubCategory');
+
+
 });
 
 Auth::routes();

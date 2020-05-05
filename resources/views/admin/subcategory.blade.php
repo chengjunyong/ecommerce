@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="page-header-left">
-                        <h3>Category
+                        <h3>Sub     Category
                         <small>Homeu Admin Panel</small>
                         </h3>
                     </div>
@@ -20,7 +20,7 @@
                 <div class="col-lg-6">
                     <ol class="breadcrumb pull-right">
                         <li class="breadcrumb-item"><a href="{{ route('getIndex') }}"><i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item">Category</li>
+                        <li class="breadcrumb-item">Sub Category</li>
                     </ol>
                 </div>
             </div>
@@ -33,25 +33,31 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Products Category</h5>
+                        <h5>Products Sub Category</h5>
                     </div>
                     <div class="card-body">
                         <div class="btn-popup pull-right">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#exampleModal">Add Category</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-original-title="test" data-target="#exampleModal">Add Sub Category</button>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Category</h5>
+                                            <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Sub Category</h5>
                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="needs-validation" method="post" action="{{ route('addCategory') }}">
+                                            <form class="needs-validation" method="post" action="{{ route('addSubCategory') }}">
                                                 @csrf
                                                 <div class="form">
                                                     <div class="form-group">
-                                                        <label for="validationCustom01" class="mb-1">Category Name :</label>
-                                                        <input class="form-control" id="validationCustom01" type="text" name="category_name" required="true">
+                                                        <label for="validationCustom01" class="mb-1">Sub Category Name :</label>
+                                                        <input class="form-control" id="validationCustom01" type="text" name="subcategory_name" required="true">
+                                                        <label for="validationCustom01" class="mb-1">Categroy:</label>
+                                                        <select class="form-control" name="category_id" required="">
+                                                            @foreach($category as $result)
+                                                                <option value="{{ $result->category_id }}">{{ $result->category_name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>                                                  
                                                 </div>                           
                                         </div>
@@ -69,8 +75,9 @@
                                 <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                                     <table class="jsgrid-table">
                                         <tr class="jsgrid-header-row">
-                                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 50px;">Category Id</th>                                            
-                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;text-align: center">Category Name</th>
+                                            <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 50px;">Sub Category Id</th>                                            
+                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;text-align: center">Sub Category Name</th>
+                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Category</th>
                                             <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Create Date</th>
                                             <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Edit</th>
                                         </tr>
@@ -79,14 +86,15 @@
                                 <div class="jsgrid-grid-body">
                                     <table class="jsgrid-table">
                                         <tbody>
-                                            @if(isset($category))
+                                            @if(isset($subcategory))
                                                 <?php $a=0; ?>
-                                                @foreach($category as $result)
+                                                @foreach($subcategory as $result)
                                                     @if($a==0)
                                                         <?php $a=1; ?>
                                                         <tr class="jsgrid-row">
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_id }}</td>
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_name }}</td>                                    
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->subcategory_id }}</td>
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->subcategory_name }}</td>
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_name }}</td>                                  
                                                             <td class="jsgrid-cell" style="width: 50px;">{{ $result->created_at }}</td>
                                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
                                                                 <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
@@ -98,7 +106,8 @@
                                                     @else
                                                         <?php $a=0; ?>
                                                         <tr class="jsgrid-alt-row">
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_id }}</td>
+                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->subcategory_id }}</td>
+                                                            <td class="jsgrid-cell" style="width: 50px;" >{{ $result->subcategory_name }}</td>
                                                             <td class="jsgrid-cell" style="width: 50px;" >{{ $result->category_name }}</td>
                                                             <td class="jsgrid-cell" style="width: 50px;">{{ $result->created_at }}</td>
                                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
@@ -150,7 +159,7 @@ $(document).ready(function(){
         if(!input || input == " "){
             alert("Please make sure the input is not empty and not start with space");
         }else{
-            $.post("{{ route('updateCategory') }}",
+            $.post("{{ route('updateSubCategory') }}",
                 {
                     input  : input,
                     id     : id,
@@ -185,7 +194,7 @@ $(document).ready(function(){
         let token = $('input[name=_token]').val();
         var answer = prompt("Please make sure to delete the category, It will cause your product not working. Type 'DELETE' to confirm (Case sensitive)");
         if(answer == "DELETE"){
-            $.post("{{ route('deleteCategory') }}",
+            $.post("{{ route('deleteSubCategory') }}",
             {
                 id : id,
                 _token : token

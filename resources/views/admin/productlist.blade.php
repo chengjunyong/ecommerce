@@ -63,6 +63,9 @@
                                         Category
                                     </th>
                                     <th class="jsgrid-header-cell jsgrid-align-right">
+                                        Sub Category
+                                    </th>
+                                    <th class="jsgrid-header-cell jsgrid-align-right">
                                         Active
                                     </th>
                                     <th class="jsgrid-header-cell jsgrid-align-right">
@@ -90,6 +93,9 @@
                                             </td>
                                             <td class="jsgrid-cell" style="text-align: center">
                                                 {{ $result->category_name }} 
+                                            </td>
+                                            <td class="jsgrid-cell" style="text-align: center">
+                                                {{ $result->subcategory_name }} 
                                             </td>
                                             <td class="jsgrid-cell">
                                                 @if($result->active == 0)

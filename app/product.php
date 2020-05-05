@@ -14,6 +14,7 @@ class product extends Model
       'sku',
       'weight',
       'category_id',
+      'subcategory_id',
       'active',
       'description'
     ];

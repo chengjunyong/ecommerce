@@ -100,16 +100,16 @@
 	                                <input hidden type="text" name="product_id" value="{{ $product_detail[0]->id }}">
 												<div class="form">
 	                                    <div class="form-group mb-3 row">
-	                                        <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Category</label>
-	                                        <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="category">
-	                                            @foreach($category_list as $result)
-	                                            		@if($result->category_id == $product_detail[0]->category_id)
-	                                            			<option value='{{ $result->category_id }}' selected>
-	                                            				{{ $result->category_name }}
+	                                        <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Sub Category</label>
+	                                        <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="subcategory">
+	                                            @foreach($subcategory_list as $result)
+	                                            		@if($result->subcategory_id == $product_detail[0]->subcategory_id)
+	                                            			<option value='{{ $result->subcategory_id }},{{ $result->category_id }}' selected>
+	                                            				{{ $result->subcategory_name }}
 	                                            			</option>
 	                                            		@else
-	                                            			<option value='{{ $result->category_id }}'>
-	                                            				{{ $result->category_name }}
+	                                            			<option value='{{ $result->subcategory_id }},{{ $result->category_id }}'>
+	                                            				{{ $result->subcategory_name }}
 	                                            			</option>
 	                                            		@endif
 	                                            @endforeach
