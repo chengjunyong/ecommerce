@@ -70,8 +70,30 @@
                     <div class="product-right product-description-box">
                         <h2>{{ $product_detail->name }}</h2>
                         <div class="border-product">
-                            <h6 class="product-title">product details</h6>
-                            <p>{{ $product_detail->description }}</p>
+                          <h6 class="product-title">product details</h6>
+                          <p>{{ $product_detail->description }}</p>
+                        </div>
+                        <div class="border-product">
+                          <h4><del>RM {{ $product_detail->price }}</del><span>0% off</span></h4>
+                          <h3 style="margin: 0px;">RM {{ $product_detail->price }}</h3>
+                        </div>
+                        <div class="border-product">
+                          <h6 class="product-title">quantity</h6>
+                          <div class="qty-box">
+                            <div class="input-group">
+                              <span class="input-group-prepend">
+                                <button type="button" class="btn quantity-left-minus" data-type="minus" data-field="">
+                                  <i class="ti-angle-left"></i>
+                                </button>
+                              </span>
+                              <input type="text" name="quantity" class="form-control input-number" value="1"> 
+                              <span class="input-group-prepend">
+                                <button type="button" class="btn quantity-right-plus" data-type="plus" data-field="">
+                                  <i class="ti-angle-right"></i>
+                                </button>
+                              </span>
+                            </div>
+                          </div>
                         </div>
                         <div class="single-product-tables border-product detail-section">
                             <table>
@@ -102,31 +124,42 @@
                                     <button class="wishlist-btn" product_id="{{ $product_detail->id }}" type="button"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
                                 </form>
                             </div>
+                            <div style="margin: 10px 0;">
+                              <div class="product-buttons" product_id="{{ $product_detail->id }}"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="product-right product-form-box">
-                        <h4><del>RM {{ $product_detail->price }}</del><span>0% off</span></h4>
-                        <h3>RM {{ $product_detail->price }}</h3>
+                        @if($user)
+                          <div class="border-product" style="text-align: left;">
+                            <h6 class="product-title">Delivery option</h6>
+                            
+                            <div style="margin-top: 10px;">
+                              @if($address_book)
+                                <span>{{ $address_book->address }}</span>
+                                <span>{{ $address_book->city }} {{ $address_book->state }}</span>
+                                <span>{{ $address_book->postal_code }}</span>
+                              @else
+                                <span>No default address.</span>
+                              @endif
+                            </div>
+                            
+                          </div>
+                        @endif
                         <!-- <ul class="color-variant">
                             <li class="bg-light0"></li>
                             <li class="bg-light1"></li>
                             <li class="bg-light2"></li>
                         </ul> -->
-                        <div class="product-description border-product">
+                        <div class="product-description border-product" style="border-bottom: 1px solid #ddd;">
                             <h6 class="product-title">Time Reminder</h6>
                             <div class="timer">
                                 <p id="demo"><span>25 <span class="padding-l">:</span> <span class="timer-cal">Days</span> </span><span>22 <span class="padding-l">:</span> <span class="timer-cal">Hrs</span> </span><span>13 <span class="padding-l">:</span> <span class="timer-cal">Min</span> </span><span>57 <span class="timer-cal">Sec</span></span>
                                 </p>
                             </div>
-                            <h6 class="product-title">quantity</h6>
-                            <div class="qty-box">
-                                <div class="input-group"><span class="input-group-prepend"><button type="button" class="btn quantity-left-minus" data-type="minus" data-field=""><i class="ti-angle-left"></i></button> </span>
-                                    <input type="text" name="quantity" class="form-control input-number" value="1"> <span class="input-group-prepend"><button type="button" class="btn quantity-right-plus" data-type="plus" data-field=""><i class="ti-angle-right"></i></button></span></div>
-                            </div>
                         </div>
-                        <div class="product-buttons" product_id="{{ $product_detail->id }}"><a href="#" data-toggle="modal" data-target="#addtocart" class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
                     </div>
                 </div>
             </div>

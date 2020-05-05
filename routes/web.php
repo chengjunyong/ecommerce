@@ -35,6 +35,11 @@ Route::get('/registernow', 'frontController@getRegisterPage')->name('getRegister
 
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile', 'frontController@getUserProfile')->name('getUserProfile');
+
+  Route::prefix('client')->group(function(){
+    Route::post('addressBook', 'clientController@addressBook')->name('addressBook');
+  });
+
   Route::prefix('item')->group(function () {
     Route::post('add_wishlist', 'itemController@addItemToWishlist')->name('addItemToWishlist');
     Route::post('add_cart', 'itemController@addItemToCart')->name('addItemToCart');

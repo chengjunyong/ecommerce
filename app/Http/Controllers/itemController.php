@@ -12,6 +12,7 @@ use App\coupon;
 use App\transaction;
 use App\transaction_detail;
 use App\voucher_transaction;
+use App\address_book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,15 @@ class itemController extends Controller
       $product_detail = product::where('id', $id)->first();
       $product_detail->image = product_image::where('product_id', $product_detail->id)->get();
 
-      return view('front.item', compact('product_detail'));
+      $address_book = null;
+      $user = Auth::user();
+
+      if($user)
+      {
+        $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
+      }
+
+      return view('front.item', compact('product_detail', 'address_book', 'user'));
     }
 
     public function addItemToWishlist(Request $request)
@@ -110,7 +119,7 @@ class itemController extends Controller
 
       if($request->product_id)
       {
-        $cart_check = cart_detail::where('cart_id', $cart->id)->where('product_id', $request->product_id)->first();
+        $cart_check = cart_detail::where('cart_id', $cart->id)->where('cart_detail.completed', null)->where('product_id', $request->product_id)->first();
         if($cart_check)
         {
           cart_detail::where('id', $cart_check->id)->update([
@@ -132,7 +141,7 @@ class itemController extends Controller
           'quantity' => 1
         ]);
 
-        $cart_count = cart_detail::where('cart_id', $cart->id)->count();
+        $cart_count = cart_detail::where('cart_id', $cart->id)->where('cart_detail.completed', null)->count();
 
         $response = new \stdClass();
         $response->error = 0;
@@ -158,15 +167,7 @@ class itemController extends Controller
       $cart_list = [];
       if($user)
       {
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id')->get();
-
-        if(count($cart_list) > 0)
-        {
-          foreach($cart_list as $cart_detail)
-          {
-            $cart_detail->image = product_image::where('product_id', $cart_detail->product_id)->first();
-          }
-        }
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
       }
 
       return view('front.cart', compact('cart_list')); 
@@ -175,14 +176,17 @@ class itemController extends Controller
     public function getCheckoutIndex()
     {
       $user = Auth::user();
+      $address_book = null;
 
       $cart_list = [];
       if($user)
       {
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id')->get();
+        $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
+
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
       }
 
-      return view('front.checkout', compact('cart_list'));
+      return view('front.checkout', compact('cart_list', 'address_book'));
     }
 
     public function submitPayment(Request $request)
@@ -194,6 +198,7 @@ class itemController extends Controller
       if($request->coupon_code)
       {
         $result = $this->couponChecking($request->coupon_code);
+
         if($result->error == 0 && $result->valid == 1)
         {
           $discount_amount = $result->discount_amount;
@@ -202,7 +207,7 @@ class itemController extends Controller
         }
       }
       
-      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
 
       $sub_total = 0;
       foreach($cart_list as $cart)
@@ -234,8 +239,22 @@ class itemController extends Controller
         ]);
       }
 
+      $cart = cart::where('user_id', $user->id)->first();
+      cart_detail::where('cart_id', $cart->id)->where('completed', null)->update([
+        'completed' => 1
+      ]);
+
       if($discount_amount != 0 && $coupon_name && $coupon_id)
       {
+        $coupon_detail = coupon::where('id', $coupon_id)->first();
+        if($coupon_detail->quantity != "-1")
+        {
+          $coupon_detail_quantity = $coupon_detail->quantity - 1;
+          coupon::where('id', $coupon_id)->update([
+            'quantity' => $coupon_detail_quantity
+          ]);
+        }
+
         voucher_transaction::create([
           'user_id' => $user->id,
           'transaction_id' => $transaction->id,
@@ -250,7 +269,9 @@ class itemController extends Controller
 
     public function submitCouponCode(Request $request)
     {
-      return response()->json($this->couponChecking($request->coupon_code));
+      $result = $this->couponChecking($request->coupon_code);
+
+      return response()->json($result);
     }
 
     public function couponChecking($code)
@@ -278,7 +299,7 @@ class itemController extends Controller
           // execute time
           // print_r(date("H:i:s") . substr((string)microtime(), 1, 8).'<br>');
 
-          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
 
           // print_r(date("H:i:s") . substr((string)microtime(), 1, 8).'<br>');
 

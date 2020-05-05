@@ -136,8 +136,8 @@
                 </ul>
                 <div class="cart-block mobile-cart cart-hover-div" onclick="openCart()">
                   <a href="#"><span class="cart-product" id="cart_count">
-                    @if(count($cart_list))
-                      {{ count($cart_list) }}
+                    @if(count($global_cart_list))
+                      {{ count($global_cart_list) }}
                     @else
                       0
                     @endif

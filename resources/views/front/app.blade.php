@@ -31,7 +31,9 @@
   <!-- Theme css -->
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color1.css') }}" media="screen" id="color">
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/front_style.css') }}" media="screen" id="color">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/front_style.css') }}" media="screen" id="">
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icheck/all.css') }}">
 
   <!-- latest jquery-->
   <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
@@ -62,6 +64,8 @@
 
   <script src="{{ asset('assets/js/front.js') }}"></script>
 
+  <script src="{{ asset('assets/js/icheck/icheck.js') }}"></script>
+
 </head>
 <body class="bg-light ">
 
@@ -73,6 +77,21 @@
 <script>
   
   $(document).ready(function(){
+
+    $(window).keydown(function(event){
+
+      var clickedID = event.target.id;
+
+
+      if(event.keyCode == 13) 
+      {
+        if(clickedID != "login_password")
+        {
+          event.preventDefault();
+          return false;
+        }
+      }
+    });
 
     $("#login_password").on('keypress',function(e) {
       if(e.which == 13) {

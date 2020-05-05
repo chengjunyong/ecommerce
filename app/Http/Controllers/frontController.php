@@ -9,6 +9,7 @@ use App\wishlist;
 use App\wishlist_detail;
 use App\cart;
 use App\cart_detail;
+use App\address_book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -103,9 +104,16 @@ class frontController extends Controller
 
   public function getUserProfile()
   {
-    $user = Auth::user();
+    $tab = null;
+    if(isset($_GET['tab']))
+    {
+      $tab = $_GET['tab'];
+    }
 
-    return view('front.dashboard', compact('user'));
+    $user = Auth::user();
+    $address_book_list = address_book::where('user_id', $user->id)->get();
+    
+    return view('front.dashboard', compact('user', 'tab', 'address_book_list'));
   }
 
   public function getEditInfo()

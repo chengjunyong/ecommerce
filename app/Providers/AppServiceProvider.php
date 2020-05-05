@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
         $wishlist = null;
         $wishlist_count = null;
         $cart = null;
-        $cart_list = [];
+        $global_cart_list = [];
         if($logged_user)
         {
           $wishlist = wishlist::where('user_id', $logged_user->id)->first();
@@ -54,10 +54,10 @@ class AppServiceProvider extends ServiceProvider
           $cart = cart::where('user_id', $logged_user->id)->first();
           if($cart)
           {
-            $cart_list = cart_detail::where('cart_detail.cart_id', $cart->id)->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock')->limit(3)->get();
-            if(count($cart_list) > 0)
+            $global_cart_list = cart_detail::where('cart_detail.cart_id', $cart->id)->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock')->limit(3)->get();
+            if(count($global_cart_list) > 0)
             {
-              foreach($cart_list as $cart_detail)
+              foreach($global_cart_list as $cart_detail)
               {
                 $cart_detail->image = product_image::where('product_id', $wishlist->product_id)->first();
               }
@@ -65,7 +65,7 @@ class AppServiceProvider extends ServiceProvider
           }
         }
 
-        $view->with(['category_list' => $category_list, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "cart_list" => $cart_list ] ); 
+        $view->with(['category_list' => $category_list, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list ] ); 
       }); 
     }
 }

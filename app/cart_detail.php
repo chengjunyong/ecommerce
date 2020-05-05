@@ -10,6 +10,7 @@ class cart_detail extends Model
     protected $fillable = [
       'cart_id',
       'product_id',
-      'quantity'
+      'quantity',
+      'completed'
     ];
 }

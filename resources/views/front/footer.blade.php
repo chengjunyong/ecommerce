@@ -100,8 +100,8 @@
         </div>
         <div class="cart_media">
             <ul class="cart_product">
-              @if(count($cart_list) > 0)
-                @foreach($cart_list as $cart_detail)
+              @if(count($global_cart_list) > 0)
+                @foreach($global_cart_list as $cart_detail)
                   <li>
                     <div class="media">
                       <a href="#">
@@ -407,13 +407,13 @@
 
 <script>
   
-  var cart_list = @json($cart_list);
-  if(Object.keys(cart_list).length > 0)
+  var global_cart_list = @json($global_cart_list);
+  if(Object.keys(global_cart_list).length > 0)
   {
     var sum_cart = 0;
-    for(var a = 0; a < Object.keys(cart_list).length; a++)
+    for(var a = 0; a < Object.keys(global_cart_list).length; a++)
     {
-      sum_cart += (cart_list[a].quantity * cart_list[a].product_price);
+      sum_cart += (global_cart_list[a].quantity * global_cart_list[a].product_price);
     }
 
     $("#sum_cart, #cart_page_sum, #checkout_page_sum").html("RM "+sum_cart);
