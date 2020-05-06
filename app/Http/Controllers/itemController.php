@@ -133,8 +133,6 @@ class itemController extends Controller
           return response()->json($response);
         }
 
-
-
         cart_detail::create([
           'cart_id' => $cart->id,
           'product_id' => $request->product_id,
@@ -214,6 +212,16 @@ class itemController extends Controller
       {
         $sub_total = $sub_total + ($cart->quantity * $cart->product_price);
       }
+
+      $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
+
+      $full_address = "";
+      $phone_number = "";
+      if($address_book)
+      { 
+        $full_address = $address_book->address."<br>".$address_book->state." ".$address_book->city."<br>".$address_book->postal_code;
+        $phone_number = $address_book->phone_number;
+      }
       
       $total = $sub_total - $discount_amount;
       $transaction = transaction::create([
@@ -221,7 +229,9 @@ class itemController extends Controller
         'sub_total' => $sub_total,
         'discount_total' => $discount_amount,
         'total' => $total,
-        'status' => 1
+        'status' => 1,
+        'delivery_address' => $full_address,
+        'phone_number' => $phone_number
       ]);
 
       foreach($cart_list as $cart)
