@@ -231,7 +231,7 @@
   });
 
   $(document).ready(function(){
-    if(tab != null)
+    if(tab != "")
     {
       $("a[type=tab][target="+tab+"]").click();
     }
