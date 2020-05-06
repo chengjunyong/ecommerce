@@ -59,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
             {
               foreach($global_cart_list as $cart_detail)
               {
-                $cart_detail->image = product_image::where('product_id', $wishlist->product_id)->first();
+                $cart_detail->image = product_image::where('product_id', $cart_detail->product_id)->first();
               }
             }
           }
