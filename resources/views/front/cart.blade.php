@@ -46,7 +46,7 @@
                         @foreach($cart_list as $cart_detail)
                           <tr>
                             <td>
-                              <a href="#"><img src="{{ $cart_detail->image ? Storage::url($cart_detail->image->path) : '../assets/images/layout-3/product/1.jpg' }}" alt="cart"  class=" "></a>
+                              <a href="#"><img src="{{ $cart_detail->path ? Storage::url($cart_detail->path) : '../assets/images/layout-3/product/1.jpg' }}" alt="cart"  class=" "></a>
                             </td>
                             <td><a href="#">{{ $cart_detail->product_name }}</a>
                               <div class="mobile-cart-content row">
