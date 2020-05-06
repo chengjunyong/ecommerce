@@ -17,6 +17,7 @@ class frontController extends Controller
 {
 	public function getFrontIndex()
 	{
+    dd(testing());
     $banner = array(
       [
         "class" => "layout2-slide-1",

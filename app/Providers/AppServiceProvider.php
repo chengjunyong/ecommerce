@@ -39,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
         $category_list = category::get();
         $logged_user = Auth::user();
 
+        $main_category = main_category();
+
         $wishlist = null;
         $wishlist_count = null;
         $cart = null;
@@ -65,7 +67,7 @@ class AppServiceProvider extends ServiceProvider
           }
         }
 
-        $view->with(['category_list' => $category_list, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list ] ); 
+        $view->with(['category_list' => $category_list, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list, "main_category" => $main_category ] ); 
       }); 
     }
 }
