@@ -14,5 +14,7 @@ class transaction extends Model
       'total',
       'status',
       'payment_type',
+      'delivery_address',
+      'phone_number'
     ];
 }
