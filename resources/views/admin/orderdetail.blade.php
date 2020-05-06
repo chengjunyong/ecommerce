@@ -41,10 +41,10 @@
                             			<lable><b>Customer Name</b><br/>{{ $orderdetail[0]->fname }} {{ $orderdetail[0]->lname }}</lable>
                             		</div>
                             		<div class="col-sm-4" style="float-right">
-                            			<lable><b>Delivery Address</b><br/>{{ $orderdetail[0]->delivery_address }}</lable>
+                            			<lable><b>Delivery Address</b><br/>{!! $orderdetail[0]->delivery_address !!}</lable>
                             		</div>
                             		<div class="col-sm-6" style="margin-top:10px">
-                            			<lable><b>Contact Number</b><br/>{{ $orderdetail[0]->contact }}</lable>
+                            			<lable><b>Contact Number</b><br/>{{ $orderdetail[0]->phone_number }}</lable>
                             		</div>
                             		<div class="col-sm-6" style="margin-top:10px">
                             			<lable><b>Date Order</b><br/>{{ $orderdetail[0]->created_at }}</lable>

@@ -52,7 +52,15 @@
                                                     <div class="form-group">
                                                         <label for="validationCustom01" class="mb-1">Category Name :</label>
                                                         <input class="form-control" id="validationCustom01" type="text" name="category_name" required="true">
-                                                    </div>                                                  
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="validationCustom01" class="mb-1">Main Category :</label>
+                                                        <select class="form-control" name="main_category">
+                                                            @foreach($main_category as $result)
+                                                                <option value="{{$result}}">{{$result}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>                                                   
                                                 </div>                           
                                         </div>
                                         <div class="modal-footer">
@@ -71,6 +79,7 @@
                                         <tr class="jsgrid-header-row">
                                             <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 50px;">Category Id</th>                                            
                                             <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;text-align: center">Category Name</th>
+                                            <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;text-align: center">Main Category Name</th>
                                             <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Create Date</th>
                                             <th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 50px;">Edit</th>
                                         </tr>
@@ -79,38 +88,20 @@
                                 <div class="jsgrid-grid-body">
                                     <table class="jsgrid-table">
                                         <tbody>
-                                            @if(isset($category))
-                                                <?php $a=0; ?>
-                                                @foreach($category as $result)
-                                                    @if($a==0)
-                                                        <?php $a=1; ?>
-                                                        <tr class="jsgrid-row">
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_id }}</td>
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_name }}</td>                                    
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->created_at }}</td>
-                                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
-                                                                <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
-                                                                <input class="jsgrid-button jsgrid-update-button" type="button" title="Update" hidden="true">
-                                                                <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
-                                                                <input class="jsgrid-button jsgrid-cancel-edit-button" type="button" title="Cancel edit" hidden="true">
-                                                            </td>
-                                                        </tr>                                                       
-                                                    @else
-                                                        <?php $a=0; ?>
-                                                        <tr class="jsgrid-alt-row">
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_id }}</td>
-                                                            <td class="jsgrid-cell" style="width: 50px;" >{{ $result->category_name }}</td>
-                                                            <td class="jsgrid-cell" style="width: 50px;">{{ $result->created_at }}</td>
-                                                            <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
-                                                                <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
-                                                                <input class="jsgrid-button jsgrid-update-button" type="button" title="Update" hidden="true">
-                                                                <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
-                                                                <input class="jsgrid-button jsgrid-cancel-edit-button" type="button" title="Cancel edit" hidden="true">
-                                                            </td>
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
-                                            @endif                                 
+                                        @foreach($category as $key => $result)
+                                            <tr class="{{ $key % 2 == 0 ? 'jsgrid-row' : 'jsgrid-alt-row' }}">
+                                                <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_id }}</td>
+                                                <td class="jsgrid-cell" style="width: 50px;">{{ $result->category_name }}</td> 
+                                                <td class="jsgrid-cell" style="width: 50px;">{{ $result->main_category }}</td>                                    
+                                                <td class="jsgrid-cell" style="width: 50px;">{{ $result->created_at }}</td>
+                                                <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
+                                                    <input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit">
+                                                    <input class="jsgrid-button jsgrid-update-button" type="button" title="Update" hidden="true">
+                                                    <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
+                                                    <input class="jsgrid-button jsgrid-cancel-edit-button" type="button" title="Cancel edit" hidden="true">
+                                                </td>           
+                                            </tr>                                                       
+                                        @endforeach                                                                                                                   
                                         </tbody>
                                     </table>
                                 </div>

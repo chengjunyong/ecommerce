@@ -41,8 +41,9 @@ class adminController extends Controller
     public function getCategory()
     {
         $category = category::get();
+        $main_category = main_category();
 
-    	return view('admin.category',compact('category'));
+    	return view('admin.category',compact('category','main_category'));
     }
 
     public function getSubCategory()
@@ -175,7 +176,8 @@ class adminController extends Controller
     public function addCategory(Request $request)
     {
         category::create([
-            'category_name' => $request->category_name
+            'category_name' => $request->category_name,
+            'main_category' => $request->main_category
         ]);
 
         return redirect()->route('getCategory');
@@ -462,7 +464,7 @@ class adminController extends Controller
                                     ->join("users","transaction.user_id","=","users.id")
                                     ->join("product","transaction_detail.product_id","=","product.id")
                                     ->join("product_image","transaction_detail.product_id","=","product_image.product_id")
-                                    ->select("transaction.id as id","transaction.status","transaction.sub_total","transaction.discount_total","transaction.total","transaction.payment_type","transaction.delivery_address","transaction.created_at","transaction_detail.id as sub_id","transaction_detail.product_id","transaction_detail.product_name","transaction_detail.quantity","users.fname","users.lname","users.email","users.contact","product_image.path","product.sku")       
+                                    ->select("transaction.id as id","transaction.status","transaction.sub_total","transaction.phone_number","transaction.discount_total","transaction.total","transaction.payment_type","transaction.delivery_address","transaction.created_at","transaction_detail.id as sub_id","transaction_detail.product_id","transaction_detail.product_name","transaction_detail.quantity","users.fname","users.lname","users.email","users.contact","product_image.path","product.sku")       
                                     ->where("transaction.id",$request->order_id)
                                     ->groupBy("product_id")
                                     ->get();
