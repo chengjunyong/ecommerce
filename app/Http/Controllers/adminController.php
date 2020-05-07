@@ -89,7 +89,7 @@ class adminController extends Controller
 
     public function getCouponList()
     {
-        $coupon_list = coupon::paginate(15);;
+        $coupon_list = coupon::paginate(15);
 
         return view('admin.couponlist',compact('coupon_list'));
     }

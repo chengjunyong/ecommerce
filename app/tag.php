@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class category extends Model
+class tag extends Model
 {
-    protected $table = 'category';
+    protected $table = 'tag';
     protected $fillable = [
-      'category_name',
+      'tag_name',
       'description',
-      'main_category',
+      'subcategory_id',
       'deactived'
     ];
 }
