@@ -11,9 +11,10 @@
             <li><a class="sidebar-header" href="{{ route('getIndex') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
             <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
-                    
+                    <li><a href="{{ route('getMainCategory') }}"><i class="fa fa-circle"></i>Main Category</a></li>
                     <li><a href="{{ route('getCategory') }}"><i class="fa fa-circle"></i>Category</a></li>
                     <li><a href="{{ route('getSubCategory') }}"><i class="fa fa-circle"></i>Sub Category</a></li>
+                    <li><a href="{{ route('getTag') }}"><i class="fa fa-circle"></i>Tag</a></li>
                     <li><a href="{{ route('getProductList') }}"><i class="fa fa-circle"></i>Product List</a></li>
                     <li><a href="{{ route('getAddProduct') }}"><i class="fa fa-circle"></i>Add Product</a></li>
                         

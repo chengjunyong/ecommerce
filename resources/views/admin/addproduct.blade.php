@@ -66,10 +66,10 @@
                               <input class="form-control" id="validationCustomtitle" type="text" required name="sku">
                           </div>
                           <div class="form-group">
-                              <label class="col-form-label"><span>*</span> Sub Categories</label>
-                              <select class="custom-select" required="" name="subcategory_id">
-                                    @foreach($subcategory_list as $list)
-                                      <option value={{ $list->subcategory_id }},{{ $list->category_id }}> {{ $list->subcategory_name }}</option>
+                              <label class="col-form-label"><span>*</span> Tag</label>
+                              <select class="custom-select" required="" name="tag">
+                                    @foreach($tag as $result)
+                                      <option value="{{ $result->id }},{{ $result->subcategory_id }},{{ $result->category_id }},{{ $result->maincategory_id }}">{{ $result->tag_name }}</option>
                                     @endforeach
                               </select>
                           </div>
