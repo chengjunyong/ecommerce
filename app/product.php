@@ -9,13 +9,15 @@ class product extends Model
     protected $table = 'product';
     protected $fillable = [
       'name',
+      'description',
       'price',
       'stock',
       'sku',
       'weight',
+      'maincategory_id',
       'category_id',
       'subcategory_id',
-      'active',
-      'description'
+      'tag_id',
+      'active'
     ];
 }

@@ -29,6 +29,8 @@ use App\transaction;
 use App\transaction_detail;
 use App\users;
 use App\subcategory;
+use App\main_category;
+use App\tag;
 use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
@@ -40,9 +42,12 @@ class adminController extends Controller
 
     public function getCategory()
     {
-        $category = category::get();
+        $category = category::join("main_category","category.main_category","=","main_category.id")
+                              ->select("category.*","main_category.name")
+                              ->get();
+        $main_category = main_category::get();
 
-    	return view('admin.category',compact('category'));
+    	return view('admin.category',compact('category','main_category'));
     }
 
     public function getSubCategory()
@@ -59,7 +64,9 @@ class adminController extends Controller
                               ->join("category","category.category_id","=","subcategory.category_id")
                               ->select("product.*","subcategory.subcategory_name","category.category_name")
                               ->paginate(15);
+
     	return view('admin.productlist',compact('product_list'));
+
     }
 
     public function getProductDetail()
@@ -69,9 +76,13 @@ class adminController extends Controller
 
     public function getAddProduct()
     {
-      $subcategory_list = subcategory::join("category","category.category_id","=","subcategory.category_id")->select("subcategory.*","category.category_id")->get();
+      $tag = tag::join("subcategory","subcategory.subcategory_id","=","tag.subcategory_id")
+                  ->join("category","category.category_id","=","subcategory.category_id")
+                  ->join("main_category","main_category.id","=","category.main_category")
+                  ->select("tag.*","subcategory.subcategory_id","category.category_id","main_category.id as maincategory_id")
+                  ->get();
 
-    	return view('admin.addproduct', compact('subcategory_list'));
+    	return view('admin.addproduct', compact('tag'));
     }
 
     public function getOrders()
@@ -88,7 +99,7 @@ class adminController extends Controller
 
     public function getCouponList()
     {
-        $coupon_list = coupon::paginate(15);;
+        $coupon_list = coupon::paginate(15);
 
         return view('admin.couponlist',compact('coupon_list'));
     }
@@ -135,6 +146,23 @@ class adminController extends Controller
         return view('front.index');
     }
 
+    public function getMainCategory()
+    {
+        $maincategory = main_category::get();   
+
+        return view('admin.maincategory',compact('maincategory'));
+    }
+
+    public function getTag()
+    {
+        $subcategory = subcategory::get();
+        $tag = tag::join("subcategory","subcategory.subcategory_id","=","tag.subcategory_id")
+                  ->select("tag.*","subcategory.subcategory_name")
+                  ->get();
+
+        return view('admin.tag',compact('tag','subcategory'));
+    }
+
     public function postAddProduct(Request $request)
     {
       if($request->stock == null){
@@ -143,14 +171,15 @@ class adminController extends Controller
         $stock = $request->stock;
       }
 
-      $target = explode(",",$request->subcategory_id);
-
+      $target = explode(",",$request->tag);
       $product = product::create([
         'name'=> $request->product_name,
         'description' => $request->description,
         'sku'=> $request->sku,
-        'category_id'=>$target[1],
-        'subcategory_id'=>$target[0],
+        'maincategory_id'=>$target[3],
+        'category_id'=>$target[2],
+        'subcategory_id'=>$target[1],
+        'tag_id'=>$target[0],
         'stock' => $stock,
         'price' => $request->price,
         'active' => $request->active
@@ -175,7 +204,8 @@ class adminController extends Controller
     public function addCategory(Request $request)
     {
         category::create([
-            'category_name' => $request->category_name
+            'category_name' => $request->category_name,
+            'main_category' => $request->main_category
         ]);
 
         return redirect()->route('getCategory');
@@ -244,9 +274,16 @@ class adminController extends Controller
     public function editProduct(Request $request)
     {   
         $product_detail = product::where('id','=',$request->product_id)->get();
-        $subcategory_list = subcategory::join('category','category.category_id','=','subcategory.category_id')->select('subcategory.*','category.category_id')->get();
+
+        $tag = $tag = tag::join("subcategory","subcategory.subcategory_id","=","tag.subcategory_id")
+                  ->join("category","category.category_id","=","subcategory.category_id")
+                  ->join("main_category","main_category.id","=","category.main_category")
+                  ->select("tag.*","subcategory.subcategory_id","category.category_id","main_category.id as maincategory_id")
+                  ->get();
+
         $images = product_image::where('product_id','=',$request->product_id)->get();
-        return view('admin.editproduct',compact('subcategory_list','product_detail','images'));
+
+        return view('admin.editproduct',compact('tag','product_detail','images'));
     }
 
     public function editPostProduct(Request $request)
@@ -272,7 +309,7 @@ class adminController extends Controller
         $stock = $request->stock;
       }
 
-      $target = explode(',',$request->subcategory);
+      $target = explode(',',$request->tag);
       product::where('id','=',$request->product_id)
                 ->update([
                   'name' => $request->product_name,
@@ -280,8 +317,10 @@ class adminController extends Controller
                   'price' => $request->price,
                   'stock' => $stock,
                   'sku' => $request->product_sku,
-                  'category_id' => $target[1],
-                  'subcategory_id' => $target[0]
+                  'maincategory_id' => $target[3],
+                  'category_id' => $target[2],
+                  'subcategory_id' => $target[1],
+                  'tag_id' => $target[0]
                 ]);
 
       return redirect(route('getProductList'));
@@ -462,7 +501,7 @@ class adminController extends Controller
                                     ->join("users","transaction.user_id","=","users.id")
                                     ->join("product","transaction_detail.product_id","=","product.id")
                                     ->join("product_image","transaction_detail.product_id","=","product_image.product_id")
-                                    ->select("transaction.id as id","transaction.status","transaction.sub_total","transaction.discount_total","transaction.total","transaction.payment_type","transaction.delivery_address","transaction.created_at","transaction_detail.id as sub_id","transaction_detail.product_id","transaction_detail.product_name","transaction_detail.quantity","users.fname","users.lname","users.email","users.contact","product_image.path","product.sku")       
+                                    ->select("transaction.id as id","transaction.status","transaction.sub_total","transaction.phone_number","transaction.discount_total","transaction.total","transaction.payment_type","transaction.delivery_address","transaction.created_at","transaction_detail.id as sub_id","transaction_detail.product_id","transaction_detail.product_name","transaction_detail.quantity","users.fname","users.lname","users.email","users.contact","product_image.path","product.sku")       
                                     ->where("transaction.id",$request->order_id)
                                     ->groupBy("product_id")
                                     ->get();
@@ -498,6 +537,53 @@ class adminController extends Controller
         }else{
             return "false";
         }
+    }
+
+    public function postMainCategory(Request $request)
+    {
+      main_category::create([
+          'name' => $request->maincategory_name
+      ]);
+
+      return redirect(route('getMainCategory'));
+    }
+
+    public function updateMainCategory(Request $request)
+    {
+      main_category::where('id',$request->id)->update(['name'=>$request->input]);
+
+      return "true";
+    }
+
+    public function deleteMainCategory(Request $request)
+    {
+      main_category::where('id',$request->id)->delete();
+
+      return "true";
+    }
+
+    public function postTag(Request $request)
+    {
+      tag::create([
+          'tag_name' => $request->tag_name,
+          'subcategory_id' => $request->subcategory_id
+      ]);
+
+      return redirect(route('getTag'));
+    }
+
+    public function updateTag(Request $request)
+    {
+      tag::where('id',$request->id)->update(['tag_name'=>$request->input]);
+
+      return "true";
+    }
+
+    public function deleteTag(Request $request)
+    {
+      tag::where('id',$request->id)->delete();
+
+      return "true";
     }
 
 }

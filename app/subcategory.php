@@ -10,6 +10,7 @@ class subcategory extends Model
     protected $fillable = [
       'subcategory_name',
       'category_id',
-      'description'
+      'description',
+      'deactived'
     ];
 }

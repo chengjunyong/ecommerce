@@ -100,16 +100,16 @@
 	                                <input hidden type="text" name="product_id" value="{{ $product_detail[0]->id }}">
 												<div class="form">
 	                                    <div class="form-group mb-3 row">
-	                                        <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Sub Category</label>
-	                                        <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="subcategory">
-	                                            @foreach($subcategory_list as $result)
-	                                            		@if($result->subcategory_id == $product_detail[0]->subcategory_id)
-	                                            			<option value='{{ $result->subcategory_id }},{{ $result->category_id }}' selected>
-	                                            				{{ $result->subcategory_name }}
+	                                        <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Tag</label>
+	                                        <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="tag">
+	                                            @foreach($tag as $result)
+	                                            		@if($result->id == $product_detail[0]->tag_id)
+	                                            			<option value="{{ $result->id }},{{ $result->subcategory_id }},{{ $result->category_id }},{{ $result->maincategory_id }}" selected>
+	                                            				{{ $result->tag_name }}
 	                                            			</option>
 	                                            		@else
-	                                            			<option value='{{ $result->subcategory_id }},{{ $result->category_id }}'>
-	                                            				{{ $result->subcategory_name }}
+	                                            			<option value='{{ $result->id }},{{ $result->subcategory_id }},{{ $result->category_id }},{{ $result->maincategory_id }}'>
+	                                            				{{ $result->tag_name }}
 	                                            			</option>
 	                                            		@endif
 	                                            @endforeach

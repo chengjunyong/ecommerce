@@ -83,6 +83,8 @@ Route::prefix('/admin')->group(function(){
   Route::get('/invoice','adminController@getInvoice')->name('getInvoice');
   Route::get('/login','adminController@getLogin')->name('getLogin');
   Route::get('../','adminController@getHome')->name('getHome');
+  Route::get('/mainCategory','adminController@getMainCategory')->name('getMainCategory');
+  Route::get('/tag','adminController@getTag')->name('getTag');
 
   // add product route
   Route::post('/postAddProduct', 'adminController@postAddProduct')->name('postAddProduct');
@@ -153,6 +155,23 @@ Route::prefix('/admin')->group(function(){
   //ajax delete subcategory
   Route::post('/deleteSubCategory','adminController@deleteSubCategory')->name('deleteSubCategory');
 
+  //post main category
+  Route::post('/postMainCategory','adminController@postMainCategory')->name('postMainCategory');
+
+  //update main category
+  Route::post('/updateMainCategory','adminController@updateMainCategory')->name('updateMainCategory');
+
+  //delete main category
+  Route::post('/deleteMainCategory','adminController@deleteMainCategory')->name('deleteMainCategory');
+
+  //delete main category
+  Route::post('/postTag','adminController@postTag')->name('postTag');
+
+  //update tag
+  Route::post('/updateTag','adminController@updateTag')->name('updateTag');
+
+  //delete tag
+  Route::post('/deleteTag','adminController@deleteTag')->name('deleteTag');
 
 });
 
