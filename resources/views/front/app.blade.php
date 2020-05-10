@@ -35,6 +35,8 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icheck/all.css') }}">
 
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/css/datatables.min.css') }}">
+
   <!-- latest jquery-->
   <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 
@@ -65,6 +67,8 @@
   <script src="{{ asset('assets/js/front.js') }}"></script>
 
   <script src="{{ asset('assets/js/icheck/icheck.js') }}"></script>
+
+  <script src="{{ asset('assets/datatables/js/datatables.min.js') }}"></script>
 
 </head>
 <body class="bg-light ">
