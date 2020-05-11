@@ -219,7 +219,7 @@ class itemController extends Controller
       $phone_number = "";
       if($address_book)
       { 
-        $full_address = $address_book->address."<br>".$address_book->state." ".$address_book->city."<br>".$address_book->postal_code;
+        $full_address = $address_book->address." ".$address_book->postal_code." ".$address_book->city." ".$address_book->state;
         $phone_number = $address_book->phone_number;
       }
       
