@@ -85,11 +85,40 @@ class adminController extends Controller
     	return view('admin.addproduct', compact('tag'));
     }
 
-    public function getOrders()
+    public function getOrders(Request $request)
     {
-      $transaction = transaction::orderBy('created_at','desc')->paginate(15);
 
-    	return view('admin.orders',compact('transaction'));
+      if($request->filter == null){
+        $target = $request->filter;
+        $transaction = transaction::orderBy('created_at','desc')->paginate(15);
+        return view('admin.orders',compact('transaction','target'));
+      }else if($request->filter == 1){
+        $target = $request->filter;
+        $transaction = transaction::where('status',1)->orderBy('created_at','desc')->paginate(15);
+        return view('admin.orders',compact('transaction','target'));
+      }else if($request->filter == 2){
+        $target = $request->filter;
+        $transaction = transaction::where('status',2)->orderBy('created_at','desc')->paginate(15);
+        return view('admin.orders',compact('transaction','target'));
+      }else if($request->filter == 3){
+        $target = $request->filter;
+        $transaction = transaction::where('status',3)->orderBy('created_at','desc')->paginate(15);
+        return view('admin.orders',compact('transaction','target'));
+      }else if($request->filter == 4){
+        $target = $request->filter;
+        $transaction = transaction::where('status',4)->orderBy('created_at','desc')->paginate(15);
+        return view('admin.orders',compact('transaction','target'));
+      }else if($request->filter == -1){
+        $target = $request->filter;
+        $transaction = transaction::where('status',-1)->orderBy('created_at','desc')->paginate(15);
+        return view('admin.orders',compact('transaction','target'));
+      }else{
+        $target = $request->filter;
+        $transaction = transaction::orderBy('created_at','desc')->paginate(15);
+        return view('admin.orders',compact('transaction','target'));
+      }
+
+    	
     }
 
     public function getTransaction()
@@ -477,12 +506,12 @@ class adminController extends Controller
 
     public function searchOrder(Request $request)
     {
-      // dd($request->order_id);
       if(!$request->order_id){
         return redirect(route('getOrders'));
       }else{
+        $target = null;
         $transaction = transaction::where('id',$request->order_id)->paginate(15);
-        return view('admin.orders',compact('transaction'));
+        return view('admin.orders',compact('transaction','target'));
        
       }
 
@@ -584,6 +613,15 @@ class adminController extends Controller
       tag::where('id',$request->id)->delete();
 
       return "true";
+    }
+
+    public function awb()
+    {
+      $transaction = transaction::join('users','users.id','=','transaction.user_id')
+                                  ->where('transaction.status','3')
+                                  ->select('transaction.*','users.fname','users.lname')
+                                  ->get();
+      return view('admin.awb',compact('transaction'));
     }
 
 }

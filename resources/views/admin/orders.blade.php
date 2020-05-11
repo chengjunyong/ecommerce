@@ -41,7 +41,6 @@
                             </div>
                             <label style="margin-left: 26px"><b>Bulk Selector</b></label>
                             <form action="{{ route('searchOrder')}}" method="post">
-                                
                                 <select id="bulkChange" class="form-control" style="float-right;margin-left:25px;width:130px;display:inline">
                                     <option value="" selected>None</option>
                                     <option value="1">Pending</option>
@@ -53,7 +52,49 @@
                                 @csrf
                                 <input class="form-control" type="text" name="order_id" placeholder="Order Id" style="width:20%;float:right;margin-right:3vw">
                                 <button class="btn btn-primary" style="float:right;margin-right:4px"><i class="fas fa-search"></i></button>
-                            </form>
+                            </form>                                               
+                                
+                            <div style="text-align: right;margin-right: 3vw">
+                                <br/><label style="margin-left: 26px"><b>Filter Showing As</b></label><br/>
+                                <select id="filter" name="filter" class="form-control" style="float:right;width:130px;margin-left:25px;">  
+                                    @if($target == null)
+                                        <option value="" selected>All</option>
+                                    @else 
+                                        <option value="">All</option>
+                                    @endif
+
+                                    @if($target == 1)
+                                        <option value="1" selected>Pending</option>
+                                    @else
+                                        <option value="1">Pending</option>
+                                    @endif
+
+                                    @if($target == 2)
+                                       <option value="2" selected>Confirmed</option>
+                                    @else
+                                        <option value="2">Confirmed</option>
+                                    @endif
+
+                                    @if($target == 3)
+                                        <option value="3" selected>Shipped</option>
+                                    @else
+                                        <option value="3">Shipped</option>
+                                    @endif
+
+                                    @if($target == 4)
+                                        <option value="4" selected>Delivered</option>
+                                    @else
+                                        <option value="4">Delivered</option>
+                                    @endif
+
+                                    @if($target == -1)
+                                        <option value="-1" selected="">Cancel</option>
+                                    @else
+                                        <option value="-1">Cancel</option>
+                                    @endif
+                                </select>
+                                <button onclick="window.open('awb')" id="awb" class="btn btn-primary" style="float:right;margin-right:4px">Print AWB</button>
+                            </div>
                             <div class="card-body order-datatable"> 
                                 <table class="table table-striped">
                                     <thead>
@@ -127,7 +168,7 @@
                                     </tbody>
                                 </table>
                                 <div class="jsgrid-pager" style="float:right;margin-right:10px">
-                                    {{ $transaction->links() }}
+                                    {{ $transaction->appends(['filter'=> $target])->links() }}
                                 </div>
                             </div>
                         </div>
@@ -196,6 +237,11 @@ $(document).ready(function(){
                 
             }
         }
+    });
+
+    $("#filter").change(function(){
+        let status = $(this).val();
+        window.location.href = "orders?filter="+status;
     });
 });
 </script>

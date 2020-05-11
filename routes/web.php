@@ -173,6 +173,9 @@ Route::prefix('/admin')->group(function(){
   //delete tag
   Route::post('/deleteTag','adminController@deleteTag')->name('deleteTag');
 
+  //Print AWB
+  Route::get('/awb','adminController@awb')->name('awb');
+
 });
 
 Auth::routes();
