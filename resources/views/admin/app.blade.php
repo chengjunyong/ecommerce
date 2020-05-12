@@ -53,7 +53,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/rating.css') }}">
 
     <!-- Datatables css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/datatables.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/css/datatables.min.css') }}">
 
     <!-- latest jquery-->
     <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
@@ -83,6 +83,9 @@
 <!-- Bootstrap js-->
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+
+<!-- datatable -->
+<script src="{{ asset('assets/datatables/js/datatables.min.js') }}"></script>
 
 </body>
 </html>

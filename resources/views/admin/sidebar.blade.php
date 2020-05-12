@@ -30,6 +30,7 @@
                 <ul class="sidebar-submenu">
                     <li><a href="{{ route('getCouponList') }}"><i class="fa fa-circle"></i>List Coupons</a></li>
                     <li><a href="{{ route('getCouponCreate') }}"><i class="fa fa-circle"></i>Create Coupons </a></li>
+                    <li><a href="{{ route('getCouponTransaction') }}"><i class="fa fa-circle"></i>Coupons Transaction</a></li>
                 </ul>
             </li>
        

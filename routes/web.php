@@ -85,6 +85,7 @@ Route::prefix('/admin')->group(function(){
   Route::get('../','adminController@getHome')->name('getHome');
   Route::get('/mainCategory','adminController@getMainCategory')->name('getMainCategory');
   Route::get('/tag','adminController@getTag')->name('getTag');
+  Route::get('/coupontransaction','adminController@getCouponTransaction')->name('getCouponTransaction');
 
   // add product route
   Route::post('/postAddProduct', 'adminController@postAddProduct')->name('postAddProduct');
@@ -175,6 +176,12 @@ Route::prefix('/admin')->group(function(){
 
   //Print AWB
   Route::get('/awb','adminController@awb')->name('awb');
+
+  //search coupon transaction record
+  Route::post('/vtransaction','adminController@searchVoucherTransaction')->name('searchVoucherTransaction');
+
+  //search Transction
+  Route::post('/searchTransaction','adminController@searchTransaction')->name('searchTransaction');
 
 });
 

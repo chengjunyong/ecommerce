@@ -8,14 +8,13 @@
 				<div class="col-lg-6">
 					<div class="page-header-left">
 						<h3>Transactions
-						<small>Homeu Admin panel</small>
+							<small>Homeu Admin panel</small>
 						</h3>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<ol class="breadcrumb pull-right">
-						<li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-						<li class="breadcrumb-item">Sales</li>
+						<li class="breadcrumb-item"><a href="{{ route('getIndex') }}"><i data-feather="home"></i></a></li>
 						<li class="breadcrumb-item active">Transactions</li>
 					</ol>
 				</div>
@@ -31,305 +30,77 @@
 					<div class="card-header">
 						<h5>Transaction Details</h5>
 					</div>
+					<div>
+						<form action="{{ route('searchTransaction') }}" method="post">
+							@csrf
+							<input class="form-control" type="text" name="transaction_id" placeholder="Transaction id" style="width:20%;float:right;margin-right:3vw">
+							<button class="btn btn-primary" style="float:right;margin-right:4px"><i class="fas fa-search"></i></button>
+						</form>
+					</div>
 					<div class="card-body">
-						
 						<div id="" class="transactions jsgrid" style="position: relative; height: auto; width: 100%;">
 							<div class="jsgrid-grid-header jsgrid-header-scrollbar">
-								<table class="jsgrid-table">
-									<tr class="jsgrid-header-row">
-										<th class="jsgrid-header-cell" style="width: 50px;">Order Id
-										</th>
-										<th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">Transaction Id
-										</th>
-										<th class="jsgrid-header-cell" style="width: 100px;">Date
-										</th>
-										<th class="jsgrid-header-cell" style="width: 50px;">Payment Method
-										</th>
-										<th class="jsgrid-header-cell" style="width: 100px;">Delivery Status
-										</th>
-										<th class="jsgrid-header-cell" style="width: 100px;">Amount
-										</th>
-									</tr>
-									<tr class="jsgrid-filter-row" style="display: none;">
-										<td class="jsgrid-cell" style="width: 50px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">
-											<input type="number">
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">
-											<input type="text">
-										</td>
-									</tr>
-									<tr class="jsgrid-insert-row" style="display: none;">
-										<td class="jsgrid-cell" style="width: 50px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">
-											<input type="number">
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">
-											<input type="text">
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">
-											<input type="text">
-										</td>
-									</tr>
-								</table>
+								<table class="jsgrid-table" id="transaction" style="border-bottom:none">
+									<thead>
+										<tr class="jsgrid-header-row">
+											<th class="jsgrid-header-cell" style="width: 50px;">Transaction Id
+											</th>
+											<th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">Customer Contact Number
+											</th>
+											<th class="jsgrid-header-cell" style="width: 100px;">Total Amount
+											</th>
+											<th class="jsgrid-header-cell" style="width: 50px;">Payment Method
+											</th>
+											<th class="jsgrid-header-cell" style="width: 100px;">Delivery Status
+											</th>
+											<th class="jsgrid-header-cell" style="width: 100px;">Delivered Date
+											</th>
+										</tr>
+									</thead>
 							</div>
 							<div class="jsgrid-grid-body">
-								<table class="jsgrid-table"><tbody>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">142
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#212145214510
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Sep 2,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Pending
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 175
-										</td>
-									</tr>
-									<tr class="jsgrid-alt-row">
-										<td class="jsgrid-cell" style="width: 50px;">217
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#784561421721
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Dec 10,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Process
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 845
-										</td>
-									</tr>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">546
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#476547821142
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Feb 15,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Delivered
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 314
-										</td>
-									</tr>
-									<tr class="jsgrid-alt-row">
-										<td class="jsgrid-cell" style="width: 50px;">671
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#745384127541
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Mar 27,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Pending
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 217
-										</td>
-									</tr>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">565
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#96725125102
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Sep 1,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Process
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 542
-										</td>
-									</tr>
-									<tr class="jsgrid-alt-row">
-										<td class="jsgrid-cell" style="width: 50px;">754
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#547121023651
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">May 18,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Pending
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 2141
-										</td>
-									</tr>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">164
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#876412242215
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Jan 14,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Delivered
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 4872
-										</td>
-									</tr>
-									<tr class="jsgrid-alt-row">
-										<td class="jsgrid-cell" style="width: 50px;">841
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#31534221621
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Apr 22,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Process
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 7841
-										</td>
-									</tr>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">354
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#78412457421
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Mar 26,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Pending
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 2784
-										</td>
-									</tr>
-									<tr class="jsgrid-alt-row">
-										<td class="jsgrid-cell" style="width: 50px;">784
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#241524757448
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Feb 29,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Delivered
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 461
-										</td>
-									</tr>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">142
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#212145214510
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Sep 2,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Pending
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 175
-										</td>
-									</tr>
-									<tr class="jsgrid-alt-row">
-										<td class="jsgrid-cell" style="width: 50px;">217
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#784561421721
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Dec 10,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Process
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 845
-										</td>
-									</tr>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">546
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#476547821142
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Feb 15,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Delivered
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 314
-										</td>
-									</tr>
-									<tr class="jsgrid-alt-row">
-										<td class="jsgrid-cell" style="width: 50px;">671
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#745384127541
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Mar 27,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Pending
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 217
-										</td>
-									</tr>
-									<tr class="jsgrid-row">
-										<td class="jsgrid-cell" style="width: 50px;">565
-										</td>
-										<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">#96725125102
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Sep 1,19
-										</td>
-										<td class="jsgrid-cell" style="width: 50px;">Cash On Delivery
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Process
-										</td>
-										<td class="jsgrid-cell" style="width: 100px;">Rm 542
-										</td>
-									</tr></tbody>
+
+									<tbody>
+										@foreach($transaction as $key => $result)
+										<tr class="{{ $key % 2 == 0 ? 'jsgrid-row' : 'jsgrid-alt-row' }}">
+											<td class="jsgrid-cell" style="width: 50px;">{{ $result->id }}</td>
+											
+											<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">{{ $result->phone_number }}</td>
+											
+											<td class="jsgrid-cell" style="width: 100px;">{{ $result->total }}</td>
+											
+											<td class="jsgrid-cell" style="width: 50px;">{{ $result->payment_type }} Cash On Delivery</td>
+										
+											<td class="jsgrid-cell" style="width: 100px;">{{ $result->status == 4 ? 'Delivered' : 'Cancel' }}</td>
+										
+											<td class="jsgrid-cell" style="width: 100px;">{{ $result->updated_at }}</td>
+										</tr>
+										@endforeach
+									</tbody>
 								</table>
 							</div>
-							<div class="jsgrid-pager-container" style="display: none;">
-								<div class="jsgrid-pager">Pages:
-									<span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a>
-								</span>
-								<span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a>
-							</span>
-							<span class="jsgrid-pager-page jsgrid-pager-current-page">1
-							</span>
-							<span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Next</a>
-						</span>
-						<span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Last</a>
-					</span> &nbsp;&nbsp; 1 of 1
+							<div class="jsgrid-pager-container">
+								<div class="jsgrid-pager" style="float:right;margin-right:5px">Pages: 
+                                    {{ $transaction->links() }}
+                                </div>
+							</div>
+
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="jsgrid-load-shader" style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;">
-			</div>
-			<div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...
 			</div>
 		</div>
 	</div>
+	<!-- Container-fluid Ends-->
 </div>
-</div>
-</div>
-</div>
-<!-- Container-fluid Ends-->
-</div>
+<script>
+$(document).ready(function(){
+    $("#transaction").DataTable({
+        "searching": false,
+        "paging": false,
+        "lengthMenu": false,
+        "responsive": true,
+    });
+});
+</script>
 @endsection

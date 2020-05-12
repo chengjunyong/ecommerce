@@ -31,6 +31,7 @@ use App\users;
 use App\subcategory;
 use App\main_category;
 use App\tag;
+use App\voucher_transaction;
 use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
@@ -123,7 +124,14 @@ class adminController extends Controller
 
     public function getTransaction()
     {
-        return view('admin.transaction');
+        $transaction = transaction::join('users','users.id','=','transaction.user_id')
+                                    ->where('status',4)
+                                    ->orWhere('status',-1)
+                                    ->select('transaction.*','users.fname','users.lname')
+                                    ->orderBy('transaction.updated_at','desc')
+                                    ->paginate(15);
+
+        return view('admin.transaction',compact('transaction'));
     }
 
     public function getCouponList()
@@ -138,6 +146,15 @@ class adminController extends Controller
         $category_list = category::get();
 
         return view('admin.couponcreate',compact('category_list'));
+    }
+
+    public function getCouponTransaction()
+    {
+      $voucher_transaction = voucher_transaction::join('users','users.id','=','voucher_transaction.user_id')
+                                                ->select('voucher_transaction.*','users.fname','users.lname')
+                                                ->paginate(15);
+
+      return view('admin.coupontransaction',compact('voucher_transaction'));
     }
 
     public function getUserList()
@@ -622,6 +639,37 @@ class adminController extends Controller
                                   ->select('transaction.*','users.fname','users.lname')
                                   ->get();
       return view('admin.awb',compact('transaction'));
+    }
+
+    public function searchVoucherTransaction(Request $request)
+    {
+      if($request->coupon_name != null){
+        $voucher_transaction = voucher_transaction::join('users','users.id','=','voucher_transaction.user_id')
+                                                   ->where('voucher_transaction.coupon_code_name','like','%'.$request->coupon_name.'%')
+                                                   ->select('voucher_transaction.*','users.fname','users.lname')
+                                                   ->paginate(15);
+        return view('admin.coupontransaction',compact('voucher_transaction'));
+      }else{
+        return redirect(route('getCouponTransaction'));
+      }
+
+    }
+
+    public function searchTransaction(Request $request)
+    {
+      if($request->transaction_id != null){
+        $transaction = transaction::join('users','users.id','=','transaction.user_id')
+                                    ->whereRaw('transaction.id = ? AND (status = 4 OR status = -1)',$request->transaction_id)
+                                    ->select('transaction.*','users.fname','users.lname')
+                                    ->orderBy('transaction.updated_at','desc')
+                                    ->paginate(15);                           
+        return view('admin.transaction',compact('transaction'));
+
+      }else{
+
+        return redirect(route('getTransaction'));
+      }
+
     }
 
 }
