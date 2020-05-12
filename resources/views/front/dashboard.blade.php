@@ -8,7 +8,6 @@
   .tab_panel.active { display: block; }
   .hyperlink { font-size: 18px; color: #7cbbff; cursor: pointer; }
   .hide { display: none; }
-  .icheck label { cursor: pointer; }
 
 </style>
 
@@ -177,14 +176,14 @@
                         </div>
                         <div class="col-lg-12">
                           <div class="form-group">
-                            <div class="checkbox icheck">
+                            <div class="checkbox icheck_checkbox">
                               <label>
                                 <input class="icheck" type="checkbox" name="default_shipping" id="address_default_shipping" value="1" checked /> Default shipping address
                               </label>
                             </div>
                           </div>
                           <div class="form-group">
-                            <div class="checkbox icheck">
+                            <div class="checkbox icheck_checkbox">
                               <label>
                                 <input class="icheck" type="checkbox" name="default_billing" id="address_default_billing" value="1" checked /> Default billing address
                               </label>

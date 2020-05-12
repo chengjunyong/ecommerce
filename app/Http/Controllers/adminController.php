@@ -672,4 +672,52 @@ class adminController extends Controller
 
     }
 
+    public function getChecklist()
+    {
+      $confirmed_list = transaction::where('status', 2)->get();
+
+      return view('admin.checklist', compact('confirmed_list'));
+    }
+
+    public function getChecklistDetail($id)
+    {
+      $transaction_id = $id;
+      $next_transaction = null;
+      $transaction_list = transaction::where('status', 2)->where('id', '<>', $id)->get();
+      if(count($transaction_list) >= 1)
+      {
+        $next_transaction = $transaction_list[0]->id;
+      }
+
+      $transaction_detail = transaction_detail::where('transaction_detail.transaction_id', $id)->leftJoin('product', 'transaction_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product.id', '=', 'product_image.product_id')->select('transaction_detail.*', 'product.description as description', 'product_image.path as path')->groupBy('transaction_detail.id')->get();
+
+      return view('admin.checklist_detail', compact('transaction_detail', 'next_transaction', 'transaction_id'));
+    }
+
+    public function updateChecklist(Request $request)
+    {
+      $checked = 0;
+      if($request->checked == "true")
+      {
+        $checked = 1;
+      }
+
+      transaction_detail::where('id', $request->transaction_id)->update([
+        'checked' => $checked
+      ]);
+    }
+
+    public function updateTransaction(Request $request)
+    {
+      transaction::where('id', $request->transaction_id)->update([
+        'status' => 3
+      ]);
+
+      $response = new \stdClass();
+      $response->error = 0;
+      $response->message = "Completed";
+
+      return response()->json($response);
+    }
+
 }

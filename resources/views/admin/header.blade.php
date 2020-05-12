@@ -1,7 +1,7 @@
 <!-- Page Header Start-->
   <div class="page-main-header">
       <div class="main-header-left">
-          <div class="logo-wrapper"><a href="{{ route('getIndex') }}"><img class="blur-up lazyloaded" src="../assets/images/layout-2/logo/logo2.png" alt="" style="width:60%;margin-top: 5px"></a></div>
+          <div class="logo-wrapper"><a href="{{ route('getIndex') }}"><img class="blur-up lazyloaded" src="{{ asset('assets/images/layout-2/logo/logo2.png') }}" alt="" style="width:60%;margin-top: 5px"></a></div>
       </div>
       <div class="main-header-right row">
           <div class="mobile-sidebar">
@@ -23,7 +23,7 @@
                   <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                   
                   <li class="onhover-dropdown">
-                      <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="../assets/images/dashboard/man.png" alt="header-user">
+                      <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/images/dashboard/man.png') }}" alt="header-user">
                           <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
                       </div>
                       <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">

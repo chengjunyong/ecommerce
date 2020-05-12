@@ -16,6 +16,7 @@ class transaction_detail extends Model
       'quantity',
       'total',
       'status',
+      'checked',
       'product_id',
     ];
 }

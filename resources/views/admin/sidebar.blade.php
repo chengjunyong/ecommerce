@@ -24,6 +24,7 @@
                 <ul class="sidebar-submenu">
                     <li><a href="{{ route('getOrders') }}"><i class="fa fa-circle"></i>Orders</a></li>
                     <li><a href="{{ route('getTransaction') }}"><i class="fa fa-circle"></i>Transactions</a></li>
+                    <li><a href="{{ route('getChecklist') }}"><i class="fa fa-circle"></i>Check List</a></li>
                 </ul>
             </li>
             <li><a class="sidebar-header" href=""><i data-feather="tag"></i><span>Coupons</span><i class="fa fa-angle-right pull-right"></i></a>

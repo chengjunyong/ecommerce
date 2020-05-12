@@ -4,3 +4,4 @@
 .icon_dropdown ul.active { display: block; }
 .icon_dropdown ul li a { display: inline-block; color: #444; font-size: 14px; font-weight: 400; text-transform: capitalize; padding: 5px 25px; line-height: 23px; }
 .icon_dropdown ul li a:hover { margin-left: 5px; }
+.icheck_checkbox label { cursor: pointer; }

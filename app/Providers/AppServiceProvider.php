@@ -6,7 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Auth;
 use View;
+use App\main_category;
 use App\category;
+use App\subcategory;
 use App\wishlist;
 use App\wishlist_detail;
 use App\cart;
@@ -36,7 +38,21 @@ class AppServiceProvider extends ServiceProvider
 
       view()->composer('*', function ($view) 
       {
-        $category_list = category::get();
+        $main_category = main_category::where('deactived', null)->get();
+
+        foreach($main_category as $main)
+        {
+          $main->category = category::where('main_category', $main->id)->get();
+
+          if(count($main->category) >= 1)
+          {
+            foreach($main->category as $category)
+            {
+              $category->subcategory = subcategory::where('category_id', $category->category_id)->get();
+            }
+          }
+        }
+        
         $logged_user = Auth::user();
 
         // $main_category = main_category();
@@ -67,7 +83,7 @@ class AppServiceProvider extends ServiceProvider
           }
         }
 
-        $view->with(['category_list' => $category_list, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list ]); 
+        $view->with(['main_category' => $main_category, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list ]); 
       }); 
     }
 }

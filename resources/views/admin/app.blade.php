@@ -62,6 +62,14 @@
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}" />
     <script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
 
+    <!-- ICheck -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icheck/all.css') }}">
+
+    <!-- datatable -->
+    <script src="{{ asset('assets/datatables/js/datatables.min.js') }}"></script>
+    <!-- ICheck -->
+    <script src="{{ asset('assets/js/icheck/icheck.js') }}"></script>
+
 </head>
 
 <body>
@@ -83,9 +91,6 @@
 <!-- Bootstrap js-->
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-
-<!-- datatable -->
-<script src="{{ asset('assets/datatables/js/datatables.min.js') }}"></script>
 
 </body>
 </html>

@@ -183,6 +183,12 @@ Route::prefix('/admin')->group(function(){
   //search Transction
   Route::post('/searchTransaction','adminController@searchTransaction')->name('searchTransaction');
 
+  // Checklist - WW
+  Route::get('/checklist', 'adminController@getChecklist')->name('getChecklist');
+  Route::get('/checklist/{id}', 'adminController@getChecklistDetail')->name('getChecklistDetail');
+  Route::post('/updateChecklist', 'adminController@updateChecklist')->name('updateChecklist');
+  Route::post('/updateTransaction', 'adminController@updateTransaction')->name('updateTransaction');
+
 });
 
 Auth::routes();

@@ -10,6 +10,7 @@ use App\wishlist_detail;
 use App\cart;
 use App\cart_detail;
 use App\address_book;
+use App\tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,7 +72,8 @@ class frontController extends Controller
 
   public function getCategoryPage($id)
   {
-    $product_list = product::where('category_id', $id)->get();
+    $tag_list = tag::where('subcategory_id', $id)->get();
+    $product_list = product::where('subcategory_id', $id)->get();
 
     $product_id_array = array();
     foreach($product_list as $product)
@@ -94,7 +96,7 @@ class frontController extends Controller
       $product->image = $product_image;
     }
 
-    return view('front.category', compact('product_list'));
+    return view('front.category', compact('product_list', 'tag_list'));
   }
 
   public function getRegisterPage()
