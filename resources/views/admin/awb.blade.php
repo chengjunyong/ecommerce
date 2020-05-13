@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 	<!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
 
-    <!-- latest jquery-->
-    <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+	<!-- latest jquery-->
+	<script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+	<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 </head>
 <style>
 table {
@@ -61,7 +61,7 @@ $(document).ready(function(){
 	var today = new Date();
 	$("#date").html(`Printed Date : ${today}`);
 	window.print();
-    setTimeout(function () { window.close(); }, 100);
+	setTimeout(function () { window.close(); }, 100);
 });
 
 </script>
