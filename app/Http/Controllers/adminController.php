@@ -679,6 +679,54 @@ class adminController extends Controller
       return view('admin.checklist', compact('confirmed_list'));
     }
 
+    public function getChecklistItem()
+    {
+      $transaction_list = transaction::where('status', 2)->get();
+
+      foreach($transaction_list as $transaction)
+      {
+        $transaction->item = transaction_detail::where('transaction_detail.transaction_id', $transaction->id)->leftJoin('product', 'transaction_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product.id', '=', 'product_image.product_id')->select('transaction_detail.*', 'product.description as description', 'product.sku as sku', 'product_image.path as path')->groupBy('transaction_detail.id')->get();
+      }
+
+      return view('admin.checklist_item', compact('transaction_list'));
+    }
+
+    public function updateChecklistStatus(Request $request)
+    {
+      if($request->transaction_id)
+      {
+        if(count($request->transaction_id) > 0)
+        {
+          transaction::whereIn('id', $request->transaction_id)->update([
+            'status' => 3
+          ]);
+
+          $response = new \stdClass();
+          $response->error = 0;
+          $response->message = "Success";
+
+          return response()->json($response);
+        }
+        else
+        {
+          $response = new \stdClass();
+          $response->error = 1;
+          $response->message = "No transaction ID found";
+
+          return response()->json($response);
+        }
+      }
+      else
+      {
+        $response = new \stdClass();
+        $response->error = 1;
+        $response->message = "No transaction ID found";
+
+        return response()->json($response);
+      }
+    }
+
+    // not used
     public function getChecklistDetail($id)
     {
       $transaction_id = $id;
@@ -693,7 +741,9 @@ class adminController extends Controller
 
       return view('admin.checklist_detail', compact('transaction_detail', 'next_transaction', 'transaction_id'));
     }
+    // not used
 
+    // not used
     public function updateChecklist(Request $request)
     {
       $checked = 0;
@@ -706,7 +756,9 @@ class adminController extends Controller
         'checked' => $checked
       ]);
     }
+    // not used
 
+    // not used
     public function updateTransaction(Request $request)
     {
       transaction::where('id', $request->transaction_id)->update([
@@ -719,5 +771,6 @@ class adminController extends Controller
 
       return response()->json($response);
     }
+    // not used
 
 }

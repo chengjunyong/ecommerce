@@ -36,6 +36,7 @@
             <h5>Manage Check List</h5>
           </div>
           <div class="card-body">
+            <button class="btn btn-info" style="margin-bottom: 10px;" type="button" id="orderChecklist" {{ count($confirmed_list) > 0 ? "" : "disabled" }}>Order checklist</button>
             <table class="table" id="checklist_table">
               <thead>
                 <th>Transaction ID</th>
@@ -68,6 +69,10 @@
   
   $("#checklist_table").DataTable( {
     responsive: true,
+  });
+
+  $("#orderChecklist").click(function(){
+    location.href = "{{ route('getChecklistItem') }}";
   });
 
 </script>

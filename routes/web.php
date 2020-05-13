@@ -185,6 +185,9 @@ Route::prefix('/admin')->group(function(){
 
   // Checklist - WW
   Route::get('/checklist', 'adminController@getChecklist')->name('getChecklist');
+  Route::get('/checklist_detail', 'adminController@getChecklistItem')->name('getChecklistItem');
+  Route::post('/updateChecklistStatus', 'adminController@updateChecklistStatus')->name('updateChecklistStatus');
+  // not used 
   Route::get('/checklist/{id}', 'adminController@getChecklistDetail')->name('getChecklistDetail');
   Route::post('/updateChecklist', 'adminController@updateChecklist')->name('updateChecklist');
   Route::post('/updateTransaction', 'adminController@updateTransaction')->name('updateTransaction');
