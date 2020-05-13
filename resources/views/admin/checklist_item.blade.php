@@ -28,7 +28,7 @@
   
   .transaction_box { padding: 15px; margin-bottom: 10px; box-shadow: 1px 1px 3px 0px #666; }
   .checklist { display: flex; box-shadow: 1px 1px 5px 0px #666; padding: 15px 20px; margin-bottom: 10px; }
-  .checklist .checklist_item { width: 200px; margin-right: 15px; }
+  .checklist .checklist_item { width: 150px; margin-right: 15px; }
   .checklist .checklist_item label { width: 100%; font-weight: bold; }
   .checklist .checklist_item img { width: 80px; box-shadow: 0px 0px 10px 0px #666; }
   .checklist .checklist_description { flex: 1; }
@@ -44,7 +44,8 @@
       <div class="col-sm-12">
         <div class="card">
           <div class="card-header">
-            <h5>Manage Check List</h5>
+            <h5 style="display: inline-block; width: calc(100% - 100px);">Manage Check List</h5>
+            <a href="{{ route('getChecklist') }}" class="btn btn-info" style="float: right;">Back</a>
           </div>
           <div class="card-body" style="padding: 0 30px 30px 30px;">
             @foreach($transaction_list as $transaction)
