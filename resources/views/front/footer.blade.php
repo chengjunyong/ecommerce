@@ -12,6 +12,10 @@
   color: white;
   width: 100%;
 }
+
+.google:hover,.fb:hover{
+  color:#ccc;
+}
 </style>
 <footer>
     <div class="footer-1 section-mb-space">
