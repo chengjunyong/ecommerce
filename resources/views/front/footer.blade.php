@@ -1,4 +1,18 @@
 <!--footer start-->
+<style>
+.google {
+  background-color: #dd4b39;
+  color: white;
+  width: 100%;
+  margin-bottom:10px;
+}
+
+.fb {
+  background-color: #3B5998;
+  color: white;
+  width: 100%;
+}
+</style>
 <footer>
     <div class="footer-1 section-mb-space">
         <div class="container">
@@ -255,6 +269,16 @@
                 <button type="button" id="login_button" class="btn btn-rounded btn-block ">Login</button>
             </div>
             <div>
+              <a href="{{ route('login_with_google') }}" class="google btn">
+                <i class="fa fa-google fa-fw"></i> Login with Google
+              </a>
+            </div>
+            <div>
+              <a href="{{ route('login_with_facebook') }}" class="fb btn">
+                <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+              </a>
+            </div>
+            <div>
                 <h5 class="forget-class"><a href="{{ route('getForgotPassword') }}" class="d-block">forget password?</a></h5>
                 <h6 class="forget-class"><a href="{{ route('getRegisterPage') }}" class="d-block">new to store? Signup now</a></h6>
             </div>
@@ -404,7 +428,6 @@
     </div>
   </div>
   <!-- notification product -->
-
 <script>
   
   var global_cart_list = @json($global_cart_list);
@@ -418,5 +441,6 @@
 
     $("#sum_cart, #cart_page_sum, #checkout_page_sum").html("RM "+sum_cart);
   }
+
 
 </script>
