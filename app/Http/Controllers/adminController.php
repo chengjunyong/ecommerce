@@ -32,6 +32,9 @@ use App\subcategory;
 use App\main_category;
 use App\tag;
 use App\voucher_transaction;
+
+use App\Mail\sendMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class adminController extends Controller
@@ -772,5 +775,12 @@ class adminController extends Controller
       return response()->json($response);
     }
     // not used
+
+    public function testing()
+    {
+      Mail::to("abc@yopmail.com")->send(new sendMail());
+
+      dd("done");
+    }
 
 }
