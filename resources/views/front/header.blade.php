@@ -154,14 +154,14 @@
               <div class="icon-nav">
                 <ul>
                   @if(Auth::check())
-                    <li class="mobile-user onhover-dropdown icon_dropdown"><a href="#"><i class="icon-user" style="color: orange;"></i></a>
+                    <li class="mobile-user onhover-dropdown icon_dropdown"><a href="#detail"><i class="icon-user" style="color: orange;"></i></a>
                       <ul>
                         <li><a href="{{ route('getUserProfile') }}">My profile</a></li>
                         <li><a href="#" onclick="logout_now()">Logout</a></li>
                       </ul>
                     </li>
                   @else
-                    <li class="mobile-user onhover-dropdown" onclick="openAccount()"><a href="#"><i class="icon-user"></i></a>
+                    <li class="mobile-user onhover-dropdown" onclick="openAccount()"><a href="#login"><i class="icon-user"></i></a>
                     </li>
                   @endif
                   <!-- <li class="mobile-wishlist" onclick="openWishlist()"> -->

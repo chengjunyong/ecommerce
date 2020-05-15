@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Socialite;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -61,6 +63,53 @@ class LoginController extends Controller
 
         return response()->json($response);
       }
+    }
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $google = Socialite::driver('google')->user();
+        // dd($google);
+        $user = User::where("client_id",$google->id)->first();
+
+        if($user)
+        {
+          // dd(1);
+          Auth::login($user);
+          return redirect('/');
+        }else{
+          // dd(2);
+          $result = User::create([
+                    'lname' => $google->user['family_name'],
+                    'fname' => $google->user['given_name'],
+                    'email' => $google->email,
+                    'email_verified_at' => now(),
+                    'password' => $google->token,
+                    'client_id' => $google->id
+                  ]);
+          Auth::login($result);
+          return redirect('/');
+        }
+
+    }
+
+    public function facebookLogin()
+    {
+       return Socialite::driver('facebook')->redirect();
+    } 
+
+    public function facebookCallback()
+    {
+
     }
 
 }

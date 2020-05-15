@@ -49,7 +49,7 @@ class adminController extends Controller
         $category = category::join("main_category","category.main_category","=","main_category.id")
                               ->select("category.*","main_category.name")
                               ->get();
-        $main_category = main_category::get();
+        $main_category = main_category::get(); 
 
     	return view('admin.category',compact('category','main_category'));
     }
