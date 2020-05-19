@@ -34,6 +34,14 @@
                     <li><a href="{{ route('getCouponTransaction') }}"><i class="fa fa-circle"></i>Coupons Transaction</a></li>
                 </ul>
             </li>
+            <li><a class="sidebar-header" href=""><i data-feather="mail"></i><span>Email</span><i class="fa fa-angle-right pull-right"></i></a>
+                <ul class="sidebar-submenu">
+                    <li><a href="{{ route('getSubscriptionList') }}"><i class="fa fa-circle"></i>Subscription List</a></li>
+                    <li><a href="{{ route('getCouponCreate') }}"><i class="fa fa-circle"></i>Email Marketing</a></li>
+                    <li><a href="{{ route('listTemplate') }}"><i class="fa fa-circle"></i>Template List</a></li>
+                    <li><a href="{{ route('getTemplateUpload') }}"><i class="fa fa-circle"></i>Upload Template</a></li>
+                </ul>
+            </li>
        
             <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">

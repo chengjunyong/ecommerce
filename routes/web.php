@@ -92,6 +92,8 @@ Route::prefix('/admin')->group(function(){
   Route::get('/mainCategory','adminController@getMainCategory')->name('getMainCategory');
   Route::get('/tag','adminController@getTag')->name('getTag');
   Route::get('/coupontransaction','adminController@getCouponTransaction')->name('getCouponTransaction');
+  Route::get('/email','adminController@getCouponTransaction')->name('getCouponTransaction');
+
 
   // add product route
   Route::post('/postAddProduct', 'adminController@postAddProduct')->name('postAddProduct');
@@ -198,6 +200,14 @@ Route::prefix('/admin')->group(function(){
   Route::post('/updateChecklist', 'adminController@updateChecklist')->name('updateChecklist');
   Route::post('/updateTransaction', 'adminController@updateTransaction')->name('updateTransaction');
 
+  Route::get('/subscriptionlist','adminController@getSubscriptionList')->name('getSubscriptionList');
+  Route::get('/templateupload','adminController@getTemplateUpload')->name('getTemplateUpload');
+  Route::get('/listTemplate','adminController@listTemplate')->name('listTemplate');
+
+  Route::post('/gettemplateupload','adminController@templateUpload')->name('templateUpload');
+
+  Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
+  Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
 });
 
 Auth::routes();
