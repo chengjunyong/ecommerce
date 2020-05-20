@@ -201,6 +201,17 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/checklist/{id}', 'adminController@getChecklistDetail')->name('getChecklistDetail');
     Route::post('/updateChecklist', 'adminController@updateChecklist')->name('updateChecklist');
     Route::post('/updateTransaction', 'adminController@updateTransaction')->name('updateTransaction');
+
+    Route::get('/subscriptionlist','adminController@getSubscriptionList')->name('getSubscriptionList');
+    Route::get('/templateupload','adminController@getTemplateUpload')->name('getTemplateUpload');
+    Route::get('/listTemplate','adminController@listTemplate')->name('listTemplate');
+
+    Route::post('/gettemplateupload','adminController@templateUpload')->name('templateUpload');
+
+    Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
+    Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
+
+    Route::get('/mail','adminController@mail')->name('mail');
   });
 });
 
@@ -210,17 +221,6 @@ Route::prefix('/admin')->group(function(){
   Route::post('/login', 'Auth\LoginController@adminLogin')->name('adminLogin');
   Route::get('/register','adminController@getAdminRegister')->name('getAdminRegister');
   Route::get('/logout', 'Auth\LoginController@adminLogout')->name('adminLogout');
-
-  Route::get('/subscriptionlist','adminController@getSubscriptionList')->name('getSubscriptionList');
-  Route::get('/templateupload','adminController@getTemplateUpload')->name('getTemplateUpload');
-  Route::get('/listTemplate','adminController@listTemplate')->name('listTemplate');
-
-  Route::post('/gettemplateupload','adminController@templateUpload')->name('templateUpload');
-
-  Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
-  Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
-
-  Route::get('/mail','adminController@mail')->name('mail');
 });
 
 Auth::routes();
