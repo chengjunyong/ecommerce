@@ -48,7 +48,7 @@
               @csrf
               <ul class="nav nav-tabs tab-coupon" id="myTab" role="tablist">
                 <li class="nav-item"><a class="nav-link active show" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="true" data-original-title="" title="">Account</a></li>
-                <li class="nav-item"><a class="nav-link" id="permission-tabs" data-toggle="tab" href="#permission" role="tab" aria-controls="permission" aria-selected="false" data-original-title="" title="">Permission</a></li>
+                <!-- <li class="nav-item"><a class="nav-link" id="permission-tabs" data-toggle="tab" href="#permission" role="tab" aria-controls="permission" aria-selected="false" data-original-title="" title="">Permission</a></li> -->
               </ul>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade active show" id="account" role="tabpanel" aria-labelledby="account-tab">
