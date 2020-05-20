@@ -92,7 +92,7 @@ Route::prefix('/admin')->group(function(){
   Route::get('/mainCategory','adminController@getMainCategory')->name('getMainCategory');
   Route::get('/tag','adminController@getTag')->name('getTag');
   Route::get('/coupontransaction','adminController@getCouponTransaction')->name('getCouponTransaction');
-  Route::get('/email','adminController@getCouponTransaction')->name('getCouponTransaction');
+  
 
 
   // add product route
@@ -208,10 +208,10 @@ Route::prefix('/admin')->group(function(){
 
   Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
   Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
+
+  Route::get('/mail','adminController@mail')->name('mail');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/testing', 'adminController@testing');

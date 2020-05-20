@@ -2,12 +2,13 @@
 
 namespace App\Mail;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class sendMail extends Mailable
+class bulkmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +29,10 @@ class sendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('test@test.com')->view('admin.sendmail');
+      // need 1 global function to identify which template to send
+      $content = Storage::get('test/test.html');
+      
+      return $this->markdown('email.test',compact("content"));
+
     }
 }

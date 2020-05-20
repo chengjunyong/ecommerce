@@ -35,7 +35,7 @@ use App\voucher_transaction;
 use App\subscription_list;
 use App\template;
 
-use App\Mail\sendMail;
+use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -798,13 +798,6 @@ class adminController extends Controller
     }
     // not used
 
-    public function testing()
-    {
-      Mail::to("abc@yopmail.com")->send(new sendMail());
-
-      dd("done");
-    }
-
     public function templateUpload(Request $request)
     {
       $image_path = "/".$request->title."/images";
@@ -819,11 +812,21 @@ class adminController extends Controller
         }
       }
 
+      $content = Storage::get($request->title."/".$request->title.".html");
+      foreach($request->file as $result){
+        if($result->getClientOriginalExtension() != "html"){
+          $content = str_replace("images/".$result->getClientOriginalName(),url('storage/'.$request->title.'/images/'.$result->getClientOriginalName()),$content);
+          Storage::put($request->title."/".$request->title.".html",$content);
+        }
+      }
+
       template::create([
         "title"=>$request->title,
         "folder"=>$request->title,
         "fullpath"=>$full
       ]);
+
+
 
       return back()->with("success","Upload Successful");
 
@@ -841,5 +844,12 @@ class adminController extends Controller
       $path = template::where('id',$request->tid)->first();
       $path = Storage::url($path->fullpath);
       return redirect($path);
+    }
+
+    public function mail()
+    {
+      Mail::to("junyong1213@hotmail.com")->send(new bulkmail());
+
+      dd("done");
     }
 }
