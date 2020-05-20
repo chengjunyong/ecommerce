@@ -31,8 +31,8 @@ class bulkmail extends Mailable
     {
       // need 1 global function to identify which template to send
       $content = Storage::get('test/test.html');
-      
-      return $this->markdown('email.test',compact("content"));
+
+      return $this->markdown('email.bulkmail',compact("content"));
 
     }
 }

@@ -848,6 +848,7 @@ class adminController extends Controller
 
     public function mail()
     {
+      //testing purpose
       Mail::to("junyong1213@hotmail.com")->send(new bulkmail());
 
       dd("done");
