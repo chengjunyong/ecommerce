@@ -46,7 +46,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
       $credentials = $request->only('email', 'password');
-      $credentials["user_type"] = null;
+      $credentials["type"] = null;
 
       if (Auth::attempt($credentials)) {
           // Authentication passed...
@@ -69,7 +69,7 @@ class LoginController extends Controller
     public function adminLogin(Request $request)
     {
       $credentials = $request->only('email', 'password');
-      $credentials["user_type"] = 1;
+      $credentials["type"] = 1;
 
       if (Auth::guard('admin')->attempt($credentials)) {
           // Authentication passed...

@@ -130,8 +130,6 @@ class itemController extends Controller
 
           $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
 
-          dd($user);
-
           $response = new \stdClass();
           $response->error = 0;
           $response->message = "Item added to cart.";
