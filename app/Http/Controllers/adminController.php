@@ -35,8 +35,10 @@ use App\voucher_transaction;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\subscription_list;
+use App\template;
 
-use App\Mail\sendMail;
+use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -213,6 +215,26 @@ class adminController extends Controller
     public function getCreateUser()
     {
         return view('admin.createuser');
+    }
+
+    public function getSubscriptionList()
+    {
+        $subscription = subscription_list::paginate(15);
+
+        return view('admin.subscriptionlist',compact('subscription'));
+    }
+
+    public function getTemplateUpload()
+    {
+
+        return view('admin.template_upload');
+    }
+
+    public function listTemplate()
+    {
+      $template = template::paginate(15);
+
+      return view('admin.list_template',compact('template'));
     }
 
     public function getReport()
@@ -826,11 +848,59 @@ class adminController extends Controller
     }
     // not used
 
-    public function testing()
+    public function templateUpload(Request $request)
     {
-      Mail::to("abc@yopmail.com")->send(new sendMail());
+      $image_path = "/".$request->title."/images";
+      $path = "/".$request->title;
+      Storage::makeDirectory($request->title."/images");
+
+      foreach($request->file as $result){
+        if($result->getClientOriginalExtension() == "html"){
+          $full = $result->storeAs($path,$request->title.".".$result->getClientOriginalExtension());
+        }else{
+          $result->storeAs($image_path,$result->getClientOriginalName());
+        }
+      }
+
+      $content = Storage::get($request->title."/".$request->title.".html");
+      foreach($request->file as $result){
+        if($result->getClientOriginalExtension() != "html"){
+          $content = str_replace("images/".$result->getClientOriginalName(),url('storage/'.$request->title.'/images/'.$result->getClientOriginalName()),$content);
+          Storage::put($request->title."/".$request->title.".html",$content);
+        }
+      }
+
+      template::create([
+        "title"=>$request->title,
+        "folder"=>$request->title,
+        "fullpath"=>$full
+      ]);
+
+
+
+      return back()->with("success","Upload Successful");
+
+    }
+
+    public function deleteTemplate(Request $request)
+    {
+      template::where('id',$request->id)->delete();
+      Storage::deleteDirectory($request->folder);
+      return "completed";
+    }
+
+    public function viewTemplate(Request $request)
+    {
+      $path = template::where('id',$request->tid)->first();
+      $path = Storage::url($path->fullpath);
+      return redirect($path);
+    }
+
+    public function mail()
+    {
+      //testing purpose
+      Mail::to("junyong1213@hotmail.com")->send(new bulkmail());
 
       dd("done");
     }
-
 }

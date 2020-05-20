@@ -71,6 +71,7 @@ Route::prefix('checkout')->group(function () {
   Route::get('/success/{id}', 'itemController@getCheckoutSuccessIndex')->name('getCheckoutSuccessIndex');
 });
 
+
 Route::group(['middleware' => ['auth:admin']], function () {
   Route::prefix('/admin')->group(function(){
     Route::get('/', 'adminController@getIndex')->name('getIndex');
@@ -203,15 +204,25 @@ Route::group(['middleware' => ['auth:admin']], function () {
   });
 });
 
+
 Route::prefix('/admin')->group(function(){
   Route::get('/login','adminController@getLogin')->name('getAdminLogin');
   Route::post('/login', 'Auth\LoginController@adminLogin')->name('adminLogin');
   Route::get('/register','adminController@getAdminRegister')->name('getAdminRegister');
   Route::get('/logout', 'Auth\LoginController@adminLogout')->name('adminLogout');
+
+  Route::get('/subscriptionlist','adminController@getSubscriptionList')->name('getSubscriptionList');
+  Route::get('/templateupload','adminController@getTemplateUpload')->name('getTemplateUpload');
+  Route::get('/listTemplate','adminController@listTemplate')->name('listTemplate');
+
+  Route::post('/gettemplateupload','adminController@templateUpload')->name('templateUpload');
+
+  Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
+  Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
+
+  Route::get('/mail','adminController@mail')->name('mail');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/testing', 'adminController@testing');
