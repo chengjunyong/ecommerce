@@ -876,8 +876,6 @@ class adminController extends Controller
         "fullpath"=>$full
       ]);
 
-
-
       return back()->with("success","Upload Successful");
 
     }
@@ -898,8 +896,9 @@ class adminController extends Controller
 
     public function mail()
     {
-      //testing purpose
-      Mail::to("junyong1213@hotmail.com")->send(new bulkmail());
+      //pass variable, handle at __construtor
+
+      Mail::to("junyong1213@hotmail.com")->send(new bulkmail("123"));
 
       dd("done");
     }
