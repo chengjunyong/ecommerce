@@ -1,12 +1,13 @@
 <style>
 
   .nav-left { overflow: visible !important; }
-  .my_dropdown { position: relative; padding: 0px 0px 20px 0px !important; } 
-  .my_dropdown > li { padding: 20px 20px 0 20px; }
-  .category_tab { display: none; position: absolute; background-color: #fff; padding-bottom: 20px; min-width: 250px; left: 100%; top: 0%; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; }
-  .category_tab li { padding: 20px 30px 10px 20px !important; white-space: nowrap; }
+  .my_dropdown { position: relative; padding: 0px 0px 7px 0px !important; } 
+  .my_dropdown > li { padding: 7px 20px; }
+  .my_dropdown li:hover { background: #eee; }
+  .category_box { display: none; background-color: #fff; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); min-width: 250px; position: absolute; left: 100%; top: 0%; z-index: 1; height: 100%; }
+  .category_tab li { padding: 7px 20px !important; white-space: nowrap; }
   .category_tab li:hover > a { color: #ff6000; }
-  .my_dropdown li:hover > .category_tab { display: block; }
+  .my_dropdown li:hover > .category_box { display: block; }
   li a { cursor: pointer; }
 
   .layout-header1 .main-menu-block .menu-left .sm-nav-block .nav-slide>li:last-child a { color: #333; }
@@ -243,20 +244,24 @@
                           <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
                             <a>{{ $main->name }}</a>
                             @if(count($main->category) > 0)
-                              <ul class="category_tab">
-                                @foreach($main->category as $category)
-                                  <li>
-                                    <a>{{ $category->category_name }}</a>
-                                    @if(count($category->subcategory) > 0)
-                                      <ul class="category_tab">
-                                        @foreach($category->subcategory as $subcategory)
-                                          <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                        @endforeach
-                                      </ul>
-                                    @endif
-                                  </li>
-                                @endforeach
-                              </ul>
+                              <div class="category_box">
+                                <ul class="category_tab">
+                                  @foreach($main->category as $category)
+                                    <li>
+                                      <a>{{ $category->category_name }}</a>
+                                      @if(count($category->subcategory) > 0)
+                                        <div class="category_box">
+                                          <ul class="category_tab">
+                                            @foreach($category->subcategory as $subcategory)
+                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                            @endforeach
+                                          </ul>
+                                        </div>
+                                      @endif
+                                    </li>
+                                  @endforeach
+                                </ul>
+                              </div>
                             @endif
                           </li>
                         @endforeach
@@ -265,20 +270,24 @@
                           <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
                             <a>{{ $main_category[$i]->name }}</a>
                             @if(count($main_category[$i]->category) > 0)
-                              <ul class="category_tab">
-                                @foreach($main_category[$i]->category as $category)
-                                  <li>
-                                    <a>{{ $category->category_name }}</a>
-                                    @if(count($category->subcategory) > 0)
-                                      <ul class="category_tab">
-                                        @foreach($category->subcategory as $subcategory)
-                                          <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                        @endforeach
-                                      </ul>
-                                    @endif
-                                  </li>
-                                @endforeach
-                              </ul>
+                              <div class="category_box">
+                                <ul class="category_tab">
+                                  @foreach($main_category[$i]->category as $category)
+                                    <li>
+                                      <a>{{ $category->category_name }}</a>
+                                      @if(count($category->subcategory) > 0)
+                                        <div class="category_box">
+                                          <ul class="category_tab">
+                                            @foreach($category->subcategory as $subcategory)
+                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                            @endforeach
+                                          </ul>
+                                        </div>
+                                      @endif
+                                    </li>
+                                  @endforeach
+                                </ul>
+                              </div>
                             @endif
                           </li>
 
@@ -290,20 +299,24 @@
                               <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product">
                                 <a>{{ $main_category[$b]->name }}</a>
                                 @if(count($main_category[$b]->category) > 0)
-                                  <ul class="category_tab">
-                                    @foreach($main_category[$b]->category as $category)
-                                      <li>
-                                        <a>{{ $category->category_name }}</a>
-                                        @if(count($category->subcategory) > 0)
-                                          <ul class="category_tab">
-                                            @foreach($category->subcategory as $subcategory)
-                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                            @endforeach
-                                          </ul>
-                                        @endif
-                                      </li>
-                                    @endforeach
-                                  </ul>
+                                  <div class="category_box">
+                                    <ul class="category_tab">
+                                      @foreach($main_category[$b]->category as $category)
+                                        <li>
+                                          <a>{{ $category->category_name }}</a>
+                                          @if(count($category->subcategory) > 0)
+                                            <div class="category_box">
+                                              <ul class="category_tab">
+                                                @foreach($category->subcategory as $subcategory)
+                                                  <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                                @endforeach
+                                              </ul>
+                                            </div>
+                                          @endif
+                                        </li>
+                                      @endforeach
+                                    </ul>
+                                  </div>
                                 @endif
                               </li> 
                             @endfor

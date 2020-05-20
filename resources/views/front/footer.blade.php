@@ -443,7 +443,7 @@
       sum_cart += (global_cart_list[a].quantity * global_cart_list[a].product_price);
     }
 
-    $("#sum_cart, #cart_page_sum, #checkout_page_sum").html("RM "+sum_cart);
+    $("#sum_cart, #cart_page_sum, #checkout_page_sum").html("RM "+parseFloat(sum_cart).toFixed(2));
   }
 
 

@@ -46,6 +46,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
       $credentials = $request->only('email', 'password');
+      $credentials["user_type"] = null;
 
       if (Auth::attempt($credentials)) {
           // Authentication passed...
@@ -63,6 +64,32 @@ class LoginController extends Controller
 
         return response()->json($response);
       }
+    }
+
+    public function adminLogin(Request $request)
+    {
+      $credentials = $request->only('email', 'password');
+      $credentials["user_type"] = 1;
+
+      if (Auth::guard('admin')->attempt($credentials)) {
+          // Authentication passed...
+          $response = new \stdClass;
+          $response->message = "Login successful";
+          $response->error = 0;
+
+          return redirect(route('getIndex'));
+      }
+      else
+      {
+        return back()->withErrors(['email' => "Email or password incorrect, please try again."]);
+      }
+    }
+
+    public function adminLogout()
+    {
+      Auth::guard('admin')->logout();
+
+      return redirect(route('getAdminLogin'));
     }
 
     public function redirectToProvider()

@@ -8,430 +8,72 @@
 				<div class="col-lg-6">
 					<div class="page-header-left">
 						<h3>User List
-						<small>Homeu Admin panel</small>
-						</h3>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<ol class="breadcrumb pull-right">
-						<li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
-						<li class="breadcrumb-item">Users</li>
-						<li class="breadcrumb-item active">User List</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Container-fluid Ends-->
-	<!-- Container-fluid starts-->
-	<div class="container-fluid">
-		<div class="card">
-			<div class="card-header">
-				<h5>User Details</h5>
-			</div>
-			<div class="card-body">
-				<div class="btn-popup pull-right">
-					<a href="{{ route('getCreateUser') }}" class="btn btn-secondary">Create User</a>
-				</div>
-				
-				<div id="" class="category-table user-list order-table jsgrid" style="position: relative; height: auto; width: 100%;">
-					<div class="jsgrid-grid-header jsgrid-header-scrollbar">
-						<table class="jsgrid-table">
-							<tr class="jsgrid-header-row">
-								<th class="jsgrid-header-cell jsgrid-align-center" style="width: 60px;"><button type="button" class="btn btn-danger btn-sm btn-delete mb-0 b-r-4">Delete</button>
-								</th>								
-								<th class="jsgrid-header-cell" style="width: 100px;">First Name
-								</th>
-								<th class="jsgrid-header-cell" style="width: 100px;">Last Name
-								</th>
-								<th class="jsgrid-header-cell" style="width: 100px;">Email
-								</th>
-								<th class="jsgrid-header-cell" style="width: 100px;">Last Login
-								</th>
-								<th class="jsgrid-header-cell" style="width: 100px;">Role
-								</th>
-							</tr>
-							<tr class="jsgrid-filter-row" style="display: none;">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-							</tr>
-							<tr class="jsgrid-insert-row" style="display: none;">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">
-									<input type="text">
-								</td>
-							</tr>
-						</table>
-					</div>
-					<div class="jsgrid-grid-body">
-						<table class="jsgrid-table"><tbody>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Rowan
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Torres
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Rowan.torres@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">6 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Alonzo
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez.Alonzo@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">2 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Skylar
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane.Skylar@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Brody
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray.Brody@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">3 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Admin
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Colton
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Clay
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Colton.Clay@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Maxine
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Woters
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">woters.maxine@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">10 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Alonzo
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez.Alonzo@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">2 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Skylar
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane.Skylar@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Brody
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray.Brody@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">3 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Colton
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Clay
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Colton.Clay@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Admin
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Maxine
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Woters
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">woters.maxine@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">10 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Alonzo
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez.Alonzo@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">2 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Skylar
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane.Skylar@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Brody
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray.Brody@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">3 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Colton
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Clay
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Colton.Clay@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Rowan
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Torres
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Rowan.torres@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">6 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Alonzo
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Perez.Alonzo@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">2 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Admin
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Skylar
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Lane.Skylar@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr>
-							<tr class="jsgrid-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Brody
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Gray.Brody@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">3 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Admin
-								</td>
-							</tr>
-							<tr class="jsgrid-alt-row">
-								<td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-									<input type="checkbox">
-								</td>
-								
-								<td class="jsgrid-cell" style="width: 100px;">Colton
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Clay
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Colton.Clay@gmail.com
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">1 Days ago
-								</td>
-								<td class="jsgrid-cell" style="width: 100px;">Customer
-								</td>
-							</tr></tbody>
-						</table>
-					</div>
-					<div class="jsgrid-pager-container" style="">
-						<div class="jsgrid-pager">Pages:
-							<span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">First</a>
-						</span>
-						<span class="jsgrid-pager-nav-button jsgrid-pager-nav-inactive-button"><a href="javascript:void(0);">Prev</a>
-					</span>
-					<span class="jsgrid-pager-page jsgrid-pager-current-page">1
-					</span>
-					<span class="jsgrid-pager-page"><a href="javascript:void(0);">2</a>
-				</span>
-				<span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Next</a>
-			</span>
-			<span class="jsgrid-pager-nav-button"><a href="javascript:void(0);">Last</a>
-		</span> &nbsp;&nbsp; 1 of 2
-	</div>
+              <small>Homeu Admin panel</small>
+            </h3>
+          </div>
+        </div>
+        <div class="col-lg-6">
+         <ol class="breadcrumb pull-right">
+          <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item active">User List</li>
+        </ol>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="jsgrid-load-shader" style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;">
-</div>
-<div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...
-</div>
+<!-- Container-fluid Ends-->
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+  <div class="card">
+   <div class="card-header">
+    <h5>User Details</h5>
+  </div>
+  <div class="card-body">
+    <div class="btn-popup pull-right">
+     <a href="{{ route('getCreateUser') }}" class="btn btn-secondary">Create User</a>
+   </div>
+
+   <div id="" class="category-table user-list order-table jsgrid" style="position: relative; height: auto; width: 100%;">
+     <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+      <table class="jsgrid-table">
+        <thead class="jsgrid-header-row">
+          <th class="jsgrid-header-cell jsgrid-align-center" style="width: 60px;"><button type="button" class="btn btn-danger btn-sm btn-delete mb-0 b-r-4">Delete</button>
+          </th>								
+          <th class="jsgrid-header-cell" style="width: 100px;">First Name
+          </th>
+          <th class="jsgrid-header-cell" style="width: 100px;">Last Name
+          </th>
+          <th class="jsgrid-header-cell" style="width: 100px;">Email
+          </th>
+          <th class="jsgrid-header-cell" style="width: 100px;">Last Login
+          </th>
+          <th class="jsgrid-header-cell" style="width: 100px;">Role
+          </th>
+        </thead>
+        <tbody class="jsgrid-row">
+          @foreach($user_list as $user)
+          <tr>
+            <td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
+              <input type="checkbox">
+            </td>
+            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ $user->fname }}</td>
+            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ $user->lname }}</td>
+            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ $user->email }}</td>
+            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ $user->last_login ? date('d M Y H:i:s', strtotime($user->last_login)) : "" }}</td>
+            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ $user->position }}</td>
+          </tr>
+          @endforeach
+        </tbody>
+
+      </table>
+    </div>
+
+  </div>
+  <div class="jsgrid-load-shader" style="display: none; position: absolute; top: 0px; right: 0px; bottom: 0px; left: 0px; z-index: 1000;">
+  </div>
+  <div class="jsgrid-load-panel" style="display: none; position: absolute; top: 50%; left: 50%; z-index: 1000;">Please, wait...
+  </div>
 </div>
 </div>
 </div>

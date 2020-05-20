@@ -32,6 +32,9 @@ use App\subcategory;
 use App\main_category;
 use App\tag;
 use App\voucher_transaction;
+use App\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 use App\Mail\sendMail;
 use Illuminate\Support\Facades\Mail;
@@ -42,6 +45,27 @@ class adminController extends Controller
     public function getIndex()
     {
       return view('admin.index');
+    }
+
+    public function createStaff(Request $request)
+    {
+      $validatedData = $request->validate([
+        'fname' => ['required', 'string', 'max:255'],
+        'lname' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'string', 'min:8', 'confirmed'],
+        'user_type' => ['required', 'string', 'max:255'],
+      ]);
+
+      User::create([
+        'user_type' => $request->user_type,
+        'fname' => $request->fname,
+        'lname' => $request->lname,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+      ]);
+
+      return back();
     }
 
     public function getCategory()
@@ -162,7 +186,28 @@ class adminController extends Controller
 
     public function getUserList()
     {
-        return view('admin.userlist');
+      $user_list = User::whereIn('user_type', [2,3,4,5])->get();
+      foreach($user_list as $user)
+      {
+        if($user->user_type == "2")
+        {
+          $user->position = "Manager";
+        }
+        elseif($user->user_type == "3")
+        {
+          $user->position = "Staff";
+        }
+        if($user->user_type == "4")
+        {
+          $user->position = "Staff ( Packing )";
+        }
+        if($user->user_type == "5")
+        {
+          $user->position = "Staff ( Driver )";
+        }
+      }
+
+        return view('admin.userlist', compact('user_list'));
     }
 
     public function getCreateUser()
@@ -188,6 +233,11 @@ class adminController extends Controller
     public function getLogin()
     {
         return view('admin.login');
+    }
+
+    public function getAdminRegister()
+    {
+      return view('admin.register');
     }
 
     public function getHome()
