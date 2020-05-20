@@ -175,10 +175,8 @@
                     <div class="custom-control custom-checkbox mr-sm-2">
                       <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                       <label class="custom-control-label" for="customControlAutosizing">Remember me</label>
-                      <a href="#" class="btn btn-default forgot-pass">lost your password</a>
+                      <a href="#" class="btn btn-default forgot-pass">Lost your password</a>
                     </div>
-
-                    <a href="{{ route('getAdminRegister') }}" class="btn btn-default forgot-pass" style="float: left; width: 100%; text-align: left;">Register new account</a>
                   </div>
                   <div class="form-button">
                     <button class="btn btn-primary" type="submit">Login</button>
