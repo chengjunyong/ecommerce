@@ -58,7 +58,7 @@
                       <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> First Name</label>
                       <input class="form-control col-xl-8 col-md-7 @error('fname') is-invalid @enderror" name="fname" type="text" required="" value="{{ old('fname') }}">
                       @error('fname')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback col-xl-8 col-md-7" style="float: right;" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
                       @enderror
@@ -67,7 +67,7 @@
                       <label for="validationCustom1" class="col-xl-3 col-md-4"><span>*</span> Last Name</label>
                       <input class="form-control col-xl-8 col-md-7 @error('lname') is-invalid @enderror" name="lname" type="text" required="" value="{{ old('lname') }}">
                       @error('lname')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback col-xl-8 col-md-7" style="float: right;" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
                       @enderror
@@ -76,7 +76,7 @@
                       <label for="validationCustom2" class="col-xl-3 col-md-4"><span>*</span> Email</label>
                       <input class="form-control col-xl-8 col-md-7 @error('email') is-invalid @enderror" name="email" type="email" required="" value="{{ old('email') }}">
                       @error('email')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback col-xl-8 col-md-7" style="float: right;" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
                       @enderror
@@ -85,7 +85,7 @@
                       <label for="validationCustom3" class="col-xl-3 col-md-4"><span>*</span> Password</label>
                       <input class="form-control col-xl-8 col-md-7 @error('password') is-invalid @enderror" name="password" type="password" required="">
                       @error('password')
-                        <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback col-xl-8 col-md-7" style="float: right;" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>
                       @enderror

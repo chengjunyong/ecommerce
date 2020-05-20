@@ -161,7 +161,7 @@
                 <form class="form-horizontal auth-form" method="POST" action="{{ route('register') }}">
                   @csrf
                   <div class="form-group">
-                    <input required name="fname" type="text" class="form-control @error('fname') is-invalid @enderror" placeholder="Username" value="{{ old('fname') }}">
+                    <input required name="fname" type="text" class="form-control @error('fname') is-invalid @enderror" placeholder="First name" value="{{ old('fname') }}">
                     @error('fname')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -169,7 +169,7 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <input required name="lname" type="text" class="form-control @error('lname') is-invalid @enderror" placeholder="Username" value="{{ old('lname') }}">
+                    <input required name="lname" type="text" class="form-control @error('lname') is-invalid @enderror" placeholder="Last name" value="{{ old('lname') }}">
                     @error('lname')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -177,7 +177,7 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <input required name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Username" value="{{ old('email') }}">
+                    <input required name="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="email" value="{{ old('email') }}">
                     @error('email')
                       <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
