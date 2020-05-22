@@ -91,7 +91,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/report','adminController@getReport')->name('getReport');
     Route::get('/profile','adminController@getProfile')->name('getProfile');
     Route::get('/invoice','adminController@getInvoice')->name('getInvoice');
-    
+    Route::get('/getEmailMarketing','adminController@getEmailMarketing')->name('getEmailMarketing');
     Route::get('../','adminController@getHome')->name('getHome');
     Route::get('/mainCategory','adminController@getMainCategory')->name('getMainCategory');
     Route::get('/tag','adminController@getTag')->name('getTag');
