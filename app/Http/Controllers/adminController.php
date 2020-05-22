@@ -186,6 +186,11 @@ class adminController extends Controller
       return view('admin.coupontransaction',compact('voucher_transaction'));
     }
 
+    public function getEmailMarketing()
+    {
+      return view('admin.email_marketing');
+    }
+
     public function getUserList()
     {
       $user_list = User::whereIn('user_type', [2,3,4,5])->get();
@@ -902,4 +907,6 @@ class adminController extends Controller
 
       dd("done");
     }
+
+
 }
