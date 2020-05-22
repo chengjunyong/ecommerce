@@ -46,7 +46,10 @@
                                 <label for="review">Confirm Password</label>
                                 <input type="password" class="form-control" name="password_confirmation" id="review" placeholder="Enter your password" required="">
                             </div>
-                            <div class="col-md-12 form-group"><button type="submit" class="btn btn-normal">create Account</button></div>
+                            <div class="col-md-12 form-group">
+                              <input type="hidden" name="type" value="front" />
+                              <button type="submit" class="btn btn-normal">create Account</button>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 ">
