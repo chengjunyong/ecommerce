@@ -11,5 +11,6 @@ class template extends Model
       'title',
       'folder',
       'fullpath',
+      'selected',
     ];
 }

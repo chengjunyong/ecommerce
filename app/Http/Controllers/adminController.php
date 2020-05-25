@@ -188,7 +188,9 @@ class adminController extends Controller
 
     public function getEmailMarketing()
     {
-      return view('admin.email_marketing');
+      $template = template::get();
+
+      return view('admin.email_marketing',compact('template'));
     }
 
     public function getUserList()
@@ -901,11 +903,29 @@ class adminController extends Controller
 
     public function mail()
     {
-      //pass variable, handle at __construtor
+      $success = array();
+      $subscription = subscription_list::get();
+      $path = template::where('selected',1)->first();
+      foreach($subscription as $result){
+        Mail::to($result->email)->send(new bulkmail($path));
+        array_push($success,$result->id);
+      }
 
-      Mail::to("junyong1213@hotmail.com")->send(new bulkmail("123"));
+      subscription_list::whereIn('id',$success)->update(['sended' => 1]);
 
-      dd("done");
+      return "completed";
+    }
+
+    public function startmail(Request $request)
+    {
+      if(template::where('selected',1)->update(['selected' => null])){
+        if(template::where('id',$request->template)->update(['selected' => 1])){
+          return back()->with('result','Success');
+        }
+        else
+          return back()->with('result','Fail');
+      }
+      return back()->with('result','Fail');   
     }
 
 

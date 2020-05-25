@@ -206,12 +206,16 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/templateupload','adminController@getTemplateUpload')->name('getTemplateUpload');
     Route::get('/listTemplate','adminController@listTemplate')->name('listTemplate');
 
+    //upload template
     Route::post('/gettemplateupload','adminController@templateUpload')->name('templateUpload');
-
+    //delete template
     Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
+    //get template url
     Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
 
     Route::get('/mail','adminController@mail')->name('mail');
+
+    Route::post('/startmail','adminController@startmail')->name('startmail');
   });
 });
 
