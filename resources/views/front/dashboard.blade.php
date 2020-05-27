@@ -44,7 +44,6 @@
                             <li class="active"><a target="profile" type="tab" group="dashboard">Account Info</a></li>
                             <li><a target="address" type="tab" group="dashboard">Address Book</a></li>
                             <li><a href="{{ route('getOrderHistory') }}">My Orders</a></li>
-                            <li><a target="wishlist" type="tab" group="dashboard">My Wishlist</a></li>
                         </ul>
                     </div>
                 </div>
