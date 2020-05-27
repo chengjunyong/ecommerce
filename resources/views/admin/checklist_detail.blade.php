@@ -53,7 +53,7 @@
           </div>
           <div class="card-body" style="padding: 10px;">
             @foreach($transaction_detail as $item)
-              <div class="checklist">
+              <div class="checklist {{ $item->checked == 1 ? ' done' : '' }}">
                 <div class="checklist_item">
                   <label>{{ $item->product_name }}</label>
                   <img src="{{ $item->path ? Storage::url($item->path) : asset('assets/images/layout-3/product/1.jpg') }}" />
@@ -90,9 +90,30 @@
     increaseArea: '20%' /* optional */
   });
 
+  $(".checklist:not(.checklist_checkbox)").click(function(){
+    var checked = $(this).find(".icheck").is(":checked");
+    if(checked == true)
+    {
+      $(this).find(".icheck").iCheck("uncheck");
+    }
+    else
+    {
+      $(this).find(".icheck").iCheck("check");
+    }
+  });
+
   $(".icheck").on("ifChanged", function(){
     var transaction_id = $(this).val();
     var checked = $(this).is(":checked");
+
+    if(checked == true)
+    {
+      $(this).parents().eq(4).addClass("done");
+    }
+    else
+    {
+      $(this).parents().eq(4).removeClass("done");
+    }
 
     $.post("{{ route('updateChecklist') }}", { "_token" : "{{ csrf_token() }}", "transaction_id" : transaction_id, "checked" : checked }, function(response){
         console.log("done");
