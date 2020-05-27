@@ -1,9 +1,5 @@
 @extends('admin.layout')
-<!-- Dropzone css-->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/dropzone.css') }}">
-<!--dropzone js-->
-<script src="{{ asset('assets/js/dropzone/dropzone.js') }}"></script>
-<script src="{{ asset('assets/js/dropzone/dropzone-script.js') }}"></script>
+
 @section('layout')
 
 <style>
@@ -70,6 +66,15 @@
                 <select class="custom-select" required="" name="tag">
                   @foreach($tag as $result)
                   <option value="{{ $result->id }},{{ $result->subcategory_id }},{{ $result->category_id }},{{ $result->maincategory_id }}">{{ $result->tag_name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label"><span>*</span> Brand</label>
+                <select class="custom-select" name="brand">
+                  <option value="" selected>No Brand</option>
+                  @foreach($brand as $result)
+                  <option value="{{ $result->id }}">{{ $result->brand }}</option>
                   @endforeach
                 </select>
               </div>

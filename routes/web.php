@@ -96,6 +96,17 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/mainCategory','adminController@getMainCategory')->name('getMainCategory');
     Route::get('/tag','adminController@getTag')->name('getTag');
     Route::get('/coupontransaction','adminController@getCouponTransaction')->name('getCouponTransaction');
+    Route::get('/brand','adminController@getBrand')->name('getBrand');
+    Route::get('/brandlist','adminController@getBrandList')->name('getBrandList');
+
+    //add brand
+    Route::post('/addbrand','adminController@addBrand')->name('addBrand');
+
+    //ajax update brand
+    Route::post('/updateBrand','adminController@updateBrand')->name('updateBrand');
+
+    //ajax delete brand
+    Route::post('/deleteBrand','adminController@deleteBrand')->name('deleteBrand');
 
     // add product route
     Route::post('/postAddProduct', 'adminController@postAddProduct')->name('postAddProduct');

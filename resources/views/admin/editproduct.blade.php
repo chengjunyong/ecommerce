@@ -98,7 +98,7 @@
 	                                    </div>
 	                                </div>
 	                                <input hidden type="text" name="product_id" value="{{ $product_detail[0]->id }}">
-												<div class="form">
+												          <div class="form">
 	                                    <div class="form-group mb-3 row">
 	                                        <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Tag</label>
 	                                        <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="tag">
@@ -115,7 +115,26 @@
 	                                            @endforeach
 	                                        </select>
 	                                    </div>
-	                                </div>	
+	                                </div>
+                                  <div class="form">
+                                      <div class="form-group mb-3 row">
+                                          <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Brand</label>
+                                          <select class="form-control digits col-xl-8 col-sm-7" id="exampleFormControlSelect1" name="brand"> 
+                                              <option value="" {{ $product_detail[0]->brand == null ? 'selected' : '' }} >No Brand</option>
+                                              @foreach($brand as $result)
+                                                  @if($result->id == $product_detail[0]->brand)
+                                                    <option value="{{ $result->id }}" selected>
+                                                      {{ $result->brand }}
+                                                    </option>
+                                                  @else
+                                                    <option value='{{ $result->id }}'>
+                                                      {{ $result->brand }}
+                                                    </option>
+                                                  @endif
+                                              @endforeach
+                                          </select>
+                                      </div>
+                                  </div>	
 	                                <div class="form">
 	                                    <div class="form-group row">
 	                                        <label for="exampleFormControlSelect1" class="col-xl-3 col-sm-4 mb-0"><span>*</span> Stock Status</label>
