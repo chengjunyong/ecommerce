@@ -17,9 +17,10 @@ class bulkmail extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($path)
     {
-        $this->data = $data;
+        $this->path = $path->fullpath;
+        $this->subject = $path->title;
     }
 
     /**
@@ -29,10 +30,10 @@ class bulkmail extends Mailable
      */
     public function build()
     {
-      // need 1 global function to identify which template to send
-      $content = Storage::get('Cake promotion/Cake promotion.html');
+      $content = Storage::get($this->path);
 
-      return $this->markdown('email.bulkmail',compact("content"));
-
+      return $this->from('promotion@homeu.com')
+                  ->subject($this->subject)
+                  ->markdown('email.bulkmail',compact("content"));
     }
 }

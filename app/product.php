@@ -14,6 +14,7 @@ class product extends Model
       'stock',
       'sku',
       'weight',
+      'brand',
       'maincategory_id',
       'category_id',
       'subcategory_id',

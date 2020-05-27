@@ -60,6 +60,9 @@
                                         SKU
                                     </th>
                                     <th class="jsgrid-header-cell jsgrid-align-right">
+                                        Brand
+                                    </th>
+                                    <th class="jsgrid-header-cell jsgrid-align-right">
                                         Category
                                     </th>
                                     <th class="jsgrid-header-cell jsgrid-align-right">
@@ -90,6 +93,13 @@
                                             </td>
                                             <td class="jsgrid-cell">
                                                 {{ $result->sku }}
+                                            </td>
+                                            <td class="jsgrid-cell">
+                                              @if($result->brand_name != null)  
+                                                {{ $result->brand_name }}
+                                              @else
+                                                No Brand
+                                              @endif
                                             </td>
                                             <td class="jsgrid-cell" style="text-align: center">
                                                 {{ $result->category_name }} 

@@ -110,11 +110,10 @@ class LoginController extends Controller
 
         if($user)
         {
-          // dd(1);
           Auth::login($user);
           return redirect('/');
         }else{
-          // dd(2);
+
           $result = User::create([
                     'lname' => $google->user['family_name'],
                     'fname' => $google->user['given_name'],

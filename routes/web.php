@@ -101,6 +101,17 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/mainCategory','adminController@getMainCategory')->name('getMainCategory');
     Route::get('/tag','adminController@getTag')->name('getTag');
     Route::get('/coupontransaction','adminController@getCouponTransaction')->name('getCouponTransaction');
+    Route::get('/brand','adminController@getBrand')->name('getBrand');
+    Route::get('/brandlist','adminController@getBrandList')->name('getBrandList');
+
+    //add brand
+    Route::post('/addbrand','adminController@addBrand')->name('addBrand');
+
+    //ajax update brand
+    Route::post('/updateBrand','adminController@updateBrand')->name('updateBrand');
+
+    //ajax delete brand
+    Route::post('/deleteBrand','adminController@deleteBrand')->name('deleteBrand');
 
     // add product route
     Route::post('/postAddProduct', 'adminController@postAddProduct')->name('postAddProduct');
@@ -211,12 +222,16 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/templateupload','adminController@getTemplateUpload')->name('getTemplateUpload');
     Route::get('/listTemplate','adminController@listTemplate')->name('listTemplate');
 
+    //upload template
     Route::post('/gettemplateupload','adminController@templateUpload')->name('templateUpload');
-
+    //delete template
     Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
+    //get template url
     Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
 
     Route::get('/mail','adminController@mail')->name('mail');
+
+    Route::post('/startmail','adminController@startmail')->name('startmail');
   });
 });
 

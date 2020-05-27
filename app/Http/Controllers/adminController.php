@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\subscription_list;
 use App\template;
+use App\brand;
 
 use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
@@ -70,6 +71,13 @@ class adminController extends Controller
       return back();
     }
 
+    public function getBrandList()
+    {
+      $brand = brand::get();
+
+      return view('admin.brandlist',compact('brand'));
+    }
+
     public function getCategory()
     {
         $category = category::join("main_category","category.main_category","=","main_category.id")
@@ -91,9 +99,10 @@ class adminController extends Controller
     public function getProductList()
     {
       $product_list = product::join("subcategory","subcategory.subcategory_id","=","product.subcategory_id")
-                              ->join("category","category.category_id","=","subcategory.category_id")
-                              ->select("product.*","subcategory.subcategory_name","category.category_name")
-                              ->paginate(15);
+                               ->join("category","category.category_id","=","subcategory.category_id")
+                               ->leftjoin("brand","brand.id","=","product.brand")
+                               ->select("product.*","subcategory.subcategory_name","category.category_name","brand.brand as brand_name")
+                               ->paginate(15);
 
     	return view('admin.productlist',compact('product_list'));
 
@@ -112,7 +121,9 @@ class adminController extends Controller
                   ->select("tag.*","subcategory.subcategory_id","category.category_id","main_category.id as maincategory_id")
                   ->get();
 
-    	return view('admin.addproduct', compact('tag'));
+      $brand = brand::get();
+
+    	return view('admin.addproduct', compact('tag','brand'));
     }
 
     public function getOrders(Request $request)
@@ -188,7 +199,9 @@ class adminController extends Controller
 
     public function getEmailMarketing()
     {
-      return view('admin.email_marketing');
+      $template = template::get();
+
+      return view('admin.email_marketing',compact('template'));
     }
 
     public function getUserList()
@@ -220,6 +233,11 @@ class adminController extends Controller
     public function getCreateUser()
     {
         return view('admin.createuser');
+    }
+
+    public function getBrand()
+    {
+        return view('admin.brand');
     }
 
     public function getSubscriptionList()
@@ -302,6 +320,7 @@ class adminController extends Controller
         'name'=> $request->product_name,
         'description' => $request->description,
         'sku'=> $request->sku,
+        'brand'=> $request->brand,
         'maincategory_id'=>$target[3],
         'category_id'=>$target[2],
         'subcategory_id'=>$target[1],
@@ -355,6 +374,24 @@ class adminController extends Controller
         }
     }
 
+    public function updateBrand(Request $request)
+    {
+        if(brand::where('id',$request->id)->update(['brand' => $request->input])){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
+    public function deleteBrand(Request $request)
+    {
+        if(brand::where('id',$request->id)->delete()){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
     public function bulkDelete(Request $request)
     {
 
@@ -401,15 +438,17 @@ class adminController extends Controller
     {   
         $product_detail = product::where('id','=',$request->product_id)->get();
 
-        $tag = $tag = tag::join("subcategory","subcategory.subcategory_id","=","tag.subcategory_id")
+        $tag = tag::join("subcategory","subcategory.subcategory_id","=","tag.subcategory_id")
                   ->join("category","category.category_id","=","subcategory.category_id")
                   ->join("main_category","main_category.id","=","category.main_category")
                   ->select("tag.*","subcategory.subcategory_id","category.category_id","main_category.id as maincategory_id")
                   ->get();
 
+        $brand = brand::get();
+
         $images = product_image::where('product_id','=',$request->product_id)->get();
 
-        return view('admin.editproduct',compact('tag','product_detail','images'));
+        return view('admin.editproduct',compact('tag','product_detail','images','brand'));
     }
 
     public function editPostProduct(Request $request)
@@ -443,6 +482,7 @@ class adminController extends Controller
                   'price' => $request->price,
                   'stock' => $stock,
                   'sku' => $request->product_sku,
+                  'brand' => $request->brand,
                   'maincategory_id' => $target[3],
                   'category_id' => $target[2],
                   'subcategory_id' => $target[1],
@@ -901,11 +941,46 @@ class adminController extends Controller
 
     public function mail()
     {
-      //pass variable, handle at __construtor
+      $success = array();
+      $subscription = subscription_list::get();
+      $path = template::where('selected',1)->first();
+      foreach($subscription as $result){
+        Mail::to($result->email)->send(new bulkmail($path));
+        array_push($success,$result->id);
+      }
 
-      Mail::to("junyong1213@hotmail.com")->send(new bulkmail("123"));
+      subscription_list::whereIn('id',$success)->update(['sended' => 1]);
 
-      dd("done");
+      return "completed";
+    }
+
+    public function startmail(Request $request)
+    {
+      if(template::where('selected',1)->update(['selected' => null])){
+        if(template::where('id',$request->template)->update(['selected' => 1])){
+          return back()->with('result','Success');
+        }
+        else
+          return back()->with('result','Fail');
+      }
+      return back()->with('result','Fail');   
+    }
+
+    public function addBrand(Request $request)
+    {
+      if(brand::firstWhere('brand',$request->brand) == null){
+        $brand = brand::create([
+            'brand' => $request->brand,
+        ]);
+
+        $path = $request->image->storeAs('/brand_image', $brand->id.".".$request->image->getClientOriginalExtension());
+        brand::where('id',$brand->id)->update(['path'=>$path]);
+        return back()->with('success','Brand Add Successful');
+
+      }else{
+        return back()->with('same','Brand Name Exist, Please Use Another Name');
+      }
+
     }
 
 
