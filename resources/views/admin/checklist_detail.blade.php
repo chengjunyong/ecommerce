@@ -11,6 +11,7 @@
   .checklist .checklist_item img { max-width: 150px; box-shadow: 0px 0px 10px 0px #666; }
   .checklist .checklist_description { flex: 1; }
   .checklist .checklist_checkbox { width: 50px; }
+  .checklist.done { background: #eefffa; }
   .icheck_checkbox label { margin: 0px; }
 
   @media only screen and (max-width: 500px)

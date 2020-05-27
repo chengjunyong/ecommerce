@@ -31,7 +31,7 @@
   .checklist { display: flex; box-shadow: 1px 1px 5px 0px #666; padding: 15px 20px; margin-bottom: 10px; }
   .checklist .checklist_item { width: 200px; margin-right: 15px; }
   .checklist .checklist_item label { width: 100%; font-weight: bold; }
-  .checklist .checklist_item img { width: 150px; box-shadow: 0px 0px 10px 0px #666; }
+  .checklist .checklist_item img { max-width: 150px; box-shadow: 0px 0px 10px 0px #666; }
   .checklist .checklist_description { flex: 1; }
   .checklist .checklist_checkbox { width: 50px; }
   .checklist.done { background: #eefffa; }
@@ -103,7 +103,6 @@
 
   $(".checklist:not(.checklist_checkbox)").click(function(){
     var checked = $(this).find(".icheck").is(":checked");
-    console.log(checked);
     if(checked == true)
     {
       $(this).find(".icheck").iCheck("uncheck");
