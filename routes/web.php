@@ -47,8 +47,13 @@ Route::group(['middleware' => ['auth']], function () {
   });
 
   Route::prefix('item')->group(function () {
-    Route::post('add_wishlist', 'itemController@addItemToWishlist')->name('addItemToWishlist');
-    Route::post('add_cart', 'itemController@addItemToCart')->name('addItemToCart');
+    Route::post('/add_wishlist', 'itemController@addItemToWishlist')->name('addItemToWishlist');
+    Route::post('/add_cart', 'itemController@addItemToCart')->name('addItemToCart');
+    Route::post('/removeCartDetail', 'itemController@removeCartDetail')->name('removeCartDetail');
+    Route::post('/updateCart', 'itemController@updateCart')->name('updateCart');
+    Route::post('/removeWishlistDetail', 'itemController@removeWishlistDetail')->name('removeWishlistDetail');
+    Route::post('/updateWishlist', 'itemController@updateWishlist')->name('updateWishlist');
+    Route::post('/updateWishlistToCart', 'itemController@updateWishlistToCart')->name('updateWishlistToCart');
   });
 
   Route::prefix('checkout')->group(function(){

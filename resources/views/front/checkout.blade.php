@@ -69,6 +69,13 @@
                         <div class="item_qty">
                           Qty : {{ $cart_detail->quantity }}
                         </div>
+
+                        <div class="checkbox icheck_checkbox">
+                          <label>
+                            <input class="icheck cart_detail_checkbox" type="checkbox" name="cart_detail_id[]" value="{{ $cart_detail->id }}" checked />
+                          </label>
+                        </div>
+
                       </div>
                     @endforeach
                   </div>
@@ -159,7 +166,7 @@
       sum_cart += (cart_list[a].quantity * cart_list[a].product_price);
     }
 
-    $("#checkout_page_total").html("RM "+sum_cart);
+    $("#checkout_page_total").html("RM "+parseFloat(sum_cart).toFixed(2));
   }
 
   $("input[name=coupon_code]").on('keypress',function(e) {
@@ -201,7 +208,7 @@
           $("#checkout_page_discount").show();
           $("#checkout_page_discount").children("label").html(response.coupon_name);
           $("#checkout_page_discount").children("span").html("- RM "+response.discount_amount);
-          $("#checkout_page_total").html("RM "+response.price_after_discount);
+          $("#checkout_page_total").html("RM "+parseFloat(response.price_after_discount).toFixed(2));
         }
       }
       else

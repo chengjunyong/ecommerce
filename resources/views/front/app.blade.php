@@ -50,7 +50,7 @@
   <script src="{{ asset('assets/js/menu.js') }}"></script>
 
   <!-- Bootstrap js-->
-  <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="{{ asset('/assets/js/jquery.elevatezoom.js') }}"></script>
 
   <!-- elevatezoom js-->

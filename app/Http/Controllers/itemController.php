@@ -82,7 +82,7 @@ class itemController extends Controller
         $response = new \stdClass();
         $response->error = 0;
         $response->message = "Item added to wishlist.";
-        $respouse->wishlist_count = $wishlist_count;
+        $response->wishlist_count = $wishlist_count;
 
         return response()->json($response);
       }
@@ -128,7 +128,7 @@ class itemController extends Controller
 
           $cart_count = cart_detail::where('cart_id', $cart->id)->where('cart_detail.completed', null)->count();
 
-          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
+          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
 
           $response = new \stdClass();
           $response->error = 0;
@@ -147,7 +147,7 @@ class itemController extends Controller
 
         $cart_count = cart_detail::where('cart_id', $cart->id)->where('cart_detail.completed', null)->count();
 
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
 
         $response = new \stdClass();
         $response->error = 0;
@@ -174,7 +174,7 @@ class itemController extends Controller
       $cart_list = [];
       if($user)
       {
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
       }
 
       return view('front.cart', compact('cart_list')); 
@@ -190,7 +190,7 @@ class itemController extends Controller
       {
         $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
 
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product_image.product_id')->get();
       }
 
       return view('front.checkout', compact('cart_list', 'address_book'));
@@ -214,7 +214,7 @@ class itemController extends Controller
         }
       }
       
-      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $request->cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
 
       $sub_total = 0;
       foreach($cart_list as $cart)
@@ -259,7 +259,7 @@ class itemController extends Controller
       }
 
       $cart = cart::where('user_id', $user->id)->first();
-      cart_detail::where('cart_id', $cart->id)->where('completed', null)->update([
+      cart_detail::where('cart_id', $cart->id)->whereIn('id', $request->cart_detail_id)->where('completed', null)->update([
         'completed' => 1
       ]);
 
@@ -314,6 +314,20 @@ class itemController extends Controller
         elseif($coupon_code)
         {
           $user = Auth::user();
+
+          if($coupon_code->per_customer != "-1")
+          {
+            $voucher_transaction = voucher_transaction::where('user_id', $user->id)->where('coupon_code_id', $coupon_code->id)->get();
+            if(count($voucher_transaction) >= $coupon_code->per_customer)
+            {
+              $response = new \stdClass();
+              $response->error = 0;
+              $response->valid = 0;
+              $response->message = "Sorry, you have reached the redemption limit of this coupon.";
+
+              return $response;
+            }
+          }
 
           // execute time
           // print_r(date("H:i:s") . substr((string)microtime(), 1, 8).'<br>');
@@ -417,5 +431,69 @@ class itemController extends Controller
       }
 
       return view('front.checkout_success', compact('transaction'));
+    }
+
+    public function removeCartDetail(Request $request)
+    {
+      cart_detail::where('id', $request->cart_id)->delete();
+
+      return redirect()->back();
+    }
+
+    public function updateCart(Request $request)
+    {
+      foreach($request->cart_detail_id as $cart_detail_id)
+      {
+        $quantity_name = "quantity_".$cart_detail_id;
+        cart_detail::where('id', $cart_detail_id)->update([
+          'quantity' => $request->$quantity_name
+        ]);
+      }
+
+      return redirect()->back();
+    }
+
+    public function removeWishlistDetail(Request $request)
+    {
+      wishlist_detail::where('id', $request->wishlist_id)->delete();
+
+      return redirect()->back();
+    }
+
+    public function updatewishlist(Request $request)
+    {
+      foreach($request->wishlist_detail_id as $wishlist_detail_id)
+      {
+        $quantity_name = "quantity_".$wishlist_detail_id;
+        wishlist_detail::where('id', $wishlist_detail_id)->update([
+          'quantity' => $request->$quantity_name
+        ]);
+      }
+
+      return redirect()->back();
+    }
+
+    public function updateWishlistToCart(Request $request)
+    {
+      $user = Auth::user();
+      $wishlist_detail = wishlist_detail::where('id', $request->wishlist_id)->first();
+      $cart = cart::where('user_id', $user->id)->first();
+
+      if(!$cart)
+      {
+        $cart = cart::create([
+          'user_id' => $user->id
+        ]);
+      }
+
+      cart_detail::create([
+        'cart_id' => $cart->id,
+        'product_id' => $wishlist_detail->product_id,
+        'quantity' => $wishlist_detail->quantity
+      ]);
+
+      wishlist_detail::where('id', $wishlist_detail->id)->delete();
+
+      return redirect(route('getCartIndex'));
     }
 }

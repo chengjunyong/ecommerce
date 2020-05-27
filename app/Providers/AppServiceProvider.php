@@ -72,7 +72,7 @@ class AppServiceProvider extends ServiceProvider
           $cart = cart::where('user_id', $logged_user->id)->first();
           if($cart)
           {
-            $global_cart_list = cart_detail::where('cart_detail.cart_id', $cart->id)->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock')->limit(3)->get();
+            $global_cart_list = cart_detail::where('cart_detail.cart_id', $cart->id)->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock')->get();
             if(count($global_cart_list) > 0)
             {
               foreach($global_cart_list as $cart_detail)

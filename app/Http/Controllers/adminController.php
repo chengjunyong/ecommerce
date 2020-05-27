@@ -817,7 +817,7 @@ class adminController extends Controller
         $next_transaction = $transaction_list[0]->id;
       }
 
-      $transaction_detail = transaction_detail::where('transaction_detail.transaction_id', $id)->leftJoin('product', 'transaction_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product.id', '=', 'product_image.product_id')->select('transaction_detail.*', 'product.description as description', 'product_image.path as path')->groupBy('transaction_detail.id')->get();
+      $transaction_detail = transaction_detail::where('transaction_detail.transaction_id', $id)->leftJoin('product', 'transaction_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product.id', '=', 'product_image.product_id')->select('transaction_detail.*', 'product.description as description', 'product_image.path as path', 'product.sku as sku')->groupBy('transaction_detail.id')->get();
 
       return view('admin.checklist_detail', compact('transaction_detail', 'next_transaction', 'transaction_id'));
     }

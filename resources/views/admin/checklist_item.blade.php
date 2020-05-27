@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Checklist</title>
 </head>
 <body>
@@ -26,16 +27,21 @@
 
 <style>
   
-  .transaction_box { padding: 15px; margin-bottom: 10px; box-shadow: 1px 1px 3px 0px #666; }
+  .transaction_box { padding: 7px; margin-bottom: 10px; box-shadow: 1px 1px 3px 0px #666; }
   .checklist { display: flex; box-shadow: 1px 1px 5px 0px #666; padding: 15px 20px; margin-bottom: 10px; }
-  .checklist .checklist_item { width: 150px; margin-right: 15px; }
+  .checklist .checklist_item { width: 200px; margin-right: 15px; }
   .checklist .checklist_item label { width: 100%; font-weight: bold; }
-  .checklist .checklist_item img { width: 80px; box-shadow: 0px 0px 10px 0px #666; }
+  .checklist .checklist_item img { width: 150px; box-shadow: 0px 0px 10px 0px #666; }
   .checklist .checklist_description { flex: 1; }
-  .checklist .checklist_quantity { width: 150px; }
-  .checklist .checklist_checkbox { width: 100px; }
+  .checklist .checklist_checkbox { width: 50px; }
   .checklist.done { background: #eefffa; }
   .icheck_checkbox label { margin: 0px; }
+
+  @media only screen and (max-width: 500px)
+  {
+    .checklist .checklist_item { width: 100px; }
+    .checklist .checklist_item img { max-width: 75px; }
+  }
 
 </style>
 
@@ -47,7 +53,7 @@
             <h5 style="display: inline-block; width: calc(100% - 100px);">Manage Check List</h5>
             <a href="{{ route('getChecklist') }}" class="btn btn-info" style="float: right;">Back</a>
           </div>
-          <div class="card-body" style="padding: 0 30px 30px 30px;">
+          <div class="card-body" style="padding: 10px;">
             @foreach($transaction_list as $transaction)
               <div class="transaction_box">
                 <label style="font-weight: bold;">Transaction ID : #{{ $transaction->id }}</label>
@@ -58,15 +64,13 @@
                       <img src="{{ $item->path ? Storage::url($item->path) : asset('assets/images/layout-3/product/1.jpg') }}" />
                     </div>
                     <div class="checklist_description">
-                      <span>{{ $item->sku }}</span>
-                    </div>
-                    <div class="checklist_quantity">
+                      <span style="display: block;">{{ $item->sku }}</span>
                       <label>Quantity x {{ $item->quantity }}</label>
                     </div>
                     <div class="checklist_checkbox">
                       <div class="checkbox icheck_checkbox">
                         <label>
-                          <input class="icheck" type="checkbox" name="done" value="{{ $item->id }}" {{ $item->checked == 1 ? "checked" : "" }} /> Done
+                          <input class="icheck" type="checkbox" name="done" value="{{ $item->id }}" {{ $item->checked == 1 ? "checked" : "" }} />
                         </label>
                       </div>
                     </div>

@@ -213,12 +213,6 @@
 
   var tab = "{{ $tab }}";
   var address_book_list = @json($address_book_list);
-
-  $(".icheck").iCheck({
-    checkboxClass: 'icheckbox_square-blue',
-    radioClass: 'iradio_square-blue',
-    increaseArea: '20%' /* optional */
-  });
   
   $("a[type=tab]").click(function(){
     var target = $(this).attr("target");

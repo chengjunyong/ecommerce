@@ -10,9 +10,14 @@
   .checklist .checklist_item label { width: 100%; font-weight: bold; }
   .checklist .checklist_item img { max-width: 150px; box-shadow: 0px 0px 10px 0px #666; }
   .checklist .checklist_description { flex: 1; }
-  .checklist .checklist_quantity { width: 150px; }
-  .checklist .checklist_checkbox { width: 100px; }
+  .checklist .checklist_checkbox { width: 50px; }
   .icheck_checkbox label { margin: 0px; }
+
+  @media only screen and (max-width: 500px)
+  {
+    .checklist .checklist_item { width: 100px; }
+    .checklist .checklist_item img { max-width: 75px; }
+  }
 
 </style>
 <div class="page-body">
@@ -45,7 +50,7 @@
           <div class="card-header">
             <h5>Manage Check List</h5>
           </div>
-          <div class="card-body" style="padding: 0 30px 30px 30px;">
+          <div class="card-body" style="padding: 10px;">
             @foreach($transaction_detail as $item)
               <div class="checklist">
                 <div class="checklist_item">
@@ -53,15 +58,13 @@
                   <img src="{{ $item->path ? Storage::url($item->path) : asset('assets/images/layout-3/product/1.jpg') }}" />
                 </div>
                 <div class="checklist_description">
-                  <span>{{ $item->description }}</span>
-                </div>
-                <div class="checklist_quantity">
+                  <span style="display: block;">{{ $item->sku }}</span>
                   <label>Quantity x {{ $item->quantity }}</label>
                 </div>
                 <div class="checklist_checkbox">
                   <div class="checkbox icheck_checkbox">
                     <label>
-                      <input class="icheck" type="checkbox" name="done" value="{{ $item->id }}" {{ $item->checked == 1 ? "checked" : "" }} /> Done
+                      <input class="icheck" type="checkbox" name="done" value="{{ $item->id }}" {{ $item->checked == 1 ? "checked" : "" }} />
                     </label>
                   </div>
                 </div>
