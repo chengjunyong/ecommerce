@@ -37,14 +37,17 @@
                 <div class="card-body">
                   <div><span>Please Select Which Template To Use<span></div>
                   <div class="form-group">
-                    <form action="{{ route('startmail') }}" method="post">
+                    <form action="{{ route('activateTemplate') }}" method="post">
                       @csrf
                       <select class="form-control" style="width:17vw" name="template">
                         @foreach($template as $result)
-                          <option value="{{ $result->id }}">{{ $result->title }}</option>
+                            <option value="{{ $result->id }}" {{ ($result->selected == 1) ? 'selected' : '' }}>{{ $result->title }}</option>
                         @endforeach
                       </select>
                       <div style="margin-top:25px"><input type="submit" value="Confirm" class="btn btn-primary"></div>
+                      <div style="margin-top:25px">Current Running Template :</div>
+                      <strong>{{ ($selected != null ? $selected->title : 'No Template Running') }}</strong>
+                      <div style="margin-top:25px"><button id='stop' type="button" class="btn btn-danger">Stop</button></div>
                   </div>
                 </div>
               </div>
@@ -53,6 +56,24 @@
         </div>
       </div>
 </div>
+<script>
+$(document).ready(function(){
+  $("#stop").click(function(){
+    if(confirm("Confirm to stop current email template ?")){
+      let token = $("input[name=_token]").val();
+      $.post("{{ route('stopEmail') }}",
+        {
+          _token : token
 
+        },function(data){
+          if(data == "1"){
+            alert("Email template has been stop");
+            location.reload();
+          }
+        },"html");
+    }
+  });
+});
+</script>
 
 @endsection

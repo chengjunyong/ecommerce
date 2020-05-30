@@ -200,8 +200,9 @@ class adminController extends Controller
     public function getEmailMarketing()
     {
       $template = template::get();
+      $selected = template::where('selected','1')->first();
 
-      return view('admin.email_marketing',compact('template'));
+      return view('admin.email_marketing',compact('template','selected'));
     }
 
     public function getUserList()
@@ -954,16 +955,11 @@ class adminController extends Controller
       return "completed";
     }
 
-    public function startmail(Request $request)
+    public function activateTemplate(Request $request)
     {
-      if(template::where('selected',1)->update(['selected' => null])){
-        if(template::where('id',$request->template)->update(['selected' => 1])){
-          return back()->with('result','Success');
-        }
-        else
-          return back()->with('result','Fail');
-      }
-      return back()->with('result','Fail');   
+      template::where('selected',1)->update(['selected' => null]);
+      template::where('id',$request->template)->update(['selected' => 1]);
+      return back()->with('result','Success');   
     }
 
     public function addBrand(Request $request)
@@ -981,6 +977,32 @@ class adminController extends Controller
         return back()->with('same','Brand Name Exist, Please Use Another Name');
       }
 
+    }
+
+    public function getBrandEdit(Request $request)
+    {
+      $brand = brand::where('id',$request->id)->first();
+
+      return view('admin.brandedit',compact('brand'));
+
+    }
+
+    public function postBrandEdit(Request $request)
+    {
+      brand::where('id',$request->id)->update(['brand' => $request->brand,'path' => 'brand_image/'.$request->id.'.'.$request->image->getClientOriginalExtension()]);
+      $brand = brand::where('id',$request->id)->first();
+      Storage::delete($brand->path);
+      $request->image->storeAs('/brand_image', $brand->id.".".$request->image->getClientOriginalExtension());
+
+      return back()->with('success','Update Successful');
+    }
+
+    public function stopEmail(Request $request)
+    {
+      template::where('selected','1')->update(['selected' => null]);
+      subscription_list::where('sended',1)->update(['sended' => 0]);
+
+      return "1";
     }
 
 

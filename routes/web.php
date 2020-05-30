@@ -107,6 +107,12 @@ Route::group(['middleware' => ['auth:admin']], function () {
     //add brand
     Route::post('/addbrand','adminController@addBrand')->name('addBrand');
 
+    //get brand id
+    Route::get('/brandedit','adminController@getBrandEdit')->name('getBrandEdit');
+
+    //post Edit Brand
+    Route::post('/postBrandEdit','adminController@postBrandEdit')->name('postBrandEdit');
+
     //ajax update brand
     Route::post('/updateBrand','adminController@updateBrand')->name('updateBrand');
 
@@ -229,9 +235,15 @@ Route::group(['middleware' => ['auth:admin']], function () {
     //get template url
     Route::get('/viewTemplate','adminController@viewTemplate')->name('viewTemplate');
 
+    //Send mail function ""Cron job this""
     Route::get('/mail','adminController@mail')->name('mail');
 
-    Route::post('/startmail','adminController@startmail')->name('startmail');
+    //Active the email template
+    Route::post('/activateTemplate','adminController@activateTemplate')->name('activateTemplate');
+
+    //email stop ajax
+    Route::post('/stopEmail','adminController@stopEmail')->name('stopEmail');
+
   });
 });
 

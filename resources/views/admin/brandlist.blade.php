@@ -65,6 +65,7 @@
                                                     <input class="jsgrid-button jsgrid-update-button" type="button" title="Update" hidden="true">
                                                     <input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete">
                                                     <input class="jsgrid-button jsgrid-cancel-edit-button" type="button" title="Cancel edit" hidden="true">
+                                                    <a href="{{ route('getBrandEdit') }}?id={{ $result->id }}"><i class="fas fa-user-edit" style="font-size:18px;margin-left:10px"></i></a>
                                                 </td>           
                                             </tr>                                                       
                                         @endforeach                                                                                                                   
