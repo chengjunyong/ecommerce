@@ -199,6 +199,12 @@ class itemController extends Controller
 
     public function selectedItemCheckout(Request $request)
     {
+      $cart_detail_id = [];
+
+      if($request->cart_detail_id)
+      {
+        $cart_detail_id = $request->cart_detail_id;
+      }
       $user = Auth::user();
 
       $discount_amount = 0;
@@ -206,7 +212,7 @@ class itemController extends Controller
       $coupon_message = "";
       $coupon_name = "";
 
-      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $request->cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
 
       if($request->coupon_code)
       {
@@ -340,8 +346,13 @@ class itemController extends Controller
       return response()->json($result);
     }
 
-    public function couponChecking($code, $cart_detail_id)
+    public function couponChecking($code, $cart_detail_id = [])
     {
+      if($cart_detail_id == null)
+      {
+        $cart_detail_id = [];
+      }
+      
       if($code)
       {
         $today = date('Y-m-d');
