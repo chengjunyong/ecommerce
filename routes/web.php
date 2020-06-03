@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/couponcreate','adminController@getCouponCreate')->name('getCouponCreate');
     Route::get('/userlist','adminController@getUserList')->name('getUserList');
     Route::get('/createuser','adminController@getCreateUser')->name('getCreateUser');
-    Route::get('/report','adminController@getReport')->name('getReport');
+    Route::get('/Sreport','adminController@getSpecifyDateReport')->name('getSpecifyDateReport');
     Route::get('/profile','adminController@getProfile')->name('getProfile');
     Route::get('/invoice','adminController@getInvoice')->name('getInvoice');
     Route::get('/getEmailMarketing','adminController@getEmailMarketing')->name('getEmailMarketing');
@@ -245,6 +245,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     //email stop ajax
     Route::post('/stopEmail','adminController@stopEmail')->name('stopEmail');
+
+    //Post Report Date
+    Route::post('/dateReport','adminController@postReportDate')->name('postReportDate');
 
   });
 });

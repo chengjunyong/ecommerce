@@ -261,9 +261,10 @@ class adminController extends Controller
       return view('admin.list_template',compact('template'));
     }
 
-    public function getReport()
+    public function getSpecifyDateReport()
     {
-        return view('admin.report');
+
+       return view('admin.report');
     }
 
     public function getProfile()
@@ -1003,6 +1004,51 @@ class adminController extends Controller
       subscription_list::where('sended',1)->update(['sended' => 0]);
 
       return "1";
+    }
+
+    public function postReportDate(Request $request)
+    {
+      $date_start = $request->d_start;
+      $date_end = Date('Y-m-d',strtotime($request->d_end.'+1 day'));
+      $output = "";
+
+      $data = transaction::join('transaction_detail','transaction.id','=','transaction_detail.transaction_id')
+                          ->whereBetween('transaction.created_at',[$date_start,$date_end])
+                          ->where('transaction.status',1)
+                          ->select('transaction.*','transaction_detail.product_name','transaction_detail.product_price','transaction_detail.quantity','transaction_detail.total')
+                          ->get();  
+
+      $guard = "";
+      $index = 0;
+
+      foreach($data as $key => $result){  
+
+        if($guard != $result->id){  
+          $output .= "<tr>";
+          $output .= "<td>".++$index."</td>";
+          $output .= "<td>".$result->id."</td>";
+          $output .= "<td>".($result->discount_total == 0 ? 'No Discount' : $result->discount_total)."</td>";
+          $output .= "<td>".$result->product_name."</td>";
+          $output .= "<td>".$result->quantity."</td>";
+          $output .= "<td>Rm ".$result->total."</td>";
+          $output .= "</tr>";
+          $guard = $result->id;  
+        }else{
+          $output .= "<tr>";
+          $output .= "<td></td>";
+          $output .= "<td></td>";
+          $output .= "<td></td>";
+          $output .= "<td>".$result->product_name."</td>";
+          $output .= "<td>".$result->quantity."</td>";
+          $output .= "<td>Rm ".$result->total."</td>";
+          $output .= "</tr>";
+          $guard = $result->id;  
+        }
+      }               
+
+
+
+      return view('admin.report.specify_date_report',compact('output','date_start','date_end'));
     }
 
 
