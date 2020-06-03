@@ -13,6 +13,8 @@
   .item_summary .item_price { color: #ff6000; font-weight: bold; font-size: 16px; padding: 0 10px; max-width: 150px; }
   .item_summary .item_qty { width: 100px; }
 
+  button:disabled { cursor: not-allowed; pointer-events: all !important; }
+
 </style>
 
 <!-- breadcrumb start -->
@@ -142,7 +144,7 @@
                     </div>
                   </div>
                   <div class="text-right">
-                    <button class="btn-normal btn" type="submit">Place Order</button>
+                    <button class="btn-normal btn" type="submit" id="place_order">Place Order</button>
                   </div>
                 </div>
               </div>
@@ -277,6 +279,14 @@
         
         $("#checkout_page_sum").html("RM "+parseFloat(response.sub_total).toFixed(2));
         $("#checkout_page_total").html("RM "+parseFloat(response.total).toFixed(2));
+
+        if($(".cart_detail_checkbox:checked").length == 0)
+          $("#place_order").attr("disabled", true);
+        }
+        else
+        {
+          $("#place_order").attr("disabled", false);
+        }
       }
       else
       {
