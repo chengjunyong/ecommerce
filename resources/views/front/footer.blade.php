@@ -472,7 +472,7 @@
   </div>
 </div>
 
-<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px; z-index: 10;">
+<div aria-live="polite" aria-atomic="true" style="position: relative; height: 0px; z-index: 10;">
   <!-- Position it -->
   <div style="position: fixed; top: 10px; right: 10px;" id="toastBox">
   </div>
