@@ -11,6 +11,7 @@ use App\cart;
 use App\cart_detail;
 use App\address_book;
 use App\tag;
+use App\brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +43,9 @@ class frontController extends Controller
       ]
     );
 
-		return view('front.index', compact("banner"));
+    $brand_list = brand::get();
+
+		return view('front.index', compact("banner", "brand_list"));
 	}
 
   public function getFrontIndex2()
@@ -70,9 +73,58 @@ class frontController extends Controller
     return view('front.index6.index6');
   }
 
+  public function getItemSearch()
+  {
+    $keyword = "";
+
+    if(isset($_GET['keyword']))
+    {
+      $keyword = $_GET['keyword'];
+      $product_list = product::where('name', 'LIKE', '%'.$keyword.'%')->orWhere('description', 'LIKE', '%'.$keyword.'%')->get();
+
+      $subcategory = array();
+      $product_id_array = array();
+
+      foreach($product_list as $product)
+      {
+        if(!in_array($product->subcategory_id, $subcategory))
+        {
+          array_push($subcategory, $product->subcategory_id);
+        }
+
+        array_push($product_id_array, $product->id);
+      }
+
+      $product_image_list = product_image::whereIn('product_id', $product_id_array)->get();
+
+      foreach($product_list as $product)
+      {
+        $product_image = array();
+        foreach($product_image_list as $image)
+        {
+          if($image->product_id == $product->id)
+          {
+            array_push($product_image, $image);
+          }
+        }
+        $product->image = $product_image;
+      }
+
+      $tag_list = tag::whereIn('subcategory_id', $subcategory)->get();
+      $brand_list = brand::get();
+
+      return view('front.category', compact('product_list', 'tag_list', 'brand_list', 'keyword'));
+    }
+
+    return redirect()->back();
+    
+  }
+
   public function getCategoryPage($id)
   {
     $tag_list = tag::where('subcategory_id', $id)->get();
+    $brand_list = brand::get();
+
     $product_list = product::where('subcategory_id', $id)->get();
 
     $product_id_array = array();
@@ -96,7 +148,7 @@ class frontController extends Controller
       $product->image = $product_image;
     }
 
-    return view('front.category', compact('product_list', 'tag_list'));
+    return view('front.category', compact('product_list', 'tag_list', 'brand_list'));
   }
 
   public function getRegisterPage()

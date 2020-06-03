@@ -187,9 +187,18 @@
       return;
     }
 
+    var post_data = "_token={{ csrf_token() }}&coupon_code="+coupon_code;
+    
+    $(".cart_detail_checkbox").each(function(){
+      if($(this).is(":checked"))
+      {
+        post_data += "&cart_detail_id[]="+$(this).val();
+      }
+    });
+
     $("input[name=coupon_code]").removeClass("is-invalid").next("span").remove();
 
-    $.post("{{ route('submitCouponcode') }}", { "_token" : "{{ csrf_token() }}", "coupon_code" : coupon_code }, function(response){
+    $.post("{{ route('submitCouponcode') }}", post_data, function(response){
 
       if(response.error == 0)
       {
@@ -201,6 +210,9 @@
           html += "</span>";
           $("input[name=coupon_code]").addClass("is-invalid");
           $("input[name=coupon_code]").after(html);
+
+          $("input[name=coupon_code]").val("");
+          $("#checkout_page_discount").hide();
           return;
         }
         else if(response.valid == 1)
@@ -209,6 +221,8 @@
           $("#checkout_page_discount").children("label").html(response.coupon_name);
           $("#checkout_page_discount").children("span").html("- RM "+response.discount_amount);
           $("#checkout_page_total").html("RM "+parseFloat(response.price_after_discount).toFixed(2));
+
+          toastBox("success", "Apply Successful", "Coupon "+response.coupon_name+" apply successful.");
         }
       }
       else
@@ -218,6 +232,60 @@
     }).fail(function(){
       alert("Error");
     });
+  });
+
+  $(".cart_detail_checkbox").on("ifChanged", function(){
+
+    var coupon_code = $("input[name=coupon_code]").val();
+    var post_data = "_token={{ csrf_token() }}&coupon_code="+coupon_code;
+    
+    $(".cart_detail_checkbox").each(function(){
+      if($(this).is(":checked"))
+      {
+        post_data += "&cart_detail_id[]="+$(this).val();
+      }
+    });
+
+    $.post("{{ route('selectedItemCheckout') }}", post_data, function(response){
+
+      if(response.error == 0)
+      {
+        if(response.coupon_code != null)
+        {
+          if(response.coupon_valid == 0)
+          {
+            var html = "";
+            html += "<span class='invalid-feedback' role='alert'>";
+            html += "<strong>"+response.coupon_message+"</strong>";
+            html += "</span>";
+            $("input[name=coupon_code]").addClass("is-invalid");
+            $("input[name=coupon_code]").after(html);
+
+            $("input[name=coupon_code]").val("");
+            $("#checkout_page_discount").hide();
+
+            return;
+          }
+          else if(response.coupon_valid == 1)
+          {
+            $("#checkout_page_discount").show();
+            $("#checkout_page_discount").children("label").html(response.coupon_name);
+            $("#checkout_page_discount").children("span").html("- RM "+response.discount_amount);
+            
+          }
+        }
+        
+        $("#checkout_page_sum").html("RM "+parseFloat(response.sub_total).toFixed(2));
+        $("#checkout_page_total").html("RM "+parseFloat(response.total).toFixed(2));
+      }
+      else
+      {
+        alert(response.message);
+      }
+    }).fail(function(){
+      alert("Error");
+    });
+
   });
 
 </script>

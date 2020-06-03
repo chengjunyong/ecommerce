@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\category;
 use App\product;
 use App\product_image;
 use App\wishlist;
@@ -196,6 +197,52 @@ class itemController extends Controller
       return view('front.checkout', compact('cart_list', 'address_book'));
     }
 
+    public function selectedItemCheckout(Request $request)
+    {
+      $user = Auth::user();
+
+      $discount_amount = 0;
+      $coupon_valid = 0;
+      $coupon_message = "";
+      $coupon_name = "";
+
+      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $request->cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+
+      if($request->coupon_code)
+      {
+        $coupon_result = $this->couponChecking($request->coupon_code, $request->cart_detail_id);
+        if($coupon_result->valid == 1)
+        {
+          $coupon_valid = 1;
+          $discount_amount = $coupon_result->discount_amount;
+          $coupon_name = $coupon_result->coupon_name;
+        }
+
+        $coupon_message = $coupon_result->message;
+      }
+
+      $sub_total = 0;
+      foreach($cart_list as $cart)
+      {
+        $sub_total = $sub_total + ($cart->quantity * $cart->product_price);
+      }
+
+      $total = $sub_total - $discount_amount;
+
+      $response = new \stdClass();
+      $response->error = 0;
+      $response->message = "Success";
+      $response->sub_total = $sub_total;
+      $response->total = $total;
+      $response->coupon_code = $request->coupon_code;
+      $response->coupon_valid = $coupon_valid;
+      $response->coupon_message = $coupon_message;
+      $response->coupon_name = $coupon_name;
+      $response->discount_amount = $discount_amount;
+
+      return response()->json($response);
+    }
+
     public function submitPayment(Request $request)
     {
       $user = Auth::user();
@@ -204,7 +251,7 @@ class itemController extends Controller
       $coupon_id = null;
       if($request->coupon_code)
       {
-        $result = $this->couponChecking($request->coupon_code);
+        $result = $this->couponChecking($request->coupon_code, $request->cart_detail_id);
 
         if($result->error == 0 && $result->valid == 1)
         {
@@ -288,12 +335,12 @@ class itemController extends Controller
 
     public function submitCouponCode(Request $request)
     {
-      $result = $this->couponChecking($request->coupon_code);
+      $result = $this->couponChecking($request->coupon_code, $request->cart_detail_id);
 
       return response()->json($result);
     }
 
-    public function couponChecking($code)
+    public function couponChecking($code, $cart_detail_id)
     {
       if($code)
       {
@@ -332,7 +379,7 @@ class itemController extends Controller
           // execute time
           // print_r(date("H:i:s") . substr((string)microtime(), 1, 8).'<br>');
 
-          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
 
           // print_r(date("H:i:s") . substr((string)microtime(), 1, 8).'<br>');
 
@@ -357,16 +404,30 @@ class itemController extends Controller
           }
 
           $item_total = 0;
+          $apply_category_coupon = 1;
           if($coupon_code->category_id)
           {
+            $apply_category_coupon = 0;
             foreach($cart_list as $cart)
             {
               if($cart->category_id == $coupon_code->category_id)
               {
                 $item_total = $item_total + $cart->product_price;
+                $apply_category_coupon = 1;
               }
             }
             $sub_total = $total - $item_total;
+
+            if($apply_category_coupon == 0)
+            {
+              $category_detail = category::where('category_id', $coupon_code->category_id)->first();
+              $response = new \stdClass();
+              $response->error = 0;
+              $response->valid = 0;
+              $response->message = "This coupon only valid for product in category ".$category_detail->category_name.".";
+
+              return $response;
+            }
           }
           else
           {
@@ -375,21 +436,25 @@ class itemController extends Controller
 
           $price_after_discount = 0;
           $discount_amount = 0;
-          if($coupon_code->amount)
+          if($apply_category_coupon == 1)
           {
-            $discount_amount = $coupon_code->amount;
-          }
-          elseif($coupon_code->percent)
-          {
-            $discount_amount = $item_total * ( $coupon_code->percent / 100 );
-            if($coupon_code->maxcap)
+            if($coupon_code->amount)
             {
-              if($discount_amount > $coupon_code->maxcap)
+              $discount_amount = $coupon_code->amount;
+            }
+            elseif($coupon_code->percent)
+            {
+              $discount_amount = $item_total * ( $coupon_code->percent / 100 );
+              if($coupon_code->maxcap)
               {
-                $discount_amount = $coupon_code->maxcap;
+                if($discount_amount > $coupon_code->maxcap)
+                {
+                  $discount_amount = $coupon_code->maxcap;
+                }
               }
             }
           }
+
 
           $price_after_discount = $item_total - $discount_amount + $sub_total;
           if($price_after_discount < 0)

@@ -183,7 +183,10 @@
                       </div>
                     </a>
                   </li>
-                  <li class="mobile-search"><a href="#"><i class="icon-search"></i></a>
+                  <li class="mobile-search">
+                    <a href="#">
+                      <i class="icon-search"></i>
+                    </a>
                     <div class ="search-overlay">
                       <div>
                         <span class="close-mobile-search">×</span>
@@ -191,9 +194,13 @@
                           <div class="container">
                             <div class="row">
                               <div class="col-xl-12">
-                                <form>
-                                  <div class="form-group"><input type="text" class="form-control" id="exampleInputPassword1" placeholder="Search a Product"></div>
-                                  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <form method="GET" action="{{ route('getItemSearch') }}">
+                                  <div class="form-group">
+                                    <input type="text" name="keyword" class="form-control" id="mobileSearchItem" placeholder="Search a Product" value="{{ isset($keyword) ? $keyword : '' }}">
+                                  </div>
+                                  <button type="submit" class="btn btn-primary" id="mobileSearchItemSubmit">
+                                    <i class="fa fa-search"></i>
+                                  </button>
                                 </form>
                               </div>
                             </div>
@@ -331,13 +338,12 @@
               </div>
               <div class="input-block">
                 <div class="input-box">
-                  <form class="big-deal-form">
+                  <form class="big-deal-form" method="GET" action="{{ route('getItemSearch') }}">
                     <div class="input-group ">
                       <div class="input-group-prepend">
-                        <span class="search"><i class="fa fa-search"></i></span>
+                        <span class="search" id="searchItemSubmit"><i class="fa fa-search"></i></span>
                       </div>
-                      <input type="text" class="form-control" placeholder="Search a Product" >
-                        
+                      <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" >
                     </div>
                   </form>
                 </div>
@@ -422,6 +428,21 @@
   
   $(".my_dropdown_2 li div").click(function(){
     $(this).siblings("ul").toggleClass("active");
+  });
+
+  $("#searchItem, #mobileSearchItem").on('keypress',function(e) {
+    console.log(e);
+    if(e.which == 13)
+    {
+      if($(this).attr("id") == "searchItem")
+      {
+        $("#searchItemSubmit").click();
+      }
+      else if($(this).attr("id") == "mobileSearchItem")
+      {
+        $("#mobileSearchItemSubmit").click();
+      }
+    }
   });
 
 </script>

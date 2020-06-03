@@ -125,7 +125,7 @@
                 </form>
               </div>
               <div style="margin: 10px 0;">
-                <div class="product-buttons" product_id="{{ $product_detail->id }}"><a class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
+                <div class="product-buttons" product_id="{{ $product_detail->id }}" type="button"><a class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>
               </div>
             </div>
           </div>
@@ -601,12 +601,10 @@
 </section>
 <!-- related products -->
 
-
-
 <script>
-
+  
   var logged_user = "{{ $logged_user }}";
-
+  
   $(".wishlist-btn, .product-buttons").click(function(){
     if(logged_user == "")
     {
@@ -703,10 +701,6 @@
     }).fail(function(){
       alert("Error");
     });
-  });
-
-  $(".product-buttons").click(function(){
-
   });
 
 </script>

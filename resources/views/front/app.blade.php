@@ -37,6 +37,10 @@
 
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/css/datatables.min.css') }}">
 
+  <!-- owl carousel -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/owlCarousel/owl.carousel.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/owlCarousel/owl.theme.default.css') }}">
+
   <!-- latest jquery-->
   <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 
@@ -70,6 +74,9 @@
 
   <script src="{{ asset('assets/datatables/js/datatables.min.js') }}"></script>
 
+  <!-- owl carousel -->
+  <script src="{{ asset('assets/owlCarousel/owl.carousel.js') }}"></script>
+
 </head>
 <body class="bg-light ">
 
@@ -86,10 +93,9 @@
 
       var clickedID = event.target.id;
 
-
       if(event.keyCode == 13) 
       {
-        if(clickedID != "login_password")
+        if(clickedID != "login_password" && clickedID != "mobileSearchItem" && clickedID != "searchItem")
         {
           event.preventDefault();
           return false;

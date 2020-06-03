@@ -46,7 +46,7 @@
               @foreach($wishlist_list as $wishlist)
               <tr>
                 <td>
-                  <a href="#"><img src="{{ $wishlist->image ? Storage::url($wishlist->image->path) : '../assets/images/layout-2/product/1.jpg' }}" alt="product" class="img-fluid"></a>
+                  <a href="{{ route('getItemDetail', ['id' => $wishlist->product_id]) }}"><img src="{{ $wishlist->image ? Storage::url($wishlist->image->path) : '../assets/images/layout-2/product/1.jpg' }}" alt="product" class="img-fluid"></a>
                 </td>
                 <td><a href="#">{{ $wishlist->product_name }}</a>
                   <div class="mobile-cart-content row">

@@ -2,6 +2,12 @@
 
 @section('layout')
 
+<style>
+  
+  .collection-filter-block { max-height: 450px; overflow: auto; }
+
+</style>
+
 <!-- breadcrumb start -->
 <div class="breadcrumb-main ">
   <div class="container">
@@ -86,7 +92,7 @@
                   <div class="product-wrapper-grid">
                     <div class="row">
                       @foreach($product_list as $product)
-                      <div class="col-xl-3 col-md-4 col-6  col-grid-box">
+                      <div class="col-xl-3 col-md-4 col-6 col-grid-box" type="product" tag="{{ $product->tag_id }}" brand="{{ $product->brand }}">
                         <div class="product">
                           <div class="product-box">
                             <div class="product-imgbox">
@@ -122,13 +128,12 @@
                                 </div>
                               </div>
                               <div class="icon-detail">
-                                <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                                  <i class="ti-bag" ></i>
+                                <button class="product-buttons" product_id="{{ $product->id }}" type="button">
+                                  <i class="ti-bag"></i>
                                 </button>
-                                <a href="javascript:void(0)" title="Add to Wishlist">
+                                <button class="wishlist-btn" product_id="{{ $product->id }}" type="button">
                                   <i class="ti-heart" aria-hidden="true"></i>
-                                </a>
-         
+                                </button>
                               </div>
                             </div>
                           </div>
@@ -164,26 +169,51 @@
             </div>
           </div>
         </div>
+
         <div class="col-sm-3 collection-filter category-side category-page-side">
           <!-- side-bar colleps block stat -->
           <div class="collection-filter-block creative-card creative-inner">
             <!-- brand filter start -->
             <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
             <div class="collection-collapse-block open">
-              <h3 class="collapse-block-title mt-0">brand</h3>
+              <h3 class="collapse-block-title mt-0" style="margin-bottom: 10px;">Tag</h3>
               <div class="collection-collapse-block-content">
                 <div class="collection-brand-filter">
                   @foreach($tag_list as $tag)
-                  <div class="custom-control custom-checkbox collection-filter-checkbox">
-                    <input type="checkbox" class="custom-control-input category_tag" checked>
-                    <label class="custom-control-label" for="zara">{{ $tag->tag_name }}</label>
+
+                  <div class="checkbox icheck_checkbox">
+                    <label>
+                      <input class="icheck tag_checkbox" type="checkbox" value="{{ $tag->id }}" checked /> {{ $tag->tag_name }}
+                    </label>
                   </div>
                   @endforeach
                 </div>
               </div>
             </div>
           </div>
+
+          <div class="collection-filter-block creative-card creative-inner">
+            <!-- brand filter start -->
+            <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
+            <div class="collection-collapse-block open">
+              <h3 class="collapse-block-title mt-0" style="margin-bottom: 10px;">Brand</h3>
+              <div class="collection-collapse-block-content">
+                <div class="collection-brand-filter">
+                  @foreach($brand_list as $brand)
+
+                  <div class="checkbox icheck_checkbox">
+                    <label>
+                      <input class="icheck brand_checkbox" type="checkbox" value="{{ $brand->id }}" checked /> {{ $brand->brand }}
+                    </label>
+                  </div>
+                  @endforeach
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </div>
   </div>
@@ -195,6 +225,106 @@
 <script>
   
   var product_list = @json($product_list);
+
+  var logged_user = "{{ $logged_user }}";
+  
+  $(".wishlist-btn, .product-buttons").click(function(){
+    if(logged_user == "")
+    {
+      alert("Please login before add item to wish list");
+      return;
+    }
+    var product_id = $(this).attr("product_id");
+
+    var route = "";
+    var type = 0;
+    if($(this).hasClass("wishlist-btn") == true)
+    {
+      route = "{{ route('addItemToWishlist') }}";
+      type = 1;
+    }
+    else if($(this).hasClass("product-buttons") == true)
+    {
+      route = "{{ route('addItemToCart') }}";
+      type = 2;
+    }
+
+    if(route == "")
+    {
+      alert("Something wrong.")
+      return;
+    }
+
+    $.post(route, { "_token": "{{ csrf_token() }}", "product_id" : product_id }, function(response){
+
+      if(response.error == 0)
+      {
+        if(type == 1)
+        {
+          $("#wishlist_count").html(response.wishlist_count);
+        }
+        else
+        {
+          var cart_list = response.cart_list;
+
+          var cart_html = "";
+          var sum_cart = 0;
+          for(var a = 0; a < cart_list.length; a++)
+          {
+            var cart_detail = cart_list[a];
+            cart_html += '<li>';
+            cart_html += '<div class="media">';
+            cart_html += '<a href="#">';
+            var cart_img = '../assets/images/layout-1/product/1.jpg';
+            if(cart_detail.path != null)
+            {
+              cart_img = "{{ Storage::url(':path') }}";
+              cart_img = cart_img.replace(':path', cart_detail.path);
+            }
+
+            cart_html += '<img alt="" class="mr-3" src='+cart_img+' />';
+            cart_html += '</a>';
+            cart_html += '<div class="media-body">';
+            cart_html += '<a href="#">';
+            cart_html += '<h4>'+cart_detail.product_name+'</h4>';
+            cart_html += '</a>';
+            cart_html += '<h4>';
+            cart_html += '<span>'+cart_detail.quantity+' x RM '+parseFloat(cart_detail.product_price).toFixed(2)+'</span>';
+            cart_html += '</h4>';
+            cart_html += '</div>';
+            cart_html += '</div>';
+            cart_html += '<div class="close-circle">';
+            cart_html += '<a href="#" class="removeCart" data-toggle="modal" data-target="#removeCartDetail" cart_id="'+cart_detail.id+'">';
+            cart_html += '<i class="ti-trash" aria-hidden="true"></i>';
+            cart_html += '</a>';
+            cart_html += '</div>';
+            cart_html += '</li>';
+
+            sum_cart += cart_detail.quantity * cart_detail.product_price;
+          }
+          $("#footer_cart").html(cart_html);
+          $("#sum_cart").html(parseFloat(sum_cart).toFixed(2));
+
+          $("#cart_count").html(response.cart_count);
+
+          $("a.removeCart").click(function(){
+            var cart_id = $(this).attr("cart_id");
+            $("#removeCartID").val(cart_id);
+          });
+          
+        }
+
+        toastBox("success", "Added Successful", response.message);
+      }
+      else
+      {
+        alert(response.message);
+      }
+
+    }).fail(function(){
+      alert("Error");
+    });
+  });
 
   $(".show_product_detail").click(function(){
     var product_id = $(this).attr("product_id");
@@ -226,6 +356,47 @@
         break;
       }
     }
+  });
+
+  $(".tag_checkbox, .brand_checkbox").on("ifChanged", function(){
+    var tag_hide = [];
+    var brand_hide = [];
+    $(".tag_checkbox").each(function(){
+      if($(this).is(":checked") == false)
+      {
+        tag_hide.push($(this).val());
+      }
+    });
+
+    $(".brand_checkbox").each(function(){
+      if($(this).is(":checked") == false)
+      {
+        brand_hide.push($(this).val());
+      }
+    });
+
+    $("div[type=product]").show();
+
+    if(tag_hide.length > 0)
+    {
+      $("div[type=product]").each(function(){
+        if(tag_hide.includes($(this).attr("tag")) == true)
+        {
+          $(this).hide();
+        }
+      });
+    }
+
+    if(brand_hide.length > 0)
+    {
+      $("div[type=product]").each(function(){
+        if(brand_hide.includes($(this).attr("brand")) == true)
+        {
+          $(this).hide();
+        }
+      });
+    }
+
   });
 
 </script>

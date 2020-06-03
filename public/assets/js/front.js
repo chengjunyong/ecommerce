@@ -1,4 +1,6 @@
 
+
+
 $(document).ready(function(){
 
   var dropdown_timeout;
@@ -35,8 +37,8 @@ function toastBox(class_name, title, body)
   toast_html += '</div>';
 
   $("#toastBox").append(toast_html);
-  $(".toast[toast_id="+unique_id+"]").toast('show').delay(1500).queue(function($removeToast){
-    $(".toast[toast_id="+unique_id+"]").remove();
+  $(".toast[toast_id="+unique_id+"]").toast('show').delay(1500).queue(function(removeToast){
+    $(".toast[toast_id="+unique_id+"]").fadeOut();
     removeToast();
   });
 }

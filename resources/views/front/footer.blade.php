@@ -472,33 +472,6 @@
   </div>
 </div>
 
-<!-- add to cart -->
-<div class="modal fade" style="z-index: 9999;" id="addtocart" tabindex="-1" role="dialog" aria-labelledby="addtocartLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Remove item</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Do you want to remove this item ?
-      </div>
-      <div class="modal-footer">
-        <form method="POST" action="{{ route('removeCartDetail') }}" id="removeCartForm"> 
-          @csrf
-          <input type="hidden" id="removeCartID" name="cart_id" value="" />
-        </form>
-        
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="removeCart">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
 <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px; z-index: 10;">
   <!-- Position it -->
   <div style="position: fixed; top: 10px; right: 10px;" id="toastBox">
