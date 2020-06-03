@@ -86,7 +86,7 @@
                       <i class="ti-angle-left"></i>
                     </button>
                   </span>
-                  <input type="text" name="quantity" class="form-control input-number" value="1"> 
+                  <input type="text" name="quantity" class="form-control input-number" value="1" id="item_quantity"> 
                   <span class="input-group-prepend">
                     <button type="button" class="btn quantity-right-plus" data-type="plus" data-field="">
                       <i class="ti-angle-right"></i>
@@ -612,6 +612,7 @@
       return;
     }
     var product_id = $(this).attr("product_id");
+    var quantity = $("#item_quantity").val();
 
     var route = "";
     var type = 0;
@@ -632,7 +633,7 @@
       return;
     }
 
-    $.post(route, { "_token": "{{ csrf_token() }}", "product_id" : product_id }, function(response){
+    $.post(route, { "_token": "{{ csrf_token() }}", "product_id" : product_id, "quantity" : quantity }, function(response){
 
       if(response.error == 0)
       {
