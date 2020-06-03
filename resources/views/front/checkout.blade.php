@@ -281,6 +281,7 @@
         $("#checkout_page_total").html("RM "+parseFloat(response.total).toFixed(2));
 
         if($(".cart_detail_checkbox:checked").length == 0)
+        {
           $("#place_order").attr("disabled", true);
         }
         else
