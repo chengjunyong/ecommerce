@@ -255,7 +255,7 @@
       return;
     }
 
-    $.post(route, { "_token": "{{ csrf_token() }}", "product_id" : product_id }, function(response){
+    $.post(route, { "_token": "{{ csrf_token() }}", "product_id" : product_id, "quantity" : 1 }, function(response){
 
       if(response.error == 0)
       {

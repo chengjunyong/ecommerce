@@ -215,7 +215,6 @@
 
           $("input[name=coupon_code]").val("");
           $("#checkout_page_discount").hide();
-          return;
         }
         else if(response.valid == 1)
         {
@@ -265,8 +264,6 @@
 
             $("input[name=coupon_code]").val("");
             $("#checkout_page_discount").hide();
-
-            return;
           }
           else if(response.coupon_valid == 1)
           {
