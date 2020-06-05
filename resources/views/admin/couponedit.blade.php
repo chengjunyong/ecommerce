@@ -170,7 +170,7 @@
                     @if($coupon_detail[0]->percent == null)
                     <input disabled id="max_cap" class="form-control col-md-7" type="number" step="0.01" min="0.01" name="max_cap">
                     @else
-                    <input id="max_cap" class="form-control col-md-7" type="number" step="0.01" min="0.01" name="max_cap" value="{{ $coupon_detail[0]->percent }}">
+                    <input id="max_cap" class="form-control col-md-7" type="number" step="0.01" min="0.01" name="max_cap" value="{{ $coupon_detail[0]->maxcap }}">
                     @endif
                   </div>
                   <h4><br/>Usage Limits</h4>

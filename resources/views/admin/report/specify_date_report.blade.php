@@ -1,6 +1,10 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.css') }}">
   <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+  <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
   <title>
     Specify Date Report
   </title>
@@ -27,17 +31,18 @@
       <div id="c_date" align="center">Report Generate Date :</div><br/>
       <div align="center">Date Start : <b>{{ $date_start }}</b></div>
       <div align="center">Date End : <b>{{ $date_end }}</b></div>
+
     </div>
-    <div class="line"></div>
+
     <div class="body">
-      <table style="width:100%;background-color:white;text-align:left">
-        <thead>
+      <table style="width:100%;background-color:white;text-align:left" class="table table-borderless table-hover table-responsive-sm">
+        <thead class="thead-dark">
           <tr>
             <th style="width:5%">Index</th>
             <th style="width:15%">Transaction ID</th>
             <th style="width:15%">Discount Amount</th>
             <th style="width:30%">Items</th>
-            <th style="width:10%">Quantity</th>
+            <th style="width:15%">Quantity</th>
             <th style="width:20%">Total</th>
           </tr>
         </thead>

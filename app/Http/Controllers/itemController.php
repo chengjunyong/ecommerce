@@ -360,6 +360,7 @@ class itemController extends Controller
           $query->where('quantity', '>', 0)->orWhere('quantity', '-1');
         })->where('date_start', '<=', $today)->where('date_end', '>=', $today)->first();
 
+
         if(!$coupon_code)
         {
           $response = new \stdClass();

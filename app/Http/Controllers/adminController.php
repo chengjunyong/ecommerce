@@ -1007,11 +1007,21 @@ class adminController extends Controller
     }
 
     public function postReportDate(Request $request)
-    {
-      $date_start = $request->d_start;
-      $date_end = Date('Y-m-d',strtotime($request->d_end.'+1 day'));
+    { 
+      if($request->month != null){
+        $date_start = $request->month."-01";
+        $date_end = Date('Y-m-d',strtotime($request->month.'+1 month'));
+      }else{
+        $date_start = $request->d_start;
+        $date_end = Date('Y-m-d',strtotime($request->d_end.'+1 day'));
+      }
+      
       $output = "";
-
+      $total_sum = transaction::whereBetween('transaction.created_at',[$date_start,$date_end])
+                          ->where('transaction.status',1)
+                          ->selectRaw('sum(discount_total) as total_discount, sum(total) as total_amount')
+                          ->first();
+                
       $data = transaction::join('transaction_detail','transaction.id','=','transaction_detail.transaction_id')
                           ->whereBetween('transaction.created_at',[$date_start,$date_end])
                           ->where('transaction.status',1)
@@ -1020,17 +1030,26 @@ class adminController extends Controller
 
       $guard = "";
       $index = 0;
+      $quantity = 0;
 
-      foreach($data as $key => $result){  
+      $total_discount = number_format($total_sum->total_discount, 2, '.', ',');
+      $total_amount = number_format($total_sum->total_amount, 2, '.', ',');
+
+      foreach($data as $key => $result){
+        $total = number_format($result->total, 2, '.', ',');
+        $quantity += $result->quantity;
+        if($result->discount_total != 0){
+          $discount = number_format($result->discount_total, 2, '.', ',');
+        }
 
         if($guard != $result->id){  
           $output .= "<tr>";
           $output .= "<td>".++$index."</td>";
           $output .= "<td>".$result->id."</td>";
-          $output .= "<td>".($result->discount_total == 0 ? 'No Discount' : $result->discount_total)."</td>";
+          $output .= "<td>".($result->discount_total == 0 ? 'No Discount' : "Rm ".$discount)."</td>";
           $output .= "<td>".$result->product_name."</td>";
           $output .= "<td>".$result->quantity."</td>";
-          $output .= "<td>Rm ".$result->total."</td>";
+          $output .= "<td>Rm ".$total."</td>";
           $output .= "</tr>";
           $guard = $result->id;  
         }else{
@@ -1040,13 +1059,20 @@ class adminController extends Controller
           $output .= "<td></td>";
           $output .= "<td>".$result->product_name."</td>";
           $output .= "<td>".$result->quantity."</td>";
-          $output .= "<td>Rm ".$result->total."</td>";
+          $output .= "<td>Rm ".$total."</td>";
           $output .= "</tr>";
-          $guard = $result->id;  
+          $guard = $result->id;
         }
-      }               
+      }
 
-
+      $output .= "<tr>";
+      $output .= "<td style='border-top: 2px solid;'></td>";
+      $output .= "<td style='border-top: 2px solid;'></td>";
+      $output .= "<td style='border-top: 2px solid;'>Total Discount:<br/><b>Rm ".$total_discount."</b></td>";
+      $output .= "<td style='border-top: 2px solid;'></td>";
+      $output .= "<td style='border-top: 2px solid;'>Total Quantity:<br/><b>".$quantity."</b></td>";
+      $output .= "<td style='border-top: 2px solid;'>Total Sales:<br/><b>Rm ".$total_amount."</b></td>";
+      $output .= "</tr>";               
 
       return view('admin.report.specify_date_report',compact('output','date_start','date_end'));
     }

@@ -17,8 +17,46 @@
   .dropdown_2_list ul { display: none; }
   ul.active { display: block; }
 
+  .dcheck{
+    width: 40%;
+    border-radius: 20px;
+    border: 2px solid;
+    padding: 0px 5px 0px 5px;
+    margin: 10px 0px 10px 0px;
+    border-color: #ff6000;
+    font-size:25px;
+    text-align: center;
+  }
+
+  input:focus{
+    outline:none;
+  }
+
+  #check{
+    background-color: #66bb6a;
+    background: linear-gradient(to right, #66bb6a, #006064);
+    width: 40%;
+    padding: 5px 5px 5px 5px;
+    border-radius: 20px;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color:white;
+  }
+
+
+  .modal-body{
+    padding: 30px 0px 30px 0px;
+    text-align:center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: linear-gradient(to bottom,#c79081 ,#e4711a);
+
+  }
 </style>
 
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}" />
+<script src="{{ asset('assets/fontawesome/js/all.min.js') }}"></script>
 
 <header>
   <div class="mobile-fix-option"></div>
@@ -28,7 +66,7 @@
         <div class="col-xl-5 col-md-7 col-sm-6">
           <div class="top-header-left">
             <div class="shpping-order">
-              <h6>free shipping on order over Rm 199 </h6>
+              <h6></h6>
             </div>
           </div>
         </div>
@@ -36,9 +74,9 @@
           <div class="top-header-right">
             <div class="top-menu-block">
               <ul>
+                <li><a href="#" id="check_area">Check delivery area</a></li>
                 <li><a href="#">help & contact</a></li>
                 <li><a href="#">track order</a></li>
-                <li><a href="#">shipping </a></li>
                 <li><a href="#">easy returns</a></li>
               </ul>
             </div>
@@ -422,10 +460,28 @@
       </div>
     </div>
   </div>
+
 </header>
+<!-- Modal -->
+<div id="delivery_area" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content" style="border-top-left-radius: 17px;border-top-right-radius: 17px;">
+      <div class="modal-body" style="">
+        <button id="dismiss" style="float:right;border:0px;background-color:transparent;"><i class="fas fa-times-circle" style="color:#aff3d4;font-size:2em;"></i></button>
+        <h4 style="color:white;font-size:200%;font-weight:normal;margin-left:5%">Check Your Delivery Area</h4>
+      </div>
+      <div style="text-align: center;margin-top:40px">
+        <input type="text" class="dcheck">
+      </div>
+      <div style="text-align: center;margin-bottom:40px">
+        <button type="button" id="check">CHECK</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-  
+$(document).ready(function(){  
   $(".my_dropdown_2 li div").click(function(){
     $(this).siblings("ul").toggleClass("active");
   });
@@ -444,5 +500,16 @@
       }
     }
   });
+
+  $("#check_area").click(function(){
+    $('#delivery_area').modal();
+  });
+
+  $("#dismiss").click(function(){
+    $('#delivery_area').modal('toggle');
+  });
+
+});
+
 
 </script>
