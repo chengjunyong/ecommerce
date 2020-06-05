@@ -424,10 +424,11 @@ class itemController extends Controller
             {
               if($cart->category_id == $coupon_code->category_id)
               {
-                $item_total = $item_total + $cart->product_price;
+                $item_total = $item_total + ($cart->product_price * $cart->quantity);
                 $apply_category_coupon = 1;
               }
             }
+
             $sub_total = $total - $item_total;
 
             if($apply_category_coupon == 0)
