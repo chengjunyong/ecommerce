@@ -67,9 +67,9 @@
                 </div>
                 <div class="footer-contant">
                   <ul class="contact-list">
-                    <li><i class="fa fa-map-marker"></i>Demo Store Homeu</li>
-                    <li><i class="fa fa-phone"></i>Contact Us: <span>09-xxxxxxx</span></li>
-                    <li><i class="fa fa-envelope-o"></i>Email Us: support@homeu.com.my</li>
+                    <li><i class="fa fa-map-marker"></i> Demo Store Homeu</li>
+                    <li><i class="fa fa-phone"></i> Contact Us: <span>09-xxxxxxx</span></li>
+                    <li><i class="fa fa-envelope-o"></i> Email Us: support@homeu.com.my</li>
                   </ul>
                 </div>
               </div>

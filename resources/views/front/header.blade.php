@@ -49,9 +49,19 @@
     text-align:center;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background: linear-gradient(to bottom,#c79081 ,#e4711a);
+    background: linear-gradient(to top,#c79081 ,#e4711a);
 
   }
+
+  #msg{
+    font-size:22px;
+    color:red;
+    animation:blink 3s linear infinite;
+  }
+  @keyframes blink{
+    0%{opacity: 0}
+  }
+
 </style>
 
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css') }}">
@@ -465,16 +475,20 @@
 <!-- Modal -->
 <div id="delivery_area" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content" style="border-top-left-radius: 17px;border-top-right-radius: 17px;">
+    <div class="modal-content" style="border-top-left-radius: 17px;border-top-right-radius: 17px;border-radius: 60px">
       <div class="modal-body" style="">
         <button id="dismiss" style="float:right;border:0px;background-color:transparent;"><i class="fas fa-times-circle" style="color:#aff3d4;font-size:2em;"></i></button>
         <h4 style="color:white;font-size:200%;font-weight:normal;margin-left:5%">Check Your Delivery Area</h4>
       </div>
       <div style="text-align: center;margin-top:40px">
-        <input type="text" class="dcheck">
+        <input type="text" id="postcode" class="dcheck" placeholder="Enter Your Postcode">
+      </div>
+      @csrf
+      <div style="text-align: center;margin-bottom:20px">
+        <button type="button" id="check">CHECK</button>
       </div>
       <div style="text-align: center;margin-bottom:40px">
-        <button type="button" id="check">CHECK</button>
+        <label id="msg"></label>
       </div>
     </div>
   </div>
@@ -507,6 +521,19 @@ $(document).ready(function(){
 
   $("#dismiss").click(function(){
     $('#delivery_area').modal('toggle');
+  });
+
+  $("#check").click(function(){
+    let token = $("input[name=_token]").val();
+    let postcode = $("#postcode").val();
+    $.post("{{ route('getPostcodeResult') }}",
+              {
+                _token:token,
+                postcode:postcode
+
+              },function(data){
+                $("#msg").html(data);
+              },"html");
   });
 
 });

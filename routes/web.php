@@ -35,6 +35,7 @@ Route::get('/FAQ', 'frontController@getFAQ')->name('getFAQ');
 Route::get('/forgot_password', 'frontController@getForgotPassword')->name('getForgotPassword');
 Route::get('/order_history', 'frontController@getOrderHistory')->name('getOrderHistory');
 Route::get('/wishlist', 'frontController@getWishList')->name('getWishList');
+Route::post('/getpostcode','frontController@getPostcodeResult')->name('getPostcodeResult');
 
 Route::get('/newpage', 'frontController@getNewPage')->name('getNew');
 

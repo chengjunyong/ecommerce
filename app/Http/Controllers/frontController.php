@@ -11,6 +11,7 @@ use App\cart;
 use App\cart_detail;
 use App\address_book;
 use App\tag;
+use App\postcode;
 use App\brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -237,5 +238,15 @@ class frontController extends Controller
     }
 
     return view('front.wishlist', compact('wishlist_list'));
+  }
+
+  public function getPostcodeResult(Request $request)
+  {
+      $result = postcode::where("postcode",$request->postcode)->count();
+      if($result == 0){
+        return "Sorry, Your Area Is Not Available";
+      }else{
+        return "Congratulation, We Able Delivery To Your Area";
+      }
   }
 }
