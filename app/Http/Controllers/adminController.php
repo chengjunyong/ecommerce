@@ -43,6 +43,9 @@ use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
+// phpspreadsheet
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx; 
+
 class adminController extends Controller
 {
     public function getIndex()
@@ -1077,5 +1080,70 @@ class adminController extends Controller
       return view('admin.report.specify_date_report',compact('output','date_start','date_end'));
     }
 
+    public function readExcel()
+    { 
+      // read excel file
+      $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 
+      $reader->setLoadSheetsOnly(["Sheet1", "Sheet4"]);
+
+      $spreadsheet = $reader->load("storage/test.xlsx");
+
+      // either 1
+      // $sheet = $spreadsheet->getActiveSheet();
+      // $sheet = $spreadsheet->getSheetByName('sheet2');
+
+      $sheet_1 = null;
+      $sheet_4 = null;
+
+      foreach ($spreadsheet->getWorksheetIterator() as $sheet)
+      {
+        if($sheet->getTitle() == "Sheet1")
+        {
+          $sheet_1 = $sheet;
+        }
+        elseif($sheet->getTitle() == "Sheet4")
+        {
+          $sheet_4 = $sheet;
+        }
+      }
+
+      $item_name = $sheet_1->getCell('B3')->getValue();
+      $sheet_title = $sheet_4->getCell('A4')->getValue();
+
+      $sheet_1->setCellValue('A8', "This is A8 new value");
+
+      $writer = new Xlsx($spreadsheet);
+      $writer->save('storage/edit.xlsx');
+
+      return response()->download('storage/edit.xlsx');
+
+      // dd($item_name, $sheet_title);
+      // end read
+
+      $mysheet = ["My sheet 1", "My sheet 2"];
+
+      $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
+      // $spreadsheet->createSheet();
+      $sheet = $spreadsheet->setActiveSheetIndex(0);
+      $sheet->setTitle("This is my sheet");
+
+      foreach($mysheet as $key => $new_sheet)
+      {
+        $spreadsheet->createSheet();
+        $sheet = $spreadsheet->setActiveSheetIndex(($key + 1));
+        $sheet->setTitle($new_sheet);
+
+        $sheet->setCellValue('A1', "This is sheet ".($key + 1));
+      }
+
+      $spreadsheet->removeSheetByIndex(0);
+
+      $writer = new Xlsx($spreadsheet);
+      $writer->save('storage/write.xlsx');
+
+      // return response()->download('storage/write.xlsx');
+
+
+    }
 }

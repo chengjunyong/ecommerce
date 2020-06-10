@@ -264,3 +264,4 @@ Route::prefix('/admin')->group(function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/readexcel', 'adminController@readExcel')->name('readExcel');
