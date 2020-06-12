@@ -13,6 +13,8 @@ use App\address_book;
 use App\tag;
 use App\postcode;
 use App\brand;
+use App\transaction;
+use App\transaction_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -216,7 +218,58 @@ class frontController extends Controller
 
   public function getOrderHistory()
   {
-    return view('front.order_history');
+    $user = Auth::user();
+
+    $transaction_list = transaction::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+
+    $transaction_id_array = array();
+    foreach($transaction_list as $transaction)
+    {
+      $transaction->status_text = $this->transactionStatus($transaction->status);
+      array_push($transaction_id_array, $transaction->id);
+    }
+
+    $transaction_detail = transaction_detail::whereIn('transaction_id', $transaction_id_array)->get();
+
+    $product_id_array = array();
+    foreach($transaction_detail as $detail)
+    {
+      if(!in_array($detail->product_id, $product_id_array))
+      {
+        array_push($product_id_array, $detail->product_id);
+      }
+    }
+
+    $product_list = product::whereIn('product.id', $product_id_array)->join('product_image', 'product_image.product_id', '=', 'product.id')->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
+
+    foreach($transaction_detail as $detail)
+    {
+      $detail->path = null;
+      foreach($product_list as $product_detail)
+      {
+        if($detail->product_id == $product_detail->id)
+        {
+          $detail->path = $product_detail->path;
+          break;
+        }
+      }
+    }
+
+    foreach($transaction_list as $transaction)
+    {
+      $transaction_item = array();
+      foreach($transaction_detail as $item)
+      {
+        if($item->transaction_id == $transaction->id)
+        {
+          array_push($transaction_item, $item);
+        }
+      }
+
+      $transaction->item = $transaction_item;
+    }
+
+    return view('front.order_history', compact('transaction_list'));
   }
 
   public function getWishList()
@@ -248,5 +301,33 @@ class frontController extends Controller
       }else{
         return "Congratulation, We Able Delivery To Your Area";
       }
+  }
+
+  public function transactionStatus($status)
+  {
+    if($status == 1)
+    {
+      return "Pending";
+    }
+    elseif($status == 2)
+    {
+      return "Confirmed";
+    }
+    elseif($status == 3)
+    {
+      return "Shipped";
+    }
+    elseif($status == 4)
+    {
+      return "Delivered";
+    }
+    elseif($status == 5)
+    {
+      return "Cancelled";
+    }
+    else
+    {
+      return "";
+    }
   }
 }

@@ -1,6 +1,6 @@
 <style>
 
-  .nav-left { overflow: visible !important; }
+  .nav-left { top: 0px; overflow: visible !important; }
   .my_dropdown { position: relative; padding: 0px 0px 7px 0px !important; } 
   .my_dropdown > li { padding: 7px 20px; }
   .my_dropdown li:hover { background: #eee; }
@@ -16,6 +16,21 @@
   .my_dropdown_2 li:hover > div a { color: #ff6000 !important; }
   .dropdown_2_list ul { display: none; }
   ul.active { display: block; }
+
+  .input-block { flex: 1; margin: 0 20px; }
+  .big-deal-form { width: 100%; margin: 5px 0; background-color: #fff; }
+  .input-group  { height: 50px; }
+  .input-group-prepend { border: 1px solid #ced4da; border-right: 0px; border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; }
+  .input-group-prepend span { padding: 10px 20px; background-color: #fff; -ms-flex-item-align: center; align-self: center; }
+  .input-group-prepend .form-control { border-radius: 0; border: none; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
+
+  @media (max-width: 577px)
+  {
+    .input-block { display: none; }
+  }
+
+  .postal_code_header { border: none; background-image: url(http://localhost:8000/assets/images/postal_code_check_banner.png); background-repeat: no-repeat; background-size: cover; height: 200px; color: #fff; }
+
 
   .dcheck{
     width: 40%;
@@ -43,16 +58,6 @@
     color:white;
   }
 
-
-  .modal-body{
-    padding: 30px 0px 30px 0px;
-    text-align:center;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    background: linear-gradient(to top,#c79081 ,#e4711a);
-
-  }
-
   #msg{
     font-size:22px;
     color:red;
@@ -73,14 +78,7 @@
   <div class="top-header">
     <div class="custom-container">
       <div class="row">
-        <div class="col-xl-5 col-md-7 col-sm-6">
-          <div class="top-header-left">
-            <div class="shpping-order">
-              <h6></h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-7 col-md-5 col-sm-6">
+        <div class="col-md-12">
           <div class="top-header-right">
             <div class="top-menu-block">
               <ul>
@@ -197,6 +195,20 @@
               </a>
           	</div>
       		</div>
+
+          <div class="input-block">
+            <div class="input-box">
+              <form class="big-deal-form" method="GET" action="{{ route('getItemSearch') }}">
+                <div class="input-group ">
+                  <div class="input-group-prepend">
+                    <span class="search" id="searchItemSubmit"><i class="fa fa-search"></i></span>
+                  </div>
+                  <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" >
+                </div>
+              </form>
+            </div>
+          </div>
+
           <div class="menu-right">
             
             <div>
@@ -384,18 +396,6 @@
                   </div>
                 </div>
               </div>
-              <div class="input-block">
-                <div class="input-box">
-                  <form class="big-deal-form" method="GET" action="{{ route('getItemSearch') }}">
-                    <div class="input-group ">
-                      <div class="input-group-prepend">
-                        <span class="search" id="searchItemSubmit"><i class="fa fa-search"></i></span>
-                      </div>
-                      <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" >
-                    </div>
-                  </form>
-                </div>
-              </div>
             </div>
             <div class="category-right">
               <div class="contact-block">
@@ -475,9 +475,17 @@
 <!-- Modal -->
 <div id="delivery_area" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content" style="border-top-left-radius: 17px;border-top-right-radius: 17px;border-radius: 60px">
+    <div class="modal-content" style="border-radius: 3px;">
+
+      <div class="modal-header postal_code_header">
+        <h2 class="modal-title" style="width: 100%; text-align: center; padding: 20px 0;">Search your delivery area.</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff;">
+          <span aria-hidden="true" style="font-size: 30px;">&times;</span>
+        </button>
+      </div>
+
       <div class="modal-body" style="">
-        <button id="dismiss" style="float:right;border:0px;background-color:transparent;"><i class="fas fa-times-circle" style="color:#aff3d4;font-size:2em;"></i></button>
+        
         <h4 style="color:white;font-size:200%;font-weight:normal;margin-left:5%">Check Your Delivery Area</h4>
       </div>
       <div style="text-align: center;margin-top:40px">
@@ -519,9 +527,9 @@ $(document).ready(function(){
     $('#delivery_area').modal();
   });
 
-  $("#dismiss").click(function(){
-    $('#delivery_area').modal('toggle');
-  });
+  // $("#dismiss").click(function(){
+  //   $('#delivery_area').modal('toggle');
+  // });
 
   $("#check").click(function(){
     let token = $("input[name=_token]").val();
