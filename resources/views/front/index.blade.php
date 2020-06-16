@@ -24,7 +24,7 @@
 
 </style>
 
-<section class="theme-slider section-pt-space">
+<section class="theme-slider section-pt-space" style="padding-top: 0px;">
   <div class="custom-container">
     <div class="row">
       <div class="col-xl-8 col-lg-9 offset-xl-2 px-abjust">

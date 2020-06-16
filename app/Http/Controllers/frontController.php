@@ -18,6 +18,10 @@ use App\transaction_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\frontMail;
+use Illuminate\Support\Facades\Crypt;
+
 class frontController extends Controller
 {
 	public function getFrontIndex()
@@ -83,7 +87,7 @@ class frontController extends Controller
     if(isset($_GET['keyword']))
     {
       $keyword = $_GET['keyword'];
-      $product_list = product::where('name', 'LIKE', '%'.$keyword.'%')->orWhere('description', 'LIKE', '%'.$keyword.'%')->get();
+      $product_list = product::where('name', 'LIKE', '%'.$keyword.'%')->orWhere('description', 'LIKE', '%'.$keyword.'%')->paginate(10);
 
       $subcategory = array();
       $product_id_array = array();
@@ -128,7 +132,7 @@ class frontController extends Controller
     $tag_list = tag::where('subcategory_id', $id)->get();
     $brand_list = brand::get();
 
-    $product_list = product::where('subcategory_id', $id)->get();
+    $product_list = product::where('subcategory_id', $id)->paginate(10);
 
     $product_id_array = array();
     foreach($product_list as $product)
@@ -329,5 +333,19 @@ class frontController extends Controller
     {
       return "";
     }
+  }
+
+  public function sendMail($user, $type)
+  {
+    $user->type = $type;
+
+    Mail::to($user->email)->send(new frontMail($user));
+  }
+
+  public function testing()
+  {
+    $encrypted = Crypt::encryptString('Hello world.');
+
+    dd(Crypt::decryptString($encrypted), $encrypted);
   }
 }

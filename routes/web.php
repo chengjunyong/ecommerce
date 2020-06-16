@@ -265,3 +265,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/readexcel', 'adminController@readExcel')->name('readExcel');
+Route::get('/front_testing', 'frontController@testing')->name('front_testing');
+Route::get('/verify_email', 'frontController@verify_email')->name('verify_email');

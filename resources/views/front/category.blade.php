@@ -6,6 +6,26 @@
   
   .collection-filter-block { max-height: 450px; overflow: auto; }
 
+  .brand_label { display: inline-block; color: #ff6000; font-size: 16px; font-weight: bold; margin-top: 27px; float: left; padding-right: 10px; }
+  .brand_box { padding: 10px 20px; position: relative; }
+  #brand_list { display: inline-block; width: calc(100% - 60px); padding: 0 40px; }
+  @media (max-width: 991px)
+  {
+    .brand_label { display: block; text-align: center; border: 0; border-bottom: 2px solid #ff6000; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; margin: 0 auto; margin-bottom: 10px; font-size: 16px; float: initial; }
+    #brand_list { width: 100%; display: block; } 
+  }
+
+  .brand { line-height: 30px; cursor: pointer; text-align: center; }
+  .brand:hover, .brand.active { color: #ff6000; }
+  .brand img { border-radius: 50%; box-shadow: 0px 0px 1px 3px; width: 50px !important; height: 50px !important; margin: 5px auto; filter: grayscale(1); }
+  .brand.active img { filter: grayscale(0); }
+
+  #brand_list .owl-nav { position: absolute; left: 0px; top: 0px; width: 100%; }
+  #brand_list .owl-nav .owl-prev { position: absolute; top: 30px; left: 0px; padding: 0 10px; }
+  .owl-prev.disabled, .owl-next.disabled { color: #ccc !important; }
+  #brand_list .owl-nav .owl-next { position: absolute; top: 30px; right: 0px; padding: 0 10px; }
+  .owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
+
 </style>
 
 <!-- breadcrumb start -->
@@ -38,9 +58,30 @@
         <div class="collection-content col">
           <div class="page-main-content">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-9 col-xs-12">
                 <div class="top-banner-wrapper">
-                  <a href="#"><img src="../assets/images/category/1.jpg" class="img-fluid " alt=""></a>
+                  <a href="#">
+                    <img src="../assets/images/category/1.jpg" class="img-fluid " alt="">
+                  </a>
+
+                  <div class="brand-panel-box">
+                    <div class="brand_box">
+                      <div class="brand_label">Brand : </div>
+                      <div class="owl-carousel" id="brand_list">
+                        @foreach($brand_list as $brand)
+                          <div class="item brand active">
+                            <img src="{{ Storage::url($brand->path) }}" />
+                            <a class="brand">{{ $brand->brand }}</a>
+
+                            <div style="display: none;">
+                              <input class="brand_checkbox" type="checkbox" value="{{ $brand->id }}" checked />
+                            </div>
+                          </div>
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="top-banner-content small-section">
                     <h4>Sample Category</h4>
                     <h5>Some Description on your category</h5>
@@ -48,7 +89,7 @@
                   </div>
                 </div>
                 <div class="collection-product-wrapper">
-                  <div class="product-top-filter">
+<!--                   <div class="product-top-filter">
                     <div class="row">
                       <div class="col-xl-12">
                         <div class="filter-main-btn"><span class="filter-btn btn btn-theme"><i class="fa fa-filter" aria-hidden="true"></i> Filter</span></div>
@@ -88,7 +129,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="product-wrapper-grid">
                     <div class="row">
                       @foreach($product_list as $product)
@@ -142,76 +183,74 @@
                     @endforeach
                     </div>
                   </div>
+
                   <div class="product-pagination">
                     <div class="theme-paggination-block">
                       <div class="row">
                         <div class="col-xl-6 col-md-6 col-sm-12">
                           <nav aria-label="Page navigation">
                             <ul class="pagination">
-                              <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><i class="fa fa-chevron-left" aria-hidden="true"></i></span> <span class="sr-only">Previous</span></a></li>
-                              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                              <li class="page-item"><a class="page-link" href="#">2</a></li>
-                              <li class="page-item"><a class="page-link" href="#">3</a></li>
-                              <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true"><i class="fa fa-chevron-right" aria-hidden="true"></i></span> <span class="sr-only">Next</span></a></li>
+                              <li class="page-item {{ ($product_list->currentPage() == 1) ? ' disabled' : '' }}">
+                                <a class="page-link" href="{{ $product_list->url(1) }}" aria-label="Previous">
+                                  <span aria-hidden="true">
+                                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                  </span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                              </li>
+
+                              @for ($i = 1; $i <= $product_list->lastPage(); $i++)
+                                <li class="page-item {{ ($product_list->currentPage() == $i) ? ' active' : '' }}">
+                                  <a class="page-link" href="{{ $product_list->url($i) }}">{{ $i }}</a>
+                                </li>
+                              @endfor
+
+                              <li class="page-item {{ ($product_list->currentPage() == $product_list->lastPage()) ? ' disabled' : '' }}">
+                                <a class="page-link" href="{{ $product_list->url($product_list->currentPage()+1) }}" aria-label="Next">
+                                  <span aria-hidden="true">
+                                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                  </span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                              </li>
+
                             </ul>
                           </nav>
                         </div>
-                        <div class="col-xl-6 col-md-6 col-sm-12">
-                          <div class="product-search-count-bottom">
-                            <h5>Showing Products 1-24 of 10 Result</h5>
-                          </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-sm-3 collection-filter category-side category-page-side">
+                <!-- side-bar colleps block stat -->
+                <div class="collection-filter-block creative-card creative-inner">
+                  <!-- brand filter start -->
+                  <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
+                  <div class="collection-collapse-block open">
+                    <h3 class="collapse-block-title mt-0" style="margin-bottom: 10px;">Tag</h3>
+                    <div class="collection-collapse-block-content">
+                      <div class="collection-brand-filter">
+                        @foreach($tag_list as $tag)
+
+                        <div class="checkbox icheck_checkbox">
+                          <label>
+                            <input class="icheck tag_checkbox" type="checkbox" value="{{ $tag->id }}" checked /> {{ $tag->tag_name }}
+                          </label>
                         </div>
+                        @endforeach
                       </div>
                     </div>
                   </div>
                 </div>
+
               </div>
+
             </div>
           </div>
-        </div>
-
-        <div class="col-sm-3 collection-filter category-side category-page-side">
-          <!-- side-bar colleps block stat -->
-          <div class="collection-filter-block creative-card creative-inner">
-            <!-- brand filter start -->
-            <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
-            <div class="collection-collapse-block open">
-              <h3 class="collapse-block-title mt-0" style="margin-bottom: 10px;">Tag</h3>
-              <div class="collection-collapse-block-content">
-                <div class="collection-brand-filter">
-                  @foreach($tag_list as $tag)
-
-                  <div class="checkbox icheck_checkbox">
-                    <label>
-                      <input class="icheck tag_checkbox" type="checkbox" value="{{ $tag->id }}" checked /> {{ $tag->tag_name }}
-                    </label>
-                  </div>
-                  @endforeach
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="collection-filter-block creative-card creative-inner">
-            <!-- brand filter start -->
-            <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
-            <div class="collection-collapse-block open">
-              <h3 class="collapse-block-title mt-0" style="margin-bottom: 10px;">Brand</h3>
-              <div class="collection-collapse-block-content">
-                <div class="collection-brand-filter">
-                  @foreach($brand_list as $brand)
-
-                  <div class="checkbox icheck_checkbox">
-                    <label>
-                      <input class="icheck brand_checkbox" type="checkbox" value="{{ $brand->id }}" checked /> {{ $brand->brand }}
-                    </label>
-                  </div>
-                  @endforeach
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -227,6 +266,32 @@
   var product_list = @json($product_list);
 
   var logged_user = "{{ $logged_user }}";
+
+  $(document).ready(function(){
+
+    $('#brand_list').owlCarousel({
+      margin: 10,
+      loop: false,
+      dots: false,
+      nav : true,
+      navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+      responsive: {
+        0: 
+        {
+          items: 4
+        },
+        600: 
+        {
+          items: 6
+        },
+        1000: 
+        {
+          items: 10
+        }
+      }
+    });
+
+  });
   
   $(".wishlist-btn, .product-buttons").click(function(){
     if(logged_user == "")
@@ -358,7 +423,30 @@
     }
   });
 
+  $(".item.brand").click(function(){
+    var checked = $(this).find("input[type=checkbox]").is(":checked");
+
+    if(checked == false)
+    {
+      $(this).find("input[type=checkbox]").attr("checked", true);
+      $(this).addClass("active");
+    }
+    else
+    {
+      $(this).find("input[type=checkbox]").attr("checked", false);
+      $(this).removeClass("active");
+    }
+
+    showHideProduct();
+
+  });
+
   $(".tag_checkbox, .brand_checkbox").on("ifChanged", function(){
+    showHideProduct();
+  });
+
+  function showHideProduct()
+  {
     var tag_hide = [];
     var brand_hide = [];
     $(".tag_checkbox").each(function(){
@@ -396,8 +484,7 @@
         }
       });
     }
-
-  });
+  }
 
 </script>
 

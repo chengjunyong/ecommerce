@@ -29,6 +29,11 @@
     .input-block { display: none; }
   }
 
+  @media (min-width: 577px)
+  {
+    .layout-header1 .main-menu-block .menu-left { width: 270px; }
+  }
+
   .postal_code_header { border: none; background-image: url(http://localhost:8000/assets/images/postal_code_check_banner.png); background-repeat: no-repeat; background-size: cover; height: 200px; color: #fff; }
 
 
@@ -105,7 +110,7 @@
   </div>
 </div>
 <div class="layout-header1">
-  <div class="container">
+  <div class="custom-container">
     <div class="row">
       <div class="col-md-12">
         <div class="main-menu-block">
@@ -189,7 +194,7 @@
                 @endif
               </ul>
             </div>
-            <div class="brand-logo">
+            <div class="brand-logo" style="margin: auto;">
               <a href="{{ route('getFrontIndex') }}">
                 <img src="{{ asset('/assets/images/layout-2/logo/logo2.png') }}" width="200" height="60" class="img-fluid  " alt="logo-header">
               </a>
@@ -289,7 +294,7 @@
     </div>
   </div>
 </div>
-<div class="category-header">
+<div class="category-header" style="background: rgba(0,0,0,0)">
   <div class="custom-container">
       <div class="row">
         <div class="col">
@@ -397,7 +402,7 @@
                 </div>
               </div>
             </div>
-            <div class="category-right">
+            <!-- <div class="category-right">
               <div class="contact-block">
                 <div>
                   <i class="fa fa-volume-control-phone"></i>
@@ -413,7 +418,7 @@
                     <p>Get It</p>
                     <span>Promotion Offer</span>
                   </div>
-                </div>
+                </div> -->
                 
               <!-- <div class="dropdown-menu gift-dropdown">
                 <div class="media">
@@ -464,8 +469,8 @@
                 </div>
               </div> -->
 
-            </div>
-          </div>
+           <!--  </div>
+          </div> -->
         </div>
       </div>
     </div>
