@@ -270,6 +270,12 @@ class adminController extends Controller
        return view('admin.report');
     }
 
+    public function getProductReport()
+    {
+
+       return view('admin.product_report');
+    }
+
     public function getProfile()
     {
         return view('admin.profile');
@@ -1078,6 +1084,19 @@ class adminController extends Controller
       $output .= "</tr>";               
 
       return view('admin.report.specify_date_report',compact('output','date_start','date_end'));
+    }
+
+
+    public function postProductReport(Request $request)
+    {
+      
+
+      return view('admin.report.product_report');
+    }
+
+    public function getAjaxProductList(Request $request)
+    {
+      return product::where('name','LIKE','%'.$request->product_name.'%')->get();
     }
 
     public function readExcel()

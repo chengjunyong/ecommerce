@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/userlist','adminController@getUserList')->name('getUserList');
     Route::get('/createuser','adminController@getCreateUser')->name('getCreateUser');
     Route::get('/Sreport','adminController@getSpecifyDateReport')->name('getSpecifyDateReport');
+    Route::get('/Preport','adminController@getProductReport')->name('getProductReport');
     Route::get('/profile','adminController@getProfile')->name('getProfile');
     Route::get('/invoice','adminController@getInvoice')->name('getInvoice');
     Route::get('/getEmailMarketing','adminController@getEmailMarketing')->name('getEmailMarketing');
@@ -249,6 +250,11 @@ Route::group(['middleware' => ['auth:admin']], function () {
 
     //Post Report Date
     Route::post('/dateReport','adminController@postReportDate')->name('postReportDate');
+
+    //Post Product Report
+    Route::post('/productReport','adminController@postProductReport')->name('postProductReport');
+    //Ajax get product list
+    Route::post('/ajax_product_list','adminController@getAjaxProductList')->name('getAjaxProductList');
 
   });
 });
