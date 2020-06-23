@@ -6,20 +6,20 @@
   
   .brand_label { display: inline-block; color: #ff6000; font-size: 16px; font-weight: bold; margin-top: 27px; float: left; padding-right: 10px; }
   .brand_box { padding: 10px 20px; position: relative; }
-  #brand_list { display: inline-block; width: calc(100% - 60px); padding: 0 40px; }
+  #brand_list { display: block; width: 100%; padding: 0 40px; }
+  #brand_list a { color: transparent; }
   @media (max-width: 991px)
   {
     .brand_label { display: block; text-align: center; border: 0; border-bottom: 2px solid #ff6000; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; margin: 0 auto; margin-bottom: 10px; font-size: 16px; float: initial; }
-    #brand_list { width: 100%; display: block; } 
   }
 
   .brand { line-height: 30px; cursor: pointer; text-align: center; }
   .brand:hover { color: #ff6000; }
   .brand img { border-radius: 50%; box-shadow: 0px 0px 1px 3px; width: 50px !important; height: 50px !important; margin: 5px auto; }
   #brand_list .owl-nav { position: absolute; left: 0px; top: 0px; width: 100%; }
-  #brand_list .owl-nav .owl-prev { position: absolute; top: 30px; left: 0px; padding: 0 10px; }
+  #brand_list .owl-nav .owl-prev { position: absolute; top: 20px; left: 0px; padding: 0 10px; }
   .owl-prev.disabled, .owl-next.disabled { color: #ccc !important; }
-  #brand_list .owl-nav .owl-next { position: absolute; top: 30px; right: 0px; padding: 0 10px; }
+  #brand_list .owl-nav .owl-next { position: absolute; top: 20px; right: 0px; padding: 0 10px; }
   .owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
 
 </style>
@@ -92,24 +92,6 @@
   </div>
 </section>
 <!--slider end-->
-
-<!--top brand panel start-->
-<section class="brand-panel section-pt-space">
-  <div class="brand-panel-box">
-    <div class="brand_box">
-      <div class="brand_label">Brand : </div>
-      <div class="owl-carousel" id="brand_list">
-        @foreach($brand_list as $brand)
-          <div class="item brand">
-            <img src="{{ Storage::url($brand->path) }}" />
-            <a class="brand">{{ $brand->brand }}</a>
-          </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-</section>
-<!--top brand panel end-->
 
 <!--services start-->
 <section class="services">
@@ -556,6 +538,24 @@
   </div>
 </section>
 <!--collection banner end-->
+
+<!--top brand panel start-->
+<section class="brand-panel section-pt-space">
+  <div class="brand-panel-box">
+    <div class="brand_box">
+      <div class="owl-carousel" id="brand_list">
+        @foreach($brand_list as $brand)
+          <a href="{{ route('getFrontBrandList', ['id' => $brand->id]) }}">
+            <div class="item brand">
+              <img src="{{ Storage::url($brand->path) }}" />
+            </div>
+          </a>
+        @endforeach
+      </div>
+    </div>
+  </div>
+</section>
+<!--top brand panel end-->
 
 <!-- media tab start -->
 <section class="section-big-pb-space ratio_40 pb-10">
@@ -3486,7 +3486,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="icon-email"></i></span>
         </div>
-        <input type="text" placeholder="ENTER YOUR EMAIL...." >
+        <input type="text" class="form-control" placeholder="ENTER YOUR EMAIL...." style="border: 2px solid #ff914b; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" >
       </div>
       <a class="btn-normal">subscribe</a>
     </div>

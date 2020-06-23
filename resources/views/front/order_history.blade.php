@@ -2,6 +2,13 @@
 
 @section('layout')
 
+<style>
+  
+  .collapse_box { box-shadow: 1px 1px 5px 2px #ccc; margin: 15px; margin-bottom: 0px; padding: 10px; background: #fff; }
+  .collapse_box img { max-width: 100px; }
+
+</style>
+
 <!-- breadcrumb start -->
 <div class="breadcrumb-main">
   <div class="container">
@@ -28,51 +35,72 @@
   <div class="custom-container">
     <div class="row">
       <div class="col-sm-12">
-        <div class="table_box" style="max-height: 500px; overflow: auto;">
-          <table class="table cart-table table-responsive-xs">
-            <thead>
-              <tr class="table-head">
-                <th scope="col" colspan="2">product</th>
-                <th scope="col">total price</th>
-                <th scope="col">quantity</th>
-                <th scope="col">status</th>
-              </tr>
-            </thead>
-            <tbody>
+        <div class="row">
+          <div class="col-6">
+            <label>PRODUCT</label>
+          </div>
+          <div class="col-2">
+            <label>TOTAL PRICE</label>
+          </div>
+          <div class="col-2">
+            <label>QUANTITY</label>
+          </div>
+          <div class="col-2">
+            <label>STATUS</label>
+          </div>
+        </div>
 
-              @foreach($transaction_list as $transaction)
-              <tr style="background-color: #fff;">
-                <td colspan="4">Order ID : {{ $transaction->id }}</td>
-                <td>{{ $transaction->status_text }}</td>
-              </tr>
+        <div id="accordion">
+          <div class="card">
+            @foreach($transaction_list as $transaction)
+              <div class="card-header">
+                <div class="row" class="collapsed" data-toggle="collapse" data-target="#collapse{{ $transaction->id }}" aria-expanded="true" aria-controls="collapse{{ $transaction->id }}">
+                  <div class="col-9">
+                    <label style="font-weight: bold;">Order ID : {{ $transaction->id }}</label>
+                    <br>
+                    <label> ( {{ date('d M Y', strtotime($transaction->created_at )) }} )</label>
+                  </div>
+                  <div class="col-3" style="text-align: center;">
+                    {{ $transaction->status_text }}
+                  </div>
+                </div>
+              </div>
 
-              @foreach($transaction->item as $item)
-              <tr>
-                <td>
-                  <a href="#">
-                    @if($item->path)
-                    <img src="{{ Storage::url($item->path) }}" alt="product" class="img-fluid  ">
-                    @else
-                    <img src="../assets/images/product-sidebar/001.jpg" alt="product" class="img-fluid  ">
-                    @endif
-                  </a>
-                </td>
-                <td>{{ $item->product_name }}</td>
-                <td>RM {{ $item->total }}</td>
-                <td>{{ $item->quantity }}</td>
-                <td></td>
-              </tr>
-              @endforeach
-
-              @endforeach
-            </tbody>
-          </table>
+              <div id="collapse{{ $transaction->id }}" class="collapse" data-parent="#accordion" style="background: #eee; padding-bottom: 15px;">
+                @foreach($transaction->item as $item)
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="collapse_box">
+                        <div class="row">
+                          <div class="col-3">
+                            <a href="#">
+                              @if($item->path)
+                              <img src="{{ Storage::url($item->path) }}" alt="product" class="img-fluid  ">
+                              @else
+                              <img src="../assets/images/product-sidebar/001.jpg" alt="product" class="img-fluid  ">
+                              @endif
+                            </a>
+                          </div>
+                          <div class="col-3">
+                            {{ $item->product_name }}
+                          </div>
+                          <div class="col-2">
+                            RM {{ $item->total }}
+                          </div>
+                          <div class="col-2">
+                            {{ $item->quantity }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endforeach
+              </div>
+            @endforeach
+          </div>
         </div>
       </div>
     </div>
-        <!-- <div class="row cart-buttons">
-            <div class="col-12 pull-right"><a href="#" class="btn btn-normal btn-sm">show all orders</a></div>
-          </div> -->
   </div>
 </section>
 <!--section end-->

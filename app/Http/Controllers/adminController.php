@@ -42,6 +42,7 @@ use App\brand;
 use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Route;
 
 // phpspreadsheet
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx; 
@@ -296,7 +297,13 @@ class adminController extends Controller
     }
 
     public function getMainCategory()
-    {
+    { 
+        $access = $this->accessControl();
+        if($access == false)
+        {
+          return redirect(route('getIndex'));
+        }
+
         $maincategory = main_category::get();   
 
         return view('admin.maincategory',compact('maincategory'));
@@ -1111,14 +1118,17 @@ class adminController extends Controller
       $item_name = $sheet_1->getCell('B3')->getValue();
       $sheet_title = $sheet_4->getCell('A4')->getValue();
 
+      // dd($item_name, $sheet_title);
+
+      // edit
       $sheet_1->setCellValue('A8', "This is A8 new value");
 
       $writer = new Xlsx($spreadsheet);
       $writer->save('storage/edit.xlsx');
 
       return response()->download('storage/edit.xlsx');
+      // end edit
 
-      // dd($item_name, $sheet_title);
       // end read
 
       $mysheet = ["My sheet 1", "My sheet 2"];
@@ -1143,7 +1153,59 @@ class adminController extends Controller
       $writer->save('storage/write.xlsx');
 
       // return response()->download('storage/write.xlsx');
+    }
 
+    public function accessControl()
+    {
+      $user = Auth::user();
+      $route = $this->accessControlDetail();
 
+      $current_route = Route::currentRouteName();
+
+      foreach($route as $key => $value)
+      {
+        if($key == $current_route)
+        {
+          foreach($value as $permission)
+          {
+            if($permission == $user->user_type)
+            {
+              return true;
+            }
+          }
+
+          return false;
+          break;
+        }
+      }
+    }
+
+    public function accessControlDetail()
+    {
+      $route = [
+        'getMainCategory' => [1,2],
+        'getCategory' => [1,2],
+        'getSubCategory' => [1,2],
+        'getTag' => [1,2],
+        'getBrandList' => [1,2],
+        'getProductList' => [1,2],
+        'getAddProduct' => [1,2],
+        'getOrders' => [1,2,3,5],
+        'getTransaction' => [1,2,3,5],
+        'getChecklist' => [1,2,3,4],
+        'getCouponList' => [1,2],
+        'getCouponCreate' => [1,2],
+        'getCouponTransaction' => [1,2],
+        'getUserList' => [1,2],
+        'getCreateUser' => [1,2],
+        'getSubscriptionList' => [1],
+        'getEmailMarketing' => [1],
+        'listTemplate' => [1],
+        'getTemplateUpload' => [1],
+        'getSpecifyDateReport' => [1,2],
+        'getProfile' => [1,2],
+      ];
+
+      return $route;
     }
 }

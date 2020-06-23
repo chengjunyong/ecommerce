@@ -66,7 +66,7 @@
                 <input class="form-control" type="text" name="brand" required="">
               </div>                   
               <label class="col-form-label pt-0">Brand Logo Upload</label>
-              <div class="dropzone digits dz-message needsclick"><i class="fa fa-cloud-upload"></i>
+              <div class="dropzone digits dz-message needsclick"><i class="fab fa-cloud-upload"></i>
                 <input required class="mb-0 f-w-600" type="file" id="image" name="image" accept="image/gif, image/jpeg, image/png">
               </div>
               

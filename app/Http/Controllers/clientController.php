@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\address_book;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\frontMail;
+use Illuminate\Support\Facades\Crypt;
+
 class clientController extends Controller
 {
   public function addressBook(Request $request)
@@ -55,5 +59,30 @@ class clientController extends Controller
     }
     
     return redirect(route('getUserProfile', ['tab' => 'address']));
+  }
+
+  public function verify_now()
+  {
+    $user = Auth::user();
+
+    $verify_code = Crypt::encryptString($user->email);
+    $verify_link = route('verify_email', ['verify_code' => $verify_code]);
+    $message = "Click below link to verify your account.";
+    $message .= "<a href='".$verify_link."'>".$verify_link."</a>";
+
+    $email_data = new \stdClass();
+    $email_data->name = $user->fname." ".$user->lname;
+    $email_data->email = $user->email;
+    $email_data->type = "register";
+    $email_data->subject = "HomeU Registration Verification";
+    $email_data->message = $message;
+
+    app('App\Http\Controllers\frontController')->sendMail($email_data);  
+
+    $response = new \stdClass();
+    $response->error = 0;
+    $response->message = "Success";
+
+    return response()->json($response);
   }
 }

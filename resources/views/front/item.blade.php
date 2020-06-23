@@ -116,13 +116,13 @@
             <div class="border-product">
               <div class="product-icon">
                 <ul class="product-social">
-                  <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                  <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                 </ul>
-                <form class="d-inline-block">
+                <!-- <form class="d-inline-block">
                   <button class="wishlist-btn" product_id="{{ $product_detail->id }}" type="button"><i class="fa fa-heart"></i><span class="title-font">Add To WishList</span></button>
-                </form>
+                </form> -->
               </div>
               <div style="margin: 10px 0;">
                 <div class="product-buttons" product_id="{{ $product_detail->id }}" type="button"><a class="btn btn-normal">add to cart</a> <a href="#" class="btn btn-normal">buy now</a></div>

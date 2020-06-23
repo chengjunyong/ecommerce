@@ -67,7 +67,12 @@
                                             <h3>Contact Information</h3><a href="{{ route('getEditInfo') }}">Edit</a></div>
                                         <div class="box-content">
                                             <h6><label> Name : </label> {{ $user->fname }} {{ $user->lname }}</h6>
-                                            <h6><label> Email : </label> {{ $user->email }} </h6>
+                                            <h6>
+                                              <label> Email : </label> {{ $user->email }}
+                                              @if($user->vefiried == null) 
+                                                <a href="#" id="verify_now">Verify now</a>
+                                              @endif
+                                            </h6> 
                                             <h6><a href="#">Change Password</a></h6></div>
                                     </div>
                                 </div>
@@ -288,6 +293,17 @@
       $("#address_book").addClass("hide");
       $("#address_form").removeClass("hide");
     }); 
+
+    $("#verify_now").click(function(){
+
+      $.get("{{ route('verify_now') }}", function(response){
+
+        toastBox("success", "Email sent successful", "Verification email has been sent to your email.");
+
+      }).fail(function(){
+        alert("Error");
+      });
+    });
 
   });
 

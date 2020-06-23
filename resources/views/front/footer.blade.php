@@ -289,12 +289,12 @@
       </div>
       <div>
         <a href="{{ route('login_with_google') }}" class="google btn">
-          <i class="fa fa-google fa-fw"></i> Login with Google
+          <i class="fab fa-google fa-fw"></i> Login with Google
         </a>
       </div>
       <div>
         <a href="{{ route('login_with_facebook') }}" class="fb btn">
-          <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+          <i class="fab fa-facebook fa-fw"></i> Login with Facebook
         </a>
       </div>
       <div>
