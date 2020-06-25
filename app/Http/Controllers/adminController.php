@@ -108,7 +108,6 @@ class adminController extends Controller
                                ->paginate(15);
 
     	return view('admin.productlist',compact('product_list'));
-
     }
 
     public function getProductDetail()
@@ -161,8 +160,6 @@ class adminController extends Controller
         $transaction = transaction::orderBy('created_at','desc')->paginate(15);
         return view('admin.orders',compact('transaction','target'));
       }
-
-    	
     }
 
     public function getTransaction()
@@ -179,6 +176,7 @@ class adminController extends Controller
 
     public function getCouponList()
     {
+
         $coupon_list = coupon::paginate(15);
 
         return view('admin.couponlist',compact('coupon_list'));
