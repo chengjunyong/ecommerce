@@ -8,11 +8,11 @@
 
   .brand_label { display: inline-block; color: #ff6000; font-size: 16px; font-weight: bold; margin-top: 27px; float: left; padding-right: 10px; }
   .brand_box { padding: 10px 20px; position: relative; }
-  #brand_list { display: inline-block; width: calc(100% - 60px); padding: 0 40px; }
+  #brand_list { display: block; width: 100%; padding: 0 40px; }
+  #brand_list a { color: transparent; }
   @media (max-width: 991px)
   {
     .brand_label { display: block; text-align: center; border: 0; border-bottom: 2px solid #ff6000; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; margin: 0 auto; margin-bottom: 10px; font-size: 16px; float: initial; }
-    #brand_list { width: 100%; display: block; } 
   }
 
   .brand { line-height: 30px; cursor: pointer; text-align: center; }
@@ -21,9 +21,9 @@
   .brand.active img { filter: grayscale(0); }
 
   #brand_list .owl-nav { position: absolute; left: 0px; top: 0px; width: 100%; }
-  #brand_list .owl-nav .owl-prev { position: absolute; top: 30px; left: 0px; padding: 0 10px; }
+  #brand_list .owl-nav .owl-prev { position: absolute; top: 20px; left: 0px; padding: 0 10px; }
   .owl-prev.disabled, .owl-next.disabled { color: #ccc !important; }
-  #brand_list .owl-nav .owl-next { position: absolute; top: 30px; right: 0px; padding: 0 10px; }
+  #brand_list .owl-nav .owl-next { position: absolute; top: 20px; right: 0px; padding: 0 10px; }
   .owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
 
 </style>
@@ -66,12 +66,10 @@
 
                   <div class="brand-panel-box">
                     <div class="brand_box">
-                      <div class="brand_label">Brand : </div>
                       <div class="owl-carousel" id="brand_list">
                         @foreach($brand_list as $brand)
                           <div class="item brand active">
                             <img src="{{ Storage::url($brand->path) }}" />
-                            <a class="brand">{{ $brand->brand }}</a>
 
                             <div style="display: none;">
                               <input class="brand_checkbox" type="checkbox" value="{{ $brand->id }}" checked />
@@ -172,9 +170,9 @@
                                 <button class="product-buttons" product_id="{{ $product->id }}" type="button">
                                   <i class="ti-bag"></i>
                                 </button>
-                                <button class="wishlist-btn" product_id="{{ $product->id }}" type="button">
+                                <!-- <button class="wishlist-btn" product_id="{{ $product->id }}" type="button">
                                   <i class="ti-heart" aria-hidden="true"></i>
-                                </button>
+                                </button> -->
                               </div>
                             </div>
                           </div>

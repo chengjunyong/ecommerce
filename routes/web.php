@@ -36,6 +36,7 @@ Route::get('/forgot_password', 'frontController@getForgotPassword')->name('getFo
 Route::get('/order_history', 'frontController@getOrderHistory')->name('getOrderHistory');
 Route::get('/wishlist', 'frontController@getWishList')->name('getWishList');
 Route::post('/getpostcode','frontController@getPostcodeResult')->name('getPostcodeResult');
+Route::get('/brand/{id}', 'frontController@getBrandList')->name('getFrontBrandList');
 
 Route::get('/newpage', 'frontController@getNewPage')->name('getNew');
 
@@ -46,6 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
 
   Route::prefix('client')->group(function(){
     Route::post('addressBook', 'clientController@addressBook')->name('addressBook');
+    Route::get('verify_now', 'clientController@verify_now')->name('verify_now');
   });
 
   Route::prefix('item')->group(function () {

@@ -92,7 +92,7 @@
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="view-html fab fa-code"></i></li>
                                         <li><i class="icofont icofont-maximize full-card"></i></li>
                                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                                         <li><i class="icofont icofont-refresh reload-card"></i></li>
@@ -209,7 +209,7 @@
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="view-html fab fa-code"></i></li>
                                         <li><i class="icofont icofont-maximize full-card"></i></li>
                                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                                         <li><i class="icofont icofont-refresh reload-card"></i></li>
@@ -238,7 +238,7 @@
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="view-html fab fa-code"></i></li>
                                         <li><i class="icofont icofont-maximize full-card"></i></li>
                                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                                         <li><i class="icofont icofont-refresh reload-card"></i></li>
@@ -264,7 +264,7 @@
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="view-html fab fa-code"></i></li>
                                         <li><i class="icofont icofont-maximize full-card"></i></li>
                                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                                         <li><i class="icofont icofont-refresh reload-card"></i></li>
@@ -384,7 +384,7 @@
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="view-html fab fa-code"></i></li>
                                         <li><i class="icofont icofont-maximize full-card"></i></li>
                                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                                         <li><i class="icofont icofont-refresh reload-card"></i></li>
@@ -413,7 +413,7 @@
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="view-html fab fa-code"></i></li>
                                         <li><i class="icofont icofont-maximize full-card"></i></li>
                                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                                         <li><i class="icofont icofont-refresh reload-card"></i></li>
@@ -441,7 +441,7 @@
                                 <div class="card-header-right">
                                     <ul class="list-unstyled card-option">
                                         <li><i class="icofont icofont-simple-left"></i></li>
-                                        <li><i class="view-html fa fa-code"></i></li>
+                                        <li><i class="view-html fab fa-code"></i></li>
                                         <li><i class="icofont icofont-maximize full-card"></i></li>
                                         <li><i class="icofont icofont-minus minimize-card"></i></li>
                                         <li><i class="icofont icofont-refresh reload-card"></i></li>

@@ -18,11 +18,11 @@
   ul.active { display: block; }
 
   .input-block { flex: 1; margin: 0 20px; }
-  .big-deal-form { width: 100%; margin: 5px 0; background-color: #fff; }
-  .input-group  { height: 50px; }
-  .input-group-prepend { border: 1px solid #ced4da; border-right: 0px; border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; }
-  .input-group-prepend span { padding: 10px 20px; background-color: #fff; -ms-flex-item-align: center; align-self: center; }
-  .input-group-prepend .form-control { border-radius: 0; border: none; border-left: 1px solid #ddd; border-right: 1px solid #ddd; }
+  .big-deal-form { width: 100%; margin: 5px 0; background-color: #eff0f5; }
+  .input-group.searchbar { height: 50px; }
+  .input-group-prepend.searchbar { border: 2px solid #ff914b; border-right: 0px; border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; }
+  .input-group-prepend.searchbar span { padding: 10px 20px; background-color: #fff; -ms-flex-item-align: center; align-self: center; color: #339806; font-size: 22px; }
+  .input-group.searchbar .form-control { border-color: #ff914b; border-width: 2px; }
 
   @media (max-width: 577px)
   {
@@ -36,6 +36,19 @@
 
   .postal_code_header { border: none; background-image: url(http://localhost:8000/assets/images/postal_code_check_banner.png); background-repeat: no-repeat; background-size: cover; height: 200px; color: #fff; }
 
+  .gift-block { display: flex; align-items: center; }
+  .gift-block .grif-icon { font-size: 30px; color: #ff914c; padding-right: 10px; }
+  .gift-block .gift-offer { color: #ff914c; }
+  .gift-block .gift-offer p { font-size: 14px; line-height: 14px; }
+  .gift-block .gift-offer span { font-weight: bold; font-size: 20px; }
+
+  .form-control::-webkit-input-placeholder { color: #888 !important; }  /* WebKit, Blink, Edge */
+  .form-control:-moz-placeholder { color: #888 !important; }  /* Mozilla Firefox 4 to 18 */
+  .form-control::-moz-placeholder { color: #888 !important; }  /* Mozilla Firefox 19+ */
+  .form-control:-ms-input-placeholder { color: #888 !important; }  /* Internet Explorer 10-11 */
+  .form-control::-ms-input-placeholder { color: #888 !important; }  /* Microsoft Edge */
+
+  .navbar { cursor: pointer; }
 
   .dcheck{
     width: 40%;
@@ -66,9 +79,9 @@
   #msg{
     font-size:22px;
     color:red;
-    animation:blink 3s linear infinite;
+    animation: blinking_msg 3s linear infinite;
   }
-  @keyframes blink{
+  @keyframes blinking_msg{
     0%{opacity: 0}
   }
 
@@ -204,11 +217,11 @@
           <div class="input-block">
             <div class="input-box">
               <form class="big-deal-form" method="GET" action="{{ route('getItemSearch') }}">
-                <div class="input-group ">
-                  <div class="input-group-prepend">
+                <div class="input-group searchbar">
+                  <div class="input-group-prepend searchbar">
                     <span class="search" id="searchItemSubmit"><i class="fa fa-search"></i></span>
                   </div>
-                  <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" >
+                  <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" style="background: #eee;" >
                 </div>
               </form>
             </div>
@@ -217,8 +230,29 @@
           <div class="menu-right">
             
             <div>
-              <div class="icon-nav">
-                <ul>
+              <div class="icon-nav" style="margin-left: 0px;">
+                <div class="btn-group">
+                  <div  class="gift-block">
+                    <div class="grif-icon">
+                      <i class="icon-gift"></i>
+                    </div>
+                    <div class="gift-offer" style="font-family: arial;">
+                      <p>Get It</p>
+                      <span>Promotion<span style="padding-left: 5px;"></span>Offer</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="cart-block mobile-cart cart-hover-div" onclick="openCart()">
+                  <a href="#"><span class="cart-product" id="cart_count">
+                    @if(count($global_cart_list))
+                      {{ count($global_cart_list) }}
+                    @else
+                      0
+                    @endif
+                  </span><i class="icon-shopping-cart"></i></a>
+                </div>
+                <ul style="margin-left: 20px;">
                   @if(Auth::check())
                     <li class="mobile-user onhover-dropdown icon_dropdown"><a href="#detail"><i class="icon-user" style="color: orange;"></i></a>
                       <ul>
@@ -231,7 +265,7 @@
                     </li>
                   @endif
                   <!-- <li class="mobile-wishlist" onclick="openWishlist()"> -->
-                  <li class="mobile-wishlist">
+                  <!-- <li class="mobile-wishlist">
                     <a href="{{ route('getWishList') }}">
                       <i class="icon-heart"></i>
                       <div class="cart-item">
@@ -247,7 +281,7 @@
                         </div>
                       </div>
                     </a>
-                  </li>
+                  </li> -->
                   <li class="mobile-search">
                     <a href="#">
                       <i class="icon-search"></i>
@@ -261,7 +295,7 @@
                               <div class="col-xl-12">
                                 <form method="GET" action="{{ route('getItemSearch') }}">
                                   <div class="form-group">
-                                    <input type="text" name="keyword" class="form-control" id="mobileSearchItem" placeholder="Search a Product" value="{{ isset($keyword) ? $keyword : '' }}">
+                                    <input type="text" name="keyword" class="form-control" id="mobileSearchItem" placeholder="Search a Product" value="{{ isset($keyword) ? $keyword : '' }}" style="background: #eee;">
                                   </div>
                                   <button type="submit" class="btn btn-primary" id="mobileSearchItemSubmit">
                                     <i class="fa fa-search"></i>
@@ -277,15 +311,6 @@
                   <li class="mobile-setting mobile-setting-hover" onclick="openSetting()"><a href="#"><i class="icon-settings"></i></a>
                   </li>
                 </ul>
-                <div class="cart-block mobile-cart cart-hover-div" onclick="openCart()">
-                  <a href="#"><span class="cart-product" id="cart_count">
-                    @if(count($global_cart_list))
-                      {{ count($global_cart_list) }}
-                    @else
-                      0
-                    @endif
-                  </span><i class="icon-shopping-cart"></i></a>
-                </div>
               </div>
             </div>
           </div>
@@ -294,6 +319,7 @@
     </div>
   </div>
 </div>
+
 <div class="category-header" style="background: rgba(0,0,0,0)">
   <div class="custom-container">
       <div class="row">
@@ -302,18 +328,30 @@
             <div class="category-left">
               <div class="nav-block">
                 <div class="nav-left">
-                  <nav class="navbar" data-toggle="collapse" data-target="#navbarToggleExternalContent">
-                    <button class="navbar-toggler" type="button">
-                      <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
-                    </button>
-                    <h5 class="mb-0 ml-3 text-white title-font">Shop by category</h5>
-                  </nav>
+                  @if(Route::currentRouteName() == "getFrontIndex")
+                    <nav class="navbar" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+                      <button class="navbar-toggler" type="button">
+                        <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
+                      </button>
+                      <h5 class="mb-0 ml-3 text-white title-font">Shop by category</h5>
+                    </nav>
+                  @else
+                    <nav class="navbar" data-toggle="collapse" data-target="#navbarToggleExternalContent" style="padding: 0px; background: transparent; justify-content: flex-start;">
+                      <h5 class="mb-0 ml-3 title-font">Shop by category</h5>
+                      <button class="navbar-toggler" type="button">
+                        <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
+                      </button>
+                    </nav>
+                  @endif
                   <div class="collapse nav-desk" id="navbarToggleExternalContent">
-                    <ul class="nav-cat title-font my_dropdown">
+                    <ul class="nav-cat title-font my_dropdown" style="margin: 0px; {{ Route::currentRouteName() != 'getFrontIndex' ? 'box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);' : '' }}">
 
                       @if(count($main_category) <= 7)
                         @foreach($main_category as $main)
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
+                          <li> 
+                            @if(Route::currentRouteName() == "getFrontIndex")
+                              <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
+                            @endif
                             <a>{{ $main->name }}</a>
                             @if(count($main->category) > 0)
                               <div class="category_box">
@@ -339,7 +377,10 @@
                         @endforeach
                       @else
                         @for ($i = 0; $i < 7; $i++)
-                          <li> <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
+                          <li>
+                            @if(Route::currentRouteName() == "getFrontIndex") 
+                              <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
+                            @endif
                             <a>{{ $main_category[$i]->name }}</a>
                             @if(count($main_category[$i]->category) > 0)
                               <div class="category_box">
@@ -471,6 +512,7 @@
 
            <!--  </div>
           </div> -->
+          </div>
         </div>
       </div>
     </div>

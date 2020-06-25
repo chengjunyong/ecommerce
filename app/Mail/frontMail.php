@@ -28,8 +28,8 @@ class frontMail extends Mailable
      */
     public function build()
     {
-      dd($this->data);
+      $template = 'front.mail.default';
 
-        $this->from(env('MAIL_USERNAME'), 'HomeU')->subject($this->data['subject'])->view($template)->with('data', $this->data);
+      $this->from(env('MAIL_USERNAME'), 'HomeU')->subject($this->data->subject)->view($template)->with('data', $this->data);
     }
 }

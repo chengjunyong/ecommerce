@@ -15,6 +15,7 @@ use App\postcode;
 use App\brand;
 use App\transaction;
 use App\transaction_detail;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -335,11 +336,58 @@ class frontController extends Controller
     }
   }
 
-  public function sendMail($user, $type)
+  public function getBrandList($id)
   {
-    $user->type = $type;
+    $brand_list = brand::where('id', $id)->get();
 
-    Mail::to($user->email)->send(new frontMail($user));
+    $product_list = product::where('brand', $id)->paginate(10);
+
+    $product_id_array = array();
+    $sub_category_id_array = array();
+    foreach($product_list as $product)
+    {
+      array_push($product_id_array, $product->id);
+      if(!in_array($product->subcategory_id, $sub_category_id_array))
+      {
+        array_push($sub_category_id_array, $product->subcategory_id);
+      }
+    }
+
+    $tag_list = tag::whereIn('subcategory_id', $sub_category_id_array)->get();
+
+    $product_image_list = product_image::whereIn('product_id', $product_id_array)->get();
+
+    foreach($product_list as $product)
+    {
+      $product_image = array();
+      foreach($product_image_list as $image)
+      {
+        if($image->product_id == $product->id)
+        {
+          array_push($product_image, $image);
+        }
+      }
+      $product->image = $product_image;
+    }
+
+    return view('front.category', compact('product_list', 'tag_list', 'brand_list'));
+  }
+
+  public function sendMail($email_data)
+  {
+    Mail::to($email_data->email)->send(new frontMail($email_data));
+  }
+
+  public function verify_email()
+  {
+    $verify_code = $_GET['verify_code'];
+    $email = Crypt::decryptString($verify_code);
+
+    User::where('email', $email)->update([
+      'verified' => 1
+    ]);
+
+    return view('front.email_verified');
   }
 
   public function testing()
