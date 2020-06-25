@@ -69,7 +69,7 @@
                                             <h6><label> Name : </label> {{ $user->fname }} {{ $user->lname }}</h6>
                                             <h6>
                                               <label> Email : </label> {{ $user->email }}
-                                              @if($user->vefiried == null) 
+                                              @if($user->verified == null) 
                                                 <a href="#" id="verify_now">Verify now</a>
                                               @endif
                                             </h6> 

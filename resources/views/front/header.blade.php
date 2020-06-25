@@ -221,7 +221,7 @@
                   <div class="input-group-prepend searchbar">
                     <span class="search" id="searchItemSubmit"><i class="fa fa-search"></i></span>
                   </div>
-                  <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" style="" >
+                  <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" style="background: #eee;" >
                 </div>
               </form>
             </div>
@@ -236,9 +236,9 @@
                     <div class="grif-icon">
                       <i class="icon-gift"></i>
                     </div>
-                    <div class="gift-offer">
+                    <div class="gift-offer" style="font-family: arial;">
                       <p>Get It</p>
-                      <span>Promotion Offer</span>
+                      <span>Promotion<span style="padding-left: 5px;"></span>Offer</span>
                     </div>
                   </div>
                 </div>
@@ -295,7 +295,7 @@
                               <div class="col-xl-12">
                                 <form method="GET" action="{{ route('getItemSearch') }}">
                                   <div class="form-group">
-                                    <input type="text" name="keyword" class="form-control" id="mobileSearchItem" placeholder="Search a Product" value="{{ isset($keyword) ? $keyword : '' }}">
+                                    <input type="text" name="keyword" class="form-control" id="mobileSearchItem" placeholder="Search a Product" value="{{ isset($keyword) ? $keyword : '' }}" style="background: #eee;">
                                   </div>
                                   <button type="submit" class="btn btn-primary" id="mobileSearchItemSubmit">
                                     <i class="fa fa-search"></i>

@@ -304,11 +304,11 @@ class adminController extends Controller
 
     public function getMainCategory()
     { 
-        $access = $this->accessControl();
-        if($access == false)
-        {
-          return redirect(route('getIndex'));
-        }
+        // start admin access control
+        $response = $this->accessControl();
+        if($response->error == true)
+          return redirect(route($response->return_route));
+        // end
 
         $maincategory = main_category::get();   
 
@@ -1189,11 +1189,17 @@ class adminController extends Controller
           {
             if($permission == $user->user_type)
             {
-              return true;
+              $response = new \stdClass();
+              $response->error = false;
+              return $response;
             }
           }
 
-          return false;
+          $response = new \stdClass();
+          $response->error = true;
+          $response->return_route = "getIndex";
+
+          return $response;
           break;
         }
       }

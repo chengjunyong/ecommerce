@@ -3484,9 +3484,9 @@
     <div class="subscribe-block">
       <div class="input-group ">
         <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-email"></i></span>
+          <span class="input-group-text" style="border: 2px solid #ff914b; border-right-width: 0px;"><i class="icon-email"></i></span>
         </div>
-        <input type="text" class="form-control" placeholder="ENTER YOUR EMAIL...." style="border: 2px solid #ff914b; border-top-right-radius: 0px; border-bottom-right-radius: 0px;" >
+        <input type="text" class="form-control" placeholder="ENTER YOUR EMAIL...." style="border: 2px solid #ff914b; border-top-right-radius: 0px; border-bottom-right-radius: 0px; height: 50px; border-right-width: 0px;" >
       </div>
       <a class="btn-normal">subscribe</a>
     </div>

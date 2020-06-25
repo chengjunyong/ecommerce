@@ -170,9 +170,9 @@
                                 <button class="product-buttons" product_id="{{ $product->id }}" type="button">
                                   <i class="ti-bag"></i>
                                 </button>
-                                <button class="wishlist-btn" product_id="{{ $product->id }}" type="button">
+                                <!-- <button class="wishlist-btn" product_id="{{ $product->id }}" type="button">
                                   <i class="ti-heart" aria-hidden="true"></i>
-                                </button>
+                                </button> -->
                               </div>
                             </div>
                           </div>
