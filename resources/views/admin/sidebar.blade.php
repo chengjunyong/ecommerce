@@ -74,11 +74,21 @@
           <li><a href="{{ route('getProductReport') }}"><i class="fa fa-circle"></i>Product Report</a></li>
         </ul>
       </li>      
-        <li><a class="sidebar-header" href=""><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
+      <li><a class="sidebar-header" href=""><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getProfile') }}"><i class="fa fa-circle"></i>Profile</a></li>
         </ul>
       </li>
+
+      <li><a class="sidebar-header" href=""><i data-feather="gift" ></i><span>Promotion</span><i class="fa fa-angle-right pull-right"></i></a>
+        <ul class="sidebar-submenu">
+          <li><a href="{{ route('getOnSales') }}"><i class="fa fa-circle"></i>On Sales</a></li>
+        </ul>
+        <ul class="sidebar-submenu">
+          <li><a href="{{ route('getTodayDeal') }}"><i class="fa fa-circle"></i>Today Deal</a></li>
+        </ul>
+      </li>
+
       <li><a class="sidebar-header" href="{{ route('getInvoice') }}"><i data-feather="archive"></i><span>Invoice</span></a>
       </li>
       @endif

@@ -34,6 +34,17 @@
     .layout-header1 .main-menu-block .menu-left { width: 270px; }
   }
 
+  .top-header { position: fixed; top: 0px; width: 100%; left: 0px; }
+  .top-header.hide { display: none; }
+  .layout-header1 { position: fixed; left: 0px; top: 41px; z-index: 10000; width: 100%; transition: top 300ms linear; }
+
+  .layout-header1.minimize { position: fixed; top: 0px; padding: 10px 0px; }
+  .layout-header1.minimize .menu-left { display: none; }
+  .layout-header1.minimize .menu-right { display: none; }
+  .layout-header1.minimize .searchbar { height: 40px; }
+  .layout-header1.minimize .input-group-prepend.searchbar { display: none; }
+  .layout-header1.minimize .input-group.searchbar input { height: 40px; }
+
   .postal_code_header { border: none; background-image: url(http://localhost:8000/assets/images/postal_code_check_banner.png); background-repeat: no-repeat; background-size: cover; height: 200px; color: #fff; }
 
   .gift-block { display: flex; align-items: center; }
@@ -49,6 +60,8 @@
   .form-control::-ms-input-placeholder { color: #888 !important; }  /* Microsoft Edge */
 
   .navbar { cursor: pointer; }
+  .navbar.minimize { padding: 0px !important; background: transparent !important; justify-content: space-between !important; box-shadow: 1px 1px 6px 0px #aaa !important; padding: 10px !important; }
+  .navbar.minimize:hover { background: #ff914c !important; color: #fff; }
 
   .dcheck{
     width: 40%;
@@ -320,7 +333,7 @@
   </div>
 </div>
 
-<div class="category-header" style="background: rgba(0,0,0,0)">
+<div class="category-header" style="background: rgba(0,0,0,0); margin-top: 160px;">
   <div class="custom-container">
       <div class="row">
         <div class="col">
@@ -336,7 +349,7 @@
                       <h5 class="mb-0 ml-3 text-white title-font">Shop by category</h5>
                     </nav>
                   @else
-                    <nav class="navbar" data-toggle="collapse" data-target="#navbarToggleExternalContent" style="padding: 0px; background: transparent; justify-content: flex-start;">
+                    <nav class="navbar minimize" data-toggle="collapse" data-target="#navbarToggleExternalContent">
                       <h5 class="mb-0 ml-3 title-font">Shop by category</h5>
                       <button class="navbar-toggler" type="button">
                         <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
@@ -582,16 +595,37 @@ $(document).ready(function(){
     let token = $("input[name=_token]").val();
     let postcode = $("#postcode").val();
     $.post("{{ route('getPostcodeResult') }}",
-              {
-                _token:token,
-                postcode:postcode
+    {
+      _token:token,
+      postcode:postcode
 
-              },function(data){
-                $("#msg").html(data);
-              },"html");
+    },function(data){
+      $("#msg").html(data);
+    },"html");
   });
 
+  $(window).scroll(function (event) {
+    headerScroll();
+  });
+
+  headerScroll();
+
 });
+
+function headerScroll()
+{
+  var scroll = $(window).scrollTop();
+  if(scroll >= 200)
+  {
+    $(".layout-header1").addClass("minimize");
+    $(".top-header").addClass("hide");
+  }
+  else
+  {
+    $(".layout-header1").removeClass("minimize");
+    $(".top-header").removeClass("hide");
+  }
+}
 
 
 </script>

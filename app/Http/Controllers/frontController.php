@@ -53,7 +53,51 @@ class frontController extends Controller
 
     $brand_list = brand::get();
 
-		return view('front.index', compact("banner", "brand_list"));
+    $on_sales_list = product::where('product.active', 1)->where('product.on_sales', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->where('product.on_sales_to', '>=', date('Y-m-d', strtotime(now())))->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
+    $today_deal_list = product::where('product.active', 1)->where('product.today_deal', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->where('product.today_deal_to', '>=', date('Y-m-d H:i:s', strtotime(now())))->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
+
+    foreach($on_sales_list as $on_sales)
+    {
+      $on_sales->on_sales_price = $on_sales->price;
+      if($on_sales->on_sales_type == "percentage" && $on_sales->on_sales_amount != 0 && $on_sales->on_sales_amount != null)
+      {
+        $on_sales->on_sales_price = ($on_sales->price * (100 / $on_sales->on_sales_amount));
+      }
+      elseif($on_sales->on_sales_type == "fixed")
+      {
+        $on_sales->on_sales_price = $on_sales->price - $on_sales->on_sales_amount;
+      }
+    }
+
+    foreach($today_deal_list as $today_deal)
+    {
+      $today_deal->today_deal_price = $today_deal->price;
+      if($today_deal->today_deal_type == "percentage" && $on_sales->today_deal_amount != 0 && $on_sales->today_deal_amount != null)
+      {
+        $today_deal->today_deal_price = ($today_deal->price * (100 / $today_deal->today_deal_amount));
+      }
+      elseif($today_deal->today_deal_type == "fixed")
+      {
+        $today_deal->today_deal_price = $today_deal->price - $today_deal->today_deal_amount;
+      }
+
+      $today_deal->hours = 0;
+      $today_deal->minutes = 0;
+      $today_deal->seconds = 0;
+
+      if($today_deal->today_deal_to)
+      {
+        $from = new \DateTime(now());
+        $to = new \DateTime($today_deal->today_deal_to);
+
+        $diff = $to->diff($from);
+        $today_deal->hours = $diff->h + ($diff->d * 24);
+        $today_deal->minutes = $diff->i;
+        $today_deal->seconds = $diff->s;
+      }
+    }
+
+		return view('front.index', compact("banner", "brand_list", "on_sales_list", "today_deal_list"));
 	}
 
   public function getFrontIndex2()

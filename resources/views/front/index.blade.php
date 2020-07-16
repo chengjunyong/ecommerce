@@ -22,12 +22,29 @@
   #brand_list .owl-nav .owl-next { position: absolute; top: 20px; right: 0px; padding: 0 10px; }
   .owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
 
+  .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .timer span>span { color: #212529 !important; }
+  .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .price span:last-child { color: #6c757d; }
+  .media-banner .media-banner-box .media .media-body .media-contant h6 span { color: #6c757d; }
+
+  .banner_category { display: flex; width: 100%; align-items: center; justify-content: space-between; height: 50px; }
+  .banner_category a { font-size: 20px; color: #333; font-weight: bold; padding: 0 10px; }
+  .banner_category a.active { color: #ff914b; }
+  .banner_category a:hover { color: #ff914b; }
+
 </style>
 
 <section class="theme-slider section-pt-space" style="padding-top: 0px;">
   <div class="custom-container">
     <div class="row">
       <div class="col-xl-8 col-lg-9 offset-xl-2 px-abjust">
+        <div class="banner_category">
+          <a href="#">Favorites</a>
+          <a href="#" class="active">Offers</a>
+          <a href="#">Discovers</a>
+          <a href="#">Recipes</a>
+          <a href="#">Delivery Pass</a>
+          <a href="#">BBQ</a>
+        </div>
         <div class="slide-1 no-arrow">
           <div>
             <div class="slider-banner">
@@ -204,47 +221,39 @@
 <section class=" b-g-white section-big-pt-space">
   <div class="container">
     <div class="row hot-1">
-      <div class="col-lg-3 col-sm-6  col-12  ">
-        <div class="slide-1   no-arrow">
+      <div class="col-lg-5 col-sm-6  col-12  ">
+        <div class="slide-1 no-arrow">
           <div>
-            <div class="media-banner">
+            <div class="media-banner" style="height: 350px; overflow-x: auto;">
               <div class="media-banner-box">
                 <div class="media-heading">
                   <h5>on sale</h5>
                 </div>
               </div>
-              <div class="media-banner-box">
-                <div class="media">
-                  <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid  " alt="banner">
-                  <div class="media-body">
-                    <div class="media-contant">
-                      <div>
-
-                        <p>
-                          Random 1 Product
-                        </p>
-                        <h6>Rm 153.00</h6>
+              @foreach($on_sales_list as $key => $on_sales)
+                <div class="media-banner-box">
+                  <div class="media">
+                    @if($on_sales->path)
+                      <img src="{{ Storage::url($on_sales->path) }}" class="img-fluid" alt="banner" style="width: 84px; height: 84px;" />
+                    @else
+                      <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid" alt="banner" />
+                    @endif
+                    <div class="media-body">
+                      <div class="media-contant">
+                        <div>
+                          <p>
+                            {{ $on_sales->name }}
+                          </p>
+                          <h6>
+                            <span>RM {{ $on_sales->price }}</span>
+                            RM {{ $on_sales->on_sales_price }}
+                          </h6>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="media-banner-box">
-                <div class="media">
-                  <img src="{{ asset('/assets/images/layout-1/media-banner/2.jpg') }}" class="img-fluid  " alt="banner">
-                  <div class="media-body">
-                    <div class="media-contant">
-                      <div>
-
-                        <p>
-                          Random 1 Product
-                        </p>
-                        <h6>Rm 153.00</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              @endforeach
               <div class="media-banner-box">
                 <div class="media-view">
                   <h5>Get It</h5>
@@ -252,204 +261,73 @@
               </div>
             </div>
           </div>
-          <div>
-            <div class="media-banner">
-              <div class="media-banner-box">
-                <div class="media-heading">
-                  <h5>on sale</h5>
-                </div>
-              </div>
-              <div class="media-banner-box">
-                <div class="media">
-                  <img src="{{ asset('/assets/images/layout-1/media-banner/3.jpg') }}" class="img-fluid  " alt="banner">
-                  <div class="media-body">
-                    <div class="media-contant">
-                      <div>
-
-                        <p>
-                          Random 1 Product
-                        </p>
-                        <h6>Rm 153.00</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="media-banner-box">
-                <div class="media">
-                  <img src="{{ asset('/assets/images/layout-1/media-banner/4.jpg') }}" class="img-fluid  " alt="banner">
-                  <div class="media-body">
-                    <div class="media-contant">
-                      <div>
-
-                        <p>
-                          Random 1 Product
-                        </p>
-                        <h6>Rm 153.00</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="media-banner-box">
-                <div class="media-view">
-                  <h5>Get It</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-2 col-sm-6  col-12">
-        <div class="Jewellery-banner">
-          <a>save 10% off</a>
-          <h6>Frozen Meal</h6>
         </div>
       </div>
       <div class="col-lg-7  col-sm-12 col-12  ">
         <div class="hot-deal">
           <div class="hot-deal-box">
             <div class="slide-1">
-              <div>
-                <div class="hot-deal-contain1 hot-deal-banner-1">
-                  <div class="hot-deal-heading">
-                    <h5>today’s hot deal</h5>
-                  </div>
-                  <div class="row hot-deal-subcontain">
-                    <div class="col-lg-4 col-sm-4 col-12">
-                      <div class="hotdeal-right-slick-1 no-arrow">
-                        <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                        <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                        <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                        <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                      </div>
+              @foreach($today_deal_list as $today_deal)
+                <div>
+                  <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 350px;">
+                    <div class="hot-deal-heading">
+                      <h5>today’s hot deal</h5>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
-                      <div class="hot-deal-center">
-                        <div>   
-                          <div class="timer">
-                            <p class="demo">
-                             <span>
-                               25
-                               <span>days</span>
-                             </span>
-                             <span>:</span>
-                             <span>
-                              12
-                              <span>hrs</span>
-                            </span>
-                            <span>:</span>
-                            <span>
-                              45
-                              <span>min</span>
-                            </span>
-                            <span>:</span>
-                            <span>
-                              03
-                              <span>sec</span>
-                            </span>
-                          </p>
+                    <div class="row hot-deal-subcontain">
+                      <div class="col-lg-4 col-sm-4 col-12">
+                        <div class="hotdeal-right-slick-1 no-arrow">
+                          <div class="right-slick-img">
+                            <img src="{{ Storage::url($today_deal->path) }}" alt="hot-deal" class="img-fluid"  style="width: 150px; height: 150px;" />
+                          </div>
                         </div>
+                      </div>
+                      <div class="col-lg-6 col-sm-6">
+                        <div class="hot-deal-center">
+                          <div>   
+                            <div class="timer" id="timer_{{ $today_deal->id }}">
+                              <p class="demo">
+                                <span class="hour">
+                                  0
+                                  <span>hrs</span>
+                                </span>
+                                <span>:</span>
+                                <span class="minute">
+                                  0
+                                  <span>min</span>
+                                </span>
+                                <span>:</span>
+                                <span class="second">
+                                  0
+                                  <span>sec</span>
+                                </span>
+                              </p>
+                            </div>
 
-                        <div>
-                          <h5>simply dummy text</h5>
-                        </div>
-                        <div>
-                          <p>
-                            Product Description.
-                          </p>
-                          <div class="price">
-                            <span>Rm 45.00</span>
-                            <span>Rm 50.30</span>
+                            <div>
+                              <h5>{{ $today_deal->name }}</h5>
+                            </div>
+                            <div>
+                              <p>
+                                {{ $today_deal->description }}
+                              </p>
+                              <div class="price">
+                                <span>Rm {{ $today_deal->price }}</span>
+                                Rm {{ $today_deal->today_deal_price }}
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-2 col-sm-2 p-l-md-0">
-                    <div class="hotdeal-right-nav-1">
-                      <div><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                      <div><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                      <div><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                      <div><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-            <div>
-              <div class="hot-deal-contain1 hot-deal-banner-1">
-                <div class="hot-deal-heading">
-                  <h5>today’s hot deal</h5>
-                </div>
-                <div class="row hot-deal-subcontain">
-                  <div class="col-lg-4 col-sm-4 col-12">
-                    <div class="hotdeal-right-slick-1 no-arrow">
-                      <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                      <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                      <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                      <div class="right-slick-img"><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  "></div>
-                    </div>
-                  </div>
-                  <div class="col-lg-6 col-sm-6">
-                    <div class="hot-deal-center">
-                      <div>
-                        <div class="timer">
-                          <p class="demo1">
-                           <span>
-                             25
-                             <span>days</span>
-                           </span>
-                           <span>:</span>
-                           <span>
-                            12
-                            <span>hrs</span>
-                          </span>
-                          <span>:</span>
-                          <span>
-                            45
-                            <span>min</span>
-                          </span>
-                          <span>:</span>
-                          <span>
-                            03
-                            <span>sec</span>
-                          </span>
-                        </p>
-                      </div>
-
-                      <div>
-                        <h5>simply dummy text</h5>
-                      </div>
-                      <div>
-                        <p>
-                          Product Description
-                        </p>
-                        <div class="price">
-                          <span>Rm 45.00</span>
-                          <span>Rm 50.30</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-sm-2 p-l-md-0">
-                  <div class="hotdeal-right-nav-1">
-                    <div><img src="{{ asset('/assets/images/layout-1/hot-deal/4.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                    <div><img src="{{ asset('/assets/images/layout-1/hot-deal/3.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                    <div><img src="{{ asset('/assets/images/layout-1/hot-deal/2.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                    <div><img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" alt="hot-deal" class="img-fluid  " ></div>
-                  </div>
-                </div>
-              </div>
+              @endforeach
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-</div>
 </section>
 <!--media banner end-->
 
@@ -3515,6 +3393,10 @@
 
 <script>
 
+  var today_deal_list = @json($today_deal_list);
+  var today_deal_times = [];
+  var today_deal_timer = [];
+
   $(document).ready(function(){
     $("#navbarToggleExternalContent").addClass("show");
 
@@ -3539,7 +3421,54 @@
         }
       }
     });
+
+    for(var a = 0; a < today_deal_list.length; a++)
+    {
+      let today_deal = today_deal_list[a];
+      let today_deal_id = today_deal.id;
+      let today_deal_hours = today_deal.hours;
+      let today_deal_minutes = today_deal.minutes;
+      let today_deal_seconds = today_deal.seconds;
+
+      today_deal_times["timer_"+today_deal_id] = {"hour" : today_deal_hours, "minute" : today_deal_minutes, "second" : today_deal_seconds};
+
+      today_deal_timer["timer_"+today_deal_id] = setInterval(function(){
+        var hour = today_deal_times["timer_"+today_deal_id].hour;
+        var minute = today_deal_times["timer_"+today_deal_id].minute;
+        var second = today_deal_times["timer_"+today_deal_id].second;
+
+        second = second - 1;
+        if(second == 0)
+        {
+          minute = minute - 1;
+          second = 60;
+          if(minute < 0)
+          {
+            hour = hour - 1;
+            minute = 60;
+            if(hour < 0)
+            {
+              second = 0;
+              minute = 0;
+              hour = 0;
+
+              clearInterval(today_deal_timer["timer_"+today_deal_id]);
+            }
+          }
+        }
+
+        today_deal_times["timer_"+today_deal_id].second = second;
+        today_deal_times["timer_"+today_deal_id].minute = minute;
+        today_deal_times["timer_"+today_deal_id].hour = hour;
+
+        $("#timer_"+today_deal_id).find('.hour').html(hour+"<span>hrs</span>");
+        $("#timer_"+today_deal_id).find('.minute').html(minute+"<span>Min</span>");
+        $("#timer_"+today_deal_id).find('.second').html(second+"<span>Sec</span>");
+
+      }, 1000);
+    }
   });
+
   
 
 </script>

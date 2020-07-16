@@ -323,6 +323,100 @@ class adminController extends Controller
         return view('admin.tag',compact('tag','subcategory'));
     }
 
+    public function getOnSales()
+    {
+      $product_list = product::where('active', 1)->paginate(10);
+
+      return view('admin.on_sales', compact('product_list'));
+    }
+
+    public function getTodayDeal()
+    {
+      $product_list = product::where('active', 1)->paginate(10);
+
+      return view('admin.today_deal', compact('product_list'));
+    }
+
+    public function updateOnsales(Request $request)
+    {
+      foreach($request->product_id as $product_id)
+      {
+        $active_name = "active_".$product_id;
+        $discount_type_name = "discount_type_".$product_id;
+        $discount_amount_name = "discount_amount_".$product_id;
+        $discount_date_range_name = "daterange_".$product_id;
+
+        if($request->$active_name == 1)
+        {
+          $date_range = explode(" - ", $request->$discount_date_range_name);
+          $date_range_from = null;
+          $date_range_to = null;
+
+          if(count($date_range) > 1)
+          {
+            $date_range_from = date('Y-m-d', strtotime($date_range[0]));
+            $date_range_to = date('Y-m-d', strtotime($date_range[1]));
+          }
+
+          product::where('id', $product_id)->update([
+            'on_sales' => 1,
+            'on_sales_from' => $date_range_from,
+            'on_sales_to' => $date_range_to,
+            'on_sales_type' => $request->$discount_type_name,
+            'on_sales_amount' => $request->$discount_amount_name
+          ]);
+        }
+        else
+        {
+          product::where('id', $product_id)->update([
+            'on_sales' => null
+          ]);
+        }
+      }
+
+      return redirect(route('getOnSales'));
+    }
+
+    public function updateTodayDeal(Request $request)
+    {
+      foreach($request->product_id as $product_id)
+      {
+        $active_name = "active_".$product_id;
+        $discount_type_name = "discount_type_".$product_id;
+        $discount_amount_name = "discount_amount_".$product_id;
+        $discount_date_range_name = "daterange_".$product_id;
+
+        if($request->$active_name == 1)
+        {
+          $date_range = explode(" - ", $request->$discount_date_range_name);
+          $date_range_from = null;
+          $date_range_to = null;
+
+          if(count($date_range) > 1)
+          {
+            $date_range_from = date('Y-m-d', strtotime($date_range[0]))." 00:00:00";
+            $date_range_to = date('Y-m-d', strtotime($date_range[1]))." 23:59:59";
+          }
+
+          product::where('id', $product_id)->update([
+            'today_deal' => 1,
+            'today_deal_from' => $date_range_from,
+            'today_deal_to' => $date_range_to,
+            'today_deal_type' => $request->$discount_type_name,
+            'today_deal_amount' => $request->$discount_amount_name
+          ]);
+        }
+        else
+        {
+          product::where('id', $product_id)->update([
+            'today_deal' => null
+          ]);
+        }
+      }
+
+      return redirect(route('getTodayDeal'));
+    }
+
     public function postAddProduct(Request $request)
     {
       if($request->stock == null){

@@ -258,6 +258,13 @@ Route::group(['middleware' => ['auth:admin']], function () {
     //Ajax get product list
     Route::post('/ajax_product_list','adminController@getAjaxProductList')->name('getAjaxProductList');
 
+    // promotion
+    Route::get('/promotion/on_sales', 'adminController@getOnSales')->name('getOnSales');
+    Route::get('/promotion/today_deal', 'adminController@getTodayDeal')->name('getTodayDeal');
+    Route::post('/updateOnsales', 'adminController@updateOnsales')->name('updateOnsales');
+    Route::post('/updateTodayDeal', 'adminController@updateTodayDeal')->name('updateTodayDeal');
+    // 
+
   });
 });
 
