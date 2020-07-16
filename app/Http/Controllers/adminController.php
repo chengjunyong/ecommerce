@@ -49,8 +49,13 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class adminController extends Controller
 {
+    public function __construct(){
+      
+    }
+
     public function getIndex()
     {
+
       return view('admin.index');
     }
 

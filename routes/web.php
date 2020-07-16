@@ -234,7 +234,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/templateupload','adminController@getTemplateUpload')->name('getTemplateUpload');
     Route::get('/listTemplate','adminController@listTemplate')->name('listTemplate');
 
-    //upload template
+    //upload template (migrate to front)
     Route::post('/gettemplateupload','adminController@templateUpload')->name('templateUpload');
     //delete template
     Route::post('/deleteTemplate','adminController@deleteTemplate')->name('deleteTemplate');
