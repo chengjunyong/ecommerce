@@ -221,98 +221,103 @@
 <section class=" b-g-white section-big-pt-space">
   <div class="container">
     <div class="row hot-1">
-      <div class="col-lg-5 col-sm-6  col-12  ">
-        <div class="slide-1 no-arrow">
-          <div>
-            <div class="media-banner" style="height: 350px; overflow-x: auto;">
-              <div class="media-banner-box">
-                <div class="media-heading">
-                  <h5>on sale</h5>
-                </div>
-              </div>
-              @foreach($on_sales_list as $key => $on_sales)
+      @if(count($on_sales_list) > 0)
+        <div class="col-lg-5 col-sm-6  col-12  ">
+          <div class="slide-1 no-arrow">
+            <div>
+              <div class="media-banner" style="height: 350px; overflow-x: auto;">
                 <div class="media-banner-box">
-                  <div class="media">
-                    @if($on_sales->path)
-                      <img src="{{ Storage::url($on_sales->path) }}" class="img-fluid" alt="banner" style="width: 84px; height: 84px;" />
-                    @else
-                      <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid" alt="banner" />
-                    @endif
-                    <div class="media-body">
-                      <div class="media-contant">
-                        <div>
-                          <p>
-                            {{ $on_sales->name }}
-                          </p>
-                          <h6>
-                            <span>RM {{ $on_sales->price }}</span>
-                            RM {{ $on_sales->on_sales_price }}
-                          </h6>
+                  <div class="media-heading">
+                    <h5>on sale</h5>
+                  </div>
+                </div>
+                @foreach($on_sales_list as $key => $on_sales)
+                  <div class="media-banner-box">
+                    <div class="media">
+                      @if($on_sales->path)
+                        <img src="{{ Storage::url($on_sales->path) }}" class="img-fluid" alt="banner" style="width: 84px; height: 84px;" />
+                      @else
+                        <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid" alt="banner" />
+                      @endif
+                      <div class="media-body">
+                        <div class="media-contant">
+                          <div>
+                            <p>
+                              {{ $on_sales->name }}
+                            </p>
+                            <h6>
+                              <span>RM {{ $on_sales->price }}</span>
+                              RM {{ $on_sales->on_sales_price }}
+                            </h6>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              @endforeach
-              <div class="media-banner-box">
-                <div class="media-view">
-                  <h5>Get It</h5>
+                @endforeach
+                <div class="media-banner-box">
+                  <div class="media-view">
+                    <h5>Get It</h5>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-7  col-sm-12 col-12  ">
-        <div class="hot-deal">
-          <div class="hot-deal-box">
-            <div class="slide-1">
-              @foreach($today_deal_list as $today_deal)
-                <div>
-                  <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 350px;">
-                    <div class="hot-deal-heading">
-                      <h5>today’s hot deal</h5>
-                    </div>
-                    <div class="row hot-deal-subcontain">
-                      <div class="col-lg-4 col-sm-4 col-12">
-                        <div class="hotdeal-right-slick-1 no-arrow">
-                          <div class="right-slick-img">
-                            <img src="{{ Storage::url($today_deal->path) }}" alt="hot-deal" class="img-fluid"  style="width: 150px; height: 150px;" />
+      @endif
+
+      @if(count($today_deal_list) > 0)
+        <div class="col-lg-7  col-sm-12 col-12  ">
+          <div class="hot-deal">
+            <div class="hot-deal-box">
+              <div class="slide-1">
+                @foreach($today_deal_list as $today_deal)
+                  <div>
+                    <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 350px;">
+                      <div class="hot-deal-heading">
+                        <h5>today’s hot deal</h5>
+                      </div>
+                      <div class="row hot-deal-subcontain">
+                        <div class="col-lg-4 col-sm-4 col-12">
+                          <div class="hotdeal-right-slick-1 no-arrow">
+                            <div class="right-slick-img">
+                              <img src="{{ Storage::url($today_deal->path) }}" alt="hot-deal" class="img-fluid"  style="width: 150px; height: 150px;" />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-lg-6 col-sm-6">
-                        <div class="hot-deal-center">
-                          <div>   
-                            <div class="timer" id="timer_{{ $today_deal->id }}">
-                              <p class="demo">
-                                <span class="hour">
-                                  0
-                                  <span>hrs</span>
-                                </span>
-                                <span>:</span>
-                                <span class="minute">
-                                  0
-                                  <span>min</span>
-                                </span>
-                                <span>:</span>
-                                <span class="second">
-                                  0
-                                  <span>sec</span>
-                                </span>
-                              </p>
-                            </div>
+                        <div class="col-lg-6 col-sm-6">
+                          <div class="hot-deal-center">
+                            <div>   
+                              <div class="timer" id="timer_{{ $today_deal->id }}">
+                                <p class="demo">
+                                  <span class="hour">
+                                    0
+                                    <span>hrs</span>
+                                  </span>
+                                  <span>:</span>
+                                  <span class="minute">
+                                    0
+                                    <span>min</span>
+                                  </span>
+                                  <span>:</span>
+                                  <span class="second">
+                                    0
+                                    <span>sec</span>
+                                  </span>
+                                </p>
+                              </div>
 
-                            <div>
-                              <h5>{{ $today_deal->name }}</h5>
-                            </div>
-                            <div>
-                              <p>
-                                {{ $today_deal->description }}
-                              </p>
-                              <div class="price">
-                                <span>Rm {{ $today_deal->price }}</span>
-                                Rm {{ $today_deal->today_deal_price }}
+                              <div>
+                                <h5>{{ $today_deal->name }}</h5>
+                              </div>
+                              <div>
+                                <p>
+                                  {{ $today_deal->description }}
+                                </p>
+                                <div class="price">
+                                  <span>Rm {{ $today_deal->price }}</span>
+                                  Rm {{ $today_deal->today_deal_price }}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -320,12 +325,12 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              @endforeach
+                @endforeach
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      @endif
     </div>
   </div>
 </section>
