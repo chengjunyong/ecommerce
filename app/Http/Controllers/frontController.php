@@ -189,8 +189,7 @@ class frontController extends Controller
   public function getCategoryPage($id)
   {
     $type = $_GET['type'];
-    $brand_list = brand::get();
-
+    
     if($type == 1)
     {
       $product_list = product::where('maincategory_id', $id)->paginate(10);
@@ -206,6 +205,7 @@ class frontController extends Controller
 
     $sub_category_id_array = array();
     $product_id_array = array();
+    $brand_id_array = array();
     foreach($product_list as $product)
     {
       if(!in_array($product->subcategory_id, $sub_category_id_array))
@@ -213,8 +213,15 @@ class frontController extends Controller
         array_push($sub_category_id_array, $product->subcategory_id);
       }
 
+      if(!in_array($product->brand, $brand_id_array))
+      {
+        array_push($brand_id_array, $product->brand);
+      }
+
       array_push($product_id_array, $product->id);
     }
+
+    $brand_list = brand::whereIn('id', $brand_id_array)->get();
 
     $tag_list = tag::whereIn('subcategory_id', $sub_category_id_array)->get();
 
