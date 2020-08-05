@@ -142,7 +142,7 @@
 
       $("#login_form input[name=password], #login_form input[name=email]").removeClass("is-invalid").children("span").remove();
 
-      var html = "<i class='fa fa-circle-o-notch fa-spin'></i>";
+      var html = "<i class='fas fa-spinner fa-spin'></i>";
       $(this).html(html);
 
       $.post("{{ route('login') }}", $("#login_form").serialize(), function(data){

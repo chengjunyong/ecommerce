@@ -97,12 +97,143 @@
 </footer>
 
 <!-- tap to top -->
-<div class="tap-top">
+<!-- <div class="tap-top">
   <div>
     <i class="fa fa-angle-double-up"></i>
   </div>
-</div>
+</div> -->
 <!-- tap to top End -->
+
+<div class="floating_btn" onclick="openFloating()">
+  <div style="margin-top: 2px;">
+    <i class="fas fa-bars"></i>
+  </div>
+</div>
+
+<div id="floating_container" class="floating_container">
+  <!-- <a href="javascript:void(0)" class="overlay" onclick="closeFloating()"></a> -->
+  @if(!$logged_user)
+    <div class="login_alert">
+      <div>
+        <h4>Required login.</h4>
+        <button class="btn btn-info" onclick="floatingLoginNow()">Log in now</button>
+      </div>
+    </div>
+  @endif
+  <div class="floating_box">
+    <div class="floating_close" onclick="closeFloating()">
+      <i class="fas fa-times"></i>
+    </div>
+    <div class="title-box box-title">
+      <div class="active" type="cart" onclick="openFloatingContent(this)">Cart</div>
+      <div type="memo" onclick="openFloatingContent(this)">Memo</div>
+    </div>
+    <div id="floating_cart" class="content">
+      <div class="floating_cart_box">
+        @if(count($global_cart_list) > 0)
+          @foreach($global_cart_list as $cart_detail)
+            <div class="item_summary">
+              @if($cart_detail->image)
+                <img src="{{ Storage::url($cart_detail->image->path) }}" />
+              @else
+                <img src="../assets/images/layout-3/product/1.jpg" />
+              @endif
+              
+              <div class="item_description">
+                <label>{{ $cart_detail->product_name }}</label>
+                <span>{{ $cart_detail->description }}</span>
+              </div>
+              <div class="item_price">
+                RM {{ $cart_detail->quantity * $cart_detail->product_price }}
+              </div>
+              <div class="item_qty">
+                Qty : {{ $cart_detail->quantity }}
+              </div>
+
+            </div>
+          @endforeach
+        @else
+          <h4>Cart is empty.</h4>
+        @endif
+      </div>
+    </div>
+    <div id="floating_memo" class="content" style="display: none;">
+      <div id="memo_list">
+        @foreach($memo_list as $memo)
+          @if(!$memo->completed)
+            <div class="memo">
+              <div class="checkbox icheck_checkbox">
+                <label>
+                  <input class="icheck memo cart_detail_checkbox" type="checkbox" memo_id="{{ $memo->id }}" />
+                </label>
+              </div>
+              <label onclick="memoClick(this, '{{ $memo->id }}')">{{ $memo->memo }}</label>
+              <input type='text' class='memo-input' value='{{ $memo->memo }}' style="display: none;" />
+              <div class="option remove" onclick="undoMemo(this)">
+                <i class="fas fa-times"></i>
+              </div>
+              <div class="option remove trash" onclick="removeMemo(this, {{ $memo->id }} )">
+                <i class="far fa-trash-alt"></i>
+              </div>
+              <div class="option save" onclick="saveMemo(this, {{ $memo->id }} )">
+                <i class="fas fa-check"></i>
+              </div>
+            </div>
+          @endif
+        @endforeach
+      </div>
+      <div class="memo add">
+        <i class="fas fa-plus"></i>
+        <label>List item</label>
+      </div>
+      <hr>
+      <div>
+        <div class="memo expand">
+          <i class="fas fa-chevron-down"></i>
+          <label><span id="memo_completed_count">{{ $completed_memo_count }} </span> Completed items</label>
+        </div>
+
+        <div id="completed_memo">
+          @foreach($memo_list as $memo)
+            @if($memo->completed == 1)
+              <div class="memo">
+                <div class="checkbox icheck_checkbox">
+                  <label>
+                    <input class="icheck memo cart_detail_checkbox" type="checkbox" checked memo_id="{{ $memo->id }}"  />
+                  </label>
+                </div>
+                <label onclick="memoClick(this, '{{ $memo->id }}')" class="completed">{{ $memo->memo }}</label>
+                <input type='text' class='memo-input' value='{{ $memo->memo }}' style="display: none;" />
+                <div class="option remove" onclick="undoMemo(this)">
+                  <i class="fas fa-times"></i>
+                </div>
+                <div class="option remove trash" onclick="removeMemo(this, {{ $memo->id }} )">
+                  <i class="far fa-trash-alt"></i>
+                </div>
+                <div class="option save" onclick="saveMemo(this, {{ $memo->id }} )">
+                  <i class="fas fa-check"></i>
+                </div>
+              </div>
+            @endif
+          @endforeach
+        </div>
+      </div>
+    </div>
+
+    <div class="title-box box-footer">
+      <div id="floating_view_cart">
+        <a href="{{ route('getCartIndex') }}">View Cart</a>
+      </div>
+      <div id="floating_checkout">
+        <a href="{{ route('getCheckoutIndex') }}">Checkout</a>
+      </div>
+      <div class="pull-right" onclick="closeFloating()">
+        <a>Close</a>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <!-- Add to cart bar -->
 <div id="cart_side" class=" add_to_cart bottom ">
@@ -481,6 +612,7 @@
 
 <script>
 
+  var remove = 0;
   var global_cart_list = @json($global_cart_list);
   if(Object.keys(global_cart_list).length > 0)
   {
@@ -501,5 +633,219 @@
   $("#removeCart").click(function(){
     $("#removeCartForm").submit();
   });
+
+  $(".icheck.memo").on("ifChanged", function(){
+    var memo_id = $(this).attr("memo_id");
+    var checked = $(this).is(":checked");
+
+    updateMemo(this, checked, memo_id);
+  });
+
+  $(".memo.add").click(function(){
+    var html = "";
+    html += '<div class="memo">';
+    html += '<div class="checkbox icheck_checkbox">';
+    html += '<label>';
+    html += '<input class="icheck memo cart_detail_checkbox" type="checkbox" memo_id="0" />';
+    html += '</label>';
+    html += '</div>';
+    html += "<label style='display: none;'></label>";
+    html += '<input type="text" class="memo-input" />';
+    html += '<div class="option remove" onclick="undoMemo(this)">';
+    html += '<i class="fas fa-times"></i>';
+    html += '</div>';
+    html += '<div class="option remove trash" style="display: block;" onclick="removeMemo(this, 0)">';
+    html += '<i class="far fa-trash-alt"></i>';
+    html += '</div>';
+    html += '<div class="option save" style="display: block;" onclick="saveMemo(this, 0)">';
+    html += '<i class="fas fa-check"></i>';
+    html += '</div>';
+    html += '</div>';
+
+    $("#memo_list").prepend(html);
+
+    $(".icheck").iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+
+    $(".icheck.memo").on("ifChanged", function(){
+      var memo_id = $(this).attr("memo_id");
+      var checked = $(this).is(":checked");
+
+      updateMemo(this, checked, memo_id);
+    });
+
+    $("#memo_list .memo:first-child").find("input").focus();
+
+  });
+
+  $(".memo.expand").click(function(){
+    if($("#completed_memo").css("display") == "none")
+    {
+      $(".memo.expand svg").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+    }
+    else
+    {
+      $(".memo.expand svg").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+    }
+
+    $("#completed_memo").slideToggle();
+  });
+
+  function saveMemo(_this, id)
+  {
+    var memo = $(_this).siblings('input').val();
+    var checked = $(_this).siblings(".checkbox").find("input[type='checkbox']").is(":checked");
+
+    if(memo == "")
+    {
+      $(_this).siblings('input').addClass("is-invalid").focus();
+      return;
+    }
+
+    $.post("{{ route('saveMemo') }}", {'_token' : "{{ csrf_token() }}", 'memo' : memo, 'id' : id, 'completed' : checked }, function(response){
+      if(response.error == 0)
+      {
+        $(_this).attr("onclick", "saveMemo(this, "+response.memo_id+")");
+        $(_this).siblings("label").html(memo).attr("onclick", "memoClick(this, "+response.memo_id+")").show();
+        $(_this).siblings("input, .option").hide();
+        $(_this).siblings(".option.remove.trash").attr("onclick", "removeMemo(this, "+response.memo_id+")");
+        $(_this).siblings(".checkbox").find("input[type='checkbox']").attr("memo_id", response.memo_id);
+        $(_this).siblings("input").val(memo);
+        $(_this).hide();
+
+        if(response.completed == 1 && id == 0)
+        {
+          $(_this).siblings("div.checkbox").children("label").html("<input class='icheck memo cart_detail_checkbox' type='checkbox' memo_id='"+response.memo_id+"' checked>");
+
+          $(_this).siblings("label").addClass("completed");
+          var memo_html = $(_this).parent(".memo").get(0).outerHTML;
+          $(_this).parent(".memo").remove();
+
+          $("#completed_memo").prepend(memo_html);
+          $("#completed_memo .memo:first-child").children("input").val(memo);
+
+          var memo_count = $("#memo_completed_count").html();
+          var count = parseInt(memo_count) + 1;
+          $("#memo_completed_count").html(count);
+
+          $(".icheck").iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' /* optional */
+          });
+
+          $(".icheck.memo").on("ifChanged", function(){
+            var memo_id = $(this).attr("memo_id");
+            var checked = $(this).is(":checked");
+
+            updateMemo(this, checked, memo_id);
+          });
+
+        }
+      }
+      else
+      {
+        alert("Error");
+      }
+    }).fail(function(){
+      alert("Error");
+    });
+  }
+
+  function memoClick(_this, id)
+  {
+    var memo = $(_this).html();
+    $(_this).siblings(".option").show();
+    $(_this).siblings("input").show().focus();
+    $(_this).hide();
+  }
+
+  function removeMemo(_this, id)
+  {
+    $(_this).parent(".memo").remove();
+
+    if(id != 0)
+    {
+      $.post("{{ route('removeMemo') }}", { '_token' : '{{ csrf_token() }}', 'id' : id }, function(response){
+        $("#memo_completed_count").html(response.count);
+      }).fail(function(){
+        alert("Error");
+      })
+    }
+  }
+
+  function undoMemo(_this)
+  {
+    $(_this).siblings("input, .option").hide();
+    $(_this).siblings("label").show();
+
+    var memo = $(_this).siblings("label").html();
+    $(_this).siblings("input").val(memo);
+    $(_this).hide();
+  }
+
+  function updateMemo(_this, checked, id)
+  {
+    if(id != 0)
+    {
+      $.post("{{ route('updateMemo') }}", {"_token": "{{ csrf_token() }}", "id" : id, "completed" : checked }, function(response){
+        var parent = $(_this).parent().parent().parent().parent();
+
+        var icheck = "";
+        if(checked == true)
+        {
+          icheck = "checked";
+        }
+
+        parent.children("div.checkbox").children("label").html("<input class='icheck memo cart_detail_checkbox' type='checkbox' memo_id='"+id+"' "+icheck+">");
+
+        var memo = parent.children("label").html();
+        if(checked == true)
+        {
+          parent.children("label").addClass("completed");
+        }
+        else
+        {
+          parent.children("label").removeClass("completed");
+        }
+        var memo_html = parent.get(0).outerHTML;
+        parent.remove();
+
+        if(checked == true)
+        {
+          $("#completed_memo").prepend(memo_html);
+          $("#completed_memo .memo:first-child").children("input").val(memo);
+        }
+        else
+        {
+          $(_this).iCheck("uncheck");
+          $("#memo_list").prepend(memo_html);
+          $("#memo_list .memo:first-child").children("input").val(memo);
+        }
+
+        $("#memo_completed_count").html(response.count);
+
+        $(".icheck").iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' /* optional */
+        });
+
+        $(".icheck.memo").on("ifChanged", function(){
+          var memo_id = $(this).attr("memo_id");
+          var checked = $(this).is(":checked");
+
+          updateMemo(this, checked, memo_id);
+        });
+
+      }).fail(function(){
+        alert("Error");
+      });
+      
+    }
+  }
 
 </script>

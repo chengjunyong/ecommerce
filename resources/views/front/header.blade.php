@@ -36,7 +36,7 @@
 
   .top-header { position: fixed; top: 0px; width: 100%; left: 0px; }
   .top-header.hide { display: none; }
-  .layout-header1 { position: fixed; left: 0px; top: 41px; z-index: 10000; width: 100%; transition: top 300ms linear; }
+  .layout-header1 { position: fixed; left: 0px; top: 41px; z-index: 8; width: 100%; transition: top 300ms linear; }
 
   .layout-header1.minimize { position: fixed; top: 0px; padding: 10px 0px; }
   .layout-header1.minimize .menu-left { display: none; }
@@ -60,7 +60,7 @@
   .form-control::-ms-input-placeholder { color: #888 !important; }  /* Microsoft Edge */
 
   .navbar { cursor: pointer; }
-  .navbar.minimize { padding: 0px !important; background: transparent !important; justify-content: space-between !important; box-shadow: 1px 1px 6px 0px #aaa !important; padding: 10px !important; }
+  .navbar.minimize { height: 50px; padding: 0px !important; background: transparent !important; justify-content: space-between !important; padding: 10px !important; color: #333; }
   .navbar.minimize:hover { background: #ff914c !important; color: #fff; }
 
   .dcheck{
@@ -338,7 +338,11 @@
       <div class="row">
         <div class="col">
           <div class="navbar-menu">
-            <div class="category-left">
+            @if(Route::currentRouteName() == "getFrontIndex")
+              <div class="category-left">
+            @else
+              <div class="category-left" style="width: 100%;">
+            @endif
               <div class="nav-block">
                 <div class="nav-left">
                   @if(Route::currentRouteName() == "getFrontIndex")
@@ -365,18 +369,18 @@
                             @if(Route::currentRouteName() == "getFrontIndex")
                               <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
                             @endif
-                            <a>{{ $main->name }}</a>
+                            <a href="{{ route('getCategoryPage', ['id' => $main->id, 'type' => 1]) }}">{{ $main->name }}</a>
                             @if(count($main->category) > 0)
                               <div class="category_box">
                                 <ul class="category_tab">
                                   @foreach($main->category as $category)
                                     <li>
-                                      <a>{{ $category->category_name }}</a>
+                                      <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }}</a>
                                       @if(count($category->subcategory) > 0)
                                         <div class="category_box">
                                           <ul class="category_tab">
                                             @foreach($category->subcategory as $subcategory)
-                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
                                             @endforeach
                                           </ul>
                                         </div>
@@ -394,18 +398,18 @@
                             @if(Route::currentRouteName() == "getFrontIndex") 
                               <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
                             @endif
-                            <a>{{ $main_category[$i]->name }}</a>
+                            <a href="{{ route('getCategoryPage', ['id' => $main_category[$i]->id, 'type' => 1]) }}">{{ $main_category[$i]->name }}</a>
                             @if(count($main_category[$i]->category) > 0)
                               <div class="category_box">
                                 <ul class="category_tab">
                                   @foreach($main_category[$i]->category as $category)
                                     <li>
-                                      <a>{{ $category->category_name }}</a>
+                                      <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }}</a>
                                       @if(count($category->subcategory) > 0)
                                         <div class="category_box">
                                           <ul class="category_tab">
                                             @foreach($category->subcategory as $subcategory)
-                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
                                             @endforeach
                                           </ul>
                                         </div>
@@ -455,6 +459,17 @@
                   </div>
                 </div>
               </div>
+
+              @if(Route::currentRouteName() != "getFrontIndex")
+                <div class="banner_category">
+                  <a href="#">Favorites</a>
+                  <a href="#" class="active">Offers</a>
+                  <a href="#">Discovers</a>
+                  <a href="#">Recipes</a>
+                  <a href="#">Delivery Pass</a>
+                  <a href="#">BBQ</a>
+                </div>
+              @endif
             </div>
             <!-- <div class="category-right">
               <div class="contact-block">
@@ -604,28 +619,28 @@ $(document).ready(function(){
     },"html");
   });
 
-  $(window).scroll(function (event) {
-    headerScroll();
-  });
+  // $(window).scroll(function (event) {
+  //   headerScroll();
+  // });
 
-  headerScroll();
+  // headerScroll();
 
 });
 
-function headerScroll()
-{
-  var scroll = $(window).scrollTop();
-  if(scroll >= 200)
-  {
-    $(".layout-header1").addClass("minimize");
-    $(".top-header").addClass("hide");
-  }
-  else
-  {
-    $(".layout-header1").removeClass("minimize");
-    $(".top-header").removeClass("hide");
-  }
-}
+// function headerScroll()
+// {
+//   var scroll = $(window).scrollTop();
+//   if(scroll >= 200)
+//   {
+//     $(".layout-header1").addClass("minimize");
+//     $(".top-header").addClass("hide");
+//   }
+//   else
+//   {
+//     $(".layout-header1").removeClass("minimize");
+//     $(".top-header").removeClass("hide");
+//   }
+// }
 
 
 </script>

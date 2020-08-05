@@ -2,23 +2,6 @@
 
 @section('layout')
 
-<style>
-  
-  .is-invalid { border-color: #dc3545 !important; }
-  .item_summary { display: flex; margin-bottom: 20px; box-shadow: 1px 1px 5px 0px #333; padding: 10px; }
-  .item_summary img { max-width: 125px; width: 125px; max-height: 125px; object-fit: cover; }
-  .item_summary .item_description { padding: 0 10px; flex: 1; }
-  .item_summary .item_description label { width: 100%; margin-bottom: 5px; }
-  .item_summary .item_description span { width: 100%; }
-  .item_summary .item_price { color: #ff6000; font-weight: bold; font-size: 16px; padding: 0 10px; max-width: 150px; }
-  .item_summary .item_qty { width: 100px; }
-
-  .theme-form { background-color: #fff !important; padding: 20px; height: 700px; overflow-y: auto; overflow-x: hidden; }
-
-  button:disabled { cursor: not-allowed; pointer-events: all !important; }
-
-</style>
-
 <!-- breadcrumb start -->
 <div class="breadcrumb-main ">
     <div class="container">

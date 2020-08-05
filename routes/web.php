@@ -66,6 +66,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('submitCouponcode', 'itemController@submitCouponcode')->name('submitCouponcode');
   });
 
+  Route::post('/saveMemo', 'frontController@saveMemo')->name('saveMemo');
+  Route::post('/removeMemo', 'frontController@removeMemo')->name('removeMemo');
+  Route::post('/updateMemo', 'frontController@updateMemo')->name('updateMemo');
+
 });
 
 Route::prefix('item')->group(function () {

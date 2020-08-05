@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\main_category;
 use App\category;
 use App\product;
 use App\product_image;
@@ -16,6 +17,7 @@ use App\brand;
 use App\transaction;
 use App\transaction_detail;
 use App\User;
+use App\memo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,24 +63,36 @@ class frontController extends Controller
       $on_sales->on_sales_price = $on_sales->price;
       if($on_sales->on_sales_type == "percentage" && $on_sales->on_sales_amount != 0 && $on_sales->on_sales_amount != null)
       {
-        $on_sales->on_sales_price = ($on_sales->price * (100 / $on_sales->on_sales_amount));
+        $on_sales->on_sales_price = $on_sales->price * (100 - $on_sales->on_sales_amount) / 100;
       }
       elseif($on_sales->on_sales_type == "fixed")
       {
         $on_sales->on_sales_price = $on_sales->price - $on_sales->on_sales_amount;
+      }
+
+      if($on_sales->on_sales_price <= 0)
+      {
+        $on_sales->on_sales_price = 0;
+        $on_sales->on_sales_amount = $on_sales->price;
       }
     }
 
     foreach($today_deal_list as $today_deal)
     {
       $today_deal->today_deal_price = $today_deal->price;
-      if($today_deal->today_deal_type == "percentage" && $on_sales->today_deal_amount != 0 && $on_sales->today_deal_amount != null)
+      if($today_deal->today_deal_type == "percentage" && $today_deal->today_deal_amount != 0 && $today_deal->today_deal_amount != null)
       {
-        $today_deal->today_deal_price = ($today_deal->price * (100 / $today_deal->today_deal_amount));
+        $today_deal->today_deal_price = $today_deal->price * (100 - $today_deal->today_deal_amount) / 100;
       }
       elseif($today_deal->today_deal_type == "fixed")
       {
         $today_deal->today_deal_price = $today_deal->price - $today_deal->today_deal_amount;
+      }
+
+      if($today_deal->today_deal_price <= 0)
+      {
+        $today_deal->today_deal_price = 0;
+        $today_deal->today_deal_amount = $today_deal->price;
       }
 
       $today_deal->hours = 0;
@@ -174,16 +188,35 @@ class frontController extends Controller
 
   public function getCategoryPage($id)
   {
-    $tag_list = tag::where('subcategory_id', $id)->get();
+    $type = $_GET['type'];
     $brand_list = brand::get();
 
-    $product_list = product::where('subcategory_id', $id)->paginate(10);
+    if($type == 1)
+    {
+      $product_list = product::where('maincategory_id', $id)->paginate(10);
+    }
+    elseif($type == 2)
+    {
+      $product_list = product::where('category_id', $id)->paginate(10);
+    }
+    elseif($type == 3)
+    {
+      $product_list = product::where('subcategory_id', $id)->paginate(10);
+    }
 
+    $sub_category_id_array = array();
     $product_id_array = array();
     foreach($product_list as $product)
     {
+      if(!in_array($product->subcategory_id, $sub_category_id_array))
+      {
+        array_push($sub_category_id_array, $product->subcategory_id);
+      }
+
       array_push($product_id_array, $product->id);
     }
+
+    $tag_list = tag::whereIn('subcategory_id', $sub_category_id_array)->get();
 
     $product_image_list = product_image::whereIn('product_id', $product_id_array)->get();
 
@@ -432,6 +465,81 @@ class frontController extends Controller
     ]);
 
     return view('front.email_verified');
+  }
+
+  public function saveMemo(Request $request)
+  {
+    $memo_id = null;
+
+    $completed = null;
+    if($request->completed == "true")
+    { 
+      $completed = 1;
+    }
+
+    if($request->id == 0)
+    {
+      $memo = memo::create([
+        'user_id' => Auth::id(),
+        'memo' => $request->memo,
+        'completed' => $completed
+      ]);
+
+      $memo_id = $memo->id;
+    }
+    else
+    {
+      memo::where('id', $request->id)->update([
+        'memo' => $request->memo,
+        'completed' => $completed
+      ]);
+
+      $memo_id = $request->id;
+    }
+
+    $response = new \stdClass();
+    $response->message = "Success";
+    $response->error = 0;
+    $response->memo_id = $memo_id;
+    $response->completed = $completed;
+
+    return response()->json($response);
+  }
+
+  public function removeMemo(Request $request)
+  {
+    memo::where('id', $request->id)->delete();
+
+    $completed_count = memo::where('user_id', Auth::id())->where('completed', 1)->count();
+
+    $response = new \stdClass();
+    $response->message = "Success";
+    $response->error = 0;
+    $response->count = $completed_count;
+
+    return response()->json($response);
+  }
+
+  public function updateMemo(Request $request)
+  {
+    $completed = null;
+    if($request->completed == "true")
+    { 
+      $completed = 1;
+    }
+    
+    memo::where('id', $request->id)->update([
+      'completed' => $completed
+    ]);
+
+    $completed_count = memo::where('user_id', Auth::id())->where('completed', 1)->count();
+
+    $response = new \stdClass();
+    $response->message = "Success";
+    $response->error = 0;
+    $response->count = $completed_count;
+
+    return response()->json($response);
   }
 
   public function testing()

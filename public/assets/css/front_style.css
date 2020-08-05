@@ -11,3 +11,60 @@
 .toast-body { padding: .75em; }
 .toast.fade.show { display: block; opacity: 1; }
 .toast.success { background-color: #28a745; } .toast-body { color: #fff; }
+
+.is-invalid { border-color: #dc3545 !important; }
+.item_summary { display: flex; margin-bottom: 20px; box-shadow: 1px 1px 5px 0px #333; padding: 10px; }
+.item_summary img { max-width: 125px; width: 125px; max-height: 125px; object-fit: cover; }
+.item_summary .item_description { padding: 0 10px; flex: 1; }
+.item_summary .item_description label { width: 100%; margin-bottom: 5px; }
+.item_summary .item_description span { width: 100%; }
+.item_summary .item_price { color: #ff6000; font-weight: bold; font-size: 16px; padding: 0 10px; max-width: 150px; }
+.item_summary .item_qty { width: 100px; }
+
+.theme-form { background-color: #fff !important; padding: 20px; height: 700px; overflow-y: auto; overflow-x: hidden; }
+
+button:disabled { cursor: not-allowed; pointer-events: all !important; }
+
+.floating_btn { width: 50px; height: 50px; border-radius: 100%; position: fixed; bottom: 100px; right: 30px; z-index: 8; color: #fff; text-align: center; background: #ff914b; border: none; font-size: 22px; padding: 7px; cursor: pointer; }
+
+.floating_container { z-index: 9999; position: fixed; right: 100px; bottom: 100px; width: 400px; height: 650px; display: none; box-shadow: 1px 1px 3px 3px #ccc; }
+.floating_container .overlay { position: fixed; left: 0%; top: 0%; width: 100%; height: 100%; opacity: 0.8; background: #000; z-index: 1; }
+.floating_container .floating_box { position: absolute; width: 100%; height: 100%; z-index: 2; background: #fff; border-radius: 3px; }
+.title-box { display: inline-block; width: 100%; padding: 10px; border-bottom: 1px solid #ccc; }
+.title-box.box-footer { border-bottom: 0px; border-top: 1px solid #ccc; }
+.title-box.box-title div { background : #333; padding: 6px 12px; margin: 0 10px; display: inline-block; font-size: 20px; border-radius: 3px; color: #fff; cursor: pointer; }
+.title-box.box-title div:hover, .title-box.box-title div.active { background: #ff914b; }
+.title-box.box-footer div { display: inline-block; font-size: 20px; cursor: pointer; }
+.title-box.box-footer div:first-child { margin-right: 10px; }
+.title-box.box-footer div a { transition: none; color: #777; }
+.title-box.box-footer div a:hover { color: #ff914b; }
+
+.banner_category { display: flex; width: 100%; align-items: center; justify-content: space-between; height: 50px; }
+.banner_category a { font-size: 20px; color: #333; font-weight: bold; padding: 0 10px; }
+.banner_category a.active { color: #ff914b; }
+.banner_category a:hover { color: #ff914b; }
+
+.login_alert { width: 100%; position: absolute; height: 100%; background: rgba(0,0,0,0.9); z-index: 3; display: flex; align-items: center; justify-content: center; }
+.login_alert h4 { padding: 20px 0; color: #fff; }
+.floating_close { position: absolute; right: 5px; top: 5px; border-radius: 50%; width: 20px; height: 20px; background: #dc3545; color: #fff; text-align: center; line-height: 20px; cursor: pointer; }
+
+.memo { display: flex; align-items: center; margin-bottom: 10px; cursor: pointer; }
+.memo label { margin: 0px; }
+.memo > label { padding: 0 10px; cursor: pointer; flex: 1; }
+.memo > label.completed { text-decoration: line-through; }
+.memo .option { padding: 0 10px; cursor: pointer; display: none; }
+.memo > label:hover { color: #000; }
+.memo .option.remove:hover { color: #dc3545; }
+.memo .option.save:hover { color: #28a745; }
+.memo .memo-input { margin: 0 10px; height: 30px; flex: 1; border-radius: 3px; border: 1px solid #ccc; padding: 0 5px; }
+
+.floating_container .floating_box .content { padding: 10px; overflow-x: auto; height: calc(100% - 114px); }
+
+
+
+
+
+
+
+
+

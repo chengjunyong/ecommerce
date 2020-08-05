@@ -1,6 +1,3 @@
-
-
-
 $(document).ready(function(){
 
   var dropdown_timeout;
@@ -41,5 +38,41 @@ function toastBox(class_name, title, body)
     $(".toast[toast_id="+unique_id+"]").fadeOut();
     removeToast();
   });
+}
+
+function floatingLoginNow()
+{
+  $("#floating_container").hide();
+  openAccount();
+}
+
+function openFloating()
+{
+  $("#floating_container").fadeIn();
+}
+
+function closeFloating()
+{
+  $("#floating_container").fadeOut();
+}
+
+function openFloatingContent(_this)
+{
+  var type = $(_this).attr("type");
+
+  $(".floating_box .title-box div").removeClass("active");
+  $(".floating_box .title-box div[type="+type+"]").addClass("active");
+  if(type == "cart")
+  {
+    $("#floating_cart").show();
+    $("#floating_memo").hide();
+    $("#floating_view_cart, #floating_checkout").show();
+  }
+  else if(type == "memo")
+  {
+    $("#floating_cart").hide();
+    $("#floating_memo").show();
+    $("#floating_view_cart, #floating_checkout").hide();
+  }
 }
 

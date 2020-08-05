@@ -24,12 +24,7 @@
 
   .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .timer span>span { color: #212529 !important; }
   .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .price span:last-child { color: #6c757d; }
-  .media-banner .media-banner-box .media .media-body .media-contant h6 span { color: #6c757d; }
-
-  .banner_category { display: flex; width: 100%; align-items: center; justify-content: space-between; height: 50px; }
-  .banner_category a { font-size: 20px; color: #333; font-weight: bold; padding: 0 10px; }
-  .banner_category a.active { color: #ff914b; }
-  .banner_category a:hover { color: #ff914b; }
+  .media-banner .media-banner-box .media .media-body .media-contant h6 span { color: #6c757d; } 
 
 </style>
 
@@ -233,7 +228,7 @@
                 </div>
                 @foreach($on_sales_list as $key => $on_sales)
                   <div class="media-banner-box">
-                    <div class="media">
+                    <div class="media" style="color: #777; align-items: flex-end;">
                       @if($on_sales->path)
                         <img src="{{ Storage::url($on_sales->path) }}" class="img-fluid" alt="banner" style="width: 84px; height: 84px;" />
                       @else
@@ -242,24 +237,32 @@
                       <div class="media-body">
                         <div class="media-contant">
                           <div>
-                            <p>
-                              {{ $on_sales->name }}
-                            </p>
-                            <h6>
-                              <span>RM {{ $on_sales->price }}</span>
-                              RM {{ $on_sales->on_sales_price }}
-                            </h6>
+                            <p>{{ $on_sales->name }}</p>
+                            <h6>RM {{ $on_sales->on_sales_price }}</h6>
+                            <span style="text-decoration: line-through;">RM {{ $on_sales->price }}</span>
+                            @if($on_sales->on_sales_type == "percentage")
+                              <span> -{{ $on_sales->on_sales_amount }}% </span>
+                            @elseif($on_sales->on_sales_type == "fixed")
+                              <span> -RM {{ $on_sales->on_sales_amount }} </span>
+                            @endif
                           </div>
+                        </div>
+                      </div>
+                      <div class="media-banner-box" style="padding-bottom: 10px;">
+                        <div class="media-view">
+                          <a href="{{ route('getItemDetail', ['id' => $on_sales->id ])}}">
+                            <h5>Get now</h5>
+                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
                 @endforeach
-                <div class="media-banner-box">
+                <!-- <div class="media-banner-box">
                   <div class="media-view">
                     <h5>Get It</h5>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -315,11 +318,26 @@
                                   {{ $today_deal->description }}
                                 </p>
                                 <div class="price">
-                                  <span>Rm {{ $today_deal->price }}</span>
-                                  Rm {{ $today_deal->today_deal_price }}
+                                  <span>RM {{ $today_deal->today_deal_price }}</span>
+                                  <br>
+                                  <span style="text-decoration: line-through; color: #777; font-weight: 1;">RM {{ $today_deal->price }}</span>
+                                  @if($today_deal->today_deal_type == "percentage")
+                                    <label> -{{ $on_sales->today_deal_amount }}% </label>
+                                  @elseif($today_deal->today_deal_type == "fixed")
+                                    <label> -RM {{ $on_sales->today_deal_amount }} </label>
+                                  @endif
+                                  
                                 </div>
+
                               </div>
                             </div>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="media-view">
+                            <a href="{{ route('getItemDetail', ['id' => $today_deal->id ])}}" style="color: #ff6000;">
+                              <h4 style="text-align: right;">Get now</h4>
+                            </a>
                           </div>
                         </div>
                       </div>

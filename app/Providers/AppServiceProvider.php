@@ -14,6 +14,7 @@ use App\wishlist_detail;
 use App\cart;
 use App\cart_detail;
 use App\product_image;
+use App\memo;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -61,6 +62,9 @@ class AppServiceProvider extends ServiceProvider
         $wishlist_count = null;
         $cart = null;
         $global_cart_list = [];
+        $memo_list = [];
+        $completed_memo_count = 0;
+
         if($logged_user)
         {
           $wishlist = wishlist::where('user_id', $logged_user->id)->first();
@@ -81,9 +85,18 @@ class AppServiceProvider extends ServiceProvider
               }
             }
           }
+
+          $memo_list = memo::where('user_id', $logged_user->id)->orderBy('updated_at', 'desc')->get();
+          foreach($memo_list as $memo)
+          {
+            if($memo->completed == 1)
+            {
+              $completed_memo_count++;
+            }
+          }
         }
 
-        $view->with(['main_category' => $main_category, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list ]); 
+        $view->with(['main_category' => $main_category, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list, "memo_list" => $memo_list, "completed_memo_count" => $completed_memo_count ]); 
       }); 
     }
 }

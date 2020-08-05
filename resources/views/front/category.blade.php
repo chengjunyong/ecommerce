@@ -58,6 +58,31 @@
         <div class="collection-content col">
           <div class="page-main-content">
             <div class="row">
+
+              <div class="col-sm-3 collection-filter category-side category-page-side">
+                <!-- side-bar colleps block stat -->
+                <div class="collection-filter-block creative-card creative-inner">
+                  <!-- brand filter start -->
+                  <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
+                  <div class="collection-collapse-block open">
+                    <h3 class="collapse-block-title mt-0" style="margin-bottom: 10px;">Tag</h3>
+                    <div class="collection-collapse-block-content">
+                      <div class="collection-brand-filter">
+                        @foreach($tag_list as $tag)
+
+                        <div class="checkbox icheck_checkbox">
+                          <label>
+                            <input class="icheck tag_checkbox" type="checkbox" value="{{ $tag->id }}" checked /> {{ $tag->tag_name }}
+                          </label>
+                        </div>
+                        @endforeach
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
               <div class="col-sm-9 col-xs-12">
                 <div class="top-banner-wrapper">
                   <a href="#">
@@ -223,29 +248,7 @@
                 </div>
               </div>
 
-              <div class="col-sm-3 collection-filter category-side category-page-side">
-                <!-- side-bar colleps block stat -->
-                <div class="collection-filter-block creative-card creative-inner">
-                  <!-- brand filter start -->
-                  <div class="collection-mobile-back"><span class="filter-back"><i class="fa fa-angle-left" aria-hidden="true"></i> back</span></div>
-                  <div class="collection-collapse-block open">
-                    <h3 class="collapse-block-title mt-0" style="margin-bottom: 10px;">Tag</h3>
-                    <div class="collection-collapse-block-content">
-                      <div class="collection-brand-filter">
-                        @foreach($tag_list as $tag)
-
-                        <div class="checkbox icheck_checkbox">
-                          <label>
-                            <input class="icheck tag_checkbox" type="checkbox" value="{{ $tag->id }}" checked /> {{ $tag->tag_name }}
-                          </label>
-                        </div>
-                        @endforeach
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+              
 
             </div>
           </div>
