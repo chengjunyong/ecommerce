@@ -17,14 +17,14 @@
                                 <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" value="{{ old('fname') }}" required="">
                             </div>
                             <div class="col-md-12 form-group">
-                                <label for="review">Last Name</label>
+                                <label for="lname">Last Name</label>
                                 <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" value="{{ old('lname') }}" required="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 form-group">
                                 <label for="email">email</label>
-                                <input type="text" class="form-control @error('password') is-invalid @enderror" id="email" value="{{ old('email') }}" name="email" placeholder="Email" required="" autocomplete="off">
+                                <input type="text" class="form-control @error('password') is-invalid @enderror" value="{{ old('email') }}" name="email" placeholder="Email" required="" autocomplete="off">
                                  @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -32,8 +32,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-12 form-group">
-                                <label for="review">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" id="review" name="password" placeholder="Enter your password" required="">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter your password" required="">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -43,8 +43,8 @@
 
                             </div>
                             <div class="col-md-12 form-group">
-                                <label for="review">Confirm Password</label>
-                                <input type="password" class="form-control" name="password_confirmation" id="review" placeholder="Enter your password" required="">
+                                <label for="confirm_pasword">Confirm Password</label>
+                                <input type="password" class="form-control" name="password_confirmation" placeholder="Enter your password" required="">
                             </div>
                             <div class="col-md-12 form-group">
                               <input type="hidden" name="type" value="front" />
