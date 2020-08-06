@@ -23,24 +23,22 @@
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 form-group">
-                                <label for="email">email</label>
-                                <input type="text" class="form-control @error('password') is-invalid @enderror" value="{{ old('email') }}" name="email" placeholder="Email" required="" autocomplete="off">
-                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                              <label for="email">email</label>
+                              <input type="text" class="form-control @if($errors->first('email')) is-invalid @endif" value="{{ old('email') }}" name="email" placeholder="Email" required="" autocomplete="off">
+                              @if ($errors->first('email'))
+                                <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                              @endif
                             </div>
                             <div class="col-md-12 form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter your password" required="">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
+                              <label for="password">Password</label>
+                              <input type="password" class="form-control @if($errors->first('password')) is-invalid @endif" name="password" placeholder="Enter your password" required="">
+                              @if ($errors->first('password'))
+                                <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                              @endif
                             </div>
                             <div class="col-md-12 form-group">
                                 <label for="confirm_pasword">Confirm Password</label>

@@ -284,7 +284,11 @@
                         <div class="col-lg-4 col-sm-4 col-12">
                           <div class="hotdeal-right-slick-1 no-arrow">
                             <div class="right-slick-img">
-                              <img src="{{ Storage::url($today_deal->path) }}" alt="hot-deal" class="img-fluid"  style="width: 150px; height: 150px;" />
+                              @if($today_deal->path)
+                                <img src="{{ Storage::url($today_deal->path) }}" class="img-fluid" alt="hot-deal" style="width: 150px; height: 150px;" />
+                              @else
+                                <img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" class="img-fluid" alt="banner" />
+                              @endif
                             </div>
                           </div>
                         </div>
