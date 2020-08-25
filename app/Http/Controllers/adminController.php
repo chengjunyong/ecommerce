@@ -1194,7 +1194,6 @@ class adminController extends Controller
     public function postProductReport(Request $request)
     {
       
-
       return view('admin.report.product_report');
     }
 

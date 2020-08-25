@@ -72,6 +72,7 @@
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getSpecifyDateReport') }}"><i class="fa fa-circle"></i>Specify Date Report</a></li>
           <li><a href="{{ route('getProductReport') }}"><i class="fa fa-circle"></i>Product Report</a></li>
+
         </ul>
       </li>      
       <li><a class="sidebar-header" href=""><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
