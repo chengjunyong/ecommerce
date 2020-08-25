@@ -105,7 +105,7 @@
 <!-- tap to top End -->
 
 <div class="floating_btn" onclick="openFloating()">
-  <div style="margin-top: 2px;">
+  <div style="margin-top: 4px;">
     <i class="fas fa-bars"></i>
   </div>
 </div>
@@ -114,6 +114,9 @@
   <!-- <a href="javascript:void(0)" class="overlay" onclick="closeFloating()"></a> -->
   @if(!$logged_user)
     <div class="login_alert">
+      <div class="floating_close" onclick="closeFloating()">
+        <i class="fas fa-times"></i>
+      </div>
       <div>
         <h4>Required login.</h4>
         <button class="btn btn-info" onclick="floatingLoginNow()">Log in now</button>
@@ -603,7 +606,23 @@
   </div>
 </div>
 
-<div aria-live="polite" aria-atomic="true" style="position: relative; height: 0px; z-index: 10;">
+<div class="modal fade" style="z-index: 9999;" id="loginPrompt" tabindex="-1" role="dialog" aria-labelledby="loginPromptLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Login Required.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="loginPromptText"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div aria-live="polite" aria-atomic="true" style="position: relative; height: 0px; z-index: 100;">
   <!-- Position it -->
   <div style="position: fixed; top: 10px; right: 10px;" id="toastBox">
   </div>

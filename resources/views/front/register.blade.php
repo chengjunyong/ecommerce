@@ -62,4 +62,6 @@
 </section>
 <!--Section ends-->
 
+@include('front.footer')
+
 @endsection

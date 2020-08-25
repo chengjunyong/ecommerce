@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\main_category;
 use App\category;
+use App\subcategory;
 use App\product;
 use App\product_image;
 use App\wishlist;
@@ -186,20 +187,55 @@ class frontController extends Controller
     
   }
 
+  public function getSearchedItems(Request $request)
+  {
+    $product_list = product::where('name', 'LIKE', $request->search."%")->limit(10)->get();
+
+    $response = new \stdClass();
+    $response->message = "Success";
+    $response->error = 0;
+    $response->items = $product_list;
+
+    return response()->json($response);
+  }
+
   public function getCategoryPage($id)
   {
     $type = $_GET['type'];
+
+    $main_category = null;
+    $category = null;
+    $subcategory = null;
     
     if($type == 1)
     {
+      $main_category = main_category::where('id', $id)->first();
+
       $product_list = product::where('maincategory_id', $id)->paginate(10);
     }
     elseif($type == 2)
     {
+      $category = category::where('category_id', $id)->first();
+      if($category)
+      {
+        $main_category = main_category::where('id', $category->main_category)->first();
+      }
+      
       $product_list = product::where('category_id', $id)->paginate(10);
     }
     elseif($type == 3)
     {
+      $subcategory = subcategory::where('subcategory_id', $id)->first();
+
+      if($subcategory)
+      {
+        $category = category::where('category_id', $subcategory->category_id)->first();
+        if($category)
+        {
+          $main_category = main_category::where('id', $category->main_category)->first();
+        }
+      }
+
       $product_list = product::where('subcategory_id', $id)->paginate(10);
     }
 
@@ -240,7 +276,36 @@ class frontController extends Controller
       $product->image = $product_image;
     }
 
-    return view('front.category', compact('product_list', 'tag_list', 'brand_list'));
+    $breadcrumb = array([
+      'name' => "Homepage",
+      'route' => route("getFrontIndex"),
+    ]);
+
+    if($main_category)
+    {
+      array_push($breadcrumb, [
+        'name' => $main_category->name,
+        'route' => route("getCategoryPage", ['id' => $main_category->id, 'type' => 1]),
+      ]);
+    }
+
+    if($category)
+    {
+      array_push($breadcrumb, [
+        'name' => $category->category_name,
+        'route' => route("getCategoryPage", ['id' => $category->category_id, 'type' => 2]),
+      ]);
+    }
+
+    if($subcategory)
+    {
+      array_push($breadcrumb, [
+        'name' => $subcategory->subcategory_name,
+        'route' => route("getCategoryPage", ['id' => $subcategory->subcategory_id, 'type' => 3]),
+      ]);
+    }
+
+    return view('front.category', compact('product_list', 'tag_list', 'brand_list', 'breadcrumb'));
   }
 
   public function getRegisterPage()
@@ -258,8 +323,16 @@ class frontController extends Controller
 
     $user = Auth::user();
     $address_book_list = address_book::where('user_id', $user->id)->get();
+
+    $breadcrumb = array([
+      'name' => "Homepage",
+      'route' => route("getFrontIndex"),
+    ],[
+      'name' => "Dashboard",
+      'route' => route("getUserProfile")
+    ]);
     
-    return view('front.dashboard', compact('user', 'tab', 'address_book_list'));
+    return view('front.dashboard', compact('user', 'tab', 'address_book_list', 'breadcrumb'));
   }
 
   public function getEditInfo()
@@ -358,7 +431,18 @@ class frontController extends Controller
       $transaction->item = $transaction_item;
     }
 
-    return view('front.order_history', compact('transaction_list'));
+    $breadcrumb = array([
+      'name' => "Homepage",
+      'route' => route("getFrontIndex"),
+    ],[
+      'name' => "Dashboard",
+      'route' => route("getUserProfile")
+    ],[
+      'name' => "Order History",
+      'route' => route("getOrderHistory")
+    ]);
+
+    return view('front.order_history', compact('transaction_list', 'breadcrumb'));
   }
 
   public function getWishList()

@@ -30,16 +30,18 @@
 
 <!-- breadcrumb start -->
 <div class="breadcrumb-main ">
-  <div class="container">
-    <div class="row">
+  <div class="custom-container">
+    <div class="row" style="padding-left: calc(10px + 1em);">
       <div class="col">
         <div class="breadcrumb-contain">
           <div>
-            <h2>category</h2>
             <ul>
-              <li><a href="#">home</a></li>
-              <li><i class="fa fa-angle-double-right"></i></li>
-              <li><a href="#">category</a></li>
+              @foreach($breadcrumb as $key => $value)
+                <li><a href="{{ $value['route'] }}">{{ $value['name'] }}</a></li>
+                @if(($key + 1) < count($breadcrumb))
+                  <li><i class="fa fa-angle-double-right"></i></li>
+                @endif
+              @endforeach
             </ul>
           </div>
         </div>
@@ -297,7 +299,8 @@
   $(".wishlist-btn, .product-buttons").click(function(){
     if(logged_user == "")
     {
-      alert("Please login before add item to wish list");
+      $("#loginPromptText").html("Please login before add item to cart");
+      $("#loginPrompt").modal('show');
       return;
     }
     var product_id = $(this).attr("product_id");

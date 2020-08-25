@@ -3,7 +3,9 @@
   .nav-left { top: 0px; overflow: visible !important; }
   .my_dropdown { position: relative; padding: 0px 0px 7px 0px !important; } 
   .my_dropdown > li { padding: 7px 20px; }
+  .my_dropdown > li a { font-size: 18px !important; }
   .my_dropdown li:hover { background: #eee; }
+  .my_dropdown li:hover > a { font-weight: bold; }
   .category_box { display: none; background-color: #fff; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); min-width: 250px; position: absolute; left: 100%; top: 0%; z-index: 1; height: 100%; }
   .category_tab li { padding: 7px 20px !important; white-space: nowrap; }
   .category_tab li:hover > a { color: #ff6000; }
@@ -44,6 +46,11 @@
   .layout-header1.minimize .searchbar { height: 40px; }
   .layout-header1.minimize .input-group-prepend.searchbar { display: none; }
   .layout-header1.minimize .input-group.searchbar input { height: 40px; }
+
+  .search_autocomplete { position: absolute; left: 0%; top: 57px; border: 1px solid #ccc; width: 100%; background: #fff; display: none; }
+  .search_autocomplete.show { display: flex; }
+  .search_autocomplete a { width: calc(100% - 64px); cursor: pointer; padding: 5px 10px; margin: 0px; color: #333; font-size: 16px; margin-left: 64px; }
+  .search_autocomplete a:hover { background: #ff914c; }
 
   .postal_code_header { border: none; background-image: url(http://localhost:8000/assets/images/postal_code_check_banner.png); background-repeat: no-repeat; background-size: cover; height: 200px; color: #fff; }
 
@@ -235,6 +242,8 @@
                     <span class="search" id="searchItemSubmit"><i class="fa fa-search"></i></span>
                   </div>
                   <input type="text" name="keyword" class="form-control" placeholder="Search a Product" id="searchItem" value="{{ isset($keyword) ? $keyword : '' }}" style="background: #eee;" >
+                  <div class="search_autocomplete" id="search_autocomplete">
+                  </div>
                 </div>
               </form>
             </div>
@@ -367,7 +376,7 @@
                         @foreach($main_category as $main)
                           <li> 
                             @if(Route::currentRouteName() == "getFrontIndex")
-                              <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
+                              <!-- <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> -->
                             @endif
                             <a href="{{ route('getCategoryPage', ['id' => $main->id, 'type' => 1]) }}">{{ $main->name }}</a>
                             @if(count($main->category) > 0)
@@ -578,13 +587,15 @@
 </div>
 
 <script>
+
+  var searchTimeout;
+
 $(document).ready(function(){  
   $(".my_dropdown_2 li div").click(function(){
     $(this).siblings("ul").toggleClass("active");
   });
 
   $("#searchItem, #mobileSearchItem").on('keypress',function(e) {
-    console.log(e);
     if(e.which == 13)
     {
       if($(this).attr("id") == "searchItem")
@@ -595,6 +606,12 @@ $(document).ready(function(){
       {
         $("#mobileSearchItemSubmit").click();
       }
+    }
+    else
+    {
+      clearTimeout(searchTimeout);
+      var id = $(this).attr("id");
+      searchTimeout = setTimeout( function() { ajaxSearch(id) } , 500);
     }
   });
 
@@ -619,6 +636,22 @@ $(document).ready(function(){
     },"html");
   });
 
+  $('body').on('click', function(){
+    $("#search_autocomplete").removeClass("show").html(""); 
+    if($(".login_alert").css("display") == "flex")
+    {
+      closeFloating();
+    }
+  });
+
+  $("#searchItem, #search_autocomplete").click(function(e){
+    e.stopPropagation();
+  });
+
+  $("#floating_container, .floating_btn").click(function(e){
+    e.stopPropagation();
+  });
+
   // $(window).scroll(function (event) {
   //   headerScroll();
   // });
@@ -641,6 +674,31 @@ $(document).ready(function(){
 //     $(".top-header").removeClass("hide");
 //   }
 // }
+
+function ajaxSearch(id)
+{
+  $.post("{{ route('getSearchedItems') }}", { _token: "{{ csrf_token() }}", search: $("#"+id).val() }, function(response){
+
+    var html = "";
+    if(response.items.length > 0)
+    {
+      for(var a = 0; a < response.items.length; a++)
+      {
+        var item = response.items[a];
+        var route_url = "{{ route('getItemDetail', ['id' => ':id']) }}";
+        route_url = route_url.replace(':id', item.id);
+
+        html += "<a href='"+route_url+"'>"+item.name+"</a>";
+      }
+    }
+    else
+    {
+      html += "<a>No related item found.</a>";
+    }
+    
+    $("#search_autocomplete").addClass("show").html(html);
+  });
+}
 
 
 </script>
