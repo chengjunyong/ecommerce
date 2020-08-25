@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\main_category;
 use App\category;
+use App\subcategory;
 use App\product;
 use App\product_image;
 use App\wishlist;
@@ -32,7 +34,45 @@ class itemController extends Controller
         $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
       }
 
-      return view('front.item', compact('product_detail', 'address_book', 'user'));
+      $breadcrumb = array([
+        'name' => "Homepage",
+        'route' => route("getFrontIndex"),
+      ]);
+
+      $main_category = main_category::where('id', $product_detail->maincategory_id)->first();
+      $category = category::where('category_id', $product_detail->category_id)->first();
+      $subcategory = subcategory::where('subcategory_id', $product_detail->subcategory_id)->first();
+
+      if($main_category)
+      {
+        array_push($breadcrumb, [
+          'name' => $main_category->name,
+          'route' => route("getCategoryPage", ['id' => $main_category->id, 'type' => 1]),
+        ]);
+      }
+
+      if($category)
+      {
+        array_push($breadcrumb, [
+          'name' => $category->category_name,
+          'route' => route("getCategoryPage", ['id' => $category->category_id, 'type' => 2]),
+        ]);
+      }
+
+      if($subcategory)
+      {
+        array_push($breadcrumb, [
+          'name' => $subcategory->subcategory_name,
+          'route' => route("getCategoryPage", ['id' => $subcategory->subcategory_id, 'type' => 3]),
+        ]);
+      }
+
+      array_push($breadcrumb, [
+        'name' => $product_detail->name,
+        'route' => route("getItemDetail", ['id' => $product_detail->id]),
+      ]);
+
+      return view('front.item', compact('product_detail', 'address_book', 'user', 'breadcrumb'));
     }
 
     public function addItemToWishlist(Request $request)
@@ -178,7 +218,15 @@ class itemController extends Controller
         $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product.id')->get();
       }
 
-      return view('front.cart', compact('cart_list')); 
+      $breadcrumb = array([
+        'name' => "Homepage",
+        'route' => route("getFrontIndex"),
+      ],[
+        'name' => "My Cart",
+        'route' => route("getCartIndex")
+      ]);
+
+      return view('front.cart', compact('cart_list', 'breadcrumb')); 
     }
 
     public function getCheckoutIndex()
@@ -194,7 +242,18 @@ class itemController extends Controller
         $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product.id')->get();
       }
 
-      return view('front.checkout', compact('cart_list', 'address_book'));
+      $breadcrumb = array([
+        'name' => "Homepage",
+        'route' => route("getFrontIndex"),
+      ],[
+        'name' => "My Cart",
+        'route' => route("getCartIndex")
+      ],[
+        'name' => "Checkout",
+        'route' => route("getCheckoutIndex")
+      ]);
+
+      return view('front.checkout', compact('cart_list', 'address_book', 'breadcrumb'));
     }
 
     public function selectedItemCheckout(Request $request)

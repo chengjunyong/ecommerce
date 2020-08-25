@@ -46,6 +46,22 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+      if ($exception instanceof \Illuminate\Session\TokenMismatchException)
+      {
+        return redirect(route('getFrontIndex'));
+      }
+      elseif($this->isHttpException($exception)) 
+      {
+        switch ($exception->getStatusCode()) 
+        {
+          case 405:
+            return redirect(route('getFrontIndex'));
+            break;
+          default: 
+            return parent::render($request, $exception);
+        }
+      }
+
+      return parent::render($request, $exception);
     }
 }

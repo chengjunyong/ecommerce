@@ -12,22 +12,24 @@
 </style>
 
 <div class="breadcrumb-main ">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="breadcrumb-contain">
-                    <div>
-                        <h2>dashboard</h2>
-                        <ul>
-                            <li><a href="#">home</a></li>
-                            <li><i class="fa fa-angle-double-right"></i></li>
-                            <li><a href="#">dashbord</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+  <div class="custom-container">
+    <div class="row" style="padding-left: calc(10px + 1em);">
+      <div class="col">
+        <div class="breadcrumb-contain">
+          <div>
+            <ul>
+              @foreach($breadcrumb as $key => $value)
+                <li><a href="{{ $value['route'] }}">{{ $value['name'] }}</a></li>
+                @if(($key + 1) < count($breadcrumb))
+                  <li><i class="fa fa-angle-double-right"></i></li>
+                @endif
+              @endforeach
+            </ul>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <!-- breadcrumb End -->
 
@@ -71,6 +73,10 @@
                                               <label> Email : </label> {{ $user->email }}
                                               @if($user->verified == null) 
                                                 <a href="#" id="verify_now">Verify now</a>
+                                                <button id="verify_loader" class="verify_loader" disabled style="display: none;">
+                                                  Send again
+                                                  <span id="verify_countdown">60</span>
+                                                </button>
                                               @endif
                                             </h6> 
                                             <h6><a href="#">Change Password</a></h6></div>
@@ -217,6 +223,9 @@
 
   var tab = "{{ $tab }}";
   var address_book_list = @json($address_book_list);
+
+  var verify_countdown = 60;
+  var verify_countdown_interval;
   
   $("a[type=tab]").click(function(){
     var target = $(this).attr("target");
@@ -294,18 +303,39 @@
       $("#address_form").removeClass("hide");
     }); 
 
-    $("#verify_now").click(function(){
-
-      $.get("{{ route('verify_now') }}", function(response){
-
-        toastBox("success", "Email sent successful", "Verification email has been sent to your email.");
-
-      }).fail(function(){
-        alert("Error");
-      });
+    $("#verify_now, #verify_loader").click(function(){
+      sendVerify(); 
     });
 
   });
+
+  function sendVerify()
+  {
+    $("#verify_loader").show();
+    $("#verify_now").hide();
+    $("#verify_loader").attr("disabled", true);
+
+    verify_countdown_interval = setInterval(function(){
+      verify_countdown--;
+      if(verify_countdown <= 0)
+      {
+        clearInterval(verify_countdown_interval);
+        $("#verify_loader").attr("disabled", false);
+        $("#verify_countdown").html("");
+        verify_countdown = 60;
+      }
+      else
+      {
+        $("#verify_countdown").html(verify_countdown);
+      }
+    }, 1000);
+
+    $.get("{{ route('verify_now') }}", function(response){
+      toastBox("success", "Email sent successful", "Verification email has been sent to your email.");
+    }).fail(function(){
+      alert("Error");
+    });
+  }
 
 </script>
 

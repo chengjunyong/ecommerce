@@ -24,6 +24,7 @@ Route::get('/index4', 'frontController@getFrontIndex4')->name('getFrontIndex4');
 Route::get('/index5', 'frontController@getFrontIndex5')->name('getFrontIndex5');
 Route::get('/index6', 'frontController@getFrontIndex6')->name('getFrontIndex6');
 Route::get('/search', 'frontController@getItemSearch')->name('getItemSearch');
+Route::post('/ajaxSearch', 'frontController@getSearchedItems')->name('getSearchedItems');
 Route::get('/category/{id}', 'frontController@getCategoryPage')->name('getCategoryPage');
 Route::get('/contact_us', 'frontController@getContactUsPage')->name('getContactUsPage');
 Route::get('/edit_info', 'frontController@getEditInfo')->name('getEditInfo');
