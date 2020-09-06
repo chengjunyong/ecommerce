@@ -175,7 +175,15 @@ class itemController extends Controller
 
           $cart_count = cart_detail::where('cart_id', $cart->id)->where('cart_detail.completed', null)->count();
 
-          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product.id')->get();
+          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->groupBy('product.id')->get();
+
+          foreach($cart_list as $cart)
+          {
+            $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart);
+            $cart->promo_price = $promo_result->promo_price;
+            $cart->promo_amount = $promo_result->promo_amount;
+            $cart->promo_type = $promo_result->promo_type;
+          }
 
           $response = new \stdClass();
           $response->error = 0;
@@ -194,7 +202,15 @@ class itemController extends Controller
 
         $cart_count = cart_detail::where('cart_id', $cart->id)->where('cart_detail.completed', null)->count();
 
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product.id')->get();
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->groupBy('product.id')->get();
+
+        foreach($cart_list as $cart)
+        {
+          $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart);
+          $cart->promo_price = $promo_result->promo_price;
+          $cart->promo_amount = $promo_result->promo_amount;
+          $cart->promo_type = $promo_result->promo_type;
+        }
 
         $response = new \stdClass();
         $response->error = 0;

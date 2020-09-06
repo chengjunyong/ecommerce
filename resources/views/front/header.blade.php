@@ -159,15 +159,16 @@
 
                 @if(count($main_category) <= 7)
                   @foreach($main_category as $main)
-                    <li class="dropdown_2_list"> <div><a>{{ $main->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                    <li class="dropdown_2_list"> <div><a href="{{ route('getCategoryPage', ['id' => $main->id, 'type' => 1]) }}">{{ $main->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
                       @if(count($main->category) > 0)
                         <ul>
                           @foreach($main->category as $category)
-                            <li><div> <a>{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                            <li><div> 
+                              <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
                               @if(count($category->subcategory) > 0)
                                 <ul>
                                   @foreach($category->subcategory as $subcategory)
-                                    <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
+                                    <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
                                   @endforeach
                                 </ul>
                               @endif
@@ -179,15 +180,15 @@
                   @endforeach
                 @else
                   @for ($i = 0; $i < 7; $i++)
-                    <li class="dropdown_2_list"> <div><a>{{ $main_category[$i]->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                    <li class="dropdown_2_list"> <div><a href="{{ route('getCategoryPage', ['id' => $main_category[$i]->id, 'type' => 1]) }}">{{ $main_category[$i]->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
                       @if(count($main_category[$i]->category) > 0)
                         <ul>
                           @foreach($main_category[$i]->category as $category)
-                            <li><div> <a>{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                            <li><div> <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
                               @if(count($category->subcategory) > 0)
                                 <ul>
                                   @foreach($category->subcategory as $subcategory)
-                                    <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
+                                    <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
                                   @endforeach
                                 </ul>
                               @endif
@@ -202,15 +203,15 @@
                   <li class="mor-slide-open">
                     <ul>
                       @for($b = 7; $b < count($main_category); $b++)
-                        <li> <div><a>{{ $main_category[$b]->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                        <li> <div><a href="{{ route('getCategoryPage', ['id' => $main_category[$b]->id, 'type' => 1]) }}">{{ $main_category[$b]->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
                           @if(count($main_category[$b]->category) > 0)
                             <ul>
                               @foreach($main_category[$b]->category as $category)
-                                <li><div> <a>{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                                <li><div> <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
                                   @if(count($category->subcategory) > 0)
                                     <ul>
                                       @foreach($category->subcategory as $subcategory)
-                                        <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
+                                        <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
                                       @endforeach
                                     </ul>
                                   @endif
@@ -436,18 +437,18 @@
                           <ul>
                             @for($b = 7; $b < count($main_category); $b++)
                               <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product">
-                                <a>{{ $main_category[$b]->name }}</a>
+                                <a href="{{ route('getCategoryPage', ['id' => $main_category[$b]->id, 'type' => 1]) }}">{{ $main_category[$b]->name }}</a>
                                 @if(count($main_category[$b]->category) > 0)
                                   <div class="category_box">
                                     <ul class="category_tab">
                                       @foreach($main_category[$b]->category as $category)
                                         <li>
-                                          <a>{{ $category->category_name }}</a>
+                                          <a href="{{ route('getCategoryPage', ['id' => $category->id, 'type' => 2]) }}">{{ $category->category_name }}</a>
                                           @if(count($category->subcategory) > 0)
                                             <div class="category_box">
                                               <ul class="category_tab">
                                                 @foreach($category->subcategory as $subcategory)
-                                                  <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                                  <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
                                                 @endforeach
                                               </ul>
                                             </div>
@@ -472,7 +473,7 @@
               @if(Route::currentRouteName() != "getFrontIndex")
                 <div class="banner_category">
                   <a href="#">Favorites</a>
-                  <a href="#" class="active">Offers</a>
+                  <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" class="active">Offers</a>
                   <a href="#">Discovers</a>
                   <a href="#">Recipes</a>
                   <a href="#">Delivery Pass</a>

@@ -249,6 +249,21 @@ class frontController extends Controller
 
       $product_list = product::where('subcategory_id', $id)->paginate(10);
     }
+    // promotion
+    elseif($type == 4)
+    {
+      $type_detail = $_GET['type_detail'];
+      if($type_detail == "offers")
+      {
+        $date = date('Y-m-d', strtotime(now()));
+
+        $product_list = product::where(function($query) use ($date){
+          $query->where('on_sales', 1)->where('on_sales_from', '<=', $date)->where('on_sales_to', '>=', $date);
+        })->orWhere(function($query2) use ($date){
+          $query2->where('today_deal', 1)->where('today_deal_from', '<=', $date)->where('today_deal_to', '>=', $date);
+        })->paginate(10);
+      }
+    }
 
     $sub_category_id_array = array();
     $product_id_array = array();

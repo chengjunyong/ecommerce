@@ -171,6 +171,13 @@
                                   @endif
                                 </div>
                               </a>
+                              @if($product->promo_price !== null)
+                                @if($product->on_sales == 1)
+                                  <div class="on-sale">on sale</div>
+                                @elseif($product->today_deal == 1)
+                                  <div class="on-sale">Today deal</div>
+                                @endif
+                              @endif
                             </div>
                             <div class="product-detail detail-center ">
                               <div class="detail-title">
@@ -367,7 +374,14 @@
             cart_html += '<h4>'+cart_detail.product_name+'</h4>';
             cart_html += '</a>';
             cart_html += '<h4>';
-            cart_html += '<span>'+cart_detail.quantity+' x RM '+parseFloat(cart_detail.product_price).toFixed(2)+'</span>';
+            if(cart_detail.promo_price === null)
+            {
+              cart_html += '<span>'+cart_detail.quantity+' x RM '+parseFloat(cart_detail.price).toFixed(2)+'</span>';
+            }
+            else
+            {
+              cart_html += '<span>'+cart_detail.quantity+' x RM '+parseFloat(cart_detail.promo_price).toFixed(2)+'</span>';
+            }
             cart_html += '</h4>';
             cart_html += '</div>';
             cart_html += '</div>';
@@ -378,7 +392,14 @@
             cart_html += '</div>';
             cart_html += '</li>';
 
-            sum_cart += cart_detail.quantity * cart_detail.product_price;
+            if(cart_detail.promo_price === null)
+            {
+              sum_cart += cart_detail.quantity * cart_detail.price;
+            }
+            else
+            {
+              sum_cart += cart_detail.quantity * cart_detail.promo_price;
+            }
           }
           $("#footer_cart").html(cart_html);
           $("#sum_cart").html(parseFloat(sum_cart).toFixed(2));
