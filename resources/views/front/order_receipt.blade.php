@@ -8,8 +8,8 @@
   <meta name="description" content="big-deal">
   <meta name="keywords" content="big-deal">
   <meta name="author" content="big-deal">
-  <link rel="icon" href="../assets/images/favicon/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="../assets/images/favicon/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="{{ asset('/assets/images/favicon/favicon.ico') }}" type="image/x-icon">
+  <link rel="shortcut icon" href="{{ asset('/assets/images/favicon/favicon.ico') }}" type="image/x-icon">
 
   <!--Google font-->
   <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap" rel="stylesheet">
@@ -111,7 +111,7 @@
           <table align="left" border="0" cellpadding="0" cellspacing="0" style="text-align: left;" width="100%">
             <tr>
               <td style="text-align: center;">
-                <img src="../assets/images/email-temp/delivery-2.png" alt="" style=";margin-bottom: 30px;">
+                <img src="{{ asset('/assets/images/email-temp/delivery-2.png') }}" alt="" style=";margin-bottom: 30px;">
               </td>
             </tr>
             <tr>
@@ -130,7 +130,7 @@
                   <h5 style="font-size: 16px; font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">Your Shipping Address</h5>
                   <p style="text-align: left;font-weight: normal; font-size: 14px; color: #000000;line-height: 21px;    margin-top: 0;">{!! $transaction->delivery_address !!}</p>
                 </td>
-                <td><img src="../assets/images/email-temp/space.jpg" alt=" " height="25" width="30"></td>
+                <td><img src="{{ asset('/assets/images/email-temp/space.jpg') }}" alt=" " height="25" width="30"></td>
                 <td style="background-color: #fafafa;border: 1px solid #ddd;padding: 15px;letter-spacing: 0.3px;width: 50%;vertical-align: top;">
                   <h5 style="font-size: 16px;font-weight: 600;color: #000; line-height: 16px; padding-bottom: 13px; border-bottom: 1px solid #e6e8eb; letter-spacing: -0.65px; margin-top:0; margin-bottom: 13px;">Your Billing Address:</h5>
                   <p style="text-align: left;font-weight: normal; font-size: 14px; color: #000000;line-height: 21px;    margin-top: 0;">{!! $transaction->mailing_address !!}</p>
