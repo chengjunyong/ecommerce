@@ -53,7 +53,11 @@
                           <span>{{ $cart_detail->description }}</span>
                         </div>
                         <div class="item_price">
-                          RM {{ $cart_detail->quantity * $cart_detail->product_price }}
+                          @if($cart_detail->promo_price === null)
+                            RM {{ $cart_detail->quantity * $cart_detail->price }}
+                          @else
+                            RM {{ $cart_detail->quantity * $cart_detail->promo_price }}
+                          @endif
                         </div>
                         <div class="item_qty">
                           Qty : {{ $cart_detail->quantity }}
@@ -156,7 +160,14 @@
     var sum_cart = 0;
     for(var a = 0; a < Object.keys(cart_list).length; a++)
     {
-      sum_cart += (cart_list[a].quantity * cart_list[a].product_price);
+      if(cart_list[a].promo_price === null)
+      {
+        sum_cart += (cart_list[a].quantity * cart_list[a].price);
+      }
+      else
+      {
+        sum_cart += (cart_list[a].quantity * cart_list[a].promo_price);
+      }
     }
 
     $("#checkout_page_total").html("RM "+parseFloat(sum_cart).toFixed(2));
@@ -206,6 +217,24 @@
 
           $("input[name=coupon_code]").val("");
           $("#checkout_page_discount").hide();
+
+          sum_cart = 0;
+          for(var a = 0; a < Object.keys(cart_list).length; a++)
+          {
+            if($(".cart_detail_checkbox[value="+cart_list[a].id+"]").is(":checked"))
+            {
+              if(cart_list[a].promo_price === null)
+              {
+                sum_cart += (cart_list[a].quantity * cart_list[a].price);
+              }
+              else
+              {
+                sum_cart += (cart_list[a].quantity * cart_list[a].promo_price);
+              }
+            }
+          }
+
+          $("#checkout_page_total").html("RM "+parseFloat(sum_cart).toFixed(2));
         }
         else if(response.valid == 1)
         {

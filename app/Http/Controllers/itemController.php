@@ -26,6 +26,12 @@ class itemController extends Controller
       $product_detail = product::where('id', $id)->first();
       $product_detail->image = product_image::where('product_id', $product_detail->id)->get();
 
+      $promo_result = $this->getPromoPrice($product_detail);
+      
+      $product_detail->promo_price = $promo_result->promo_price;
+      $product_detail->promo_amount = $promo_result->promo_amount;
+      $product_detail->promo_type = $promo_result->promo_type;
+
       $address_book = null;
       $user = Auth::user();
 
@@ -215,7 +221,15 @@ class itemController extends Controller
       $cart_list = [];
       if($user)
       {
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product.id')->get();
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->groupBy('product.id')->get();
+
+        foreach($cart_list as $cart)
+        {
+          $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart);
+          $cart->promo_price = $promo_result->promo_price;
+          $cart->promo_amount = $promo_result->promo_amount;
+          $cart->promo_type = $promo_result->promo_type;
+        }
       }
 
       $breadcrumb = array([
@@ -239,7 +253,15 @@ class itemController extends Controller
       {
         $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
 
-        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path')->groupBy('product.id')->get();
+        $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.description as description', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'product_image.path as path', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->groupBy('product.id')->get();
+
+        foreach($cart_list as $cart)
+        {
+          $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart);
+          $cart->promo_price = $promo_result->promo_price;
+          $cart->promo_amount = $promo_result->promo_amount;
+          $cart->promo_type = $promo_result->promo_type;
+        }
       }
 
       $breadcrumb = array([
@@ -271,7 +293,15 @@ class itemController extends Controller
       $coupon_message = "";
       $coupon_name = "";
 
-      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->get();
+
+      foreach($cart_list as $cart)
+      {
+        $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart);
+        $cart->promo_price = $promo_result->promo_price;
+        $cart->promo_amount = $promo_result->promo_amount;
+        $cart->promo_type = $promo_result->promo_type;
+      }
 
       if($request->coupon_code)
       {
@@ -289,7 +319,14 @@ class itemController extends Controller
       $sub_total = 0;
       foreach($cart_list as $cart)
       {
-        $sub_total = $sub_total + ($cart->quantity * $cart->product_price);
+        if($cart->promo_price === null)
+        {
+          $sub_total = $sub_total + ($cart->quantity * $cart->price);
+        }
+        else
+        {
+          $sub_total = $sub_total + ($cart->quantity * $cart->promo_price);
+        }
       }
 
       $total = $sub_total - $discount_amount;
@@ -326,22 +363,51 @@ class itemController extends Controller
         }
       }
       
-      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $request->cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+      $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $request->cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->get();
+
+      foreach($cart_list as $cart)
+      {
+        $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart);
+        $cart->promo_price = $promo_result->promo_price;
+        $cart->promo_amount = $promo_result->promo_amount;
+        $cart->promo_type = $promo_result->promo_type;
+      }
 
       $sub_total = 0;
       foreach($cart_list as $cart)
       {
-        $sub_total = $sub_total + ($cart->quantity * $cart->product_price);
+        if($cart->promo_price === null)
+        {
+          $sub_total = $sub_total + ($cart->quantity * $cart->price);
+        }
+        else
+        {
+          $sub_total = $sub_total + ($cart->quantity * $cart->promo_price);
+        }
       }
 
       $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
 
       $full_address = "";
+      $billing_address = "";
       $phone_number = "";
       if($address_book)
       { 
-        $full_address = $address_book->address." ".$address_book->postal_code." ".$address_book->city." ".$address_book->state;
+        $full_address = $address_book->address." ".$address_book->postal_code."<br>".$address_book->city."<br>".$address_book->state;
         $phone_number = $address_book->phone_number;
+
+        if($address_book->default_billing == 1)
+        {
+          $billing_address = $full_address;
+        }
+        else
+        {
+          $address_billing_book = address_book::where('user_id', $user->id)->where('default_billing', 1)->first();
+          if($address_billing_book)
+          {
+            $billing_address = $address_billing_book->address." ".$address_billing_book->postal_code."<br>".$address_billing_book->city."<br>".$address_billing_book->state;
+          }
+        }
       }
       
       $total = $sub_total - $discount_amount;
@@ -352,22 +418,37 @@ class itemController extends Controller
         'total' => $total,
         'status' => 1,
         'delivery_address' => $full_address,
+        'mailing_address' => $billing_address,
         'phone_number' => $phone_number
       ]);
 
+      $transaction_detail_items = array();
       foreach($cart_list as $cart)
       {
-        transaction_detail::create([
+        $transaction_detail = [
           'transaction_id' => $transaction->id,
           'category_id' => $cart->category_id,
           'sub_category_id' => null,
           'product_id' => $cart->product_id,
           'product_name' => $cart->product_name,
-          'product_price' => $cart->product_price,
           'quantity' => $cart->quantity,
-          'total' => $cart->quantity * $cart->product_price,
           'status' => 1
-        ]);
+        ];
+
+        if($cart->promo_price === null)
+        {
+          $transaction_detail['product_price'] = $cart->price;
+          $transaction_detail['total'] = $cart->quantity * $cart->price;
+        }
+        else
+        {
+          $transaction_detail['product_price'] = $cart->promo_price;
+          $transaction_detail['total'] = $cart->quantity * $cart->promo_price;
+        }
+
+        $transaction_detail_item = transaction_detail::create($transaction_detail);
+
+        array_push($transaction_detail_items, $transaction_detail_item);
       }
 
       $cart = cart::where('user_id', $user->id)->first();
@@ -395,6 +476,19 @@ class itemController extends Controller
         ]);
       }
 
+      if($user->email)
+      {
+        $email_data = new \stdClass();
+        $email_data->user = $user;
+        $email_data->transaction = $transaction;
+        $email_data->transaction_detail = $transaction_detail_items;
+        $email_data->email = $user->email;
+        $email_data->type = "receipt";
+        $email_data->subject = "HomeU Receipt";
+
+        app('App\Http\Controllers\frontController')->sendMail($email_data);
+      }
+
       return redirect(route('getCheckoutSuccessIndex', ['id' => $transaction->id]));
     }
 
@@ -418,7 +512,6 @@ class itemController extends Controller
         $coupon_code = coupon::where('code', $code)->where('active', 1)->where(function($query){
           $query->where('quantity', '>', 0)->orWhere('quantity', '-1');
         })->where('date_start', '<=', $today)->where('date_end', '>=', $today)->first();
-
 
         if(!$coupon_code)
         {
@@ -450,7 +543,15 @@ class itemController extends Controller
           // execute time
           // print_r(date("H:i:s") . substr((string)microtime(), 1, 8).'<br>');
 
-          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id')->get();
+          $cart_list = cart::where('cart.user_id', $user->id)->join('cart_detail', 'cart_detail.cart_id', '=', 'cart.id')->where('cart_detail.completed', null)->whereIn('cart_detail.id', $cart_detail_id)->join('product', 'cart_detail.product_id', '=', 'product.id')->join('category', 'product.category_id', '=', 'category.category_id')->select('cart_detail.*', 'product.name as product_name', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'cart.id as cart_id', 'category.category_id as category_id', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->get();
+
+          foreach($cart_list as $cart)
+          {
+            $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart);
+            $cart->promo_price = $promo_result->promo_price;
+            $cart->promo_amount = $promo_result->promo_amount;
+            $cart->promo_type = $promo_result->promo_type;
+          }
 
           // print_r(date("H:i:s") . substr((string)microtime(), 1, 8).'<br>');
 
@@ -458,17 +559,24 @@ class itemController extends Controller
           $sub_total = 0;
           foreach($cart_list as $cart)
           {
-            $total = $total + ( $cart->quantity * $cart->product_price);
+            if($cart->promo_price === null)
+            {
+              $total = $total + ( $cart->quantity * $cart->price);
+            }
+            else
+            {
+              $total = $total + ( $cart->quantity * $cart->promo_price);
+            }
           }
 
-          if($coupon_code->minimum_spent)
+          if($coupon_code->minimum_spend)
           {
-            if($total >= $coupon_code->minimum_spent)
+            if($total <= $coupon_code->minimum_spend)
             {
               $response = new \stdClass();
               $response->error = 0;
               $response->valid = 0;
-              $response->message = "To use this coupon, your need to spent at least RM ".$coupon_code->minimum_spent.".";
+              $response->message = "To use this coupon, your need to spent at least RM ".$coupon_code->minimum_spend.".";
 
               return $response;
             }
@@ -483,7 +591,14 @@ class itemController extends Controller
             {
               if($cart->category_id == $coupon_code->category_id)
               {
-                $item_total = $item_total + ($cart->product_price * $cart->quantity);
+                if($cart->promo_price === null)
+                {
+                  $item_total = $item_total + ($cart->price * $cart->quantity);
+                }
+                else
+                {
+                  $item_total = $item_total + ($cart->promo_price * $cart->quantity);
+                }
                 $apply_category_coupon = 1;
               }
             }
@@ -632,5 +747,56 @@ class itemController extends Controller
       wishlist_detail::where('id', $wishlist_detail->id)->delete();
 
       return redirect(route('getCartIndex'));
+    }
+
+    public function getPromoPrice($product_detail)
+    {
+      $date = date('Y-m-d', strtotime(now()));
+
+      $promo_price = null;
+      $promo_amount = null;
+      $promo_type = null;
+
+      if($product_detail->on_sales == 1 && $date >= $product_detail->on_sales_from && $date <= $product_detail->on_sales_to)
+      {
+        if($product_detail->on_sales_type == "percentage" && $product_detail->on_sales_amount != 0 && $product_detail->on_sales_amount != null)
+        {
+          $promo_price = $product_detail->price * (100 - $product_detail->on_sales_amount) / 100;
+        }
+        elseif($product_detail->on_sales_type == "fixed")
+        {
+          $promo_price = $product_detail->price - $product_detail->on_sales_amount;
+        }
+
+        $promo_amount = $product_detail->on_sales_amount;
+        $promo_type = $product_detail->on_sales_type;
+      }
+      elseif($product_detail->today_deal == 1 && $date >= $product_detail->today_deal_from && $date <= $product_detail->today_deal_to)
+      {
+        if($product_detail->today_deal_type == "percentage" && $product_detail->today_deal_amount != 0 && $product_detail->today_deal_amount != null)
+        {
+          $promo_price = $product_detail->price * (100 - $product_detail->today_deal_amount) / 100;
+        }
+        elseif($product_detail->today_deal_type == "fixed")
+        {
+          $promo_price = $product_detail->price - $product_detail->today_deal_amount;
+        }
+
+        $promo_amount = $product_detail->today_deal_amount;
+        $promo_type = $product_detail->today_deal_type;
+      } 
+
+      if($promo_price <= 0 && $promo_price !== null)
+      {
+        $promo_price = 0;
+        $promo_amount = $product_detail->price;
+      }
+
+      $promo_result = new \stdClass();
+      $promo_result->promo_price = $promo_price;
+      $promo_result->promo_amount = $promo_amount;
+      $promo_result->promo_type = $promo_type;
+
+      return $promo_result;
     }
 }

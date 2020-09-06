@@ -62,7 +62,13 @@
                       </div>
                     </div>
                     <div class="col-xs-3">
-                      <h2 class="td-color">RM {{ number_format($cart_detail->product_price, 2) }}</h2>
+                      <h2 class="td-color">
+                        @if($cart_detail->promo_price === null)
+                          RM {{ number_format($cart_detail->price, 2) }}
+                        @else
+                          RM {{ number_format($cart_detail->promo_price, 2) }}
+                        @endif
+                      </h2>
                     </div>
                     <div class="col-xs-3">
                       <h2 class="td-color"><a href="#" class="icon"><i class="ti-close"></i></a></h2>
@@ -70,7 +76,13 @@
                   </div>
                 </td>
                 <td>
-                  <h2>RM {{ number_format($cart_detail->product_price, 2) }}</h2>
+                  <h2>
+                    @if($cart_detail->promo_price === null)
+                      RM {{ number_format($cart_detail->price, 2) }}
+                    @else
+                      RM {{ number_format($cart_detail->promo_price, 2) }}
+                    @endif
+                  </h2>
                 </td>
                 <td>
                   <div class="qty-box">
@@ -86,14 +98,18 @@
                   </a>
                 </td>
                 <td>
-                  <h2 class="td-color">RM {{ number_format($cart_detail->quantity * $cart_detail->product_price, 2) }}</h2>
+                  @if($cart_detail->promo_price === null)
+                    <h2 class="td-color">RM {{ number_format($cart_detail->quantity * $cart_detail->price, 2) }}</h2>
+                  @else
+                    <h2 class="td-color">RM {{ number_format($cart_detail->quantity * $cart_detail->promo_price, 2) }}</h2>
+                  @endif
                 </td>
               </tr>
               @endforeach
               @else
-              <tr>
-                <td colspan="6">Your cart is empty.</td>
-              </tr>
+                <tr>
+                  <td colspan="6">Your cart is empty.</td>
+                </tr>
               @endif
 
             </tbody>

@@ -25,7 +25,7 @@
 
 button:disabled { cursor: not-allowed; pointer-events: all !important; }
 
-.floating_btn { width: 70px; height: 70px; border-radius: 100%; position: fixed; bottom: 100px; right: 100px; z-index: 9; color: #fff; text-align: center; background: #ff914b; border: none; font-size: 30px; padding: 7px; cursor: pointer; }
+.floating_btn { width: 70px; height: 70px; border-radius: 100%; position: fixed; bottom: 100px; right: 100px; z-index: 9; color: #fff; text-align: center; background: #ff914b; border: none; font-size: 30px; padding: 7px; cursor: pointer; box-shadow: 0px 0px 10px 3px #eee; }
 
 .floating_container { z-index: 9999; position: fixed; right: 165px; bottom: 155px; width: 500px; height: 650px; display: none; box-shadow: 1px 1px 3px 3px #ccc; }
 .floating_container .overlay { position: fixed; left: 0%; top: 0%; width: 100%; height: 100%; opacity: 0.8; background: #000; z-index: 1; }
@@ -59,6 +59,10 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 .memo .memo-input { margin: 0 10px; height: 30px; flex: 1; border-radius: 3px; border: 1px solid #ccc; padding: 0 5px; }
 
 .floating_container .floating_box .content { padding: 10px; overflow-x: auto; height: calc(100% - 114px); }
+
+.product_price .price { font-size: 20px; color: #ff914b; font-weight: bold; }
+.product_price .old_price > span { text-decoration: line-through; }
+.discount_amount { color: #dc3545; font-weight: bold; padding-left: 10px; }
 
 .verify_loader { display: inline-block; border: none; background: #ff914b; padding: 0 12px; border-radius: 3px; cursor: pointer; color: #fff; }
 

@@ -182,15 +182,24 @@
                                     </h6>
                                   </a>
                                 </div>
-                                <div class="detail-right">
-                                  <div class="check-price">
-                                    RM {{ $product->price }}
-                                  </div>
-                                  <div class="price">
-                                    <div class="price">
+                                <div class="product_price">
+                                  @if($product->promo_price === null)
+                                    <div class="price" style="margin: 0px;">
                                       RM {{ $product->price }}
                                     </div>
-                                  </div>
+                                  @else
+                                    <div class="price">
+                                      RM {{ $product->promo_price }}
+                                    </div>
+                                    <div class="old_price">
+                                      <span>RM {{ $product->price }} </span>
+                                      @if($product->promo_type == "percentage")
+                                        <label class="discount_amount"> -{{ $product->promo_amount }}% </label>
+                                      @elseif($product->promo_type == "fixed")
+                                        <label class="discount_amount"> -RM {{ $product->promo_amount }} </label>
+                                      @endif
+                                    </div>
+                                  @endif
                                 </div>
                               </div>
                               <div class="icon-detail">

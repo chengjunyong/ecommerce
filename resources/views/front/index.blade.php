@@ -238,12 +238,12 @@
                         <div class="media-contant">
                           <div>
                             <p>{{ $on_sales->name }}</p>
-                            <h6>RM {{ $on_sales->on_sales_price }}</h6>
+                            <h6 style="font-size: 20px;">RM {{ $on_sales->on_sales_price }}</h6>
                             <span style="text-decoration: line-through;">RM {{ $on_sales->price }}</span>
                             @if($on_sales->on_sales_type == "percentage")
-                              <span> -{{ $on_sales->on_sales_amount }}% </span>
+                              <span class="discount_amount"> -{{ $on_sales->on_sales_amount }}% </span>
                             @elseif($on_sales->on_sales_type == "fixed")
-                              <span> -RM {{ $on_sales->on_sales_amount }} </span>
+                              <span class="discount_amount"> -RM {{ $on_sales->on_sales_amount }} </span>
                             @endif
                           </div>
                         </div>
@@ -322,13 +322,13 @@
                                   {{ $today_deal->description }}
                                 </p>
                                 <div class="price">
-                                  <span>RM {{ $today_deal->today_deal_price }}</span>
+                                  <span style="font-size: 20px;">RM {{ $today_deal->today_deal_price }}</span>
                                   <br>
                                   <span style="text-decoration: line-through; color: #777; font-weight: 1;">RM {{ $today_deal->price }}</span>
                                   @if($today_deal->today_deal_type == "percentage")
-                                    <label> -{{ $on_sales->today_deal_amount }}% </label>
+                                    <label class="discount_amount"> -{{ $on_sales->today_deal_amount }}% OFF</label>
                                   @elseif($today_deal->today_deal_type == "fixed")
-                                    <label> -RM {{ $on_sales->today_deal_amount }} </label>
+                                    <label class="discount_amount"> -RM {{ $on_sales->today_deal_amount }} OFF</label>
                                   @endif
                                   
                                 </div>

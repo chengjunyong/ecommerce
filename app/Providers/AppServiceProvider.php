@@ -76,12 +76,37 @@ class AppServiceProvider extends ServiceProvider
           $cart = cart::where('user_id', $logged_user->id)->first();
           if($cart)
           {
-            $global_cart_list = cart_detail::where('cart_detail.cart_id', $cart->id)->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as product_price', 'product.id as product_id', 'product.stock as stock')->get();
+            $global_cart_list = cart_detail::where('cart_detail.cart_id', $cart->id)->where('cart_detail.completed', null)->join('product', 'cart_detail.product_id', '=', 'product.id')->select('cart_detail.*', 'product.name as product_name', 'product.price as price', 'product.id as product_id', 'product.stock as stock', 'product.active', 'product.on_sales', 'product.on_sales_from', 'product.on_sales_to', 'product.on_sales_type', 'product.on_sales_amount', 'product.today_deal', 'product.today_deal_from', 'product.today_deal_to', 'product.today_deal_type', 'product.today_deal_amount')->get();
+
+            $cart_id_array = array();
+            foreach($global_cart_list as $cart_list)
+            {
+              array_push($cart_id_array, $cart_list->product_id);
+            }
+
+            $product_images = product_image::whereIn('product_id', $cart_id_array)->groupBy('product_id')->get();
+
             if(count($global_cart_list) > 0)
             {
               foreach($global_cart_list as $cart_detail)
               {
-                $cart_detail->image = product_image::where('product_id', $cart_detail->product_id)->first();
+                $product_image = null;
+
+                foreach($product_images as $image)
+                {
+                  if($image->product_id == $cart_detail->product_id)
+                  {
+                    $product_image = $image;
+                    break;
+                  }
+                }
+
+                $cart_detail->image = $product_image;
+
+                $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($cart_detail);
+                $cart_detail->promo_price = $promo_result->promo_price;
+                $cart_detail->promo_amount = $promo_result->promo_amount;
+                $cart_detail->promo_type = $promo_result->promo_type;
               }
             }
           }

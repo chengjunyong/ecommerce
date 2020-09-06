@@ -31,7 +31,7 @@ Route::get('/edit_info', 'frontController@getEditInfo')->name('getEditInfo');
 Route::get('/edit_address', 'frontController@getEditAddress')->name('getEditAddress');
 Route::get('/order_tracking', 'frontController@getOrderTracking')->name('getOrderTracking');
 Route::get('/order_tracking_detail', 'frontController@getOrderTrackingDetail')->name('getOrderTrackingDetail');
-Route::get('/receipt', 'frontController@getOrderReceipt')->name('getOrderReceipt');
+Route::get('/receipt/{id}', 'frontController@getOrderReceipt')->name('getOrderReceipt');
 Route::get('/FAQ', 'frontController@getFAQ')->name('getFAQ');
 Route::get('/forgot_password', 'frontController@getForgotPassword')->name('getForgotPassword');
 Route::get('/order_history', 'frontController@getOrderHistory')->name('getOrderHistory');

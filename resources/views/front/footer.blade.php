@@ -147,7 +147,11 @@
                 <span>{{ $cart_detail->description }}</span>
               </div>
               <div class="item_price">
-                RM {{ $cart_detail->quantity * $cart_detail->product_price }}
+                @if($cart_detail->promo_price === null)
+                  RM {{ $cart_detail->quantity * $cart_detail->price }}
+                @else
+                  RM {{ $cart_detail->quantity * $cart_detail->promo_price }}
+                @endif
               </div>
               <div class="item_qty">
                 Qty : {{ $cart_detail->quantity }}
@@ -264,7 +268,13 @@
                 <h4>{{ $cart_detail->product_name }}</h4>
               </a>
               <h4>
-                <span>{{ $cart_detail->quantity }} x RM {{ number_format($cart_detail->product_price, 2) }}</span>
+                <span>{{ $cart_detail->quantity }} x 
+                  @if($cart_detail->promo_price === null)
+                    RM {{ number_format($cart_detail->price, 2) }}
+                  @else
+                    RM {{ number_format($cart_detail->promo_price, 2) }}
+                  @endif
+                </span>
               </h4>
             </div>
           </div>
@@ -638,7 +648,14 @@
     var sum_cart = 0;
     for(var a = 0; a < Object.keys(global_cart_list).length; a++)
     {
-      sum_cart += (global_cart_list[a].quantity * global_cart_list[a].product_price);
+      if(global_cart_list[a].promo_price === null)
+      {
+        sum_cart += (global_cart_list[a].quantity * global_cart_list[a].price);
+      }
+      else
+      {
+        sum_cart += (global_cart_list[a].quantity * global_cart_list[a].promo_price);
+      }
     }
 
     $("#sum_cart, #cart_page_sum, #checkout_page_sum").html("RM "+parseFloat(sum_cart).toFixed(2));

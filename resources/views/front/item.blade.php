@@ -76,8 +76,18 @@
               <p>{{ $product_detail->description }}</p>
             </div>
             <div class="border-product">
-              <h4><del>RM {{ $product_detail->price }}</del><span>0% off</span></h4>
-              <h3 style="margin: 0px;">RM {{ $product_detail->price }}</h3>
+              @if($product_detail->promo_price === null)
+                <h3 style="margin: 0px; color: #ff914b;">RM {{ $product_detail->price }}</h3>
+              @else
+                <h3 style="margin: 0px; color: #ff914b;">RM {{ $product_detail->promo_price }}</h3>
+                <h4><del>RM {{ $product_detail->price }}</del>
+                  @if($product_detail->promo_type == "percentage")
+                    <span>{{ $product_detail->promo_amount }}% OFF</span>
+                  @elseif($product_detail->promo_type == "fixed")
+                    <span>RM{{ $product_detail->promo_amount }} OFF</span>
+                  @endif
+                </h4>
+              @endif
             </div>
             <div class="border-product">
               <h6 class="product-title">quantity</h6>

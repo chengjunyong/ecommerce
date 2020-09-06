@@ -28,8 +28,18 @@ class frontMail extends Mailable
      */
     public function build()
     {
-      $template = 'front.mail.default';
+      if($this->data->type == "receipt")
+      {
+        $transaction = $this->data->transaction;
+        $user = $this->data->user;
+        $transaction_detail = $this->data->transaction_detail;
 
-      $this->from(env('MAIL_USERNAME'), 'HomeU')->subject($this->data->subject)->view($template)->with('data', $this->data);
+        $this->from(env('MAIL_USERNAME'), 'HomeU')->subject($this->data->subject)->view('front.order_receipt')->with(['user'=> $user, 'transaction' => $transaction, 'transaction_detail' => $transaction_detail]);
+      }
+      else
+      {
+        $template = 'front.mail.default';
+        $this->from(env('MAIL_USERNAME'), 'HomeU')->subject($this->data->subject)->view($template)->with('data', $this->data);
+      }
     }
 }

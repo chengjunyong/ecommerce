@@ -12,7 +12,7 @@
                     <p>Payment is successfully processsed and your order is on the way</p>
                     <p>Transaction ID:267676GHERT105467</p>
 
-                    <h4 style="margin-top: 15px;"><a href="{{ route('getOrderReceipt') }}" target="_blank">Receipt</a></h4>
+                    <h4 style="margin-top: 15px;"><a href="{{ route('getOrderReceipt', ['id' => $transaction->id]) }}" target="_blank">Receipt</a></h4>
                 </div>
             </div>
         </div>

@@ -59,6 +59,7 @@ class frontController extends Controller
     $on_sales_list = product::where('product.active', 1)->where('product.on_sales', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->where('product.on_sales_to', '>=', date('Y-m-d', strtotime(now())))->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
     $today_deal_list = product::where('product.active', 1)->where('product.today_deal', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->where('product.today_deal_to', '>=', date('Y-m-d H:i:s', strtotime(now())))->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
 
+    // $product_on_sales = array();
     foreach($on_sales_list as $on_sales)
     {
       $on_sales->on_sales_price = $on_sales->price;
@@ -76,40 +77,50 @@ class frontController extends Controller
         $on_sales->on_sales_price = 0;
         $on_sales->on_sales_amount = $on_sales->price;
       }
+
+      // array_push($product_on_sales, $on_sales->id);
     }
 
-    foreach($today_deal_list as $today_deal)
+    foreach($today_deal_list as $key => $today_deal)
     {
-      $today_deal->today_deal_price = $today_deal->price;
-      if($today_deal->today_deal_type == "percentage" && $today_deal->today_deal_amount != 0 && $today_deal->today_deal_amount != null)
-      {
-        $today_deal->today_deal_price = $today_deal->price * (100 - $today_deal->today_deal_amount) / 100;
-      }
-      elseif($today_deal->today_deal_type == "fixed")
-      {
-        $today_deal->today_deal_price = $today_deal->price - $today_deal->today_deal_amount;
-      }
+      // hide today deal if this item is already in on sales
+      // if(in_array($today_deal->id, $product_on_sales))
+      // {
+      //   unset($today_deal_list[$key]);
+      // }
+      // else
+      // {
+        $today_deal->today_deal_price = $today_deal->price;
+        if($today_deal->today_deal_type == "percentage" && $today_deal->today_deal_amount != 0 && $today_deal->today_deal_amount != null)
+        {
+          $today_deal->today_deal_price = $today_deal->price * (100 - $today_deal->today_deal_amount) / 100;
+        }
+        elseif($today_deal->today_deal_type == "fixed")
+        {
+          $today_deal->today_deal_price = $today_deal->price - $today_deal->today_deal_amount;
+        }
 
-      if($today_deal->today_deal_price <= 0)
-      {
-        $today_deal->today_deal_price = 0;
-        $today_deal->today_deal_amount = $today_deal->price;
-      }
+        if($today_deal->today_deal_price <= 0)
+        {
+          $today_deal->today_deal_price = 0;
+          $today_deal->today_deal_amount = $today_deal->price;
+        }
 
-      $today_deal->hours = 0;
-      $today_deal->minutes = 0;
-      $today_deal->seconds = 0;
+        $today_deal->hours = 0;
+        $today_deal->minutes = 0;
+        $today_deal->seconds = 0;
 
-      if($today_deal->today_deal_to)
-      {
-        $from = new \DateTime(now());
-        $to = new \DateTime($today_deal->today_deal_to);
+        if($today_deal->today_deal_to)
+        {
+          $from = new \DateTime(now());
+          $to = new \DateTime($today_deal->today_deal_to);
 
-        $diff = $to->diff($from);
-        $today_deal->hours = $diff->h + ($diff->d * 24);
-        $today_deal->minutes = $diff->i;
-        $today_deal->seconds = $diff->s;
-      }
+          $diff = $to->diff($from);
+          $today_deal->hours = $diff->h + ($diff->d * 24);
+          $today_deal->minutes = $diff->i;
+          $today_deal->seconds = $diff->s;
+        }
+      // }
     }
 
 		return view('front.index', compact("banner", "brand_list", "on_sales_list", "today_deal_list"));
@@ -263,6 +274,7 @@ class frontController extends Controller
 
     $product_image_list = product_image::whereIn('product_id', $product_id_array)->get();
 
+    $date = date('Y-m-d', strtotime(now()));
     foreach($product_list as $product)
     {
       $product_image = array();
@@ -274,6 +286,24 @@ class frontController extends Controller
         }
       }
       $product->image = $product_image;
+
+      $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($product);
+
+      $product->promo_price = $promo_result->promo_price;
+      $product->promo_amount = $promo_result->promo_amount;
+      $product->promo_type = $promo_result->promo_type;
+
+      // if($product->id == 30)
+      // {
+      //   if($product->promo_price === null)
+      //   {
+      //     dd("shoud be here");
+      //   }
+      //   else
+      //   {
+      //     dd("no");
+      //   }
+      // }
     }
 
     $breadcrumb = array([
@@ -363,9 +393,13 @@ class frontController extends Controller
     return view('front.order_tracking_detail');
   }
 
-  public function getOrderReceipt()
+  public function getOrderReceipt($id)
   {
-    return view('front.order_receipt');
+    $transaction = transaction::where('id', $id)->first();
+    $transaction_detail = transaction_detail::where('transaction_id', $transaction->id)->get();
+    $user = User::where('id', $transaction->user_id)->first();
+    
+    return view('front.order_receipt', compact('user', 'transaction', 'transaction_detail'));
   }
 
   public function getFAQ()
