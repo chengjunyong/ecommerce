@@ -98,7 +98,7 @@ class adminController extends Controller
     }
 
     public function getSubCategory()
-    {
+    { 
         $category = category::get();
         $subcategory = subcategory::join("category","category.category_id","=","subcategory.category_id")->select("subcategory.*","category.category_id","category.category_name")->get();
 

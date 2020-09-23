@@ -254,7 +254,7 @@
             
             <div>
               <div class="icon-nav" style="margin-left: 0px;">
-                <div class="btn-group">
+                <!-- <div class="btn-group">
                   <div  class="gift-block">
                     <div class="grif-icon">
                       <i class="icon-gift"></i>
@@ -264,7 +264,7 @@
                       <span>Promotion<span style="padding-left: 5px;"></span>Offer</span>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
                 <div class="cart-block mobile-cart cart-hover-div" onclick="openCart()">
                   <a href="#"><span class="cart-product" id="cart_count">
