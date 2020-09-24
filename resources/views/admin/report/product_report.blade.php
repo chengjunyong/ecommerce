@@ -27,11 +27,11 @@
 <body>
   <div class="container">
     <div class="header" style="font-size:18px">
-      <div><h2 align="center">Product Report</h2></div>
+      <div><h2 align="center">Specify Date Report</h2></div>
       <div id="c_date" align="center">Report Generate Date :</div><br/>
       <div align="center">Date Start : <b>{{ $date_start }}</b></div>
-      <div align="center">Date End : <b>{{ $date_end }}</b></div>
-
+      <div align="center">Date End : <b>{{ $date_end }}</b></div><br/>
+      <div align="center">Targeted Product : <b>{{ $product_name }}</b></div><br/>
     </div>
 
     <div class="body">
@@ -40,8 +40,8 @@
           <tr>
             <th style="width:5%">Index</th>
             <th style="width:15%">Transaction ID</th>
-            <th style="width:15%">Discount Amount</th>
-            <th style="width:30%">Items</th>
+            <th style="width:15%">Date Purchase</th>
+            <th style="width:15%">Price</th>
             <th style="width:15%">Quantity</th>
             <th style="width:20%">Total</th>
           </tr>

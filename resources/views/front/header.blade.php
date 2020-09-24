@@ -472,12 +472,10 @@
 
               @if(Route::currentRouteName() != "getFrontIndex")
                 <div class="banner_category">
-                  <a href="#">Favorites</a>
+                  <a href="#">Recipe</a>
                   <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" class="active">Offers</a>
-                  <a href="#">Discovers</a>
-                  <a href="#">Recipes</a>
-                  <a href="#">Delivery Pass</a>
-                  <a href="#">BBQ</a>
+                  <a href="#">Event</a>
+                  <a href="#">Whats New</a>
                 </div>
               @endif
             </div>

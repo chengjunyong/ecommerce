@@ -33,12 +33,10 @@
     <div class="row">
       <div class="col-xl-8 col-lg-9 offset-xl-2 px-abjust">
         <div class="banner_category">
-          <a href="#">Favorites</a>
-          <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" class="active">Offers</a>
-          <a href="#">Discovers</a>
           <a href="#">Recipes</a>
-          <a href="#">Delivery Pass</a>
-          <a href="#">BBQ</a>
+          <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}">Offers</a>
+          <a href="#">Event</a>
+          <a href="#">Whats New</a>
         </div>
         <div class="slide-1 no-arrow">
           <div>

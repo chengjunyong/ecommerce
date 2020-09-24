@@ -1193,8 +1193,45 @@ class adminController extends Controller
 
     public function postProductReport(Request $request)
     {
-      
-      return view('admin.report.product_report');
+      $product_name = $request['product'];
+      $date_start = $request['d_start'];
+      $date_end = $request['d_end'];
+      $date_end = Date('Y-m-d',strtotime($date_end.'+1 day'));
+
+      $product = transaction_detail::join('category','transaction_detail.category_id','=','category.category_id')
+                                ->whereBetween('transaction_detail.created_at',[$date_start,$date_end])
+                                ->where('transaction_detail.product_name','LIKE',$product_name)
+                                ->get();
+
+      $output = "";
+      $index = 0;
+      $total_quantity = 0;
+      $total_amount = 0;
+
+      foreach($product as $result){
+        $output .= "<tr>";
+        $output .= "<td>".++$index."</td>";
+        $output .= "<td>".$result->transaction_id."</td>";
+        $output .= "<td>".$result->created_at."</td>";
+        $output .= "<td>".$result->product_price."</td>";
+        $output .= "<td>".$result->quantity."</td>";
+        $output .= "<td>Rm ".$result->total."</td>";
+        $output .= "</tr>";
+
+        $total_quantity += $result->quantity;
+        $total_amount += $result->total;
+      }
+
+      $output .= "<tr>";
+      $output .= "<td style='border-top: 2px solid;'></td>";
+      $output .= "<td style='border-top: 2px solid;'></td>";
+      $output .= "<td style='border-top: 2px solid;'></td>";
+      $output .= "<td style='border-top: 2px solid;'></td>";
+      $output .= "<td style='border-top: 2px solid;'>Total Quantity:<br/><b>".$total_quantity."</b></td>";
+      $output .= "<td style='border-top: 2px solid;'>Total Sales:<br/><b>Rm ".$total_amount."</b></td>";
+      $output .= "</tr>";  
+
+      return view('admin.report.product_report',compact('date_start','date_end','product_name','output'));
     }
 
     public function getAjaxProductList(Request $request)

@@ -45,6 +45,11 @@
           <form id="upload" action="{{ route('templateUpload') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
+              <div>
+                <h4>Can generate your email template with this website</h4>
+                <a href="https://beefree.io/" target="_blank" style="font-size:18px">https://beefree.io</a>
+              </div>
+              <br/><br/>
               <div class="digital-add needs-validation">
                 <div>
                   <label><span>*</span> Title</label>
@@ -58,7 +63,7 @@
                   <div>
                     <input type=file name=file[] multiple required="" webkitdirectory mozdirectory> 
                   </div>
-                  <input class="btn btn-primary" type="submit" value="Submit" style="margin-top:15px">
+                  <input class="btn btn-primary" type="submit" value="Upload" style="margin-top:15px">
                 </div>
               </div>
             </div>
