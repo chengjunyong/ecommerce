@@ -72,9 +72,9 @@
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getSpecifyDateReport') }}"><i class="fa fa-circle"></i>Specify Date Report</a></li>
           <li><a href="{{ route('getProductReport') }}"><i class="fa fa-circle"></i>Product Report</a></li>
-
         </ul>
-      </li>      
+      </li> 
+
       <li><a class="sidebar-header" href=""><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getProfile') }}"><i class="fa fa-circle"></i>Profile</a></li>
@@ -87,6 +87,12 @@
         </ul>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getTodayDeal') }}"><i class="fa fa-circle"></i>Today Deal</a></li>
+        </ul>
+      </li>
+
+      <li><a class="sidebar-header" href=""><i data-feather="image" ></i><span>Banner</span><i class="fa fa-angle-right pull-right"></i></a>
+        <ul class="sidebar-submenu">
+          <li><a href="{{ route('getBannerSlider') }}"><i class="fa fa-circle"></i>Banner Slider</a></li>
         </ul>
       </li>
 

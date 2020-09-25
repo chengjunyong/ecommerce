@@ -38,6 +38,7 @@ use Illuminate\Support\Facades\Hash;
 use App\subscription_list;
 use App\template;
 use App\brand;
+use App\banner;
 
 use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
@@ -1366,4 +1367,78 @@ class adminController extends Controller
 
       return $route;
     }
+
+    public function getBannerSlider()
+    {
+      $banner = banner::where('type','LIKE','front_slider')->get();
+
+      return view('admin.banner_slider',compact('banner'));
+    }
+
+    public function getAddBanner()
+    {
+
+      return view('admin.add_banner');
+    }
+
+    public function postBannerSlider(Request $request)
+    {
+
+      $name = hash('sha256',$request->banner_image->getPathName());
+
+      $path = $request->banner_image->storeAs('/banner_image',$name.".".$request->banner_image->getClientOriginalExtension());
+
+      banner::create([
+        'type'=>'front_slider',
+        'target_url'=>$request->target_url,
+        'img_path'=>$path,
+        'title1'=>$request->title1,
+        'title2'=>$request->title2,
+        'description'=>$request->description,
+        'status'=>1
+      ]);
+
+      return redirect(route('getBannerSlider'));
+    }
+
+    public function getEditBanner(Request $request)
+    {
+      $banner = banner::where('id',$request->id)->first();
+
+      return view('admin.edit_banner',compact('banner'));
+    }
+
+    public function editBannerSlider(Request $request)
+    {
+
+      $path = $request->img_path;
+      if($request->banner_image != null){
+        Storage::delete($request->img_path);
+        $name = hash('sha256',$request->banner_image->getPathName());
+        $path = $request->banner_image->storeAs('/banner_image',$name.".".$request->banner_image->getClientOriginalExtension());
+      }
+
+      banner::where('id',$request->banner_id)
+              ->update([
+                'target_url'=>$request->target_url,
+                'img_path'=>$path,
+                'title1'=>$request->title1,
+                'title2'=>$request->title2,
+                'description'=>$request->description,
+              ]);
+
+      return redirect(route('getBannerSlider'));
+
+    }
+
+    public function deleteBanner(Request $request)
+    {
+      $path = banner::where('id',$request->id)->first();
+      Storage::delete($path->img_path);
+      banner::where('id',$request->id)->delete();
+
+      return true;
+    }
+
 }
+

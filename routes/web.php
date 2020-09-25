@@ -268,8 +268,14 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/promotion/today_deal', 'adminController@getTodayDeal')->name('getTodayDeal');
     Route::post('/updateOnsales', 'adminController@updateOnsales')->name('updateOnsales');
     Route::post('/updateTodayDeal', 'adminController@updateTodayDeal')->name('updateTodayDeal');
-    // 
 
+    //banner
+    Route::get('/banner/slider','adminController@getBannerSlider')->name('getBannerSlider');
+    Route::get('/banner/addbanner','adminController@getAddBanner')->name('getAddBanner');
+    Route::post('/banner/postbanner','adminController@postBannerSlider')->name('postBannerSlider');
+    Route::get('/banner/editbanner/{id}','adminController@getEditBanner')->name('getEditBanner');
+    Route::post('/banner/posteditbanner','adminController@editBannerSlider')->name('editBannerSlider');
+    Route::post('/banner/deleteBanner','adminController@deleteBanner')->name('deleteBanner');
   });
 });
 
