@@ -39,63 +39,28 @@
           <a href="#">Whats New</a>
         </div>
         <div class="slide-1 no-arrow">
-          <div>
-            <div class="slider-banner">
-              <div class="slider-img">
-                <ul class="layout2-slide-1">
-                  <li id="img-1"><img src="{{ asset('/assets/images/layout-1/slider/1.1.png') }}" class="img-fluid" alt="slider"></li>
-                </ul>
-              </div>
-              <div class="slider-banner-contain">
-                <div>
-                  <h4>the best</h4>
-                  <h1>loffer shoes</h1>
-                  <h2>minimum 30% off</h2>
-                  <a class="btn btn-rounded" href="{{ route('getItemDetail', ['id' => 1]) }}">
-                    Shop Now
-                  </a>
+          @foreach($banner_list as $key => $banner)
+            <div>
+              <div class="slider-banner">
+                <div class="slider-img">
+                  <ul class="{{ $banner->dummy == 1 ? 'layout2-slide-1' : 'layout2-slide-0'}}">
+                    <li id="{{ $banner->dummy == 1 ? 'img-1' : ''}}" style="width: 100%;"><img src="{{ asset($banner->img_path) }}" class="img-fluid" alt="slider" style="{{ $banner->dummy == 1 ? "" : 'height: 455px;width:100%' }}"></li>
+                  </ul>
+                </div>
+                <div class="slider-banner-contain">
+                  <div>
+                    <h4>{{ $banner->title1 }}</h4>
+                    <h1>{{ $banner->title2 }}</h1>
+                    <h2>{{ $banner->description }}</h2>
+                    <a class="btn btn-rounded" href="{{ $banner->target_url }}">
+                      More
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div>
-            <div class="slider-banner">
-              <div class="slider-img">
-                <ul class="layout2-slide-2">
-                  <li id="img-2"><img src="{{ asset('/assets/images/layout-1/slider/1.2.png') }}" class="img-fluid" alt="slider"></li>
-                </ul>
-              </div>
-              <div class="slider-banner-contain">
-                <div>
-                  <h4>cinema festival</h4>
-                  <h1>reflex camera</h1>
-                  <h2>minimum 40% off</h2>
-                  <a class=" btn btn-rounded">
-                    Shop Now
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="slider-banner">
-              <div class="slider-img">
-                <ul class="layout2-slide-3">
-                  <li id="img-3"><img src="{{ asset('/assets/images/layout-1/slider/1.3.png') }}" class="img-fluid" alt="slider"></li>
-                </ul>
-              </div>
-              <div class="slider-banner-contain">
-                <div>
-                  <h4>march special</h4>
-                  <h1>leather bag</h1>
-                  <h2>minimum 60% off</h2>
-                  <a class=" btn btn-rounded">
-                    Shop Now
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+          @endforeach
+          
         </div>
       </div>
     </div>
@@ -357,7 +322,7 @@
 <!--media banner end-->
 
 <!--discount banner start-->
-<section class="discount-banner">
+<!-- <section class="discount-banner">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -373,7 +338,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--discount banner end-->
 
 <!--collection banner start-->

@@ -38,7 +38,7 @@
 
   .top-header { position: fixed; top: 0px; width: 100%; left: 0px; }
   .top-header.hide { display: none; }
-  .layout-header1 { position: fixed; left: 0px; top: 41px; z-index: 8; width: 100%; transition: top 300ms linear; }
+  .layout-header1 { position: fixed; left: 0px; top: 41px; z-index: 99; width: 100%; transition: top 300ms linear; }
 
   .layout-header1.minimize { position: fixed; top: 0px; padding: 10px 0px; }
   .layout-header1.minimize .menu-left { display: none; }
@@ -48,8 +48,8 @@
   .layout-header1.minimize .input-group.searchbar input { height: 40px; }
 
   .search_autocomplete { position: absolute; left: 0%; top: 57px; border: 1px solid #ccc; width: 100%; background: #fff; display: none; }
-  .search_autocomplete.show { display: flex; }
-  .search_autocomplete a { width: calc(100% - 64px); cursor: pointer; padding: 5px 10px; margin: 0px; color: #333; font-size: 16px; margin-left: 64px; }
+  .search_autocomplete.show { display: block; }
+  .search_autocomplete a { display: block; width: 100%; cursor: pointer; padding: 5px 10px 5px 69px; margin: 0px; color: #333; font-size: 16px; }
   .search_autocomplete a:hover { background: #ff914c; }
 
   .postal_code_header { border: none; background-image: url(http://localhost:8000/assets/images/postal_code_check_banner.png); background-repeat: no-repeat; background-size: cover; height: 200px; color: #fff; }
@@ -69,6 +69,9 @@
   .navbar { cursor: pointer; }
   .navbar.minimize { height: 50px; padding: 0px !important; background: transparent !important; justify-content: space-between !important; padding: 10px !important; color: #333; }
   .navbar.minimize:hover { background: #ff914c !important; color: #fff; }
+
+  .category_more { float: right; font-size: 12px !important; font-weight: normal !important; color: #dc3545 !important; margin-top: 3px; padding: 0 5px; }
+  .category_more:hover { color: #ff914b !important; font-weight: bold !important; }
 
   .dcheck{
     width: 40%;
@@ -159,16 +162,30 @@
 
                 @if(count($main_category) <= 7)
                   @foreach($main_category as $main)
-                    <li class="dropdown_2_list"> <div><a href="{{ route('getCategoryPage', ['id' => $main->id, 'type' => 1]) }}">{{ $main->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                    <li class="dropdown_2_list"> 
+                      <div>
+                        <a>{{ $main->name }} 
+                          <i class="fa fa-angle-down pro-down"></i> 
+                        </a> 
+                        <a href="{{ route('getCategoryPage', ['id' => $main->id, 'type' => 1]) }}" class="category_more">More</a> 
+                      </div>
                       @if(count($main->category) > 0)
                         <ul>
                           @foreach($main->category as $category)
                             <li><div> 
-                              <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                              <a>{{ $category->category_name }} 
+                                <i class="fa fa-angle-down pro-down"></i> 
+                              </a> 
+                              <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}" class="category_more">More</a> 
+                            </div>
                               @if(count($category->subcategory) > 0)
                                 <ul>
                                   @foreach($category->subcategory as $subcategory)
-                                    <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
+                                    <li> 
+                                      <div> 
+                                        <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> 
+                                      </div> 
+                                    </li> 
                                   @endforeach
                                 </ul>
                               @endif
@@ -180,15 +197,31 @@
                   @endforeach
                 @else
                   @for ($i = 0; $i < 7; $i++)
-                    <li class="dropdown_2_list"> <div><a href="{{ route('getCategoryPage', ['id' => $main_category[$i]->id, 'type' => 1]) }}">{{ $main_category[$i]->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                    <li class="dropdown_2_list"> 
+                      <div>
+                        <a>{{ $main_category[$i]->name }} 
+                          <i class="fa fa-angle-down pro-down"></i> 
+                        </a> 
+                        <a href="{{ route('getCategoryPage', ['id' => $main_category[$i]->id, 'type' => 1]) }}" class="category_more">More</a> 
+                      </div>
                       @if(count($main_category[$i]->category) > 0)
                         <ul>
                           @foreach($main_category[$i]->category as $category)
-                            <li><div> <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                            <li>
+                              <div> 
+                                <a>{{ $category->category_name }} 
+                                  <i class="fa fa-angle-down pro-down"></i> 
+                                </a> 
+                                <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}" class="category_more">More</a> 
+                              </div>
                               @if(count($category->subcategory) > 0)
                                 <ul>
                                   @foreach($category->subcategory as $subcategory)
-                                    <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
+                                    <li> 
+                                      <div> 
+                                        <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> 
+                                      </div> 
+                                    </li> 
                                   @endforeach
                                 </ul>
                               @endif
@@ -203,15 +236,31 @@
                   <li class="mor-slide-open">
                     <ul>
                       @for($b = 7; $b < count($main_category); $b++)
-                        <li> <div><a href="{{ route('getCategoryPage', ['id' => $main_category[$b]->id, 'type' => 1]) }}">{{ $main_category[$b]->name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                        <li> 
+                          <div>
+                            <a>{{ $main_category[$b]->name }} 
+                              <i class="fa fa-angle-down pro-down"></i> 
+                            </a> 
+                            <a href="{{ route('getCategoryPage', ['id' => $main_category[$b]->id, 'type' => 1]) }}" class="category_more">More</a> 
+                          </div>
                           @if(count($main_category[$b]->category) > 0)
                             <ul>
                               @foreach($main_category[$b]->category as $category)
-                                <li><div> <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }} <i class="fa fa-angle-down pro-down"></i> </a> </div>
+                                <li>
+                                  <div> 
+                                    <a>{{ $category->category_name }} 
+                                      <i class="fa fa-angle-down pro-down"></i> 
+                                    </a> 
+                                    <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}" class="category_more">More</a> 
+                                  </div>
                                   @if(count($category->subcategory) > 0)
                                     <ul>
                                       @foreach($category->subcategory as $subcategory)
-                                        <li> <div> <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> </div> </li> 
+                                        <li> 
+                                          <div> 
+                                            <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> 
+                                          </div> 
+                                        </li> 
                                       @endforeach
                                     </ul>
                                   @endif
@@ -641,6 +690,8 @@ $(document).ready(function(){
     {
       closeFloating();
     }
+
+    // $(".my_dropdown_2").css({"left": "-300px"});
   });
 
   $("#searchItem, #search_autocomplete").click(function(e){
@@ -648,6 +699,10 @@ $(document).ready(function(){
   });
 
   $("#floating_container, .floating_btn").click(function(e){
+    e.stopPropagation();
+  });
+
+  $(".my_dropdown_2").click(function(e){
     e.stopPropagation();
   });
 

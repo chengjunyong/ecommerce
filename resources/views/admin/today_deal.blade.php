@@ -34,6 +34,14 @@
           <div class="card-header">
             <h5>Promotion - Today Deal</h5>
           </div>
+
+          <div>
+            <form action="{{ route('getTodayDeal')}}" method="get">
+              <input class="form-control" type="text" name="search" placeholder="Name or SKU" style="width:20%;float:right;margin-right:3vw" value="{{ $search }}">
+              <button class="btn btn-primary" style="float:right;margin-right:4px" type="submit"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
+
           <div class="card-body">
             <form method="POST" action="{{ route('updateTodayDeal') }}"/>
               @csrf

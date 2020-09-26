@@ -331,16 +331,38 @@ class adminController extends Controller
 
     public function getOnSales()
     {
-      $product_list = product::where('active', 1)->paginate(10);
+      $search = null;
+      if(isset($_GET['search']))
+      {
+        $search = $_GET['search'];
+      }
 
-      return view('admin.on_sales', compact('product_list'));
+      $product_list = product::where('active', 1)->where(function($query) use ($search){
+        if($search)
+        {
+          $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('sku', $search);
+        }
+      })->paginate(10);
+
+      return view('admin.on_sales', compact('product_list', 'search'));
     }
 
     public function getTodayDeal()
     {
-      $product_list = product::where('active', 1)->paginate(10);
+      $search = null;
+      if(isset($_GET['search']))
+      {
+        $search = $_GET['search'];
+      }
 
-      return view('admin.today_deal', compact('product_list'));
+      $product_list = product::where('active', 1)->where(function($query) use ($search){
+        if($search)
+        {
+          $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('sku', $search);
+        }
+      })->paginate(10);
+
+      return view('admin.today_deal', compact('product_list', 'search'));
     }
 
     public function updateOnsales(Request $request)

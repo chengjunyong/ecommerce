@@ -104,7 +104,7 @@
 </div> -->
 <!-- tap to top End -->
 
-<div class="floating_btn" onclick="openFloating()">
+<div class="floating_btn" onclick="openFloating()" style="display: none;">
   <div style="margin-top: 4px;">
     <i class="fas fa-bars"></i>
   </div>

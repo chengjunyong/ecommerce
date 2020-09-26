@@ -39,8 +39,8 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 .title-box.box-footer div a { transition: none; color: #777; }
 .title-box.box-footer div a:hover { color: #ff914b; }
 
-.banner_category { display: flex; width: 100%; align-items: center; justify-content: space-between; height: 50px; }
-.banner_category a { font-size: 20px; color: #333; font-weight: bold; padding: 0 10px; }
+.banner_category { display: flex; width: 100%; align-items: center; height: 50px; }
+.banner_category a { font-size: 20px; color: #333; font-weight: bold; padding: 0 50px 0 10px; }
 .banner_category a.active { color: #ff914b; }
 .banner_category a:hover { color: #ff914b; }
 

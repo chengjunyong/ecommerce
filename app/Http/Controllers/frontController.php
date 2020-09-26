@@ -19,40 +19,40 @@ use App\transaction;
 use App\transaction_detail;
 use App\User;
 use App\memo;
+use App\banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\frontMail;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class frontController extends Controller
 {
 	public function getFrontIndex()
 	{
-    $banner = array(
-      [
-        "class" => "layout2-slide-1",
-        "img" => "/assets/images/layout-1/slider/1.1.png",
-        'header1' => "the best",
-        'header2' => "loffer shoes",
-        'header3' => "minimum 30% off",
-      ],
-      [
-        "class" => "layout2-slide-2",
-        "img" => "/assets/images/layout-1/slider/1.2.png",
-        "header1" => "cinema festival",
-        "header2" => "reflex camera",
-        "header3" => "minimum 40% off",
-      ],
-      [
-        "class" => "layout2-slide-3",
-        "img" => "/assets/images/layout-1/slider/1.3.png",
-        "header1" => "march special",
-        "header2" => "leather bag",
-        "header3" => "minimum 60% off",
-      ]
-    );
+    $banner_list = banner::where('status', 1)->get();
+
+    if(count($banner_list) == 0)
+    {
+      $banner = new \stdClass();
+      $banner->img_path = "/assets/images/layout-1/slider/1.1.png";
+      $banner->title1 = "the best";
+      $banner->title2 = "loffer shoes";
+      $banner->description = "minimum 30% off";
+      $banner->target_url = "/";
+      $banner->dummy = 1;
+
+      $banner_list->push($banner);
+    }
+    else
+    {
+      foreach($banner_list as $banner)
+      {
+        $banner->img_path = Storage::url($banner->img_path);
+      }
+    }
 
     $brand_list = brand::get();
 
@@ -123,7 +123,7 @@ class frontController extends Controller
       // }
     }
 
-		return view('front.index', compact("banner", "brand_list", "on_sales_list", "today_deal_list"));
+		return view('front.index', compact("banner_list", "brand_list", "on_sales_list", "today_deal_list"));
 	}
 
   public function getFrontIndex2()
