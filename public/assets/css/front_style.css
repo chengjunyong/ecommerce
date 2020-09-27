@@ -66,8 +66,7 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 
 .verify_loader { display: inline-block; border: none; background: #ff914b; padding: 0 12px; border-radius: 3px; cursor: pointer; color: #fff; }
 
-
-
+.product-image { width: 100%; }
 
 
 

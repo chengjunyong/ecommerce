@@ -5,6 +5,7 @@
 <style>
 
   /*.item_img { height: 400px; object-fit: cover; max-width: none; }*/
+  .slick-slide.is-active { border: 2px solid #ff914b !important; }
 
 </style>
 
@@ -37,34 +38,49 @@
     <div class="custom-container">
       <div class="row">
         <div class="col-lg-3 col-sm-10 col-xs-12">
-          <div class="product-right-slick">
-            @if(count($product_detail->image) > 0)
-            @foreach($product_detail->image as $image)
-            <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid image_zoom_cls-0" style="height: 300px; object-fit: cover; max-width: none;"></div>
-            @endforeach
-            @else
-            <div><img src="../assets/images/product-sidebar/001.jpg" alt="" class="img-fluid image_zoom_cls-0" style="height: 300px; object-fit: cover; max-width: none;"></div>
-            <div><img src="../assets/images/product-sidebar/002.jpg" alt="" class="img-fluid image_zoom_cls-1" style="height: 300px; object-fit: cover; max-width: none;"></div>
-            <div><img src="../assets/images/product-sidebar/003.jpg" alt="" class="img-fluid image_zoom_cls-2" style="height: 300px; object-fit: cover; max-width: none;"></div>
-            <div><img src="../assets/images/product-sidebar/004.jpg" alt="" class="img-fluid image_zoom_cls-3" style="height: 300px; object-fit: cover; max-width: none;"></div>
-            @endif
+
+          <div class="product-image">
+            <div id="product-big-image" style="max-height: 500px;">
+              @if(count($product_detail->image) > 0)
+                @foreach($product_detail->image as $image)
+                  <div>
+                    <img src="{{ Storage::url($image->path) }}" style="width: 100%; max-height: 500px;" />
+                  </div>
+                @endforeach
+              @else
+                <div>
+                  <img src="../assets/images/product-sidebar/001.jpg" style="width: 100%; max-height: 500px;"  />
+                </div>
+                <div>
+                  <img src="../assets/images/product-sidebar/002.jpg" style="width: 100%; max-height: 500px;"  />
+                </div>
+                <div>
+                  <img src="../assets/images/product-sidebar/003.jpg" style="width: 100%; max-height: 500px;"  />
+                </div>
+                <div>
+                  <img src="../assets/images/product-sidebar/004.jpg" style="width: 100%; max-height: 500px;"  />
+                </div>
+              @endif
+            </div>
           </div>
+
         </div>
         <div class="col-lg-1 col-sm-2 col-xs-12">
           <div class="row">
             <div class="col-12 p-0">
-              <div class="slider-right-nav">
+              <div id="product-thumbnail-image">
                 @if(count($product_detail->image) > 0)
-                @foreach($product_detail->image as $image)
-                <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
-                @endforeach
+                  @foreach($product_detail->image as $image)
+                    <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                  @endforeach
                 @else
-                <div><img src="../assets/images/product-sidebar/001.jpg" alt="" class="img-fluid  image_zoom_cls-0"></div>
-                <div><img src="../assets/images/product-sidebar/002.jpg" alt="" class="img-fluid  image_zoom_cls-1"></div>
-                <div><img src="../assets/images/product-sidebar/003.jpg" alt="" class="img-fluid  image_zoom_cls-2"></div>
-                <div><img src="../assets/images/product-sidebar/004.jpg" alt="" class="img-fluid  image_zoom_cls-3"></div>
+                  <div><img src="../assets/images/product-sidebar/001.jpg" alt="" class="img-fluid  image_zoom_cls-0"></div>
+                  <div><img src="../assets/images/product-sidebar/002.jpg" alt="" class="img-fluid  image_zoom_cls-1"></div>
+                  <div><img src="../assets/images/product-sidebar/003.jpg" alt="" class="img-fluid  image_zoom_cls-2"></div>
+                  <div><img src="../assets/images/product-sidebar/004.jpg" alt="" class="img-fluid  image_zoom_cls-3"></div>
                 @endif
               </div>
+
             </div>
           </div>
         </div>
@@ -616,6 +632,57 @@
 <script>
   
   var logged_user = "{{ $logged_user }}";
+
+  // $("#product-thumbnail-image").slick({
+  //   infinite: false,
+  //   dots: false,
+  //   vertical: true,
+  //   slidesToShow:5,
+  //   slidesToScroll:5,
+  //   verticalSwiping: true,
+  //   asNavFor: '#product-big-image',
+  //   centerMode: true,
+  //   focusOnSelect: true
+  // });
+
+  $('#product-big-image').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: true,
+    fade: false,
+    adaptiveHeight: true,
+    infinite: false,
+    useTransform: true,
+    speed: 400,
+    cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
+   });
+
+ $('#product-thumbnail-image').slick({
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    dots: false,
+    focusOnSelect: false,
+    infinite: false,
+    vertical: true,
+    verticalSwiping: true,
+    centerMode: false,
+    arrows: false,
+  });
+
+ $('#product-big-image').on('afterChange', function(event, slick, currentSlide) {
+    $('#product-thumbnail-image').slick('slickGoTo', currentSlide);
+    var currrentNavSlideElem = '#product-thumbnail-image .slick-slide[data-slick-index="' + currentSlide + '"]';
+    $('#product-thumbnail-image .slick-slide.is-active').removeClass('is-active');
+    $(currrentNavSlideElem).addClass('is-active');
+ });
+
+ $('#product-thumbnail-image').on('click', '.slick-slide', function(event) {
+    event.preventDefault();
+    var goToSingleSlide = $(this).data('slick-index');
+
+    $('#product-big-image').slick('slickGoTo', goToSingleSlide);
+ });
   
   $(".wishlist-btn, .product-buttons").click(function(){
     if(logged_user == "")

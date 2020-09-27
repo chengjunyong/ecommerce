@@ -340,7 +340,7 @@ class adminController extends Controller
       $product_list = product::where('active', 1)->where(function($query) use ($search){
         if($search)
         {
-          $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('sku', $search);
+          $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('sku', 'LIKE', '%'.$search.'%');
         }
       })->paginate(10);
 
@@ -358,7 +358,7 @@ class adminController extends Controller
       $product_list = product::where('active', 1)->where(function($query) use ($search){
         if($search)
         {
-          $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('sku', $search);
+          $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('sku', 'LIKE', '%'.$search.'%');
         }
       })->paginate(10);
 
