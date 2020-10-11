@@ -94,6 +94,9 @@
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getBannerSlider') }}"><i class="fa fa-circle"></i>Banner Slider</a></li>
         </ul>
+        <ul class="sidebar-submenu">
+          <li><a href="{{ route('getPopupBanner') }}"><i class="fa fa-circle"></i>Pop-up Banner</a></li>
+        </ul>
       </li>
 
       <li><a class="sidebar-header" href="{{ route('getInvoice') }}"><i data-feather="archive"></i><span>Invoice</span></a>

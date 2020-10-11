@@ -1462,5 +1462,41 @@ class adminController extends Controller
       return true;
     }
 
+    public function getPopupBanner()
+    {
+      $product = product::paginate(15);
+
+      return view('admin.popup_banner',compact('product'));
+    }
+
+    public function getProductPopup(Request $request)
+    {
+      $product = product::where('name','LIKE','%'.$request->target.'%')
+                          ->orWhere('sku','LIKE','%'.$request->target.'%')
+                          ->paginate(15);
+
+      return view('admin.popup_banner',compact('product'));
+    }
+
+    public function postPopupBanner(Request $request)
+    {
+      $deactive = array();
+
+      if($request->active != null){
+        foreach($request->product_id as $result)
+        {
+          if(!in_array($result,$request->active)){
+            array_push($deactive,$result);
+          }
+        }
+        product::whereIn('id',$request->active)->update(['popup_banner' => 1]);
+        product::whereIn('id',$deactive)->update(['popup_banner' => null]);
+      }else{
+        product::whereIn('id',$request->product_id)->update(['popup_banner' => null]);
+      }
+
+      return redirect(route('getPopupBanner'));
+    }
+
 }
 

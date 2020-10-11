@@ -276,6 +276,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/banner/editbanner/{id}','adminController@getEditBanner')->name('getEditBanner');
     Route::post('/banner/posteditbanner','adminController@editBannerSlider')->name('editBannerSlider');
     Route::post('/banner/deleteBanner','adminController@deleteBanner')->name('deleteBanner');
+    Route::get('/banner/popupbanner','adminController@getPopupBanner')->name('getPopupBanner');
+    Route::post('/banner/productlist','adminController@getProductPopup')->name('getProductPopup');
+    Route::post('/banner/postpopupbanner','adminController@postPopupBanner')->name('postPopupBanner');
   });
 });
 
