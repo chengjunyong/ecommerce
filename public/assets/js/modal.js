@@ -15,5 +15,5 @@
 })(jQuery);
 
   function dismiss(){
-    document.getElementById('dismiss').style.display='none';
+    document.getElementById('dismiss').classList.add("dismiss");
 };

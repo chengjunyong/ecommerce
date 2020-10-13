@@ -26,6 +26,14 @@
   .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .price span:last-child { color: #6c757d; }
   .media-banner .media-banner-box .media .media-body .media-contant h6 span { color: #6c757d; } 
 
+  .promotion_box { position: absolute; border-radius: 5px; margin-left: -180px; margin-top: -20px; width: calc(100% + 200px); height: calc(100% + 40px); border: 20px solid #fff4e8; background-color: #fff4e8; }
+  .promotion_box_title { width: 120px; font-weight: bold; font-size: 20px; font-family: arial; }
+  .promotion_box_link { padding-top: 10px; }
+  .promotion_box_link a, .promotion_box_link i { color: #3daade !important; font-weight: bold; }
+  .promotion_box_icon { position: absolute; bottom: 0px; left: -10px; }
+  .promotion_box_icon img { max-width: 100px; }
+  .promotion_expand { position: absolute; top: -20px; width: calc(100% + 20px); height: calc(100% + 40px); background-color: #fff4e8; border-radius: 5px; }
+
 </style>
 
 <section class="theme-slider section-pt-space" style="padding-top: 0px;">
@@ -41,23 +49,25 @@
         <div class="slide-1 no-arrow">
           @foreach($banner_list as $key => $banner)
             <div>
-              <div class="slider-banner">
-                <div class="slider-img">
-                  <ul class="{{ $banner->dummy == 1 ? 'layout2-slide-1' : 'layout2-slide-0'}}">
-                    <li id="{{ $banner->dummy == 1 ? 'img-1' : ''}}" style="width: 100%;"><img src="{{ asset($banner->img_path) }}" class="img-fluid" alt="slider" style="{{ $banner->dummy == 1 ? "" : 'height: 455px;width:100%' }}"></li>
-                  </ul>
-                </div>
-                <div class="slider-banner-contain">
-                  <div>
-                    <h4>{{ $banner->title1 }}</h4>
-                    <h1>{{ $banner->title2 }}</h1>
-                    <h2>{{ $banner->description }}</h2>
-                    <a class="btn btn-rounded" href="{{ $banner->target_url }}">
-                      More
-                    </a>
+              <a href="{{ $banner->target_url }}">
+                <div class="slider-banner">
+                  <div class="slider-img">
+                    <ul class="{{ $banner->dummy == 1 ? 'layout2-slide-1' : 'layout2-slide-0'}}">
+                      <li id="{{ $banner->dummy == 1 ? 'img-1' : ''}}" style="width: 100%;"><img src="{{ asset($banner->img_path) }}" class="img-fluid" alt="slider" style="{{ $banner->dummy == 1 ? "" : 'height: 455px;width:100%' }}"></li>
+                    </ul>
+                  </div>
+                  <div class="slider-banner-contain">
+                    <div>
+                      <h4>{{ $banner->title1 }}</h4>
+                      <h1>{{ $banner->title2 }}</h1>
+                      <h2>{{ $banner->description }}</h2>
+                      <!-- <a class="btn btn-rounded" href="{{ $banner->target_url }}">
+                        More
+                      </a> -->
+                    </div>
                   </div>
                 </div>
-              </div>
+              </a>
             </div>
           @endforeach
           
@@ -178,10 +188,22 @@
 <!--media banner start-->
 <section class=" b-g-white section-big-pt-space">
   <div class="container">
-    <div class="row hot-1">
+    <div class="row hot-1 justify-content-md-center" style="margin-left: 180px;">
       @if(count($on_sales_list) > 0)
-        <div class="col-lg-5 col-sm-6  col-12  ">
-          <div class="slide-1 no-arrow">
+        <div class="col-lg-5 col-sm-6 col-12">
+          <div class="promotion_box">
+            <div class="promotion_box_title">Discount of the week</div>
+            <div class="promotion_box_link">
+              <a href="#">
+                See all
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+            <div class="promotion_box_icon">
+              <img src="{{ asset('/assets/images/discounts-icon.png') }}" />
+            </div>
+          </div>
+          <div class="slide-1 no-arrow" style="background-color: #fff4e8;">
             <div>
               <div class="media-banner" style="height: 350px; overflow-x: auto;">
                 <div class="media-banner-box">
@@ -233,7 +255,23 @@
       @endif
 
       @if(count($today_deal_list) > 0)
-        <div class="col-lg-7  col-sm-12 col-12  ">
+        <div class="col-lg-7 col-sm-12 col-12">
+          @if(count($on_sales_list) == 0)
+            <div class="promotion_box">
+              <div class="promotion_box_title">Discount of the week</div>
+              <div class="promotion_box_link">
+                <a href="#">
+                  See all
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+              <div class="promotion_box_icon">
+                <img src="{{ asset('/assets/images/discounts-icon.png') }}" />
+              </div>
+            </div>
+          @else
+            <div class="promotion_expand"></div>
+          @endif
           <div class="hot-deal">
             <div class="hot-deal-box">
               <div class="slide-1">
@@ -289,9 +327,9 @@
                                   <br>
                                   <span style="text-decoration: line-through; color: #777; font-weight: 1;">RM {{ $today_deal->price }}</span>
                                   @if($today_deal->today_deal_type == "percentage")
-                                    <label class="discount_amount"> -{{ $on_sales->today_deal_amount }}% OFF</label>
+                                    <label class="discount_amount"> -{{ $today_deal->today_deal_amount }}% OFF</label>
                                   @elseif($today_deal->today_deal_type == "fixed")
-                                    <label class="discount_amount"> -RM {{ $on_sales->today_deal_amount }} OFF</label>
+                                    <label class="discount_amount"> -RM {{ $today_deal->today_deal_amount }} OFF</label>
                                   @endif
                                   
                                 </div>
@@ -342,7 +380,7 @@
 <!--discount banner end-->
 
 <!--collection banner start-->
-<section class="collection-banner section-pt-space">
+<!-- <section class="collection-banner section-pt-space">
   <div class="container-fluid">
     <div class="row collection2">
       <div class="col-md-4">
@@ -404,7 +442,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--collection banner end-->
 
 <!--top brand panel start-->

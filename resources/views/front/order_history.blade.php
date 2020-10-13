@@ -37,7 +37,7 @@
   <div class="custom-container">
     <div class="row">
       <div class="col-sm-12">
-        <div class="row">
+        <div class="row" style="padding: 0 1.25rem;">
           <div class="col-6">
             <label>PRODUCT</label>
           </div>
@@ -57,12 +57,18 @@
             @foreach($transaction_list as $transaction)
               <div class="card-header">
                 <div class="row" class="collapsed" data-toggle="collapse" data-target="#collapse{{ $transaction->id }}" aria-expanded="true" aria-controls="collapse{{ $transaction->id }}">
-                  <div class="col-9">
-                    <label style="font-weight: bold;">Order ID : {{ $transaction->id }}</label>
+                  <div class="col-6">
+                    <label style="font-weight: bold; font-size: 18px;">Order ID : {{ $transaction->id }}</label>
                     <br>
-                    <label> ( {{ date('d M Y', strtotime($transaction->created_at )) }} )</label>
+                    <label style="font-size: 18px;"> ( {{ date('d M Y', strtotime($transaction->created_at )) }} )</label>
                   </div>
-                  <div class="col-3" style="text-align: center;">
+                  <div class="col-2" style="font-size: 18px; font-weight: bold;">
+                    RM {{ $transaction->total }}
+                  </div>
+                  <div class="col-2" style="font-size: 18px; font-weight: bold;">
+                    {{ $transaction->quantity }}
+                  </div>
+                  <div class="col-2" style="font-size: 18px; font-weight: bold;">
                     {{ $transaction->status_text }}
                   </div>
                 </div>
@@ -83,13 +89,13 @@
                               @endif
                             </a>
                           </div>
-                          <div class="col-3">
+                          <div class="col-3" style="font-size: 18px;">
                             {{ $item->product_name }}
                           </div>
-                          <div class="col-2">
+                          <div class="col-2" style="font-size: 18px;">
                             RM {{ $item->total }}
                           </div>
-                          <div class="col-2">
+                          <div class="col-2" style="font-size: 18px;">
                             {{ $item->quantity }}
                           </div>
                         </div>

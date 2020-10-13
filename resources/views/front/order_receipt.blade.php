@@ -111,7 +111,8 @@
           <table align="left" border="0" cellpadding="0" cellspacing="0" style="text-align: left;" width="100%">
             <tr>
               <td style="text-align: center;">
-                <img src="{{ asset('/assets/images/email-temp/delivery-2.png') }}" alt="" style=";margin-bottom: 30px;">
+                <!-- <img src="{{ asset('/assets/images/email-temp/delivery-2.png') }}" alt="" style=";margin-bottom: 30px;"> -->
+                <img src="{{ asset('/assets/images/layout-2/logo/logo2.png') }}" style="max-width: 300px;" alt="" style=";margin-bottom: 30px;">
               </td>
             </tr>
             <tr>

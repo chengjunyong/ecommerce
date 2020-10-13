@@ -125,7 +125,13 @@
               <ul>
                 <li><a href="#" id="check_area">Check delivery area</a></li>
                 <li><a href="#">help & contact</a></li>
-                <li><a href="#">track order</a></li>
+                <li>
+                  @if(Auth::check())
+                    <a href="{{ route('getOrderHistory') }}">track order</a>
+                  @else
+                    <a href="javascript:void(0)" onclick="openAccount()">track order</a>
+                  @endif
+                </li>
                 <li><a href="#">easy returns</a></li>
               </ul>
             </div>
@@ -326,14 +332,14 @@
                 </div>
                 <ul style="margin-left: 20px;">
                   @if(Auth::check())
-                    <li class="mobile-user onhover-dropdown icon_dropdown"><a href="#detail"><i class="icon-user" style="color: orange;"></i></a>
+                    <li class="mobile-user onhover-dropdown icon_dropdown"><a href="#detail"><i class="fas fa-user" style="color: orange;"></i></a>
                       <ul>
                         <li><a href="{{ route('getUserProfile') }}">My profile</a></li>
                         <li><a href="#" onclick="logout_now()">Logout</a></li>
                       </ul>
                     </li>
                   @else
-                    <li class="mobile-user onhover-dropdown" onclick="openAccount()"><a href="#login"><i class="icon-user"></i></a>
+                    <li class="mobile-user onhover-dropdown" onclick="openAccount()"><a href="#login"><i class="far fa-user"></i></a>
                     </li>
                   @endif
                   <!-- <li class="mobile-wishlist" onclick="openWishlist()"> -->

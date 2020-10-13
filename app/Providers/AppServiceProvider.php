@@ -15,6 +15,7 @@ use App\cart;
 use App\cart_detail;
 use App\product_image;
 use App\memo;
+use App\product;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -121,7 +122,9 @@ class AppServiceProvider extends ServiceProvider
           }
         }
 
-        $view->with(['main_category' => $main_category, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list, "memo_list" => $memo_list, "completed_memo_count" => $completed_memo_count ]); 
+        $global_random_popup_item = product::where('product.popup_banner', 1)->join('product_image', 'product_image.product_id', '=', 'product.id')->select('product.*', 'product_image.path as path')->groupBy('product.id')->inRandomOrder()->first();
+
+        $view->with(['main_category' => $main_category, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list, "memo_list" => $memo_list, "completed_memo_count" => $completed_memo_count, "global_random_popup_item" => $global_random_popup_item ]); 
       }); 
     }
 }

@@ -478,6 +478,7 @@ class frontController extends Controller
       }
 
       $transaction->item = $transaction_item;
+      $transaction->quantity = count($transaction_item);
     }
 
     $breadcrumb = array([
@@ -557,6 +558,29 @@ class frontController extends Controller
   {
     $brand_list = brand::where('id', $id)->get();
 
+    $brand_detail = null;
+    foreach($brand_list as $brand)
+    {
+      if($brand->id == $id)
+      {
+        $brand_detail = $brand;
+        break;
+      }
+    }
+
+    $breadcrumb = array([
+      'name' => "Homepage",
+      'route' => route("getFrontIndex"),
+    ]);
+
+    if($brand_detail)
+    {
+      array_push($breadcrumb, [
+        'name' => $brand_detail->brand,
+        'route' => route('getBrandList', ['id' => $id])
+      ]);
+    }
+
     $product_list = product::where('brand', $id)->paginate(10);
 
     $product_id_array = array();
@@ -587,7 +611,7 @@ class frontController extends Controller
       $product->image = $product_image;
     }
 
-    return view('front.category', compact('product_list', 'tag_list', 'brand_list'));
+    return view('front.category', compact('product_list', 'tag_list', 'brand_list', 'breadcrumb'));
   }
 
   public function sendMail($email_data)

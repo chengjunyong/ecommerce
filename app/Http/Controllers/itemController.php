@@ -78,6 +78,29 @@ class itemController extends Controller
         'route' => route("getItemDetail", ['id' => $product_detail->id]),
       ]);
 
+      $product_detail->active_today_deal = null;
+
+      $date = date('Y-m-d 00:00:00', strtotime(now()));
+      if($product_detail->today_deal == 1 && $date >= $product_detail->today_deal_from && $date <= $product_detail->today_deal_to)
+      {
+        $product_detail->active_today_deal = 1;
+
+        $product_detail->hours = 0;
+        $product_detail->minutes = 0;
+        $product_detail->seconds = 0;
+
+        if($product_detail->today_deal_to)
+        {
+          $from = new \DateTime(now());
+          $to = new \DateTime($product_detail->today_deal_to);
+
+          $diff = $to->diff($from);
+          $product_detail->hours = $diff->h + ($diff->d * 24);
+          $product_detail->minutes = $diff->i;
+          $product_detail->seconds = $diff->s;
+        }
+      }
+
       return view('front.item', compact('product_detail', 'address_book', 'user', 'breadcrumb'));
     }
 
@@ -767,7 +790,7 @@ class itemController extends Controller
 
     public function getPromoPrice($product_detail)
     {
-      $date = date('Y-m-d', strtotime(now()));
+      $date = date('Y-m-d 00:00:00', strtotime(now()));
 
       $promo_price = null;
       $promo_amount = null;

@@ -77,6 +77,10 @@
   <!-- owl carousel -->
   <script src="{{ asset('assets/owlCarousel/owl.carousel.js') }}"></script>
 
+  <script type="text/javascript">
+    window.FontAwesomeConfig = { autoReplaceSvg: false }
+  </script>
+
 </head>
 <body class="bg-light ">
 

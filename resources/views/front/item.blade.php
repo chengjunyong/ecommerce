@@ -68,7 +68,7 @@
         <div class="col-lg-1 col-sm-2 col-xs-12">
           <div class="row">
             <div class="col-12 p-0">
-              <div id="product-thumbnail-image">
+              <div id="product-thumbnail-image" style="max-height: 500px; overflow: hidden;">
                 @if(count($product_detail->image) > 0)
                   @foreach($product_detail->image as $image)
                     <div><img src="{{ Storage::url($image->path) }}" alt="" class="img-fluid  image_zoom_cls-0"></div>
@@ -123,7 +123,7 @@
                 </div>
               </div>
             </div>
-            <div class="single-product-tables border-product detail-section">
+            <!-- <div class="single-product-tables border-product detail-section">
               <table>
                 <tbody>
                   <tr>
@@ -140,7 +140,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </div> -->
             <div class="border-product">
               <div class="product-icon">
                 <ul class="product-social">
@@ -176,13 +176,27 @@
 
             </div>
             @endif
-            <div class="product-description border-product" style="border-bottom: 1px solid #ddd;">
-              <h6 class="product-title">Time Reminder</h6>
-              <div class="timer">
-                <p id="demo"><span>25 <span class="padding-l">:</span> <span class="timer-cal">Days</span> </span><span>22 <span class="padding-l">:</span> <span class="timer-cal">Hrs</span> </span><span>13 <span class="padding-l">:</span> <span class="timer-cal">Min</span> </span><span>57 <span class="timer-cal">Sec</span></span>
-                </p>
+
+            @if($product_detail->active_today_deal == 1)
+              <div class="product-description border-product" style="border-bottom: 1px solid #ddd;">
+                <h6 class="product-title">Time Reminder</h6>
+                <div class="timer">
+                  <p id="today_deal_timer">
+                    <span>{{ $product_detail->hours }}
+                      <span class="padding-l">:</span> 
+                      <span class="timer-cal">Hrs</span> 
+                    </span>
+                    <span>{{ $product_detail->minutes }}
+                      <span class="padding-l">:</span> 
+                      <span class="timer-cal">Min</span> 
+                    </span>
+                    <span>{{ $product_detail->seconds }}
+                      <span class="timer-cal">Sec</span>
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
+            @endif
           </div>
         </div>
       </div>
@@ -201,9 +215,9 @@
             <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-toggle="tab" href="#top-home" role="tab" aria-selected="true">Description</a>
               <div class="material-border"></div>
             </li>
-            <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-toggle="tab" href="#top-profile" role="tab" aria-selected="false">Variance Details</a>
+            <!-- <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-toggle="tab" href="#top-profile" role="tab" aria-selected="false">Variance Details</a>
               <div class="material-border"></div>
-            </li>
+            </li> -->
           <!-- <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-toggle="tab" href="#top-contact" role="tab" aria-selected="false">Video</a>
               <div class="material-border"></div>
           </li>
@@ -215,8 +229,7 @@
             <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
               <p>{{ $product_detail->description }}</p>
             </div>
-            <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
-              <!-- <p>{{ $product_detail->description }}</p> -->
+            <!-- <div class="tab-pane fade" id="top-profile" role="tabpanel" aria-labelledby="profile-top-tab">
               <div class="single-product-tables">
                 <table>
                   <tbody>
@@ -247,7 +260,7 @@
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> -->
             <div class="tab-pane fade" id="top-contact" role="tabpanel" aria-labelledby="contact-top-tab">
               <div class="mt-4 text-center">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/BUWzX78Ye_8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -633,6 +646,17 @@
   
   var logged_user = "{{ $logged_user }}";
 
+  var product_detail = @json($product_detail);
+  var today_deal_timer;
+  var today_deal_times;
+
+  $(document).ready(function(){
+    if(product_detail.active_today_deal == 1)
+    {
+      startTodayDealCountDown();
+    }
+  });
+
   // $("#product-thumbnail-image").slick({
   //   infinite: false,
   //   dots: false,
@@ -659,8 +683,8 @@
    });
 
  $('#product-thumbnail-image').slick({
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 3,
+    slidesToScroll: 3,
     dots: false,
     focusOnSelect: false,
     infinite: false,
@@ -799,8 +823,63 @@
     });
   });
 
+  function startTodayDealCountDown()
+  {
+    let today_deal_hours = product_detail.hours;
+    let today_deal_minutes = product_detail.minutes;
+    let today_deal_seconds = product_detail.seconds;
+
+    today_deal_times = {"hour" : today_deal_hours, "minute" : today_deal_minutes, "second" : today_deal_seconds};
+
+    today_deal_timer = setInterval(function(){
+      var hour = today_deal_times.hour;
+      var minute = today_deal_times.minute;
+      var second = today_deal_times.second;
+
+      second = second - 1;
+      if(second == 0)
+      {
+        minute = minute - 1;
+        second = 60;
+        if(minute < 0)
+        {
+          hour = hour - 1;
+          minute = 60;
+          if(hour < 0)
+          {
+            second = 0;
+            minute = 0;
+            hour = 0;
+
+            clearInterval(today_deal_timer);
+          }
+        }
+      }
+
+      today_deal_times.second = second;
+      today_deal_times.minute = minute;
+      today_deal_times.hour = hour;
+
+      let html = "";
+      html += "<span>"+hour;
+      html += "<span class='padding-l'>:</span>";
+      html += "<span class='timer-cal'>Hrs</span>";
+      html += "</span>";
+      html += "<span>"+minute;
+      html += "<span class='padding-l'>:</span>";
+      html += "<span class='timer-cal'>Min</span>";
+      html += "</span>";
+      html += "<span>"+second;
+      html += "<span class='timer-cal'>Sec</span>";
+      html += "</span>";
+
+      $("#today_deal_timer").html(html);
+
+    }, 1000);
+  }
+
 </script>
 
-@include('front.footer');
+@include('front.footer')
 
 @endsection

@@ -16,6 +16,21 @@
   .google:hover,.fb:hover{
     color:#ccc;
   }
+
+  .product-notification { animation: animate_moveUp 1.5s linear 1s forwards; }
+  @keyframes animate_moveUp { 
+    from { bottom: -200px; }
+    to { bottom: 0px; }
+  }
+
+  @keyframes animate_moveDown { 
+    from { bottom: 0px; }
+    to { bottom: -200px; }
+  }
+
+  .product-notification.dismiss { animation: animate_moveDown 1s linear forwards; }
+
+
 </style>
 <footer>
   <div class="footer-1 section-mb-space">
@@ -413,7 +428,7 @@
     <div class="cart_top">
       <h3>my account</h3>
       <div class="close-cart">
-        <a href="javascript:void(0)" onclick="closeAccount()">
+        <a href="javascript:void(0)" onclick="closeAccount()" style="padding: 10px; margin-right: -10px;">
           <i class="fa fa-times" aria-hidden="true"></i>
         </a>
       </div>
@@ -579,16 +594,22 @@
 <!-- Add to setting bar end-->
 
 <!-- notification product -->
-<div class="product-notification" id="dismiss">
-  <span  onclick="dismiss();" class="close" aria-hidden="true">×</span>
-  <div class="media">
-    <img class="mr-2" src="../assets/images/layout-1/product/5.jpg" alt="Generic placeholder image">
-    <div class="media-body">
-      <h5 class="mt-0 mb-1">Latest trending</h5>
-      Your Ads.
-    </div>
+@if($global_random_popup_item)
+  <div class="product-notification" id="dismiss">
+    <span onclick="dismiss();" class="close" aria-hidden="true">×</span>
+    <div class="media" style="cursor: pointer;" onclick="redirectToItemPage('{{ $global_random_popup_item->id }}')">
+      @if($global_random_popup_item->path)
+        <img class="mr-2" src="{{ Storage::url($global_random_popup_item->path) }}" alt="Generic placeholder image">
+      @else
+        <img class="mr-2" src="../assets/images/layout-1/product/5.jpg" alt="Generic placeholder image">
+      @endif
+      <div class="media-body">
+        <h5 class="mt-0 mb-1">Latest trending</h5>
+        {{ $global_random_popup_item->name }}
+      </div>
+    </a>
   </div>
-</div>
+@endif
 <!-- notification product -->
 
 <div class="modal fade" style="z-index: 9999;" id="removeCartDetail" tabindex="-1" role="dialog" aria-labelledby="removeCartDetailLabel" aria-hidden="true">
@@ -882,6 +903,14 @@
       });
       
     }
+  }
+
+  function redirectToItemPage(id)
+  {
+    var route_url = "{{ route('getItemDetail', ['id' => ':id']) }}";
+    route_url = route_url.replace(':id', id);
+
+    window.location.href = route_url;
   }
 
 </script>
