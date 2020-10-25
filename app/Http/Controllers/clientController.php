@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\address_book;
+use App\User;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\frontMail;
@@ -84,5 +85,20 @@ class clientController extends Controller
     $response->message = "Success";
 
     return response()->json($response);
+  }
+
+  public function editUserInfo(Request $request)
+  {
+    $user = Auth::user();
+
+    User::where('id', $user->id)->update([
+      'fname' => $request->fname,
+      'lname' => $request->lname,
+      'email' => $request->email,
+      'contact' => $request->contact,
+      'review' => $request->review
+    ]);
+
+    return redirect()->back();
   }
 }

@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::prefix('client')->group(function(){
     Route::post('addressBook', 'clientController@addressBook')->name('addressBook');
     Route::get('verify_now', 'clientController@verify_now')->name('verify_now');
+    Route::post('editUserInfo', 'clientController@editUserInfo')->name('editUserInfo');
   });
 
   Route::prefix('item')->group(function () {

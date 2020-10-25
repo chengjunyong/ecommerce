@@ -314,7 +314,16 @@ class itemController extends Controller
         'route' => route("getCheckoutIndex")
       ]);
 
-      return view('front.checkout', compact('cart_list', 'address_book', 'breadcrumb'));
+      $recommend_product_list = product::where('product.active', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->groupby('product.id')->select('product.*', 'product_image.path as path')->get();
+      foreach($recommend_product_list as $recommend_product)
+      {
+        $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($recommend_product);
+        $recommend_product->promo_price = $promo_result->promo_price;
+        $recommend_product->promo_amount = $promo_result->promo_amount;
+        $recommend_product->promo_type = $promo_result->promo_type;
+      }
+
+      return view('front.checkout', compact('cart_list', 'address_book', 'breadcrumb', 'recommend_product_list'));
     }
 
     public function selectedItemCheckout(Request $request)
@@ -796,7 +805,7 @@ class itemController extends Controller
       $promo_amount = null;
       $promo_type = null;
 
-      if($product_detail->on_sales == 1 && $date >= $product_detail->on_sales_from && $date <= $product_detail->on_sales_to)
+      if($product_detail->on_sales == 1 && $date >= $product_detail->on_sales_from && $date <= $product_detail->on_sales_to && $product_detail->on_sales_amount > 0)
       {
         if($product_detail->on_sales_type == "percentage" && $product_detail->on_sales_amount != 0 && $product_detail->on_sales_amount != null)
         {
@@ -810,7 +819,7 @@ class itemController extends Controller
         $promo_amount = $product_detail->on_sales_amount;
         $promo_type = $product_detail->on_sales_type;
       }
-      elseif($product_detail->today_deal == 1 && $date >= $product_detail->today_deal_from && $date <= $product_detail->today_deal_to)
+      elseif($product_detail->today_deal == 1 && $date >= $product_detail->today_deal_from && $date <= $product_detail->today_deal_to && $product_detail->today_deal_amount > 0)
       {
         if($product_detail->today_deal_type == "percentage" && $product_detail->today_deal_amount != 0 && $product_detail->today_deal_amount != null)
         {

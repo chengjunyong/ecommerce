@@ -104,28 +104,26 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $google = Socialite::driver('google')->user();
-        // dd($google);
-        $user = User::where("client_id",$google->id)->first();
+      $google = Socialite::driver('google')->user();
+      // dd($google);
+      $user = User::where("client_id",$google->id)->first();
 
-        if($user)
-        {
-          Auth::login($user);
-          return redirect('/');
-        }else{
-
-          $result = User::create([
-                    'lname' => $google->user['family_name'],
-                    'fname' => $google->user['given_name'],
-                    'email' => $google->email,
-                    'email_verified_at' => now(),
-                    'password' => $google->token,
-                    'client_id' => $google->id
-                  ]);
-          Auth::login($result);
-          return redirect('/');
-        }
-
+      if($user)
+      {
+        Auth::login($user);
+        return redirect('/');
+      }else{
+        $result = User::create([
+          'lname' => $google->user['family_name'],
+          'fname' => $google->user['given_name'],
+          'email' => $google->email,
+          'email_verified_at' => now(),
+          'password' => $google->token,
+          'client_id' => $google->id
+        ]);
+        Auth::login($result);
+        return redirect('/');
+      }
     }
 
     public function facebookLogin()

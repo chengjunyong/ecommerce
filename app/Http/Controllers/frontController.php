@@ -56,8 +56,8 @@ class frontController extends Controller
 
     $brand_list = brand::get();
 
-    $on_sales_list = product::where('product.active', 1)->where('product.on_sales', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->where('product.on_sales_to', '>=', date('Y-m-d', strtotime(now())))->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
-    $today_deal_list = product::where('product.active', 1)->where('product.today_deal', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->where('product.today_deal_to', '>=', date('Y-m-d H:i:s', strtotime(now())))->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
+    $on_sales_list = product::where('product.active', 1)->where('product.on_sales', 1)->where('product.on_sales_to', '>=', date('Y-m-d', strtotime(now())))->where('product.on_sales_from', '<=', date('Y-m-d', strtotime(now())))->whereNotNull('product.on_sales_type')->where('product.on_sales_amount', '>', 0)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
+    $today_deal_list = product::where('product.active', 1)->where('product.today_deal', 1)->where('product.today_deal_to', '>=', date('Y-m-d H:i:s', strtotime(now())))->where('product.today_deal_from', '<=', date('Y-m-d H:i:s', strtotime(now())))->whereNotNull('product.today_deal_type')->where('product.today_deal_amount', '>', 0)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('product.*', 'product_image.path as path')->groupby('product.id')->get();
 
     // $product_on_sales = array();
     foreach($on_sales_list as $on_sales)
@@ -123,7 +123,47 @@ class frontController extends Controller
       // }
     }
 
-		return view('front.index', compact("banner_list", "brand_list", "on_sales_list", "today_deal_list"));
+    $product_list = product::where('product.active', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->groupby('product.id')->select('product.*', 'product_image.path as path')->get();
+    $main_category_product = main_category::where('deactived', null)->get();
+
+    foreach($main_category_product as $main)
+    {
+      $main_product_list = array();
+      $max = 6;
+      foreach($product_list as $product)
+      {
+        if($product->maincategory_id == $main->id)
+        {
+          $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($product);
+          $product->promo_price = $promo_result->promo_price;
+          $product->promo_amount = $promo_result->promo_amount;
+          $product->promo_type = $promo_result->promo_type;
+
+          $max--;
+          if($max < 0)
+          {
+            break;
+          }
+          else
+          {
+            array_push($main_product_list, $product);
+          }
+        }
+      }
+
+      $main->product_list = $main_product_list;
+    }
+
+    $special_product_list = product::where('product.active', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->groupby('product.id')->select('product.*', 'product_image.path as path')->get();
+    foreach($special_product_list as $special_product)
+    {
+      $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($special_product);
+      $special_product->promo_price = $promo_result->promo_price;
+      $special_product->promo_amount = $promo_result->promo_amount;
+      $special_product->promo_type = $promo_result->promo_type;
+    }
+
+		return view('front.index', compact("banner_list", "brand_list", "on_sales_list", "today_deal_list", "main_category_product", "special_product_list"));
 	}
 
   public function getFrontIndex2()

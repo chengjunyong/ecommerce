@@ -152,7 +152,101 @@
 </section>
 <!-- section end -->
 
+<div class="title1 section-my-space">
+  <h4>Recommend Products</h4>
+</div>
+
+<section class="product section-big-pb-space">
+  <div class="custom-container">
+    <div class="row ">
+      <div class="col pr-0">
+        <div class="product-slide-6 no-arrow mb--10">
+          <div id="recommend_product_list" class="owl-carousel owl-theme">
+            @foreach($recommend_product_list as $recommend_product)
+              <div class="item">
+                <div class="product-box">
+                  <div class="product-imgbox">
+                    <div class="product-front">
+                      @if($recommend_product->path)
+                        <img src="{{ Storage::url($recommend_product->path) }}" class="img-fluid" alt="product">
+                      @else
+                        <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid" alt="product">
+                      @endif
+                    </div>
+                    <div class="product-icon">
+                      <button onclick="openCart()" type="button" >
+                        <i class="ti-bag"></i>
+                      </button>
+                      <!-- <a href="javascript:void(0)" title="Add to Wishlist">
+                        <i class="ti-heart" aria-hidden="true"></i>
+                      </a> -->
+                    </div>
+                    <!-- <div class="new-label">
+                      <div>new</div>
+                    </div>
+                    <div class="on-sale">
+                      on sale
+                    </div> -->
+                  </div>
+                  <div class="product-detail">
+                    <div class="detail-title">
+                      <div class="detail-left">
+                        <a href="">
+                          <h6 class="price-title">
+                            {{ $recommend_product->name }}
+                          </h6>
+                        </a>
+                      </div>
+                      <div class="detail-right">
+                        @if($recommend_product->promo_price)
+                          <div class="check-price">
+                            Rm {{ $recommend_product->price }}
+                          </div>
+                          <div class="price">
+                            <div class="price">
+                              Rm {{ $recommend_product->promo_price}}
+                            </div>
+                          </div>
+                        @else
+                          <div class="price">
+                            <div class="price">
+                              Rm {{ $recommend_product->price }}
+                            </div>
+                          </div>
+                        @endif
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
+
+  $("#recommend_product_list").owlCarousel({
+    loop:false,
+    margin:10,
+    nav:false,
+    dots:false,
+    responsive:{
+      0:{
+        items:2
+      },
+      600:{
+        items:4
+      },
+      1000:{
+        items:6
+      }
+    }
+  });
 
   var cart_list = @json($cart_list);
   if(Object.keys(cart_list).length > 0)
