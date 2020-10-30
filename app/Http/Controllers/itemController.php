@@ -524,18 +524,18 @@ class itemController extends Controller
         ]);
       }
 
-      // if($user->email)
-      // {
-      //   $email_data = new \stdClass();
-      //   $email_data->user = $user;
-      //   $email_data->transaction = $transaction;
-      //   $email_data->transaction_detail = $transaction_detail_items;
-      //   $email_data->email = $user->email;
-      //   $email_data->type = "receipt";
-      //   $email_data->subject = "HomeU Receipt";
+      if($user->email)
+      {
+        $email_data = new \stdClass();
+        $email_data->user = $user;
+        $email_data->transaction = $transaction;
+        $email_data->transaction_detail = $transaction_detail_items;
+        $email_data->email = $user->email;
+        $email_data->type = "receipt";
+        $email_data->subject = "HomeU Receipt";
 
-      //   app('App\Http\Controllers\frontController')->sendMail($email_data);
-      // }
+        app('App\Http\Controllers\frontController')->sendMail($email_data);
+      }
 
       return redirect(route('getCheckoutSuccessIndex', ['id' => $transaction->id]));
     }

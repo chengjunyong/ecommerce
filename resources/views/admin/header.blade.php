@@ -20,7 +20,7 @@
                           </div>
                       </form>
                   </li>
-                  <li><a class="text-dark" onclick="openFullscreen()"><i data-feather="maximize"></i></a></li>
+                  <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
                   
                   <li class="onhover-dropdown">
                       <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/images/dashboard/man.png') }}" alt="header-user">
