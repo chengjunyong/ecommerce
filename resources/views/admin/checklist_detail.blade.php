@@ -144,7 +144,7 @@
         if(response.error == 0)
         {
           var next_transaction = "{{ $next_transaction }}";
-          if(next_transaction != null)
+          if(next_transaction != "")
           {
             var route_url = "{{ route('getChecklistDetail', ['id' => ':id']) }}";
             route_url = route_url.replace(':id', next_transaction);
