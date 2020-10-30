@@ -97,32 +97,37 @@ class LoginController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
-    /**
-     * Obtain the user information from Google.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function handleProviderCallback()
     {
       $google = Socialite::driver('google')->user();
-      // dd($google);
+
       $user = User::where("client_id",$google->id)->first();
 
       if($user)
       {
         Auth::login($user);
         return redirect('/');
+
       }else{
-        $result = User::create([
-          'lname' => $google->user['family_name'],
-          'fname' => $google->user['given_name'],
-          'email' => $google->email,
-          'email_verified_at' => now(),
-          'password' => $google->token,
-          'client_id' => $google->id
-        ]);
-        Auth::login($result);
-        return redirect('/');
+
+        $email_exist = User::where("email",$google->email)->first();
+        if(!$email_exist){
+          $result = User::create([
+            'lname' => $google->user['family_name'],
+            'fname' => $google->user['given_name'],
+            'email' => $google->email,
+            'verified' => 1,
+            'email_verified_at' => now(),
+            'password' => $google->token,
+            'client_id' => $google->id
+          ]);
+
+          Auth::login($result);
+          return redirect('/');
+
+        }else{
+          return redirect()->route('getFrontIndex')->with('error',100);
+        }
       }
     }
 
@@ -133,7 +138,31 @@ class LoginController extends Controller
 
     public function facebookCallback()
     {
+        $facebook = Socialite::driver('facebook')->user();
+        $user = User::where("client_id",$facebook->id)->first();
+        
+        if($user){
+          Auth::login($user);
+          return redirect('/');
 
+        }else{
+          $email_exist = User::where("email",$facebook->email)->first();
+          if(!$email_exist){
+            $result = User::create([
+              'lname' => $facebook->user['name'],
+              'email' => $facebook->email,
+              'verified' => 1,
+              'email_verified_at' => now(),
+              'password' => $facebook->token,
+              'client_id' => $facebook->id
+            ]);
+            Auth::login($result);
+            return redirect('/');
+
+          }else{
+            return redirect()->route('getFrontIndex')->with('error',100);
+          }
+        }
     }
 
 }

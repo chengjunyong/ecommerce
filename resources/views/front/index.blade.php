@@ -785,8 +785,13 @@
     }
   });
 
-  
-
 </script>
+
+@if(session()->has('error'))
+  <script>
+    $("#loginPromptText").html("This email has been registered in our system. Please login through our system and do not login through Google and Facebook");
+    $("#loginPrompt").modal('show'); 
+  </script>
+@endif
 
 @endsection
