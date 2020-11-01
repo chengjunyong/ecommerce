@@ -246,6 +246,13 @@ class adminController extends Controller
         return view('admin.createuser');
     }
 
+    public function getCustomerList(){
+
+        $user = User::where('user_type',null)->get();
+
+        return view('admin.customer_list',compact('user'));
+    }
+
     public function getBrand()
     {
         return view('admin.brand');
