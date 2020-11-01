@@ -51,6 +51,7 @@
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getUserList') }}"><i class="fa fa-circle"></i>User List</a></li>
           <li><a href="{{ route('getCreateUser') }}"><i class="fa fa-circle"></i>Create User</a></li>
+          <li><a href="{{ route('getCustomerList') }}"><i class="fa fa-circle"></i>Customer List</a></li>
         </ul>
       </li>
       @endif

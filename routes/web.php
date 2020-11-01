@@ -115,6 +115,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/coupontransaction','adminController@getCouponTransaction')->name('getCouponTransaction');
     Route::get('/brand','adminController@getBrand')->name('getBrand');
     Route::get('/brandlist','adminController@getBrandList')->name('getBrandList');
+    Route::get('/customerlist','adminController@getCustomerList')->name('getCustomerList');
 
     //add brand
     Route::post('/addbrand','adminController@addBrand')->name('addBrand');
