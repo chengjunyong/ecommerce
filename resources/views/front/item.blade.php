@@ -33,7 +33,7 @@
 <!-- breadcrumb End -->
 
 <!-- section start -->
-<section class="section-big-pt-space bg-light">
+<section class="bg-light" style="padding-top: 50px;">
   <div class="collection-wrapper">
     <div class="custom-container">
       <div class="row">
@@ -319,321 +319,66 @@
     <div class="row ">
       <div class="col-12 product">
         <div class="product-slide no-arrow">
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-1/product/1.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-1/product/a1.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <a href="">
-                      <h6 class="price-title">
-                        Description.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      RM 10.00
+          <div id="related_product_list" class="owl-carousel owl-theme">
+            @foreach($related_product_list as $related_product)
+              <div class="item">
+                <div class="product-box">
+                  <div class="product-imgbox">
+                    <div class="product-front">
+                      @if($related_product->path)
+                        <img src="{{ Storage::url($related_product->path) }}" class="img-fluid" alt="product">
+                      @else
+                        <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid" alt="product">
+                      @endif
                     </div>
-                    <div class="price">
-                      <div class="price">
-                        RM 10.00
+                    <div class="product-icon">
+                      <button  onclick="addToCart({{ $related_product->id }} )" type="button" >
+                        <i class="ti-bag"></i>
+                      </button>
+                      <!-- <a href="javascript:void(0)" title="Add to Wishlist">
+                        <i class="ti-heart" aria-hidden="true"></i>
+                      </a> -->
+                    </div>
+                    <!-- <div class="new-label">
+                      <div>new</div>
+                    </div>
+                    <div class="on-sale">
+                      on sale
+                    </div> -->
+                  </div>
+                  <div class="product-detail">
+                    <div class="detail-title">
+                      <div class="detail-left">
+                        <a href="">
+                          <h6 class="price-title">
+                            {{ $related_product->name }}
+                          </h6>
+                        </a>
+                      </div>
+                      <div class="detail-right">
+                        @if($related_product->promo_price)
+                          <div class="check-price">
+                            Rm {{ $related_product->price }}
+                          </div>
+                          <div class="price">
+                            <div class="price">
+                              Rm {{ $related_product->promo_price}}
+                            </div>
+                          </div>
+                        @else
+                          <div class="price">
+                            <div class="price">
+                              Rm {{ $related_product->price }}
+                            </div>
+                          </div>
+                        @endif
+                        
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="icon-detail">
-                  <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                    <i class="ti-bag" ></i>
-                  </button>
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                  </a>
-                </div>
-
               </div>
-            </div>
-          </div>
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-1/product/2.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-1/product/a2.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <a href="">
-                      <h6 class="price-title">
-                        Description.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      RM 10.00
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        RM 10.00
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="icon-detail">
-                  <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                    <i class="ti-bag" ></i>
-                  </button>
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-1/product/3.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-1/product/a3.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <a href="">
-                      <h6 class="price-title">
-                        Description.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      RM 10.00
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        RM 10.00
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="icon-detail">
-                  <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                    <i class="ti-bag" ></i>
-                  </button>
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-1/product/4.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-1/product/a4.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <a href="">
-                      <h6 class="price-title">
-                        Description.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      RM 10.00
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        RM 10.00
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="icon-detail">
-                  <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                    <i class="ti-bag" ></i>
-                  </button>
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-1/product/5.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-1/product/a5.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <a href="">
-                      <h6 class="price-title">
-                        Description.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      RM 10.00
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        RM 10.00
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="icon-detail">
-                  <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                    <i class="ti-bag" ></i>
-                  </button>
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-1/product/6.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-1/product/a6.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <a href="">
-                      <h6 class="price-title">
-                        Description.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      RM 10.00
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        RM 10.00
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="icon-detail">
-                  <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                    <i class="ti-bag" ></i>
-                  </button>
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div class="product-box">
-              <div class="product-imgbox">
-                <div class="product-front">
-                  <img src="../assets/images/layout-1/product/7.jpg" class="img-fluid  " alt="product">
-                </div>
-                <div class="product-back">
-                  <img src="../assets/images/layout-1/product/a7.jpg" class="img-fluid  " alt="product">
-                </div>
-              </div>
-              <div class="product-detail detail-center ">
-                <div class="detail-title">
-                  <div class="detail-left">
-                    <a href="">
-                      <h6 class="price-title">
-                        Description.
-                      </h6>
-                    </a>
-                  </div>
-                  <div class="detail-right">
-                    <div class="check-price">
-                      RM 10.00
-                    </div>
-                    <div class="price">
-                      <div class="price">
-                        RM 10.00
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="icon-detail">
-                  <button data-toggle="modal" data-target="#addtocart" title="Add to cart">
-                    <i class="ti-bag" ></i>
-                  </button>
-                  <a href="javascript:void(0)" title="Add to Wishlist">
-                    <i class="ti-heart" aria-hidden="true"></i>
-                  </a>
-                  <a href="#" class="show_product_detail" data-toggle="modal" data-target="#quick-view" title="Quick View">
-                    <i class="ti-search" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
+            @endforeach
           </div>
         </div>
       </div>
@@ -655,6 +400,24 @@
     {
       startTodayDealCountDown();
     }
+
+    $("#related_product_list").owlCarousel({
+      loop:false,
+      margin:10,
+      nav:false,
+      dots:false,
+      responsive:{
+        0:{
+          items:2
+        },
+        600:{
+          items:4
+        },
+        1000:{
+          items:6
+        }
+      }
+    });
   });
 
   // $("#product-thumbnail-image").slick({
@@ -682,7 +445,7 @@
     cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
    });
 
- $('#product-thumbnail-image').slick({
+  $('#product-thumbnail-image').slick({
     slidesToShow: 3,
     slidesToScroll: 3,
     dots: false,
@@ -694,19 +457,19 @@
     arrows: false,
   });
 
- $('#product-big-image').on('afterChange', function(event, slick, currentSlide) {
+  $('#product-big-image').on('afterChange', function(event, slick, currentSlide) {
     $('#product-thumbnail-image').slick('slickGoTo', currentSlide);
     var currrentNavSlideElem = '#product-thumbnail-image .slick-slide[data-slick-index="' + currentSlide + '"]';
     $('#product-thumbnail-image .slick-slide.is-active').removeClass('is-active');
     $(currrentNavSlideElem).addClass('is-active');
- });
+  });
 
- $('#product-thumbnail-image').on('click', '.slick-slide', function(event) {
+  $('#product-thumbnail-image').on('click', '.slick-slide', function(event) {
     event.preventDefault();
     var goToSingleSlide = $(this).data('slick-index');
 
     $('#product-big-image').slick('slickGoTo', goToSingleSlide);
- });
+  });
   
   $(".wishlist-btn, .product-buttons").click(function(){
     if(logged_user == "")
@@ -729,6 +492,7 @@
     {
       route = "{{ route('addItemToCart') }}";
       type = 2;
+      $(".cart-block").removeClass("active");
     }
 
     if(route == "")
@@ -812,6 +576,7 @@
         }
 
         toastBox("success", "Added Successful", response.message);
+        $(".cart-block").addClass("active");
       }
       else
       {

@@ -101,7 +101,16 @@ class itemController extends Controller
         }
       }
 
-      return view('front.item', compact('product_detail', 'address_book', 'user', 'breadcrumb'));
+      $related_product_list = product::where('product.active', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->groupby('product.id')->select('product.*', 'product_image.path as path')->get();
+      foreach($related_product_list as $related_product)
+      {
+        $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($related_product);
+        $related_product->promo_price = $promo_result->promo_price;
+        $related_product->promo_amount = $promo_result->promo_amount;
+        $related_product->promo_type = $promo_result->promo_type;
+      }
+
+      return view('front.item', compact('product_detail', 'address_book', 'user', 'breadcrumb', 'related_product_list'));
     }
 
     public function addItemToWishlist(Request $request)

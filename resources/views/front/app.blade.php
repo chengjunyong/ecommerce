@@ -41,6 +41,9 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/owlCarousel/owl.carousel.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('assets/owlCarousel/owl.theme.default.css') }}">
 
+  <!-- jquery datepicker -->
+  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery-ui-git.css') }}">
+
   <!-- latest jquery-->
   <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 
@@ -77,6 +80,9 @@
   <!-- owl carousel -->
   <script src="{{ asset('assets/owlCarousel/owl.carousel.js') }}"></script>
 
+  <!-- jquery datepicker -->
+  <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
+
   <script type="text/javascript">
     window.FontAwesomeConfig = { autoReplaceSvg: false }
   </script>
@@ -91,6 +97,8 @@
 
 <script>
   
+  var logged_user = "{{ $logged_user }}";
+
   $(document).ready(function(){
 
     $(window).keydown(function(event){
@@ -186,6 +194,93 @@
   function logout_now()
   {
     $("#logout_form").submit();
+  }
+
+  function addToCart(product_id)
+  {
+    if(logged_user == "")
+    {
+      $("#loginPromptText").html("Please login before add item to cart");
+      $("#loginPrompt").modal('show');
+      return;
+    }
+
+    $(".cart-block").removeClass("active");
+    var route = "{{ route('addItemToCart') }}"; 
+
+    $.post(route, { "_token": "{{ csrf_token() }}", "product_id" : product_id, "quantity" : 1 }, function(response){
+
+      if(response.error == 0)
+      {
+        var cart_list = response.cart_list;
+        var cart_html = "";
+        var sum_cart = 0;
+        for(var a = 0; a < cart_list.length; a++)
+        {
+          var cart_detail = cart_list[a];
+          cart_html += '<li>';
+          cart_html += '<div class="media">';
+          cart_html += '<a href="#">';
+          var cart_img = '../assets/images/layout-1/product/1.jpg';
+          if(cart_detail.path != null)
+          {
+            cart_img = "{{ Storage::url(':path') }}";
+            cart_img = cart_img.replace(':path', cart_detail.path);
+          }
+
+          cart_html += '<img alt="" class="mr-3" src='+cart_img+' />';
+          cart_html += '</a>';
+          cart_html += '<div class="media-body">';
+          cart_html += '<a href="#">';
+          cart_html += '<h4>'+cart_detail.product_name+'</h4>';
+          cart_html += '</a>';
+          cart_html += '<h4>';
+          if(cart_detail.promo_price === null)
+          {
+            cart_html += '<span>'+cart_detail.quantity+' x RM '+parseFloat(cart_detail.price).toFixed(2)+'</span>';
+          }
+          else
+          {
+            cart_html += '<span>'+cart_detail.quantity+' x RM '+parseFloat(cart_detail.promo_price).toFixed(2)+'</span>';
+          }
+
+          cart_html += '</h4>';
+          cart_html += '</div>';
+          cart_html += '</div>';
+          cart_html += '<div class="close-circle">';
+          cart_html += '<a href="#" class="removeCart" data-toggle="modal" data-target="#removeCartDetail" cart_id="'+cart_detail.id+'">';
+          cart_html += '<i class="ti-trash" aria-hidden="true"></i>';
+          cart_html += '</a>';
+          cart_html += '</div>';
+          cart_html += '</li>';
+
+          if(cart_detail.promo_price === null)
+          {
+            sum_cart += cart_detail.quantity * cart_detail.price;
+          }
+          else
+          {
+            sum_cart += cart_detail.quantity * cart_detail.promo_price;
+          }
+        }
+        $("#footer_cart").html(cart_html);
+        $("#sum_cart").html(parseFloat(sum_cart).toFixed(2));
+
+        $("#cart_count").html(response.cart_count);
+
+        $("a.removeCart").click(function(){
+          var cart_id = $(this).attr("cart_id");
+          $("#removeCartID").val(cart_id);
+        });
+
+        toastBox("success", "Added Successful", response.message);
+        $(".cart-block").addClass("active");
+      }
+      else
+      {
+        alert(response.message);
+      }
+    });
   }
 
 </script>

@@ -267,8 +267,13 @@ Route::group(['middleware' => ['auth:admin']], function () {
     // promotion
     Route::get('/promotion/on_sales', 'adminController@getOnSales')->name('getOnSales');
     Route::get('/promotion/today_deal', 'adminController@getTodayDeal')->name('getTodayDeal');
+    Route::get('/promotion/special_product', 'adminController@getSpecialProduct')->name('getSpecialProduct');
+    Route::get('/promotion/special_product_detail/{id}', 'adminController@getSpecialProductDetail')->name('getSpecialProductDetail');
     Route::post('/updateOnsales', 'adminController@updateOnsales')->name('updateOnsales');
     Route::post('/updateTodayDeal', 'adminController@updateTodayDeal')->name('updateTodayDeal');
+    Route::post('/updateSpecialProduct', 'adminController@updateSpecialProduct')->name('updateSpecialProduct');
+    Route::post('/updateSpecialProductList', 'adminController@updateSpecialProductList')->name('updateSpecialProductList');
+    Route::post('/deleteSpecialProduct', 'adminController@deleteSpecialProduct')->name('deleteSpecialProduct');
 
     //banner
     Route::get('/banner/slider','adminController@getBannerSlider')->name('getBannerSlider');

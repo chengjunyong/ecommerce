@@ -174,7 +174,7 @@
                       @endif
                     </div>
                     <div class="product-icon">
-                      <button onclick="openCart()" type="button" >
+                      <button onclick="addToCart({{ $recommend_product->id }} )" type="button" >
                         <i class="ti-bag"></i>
                       </button>
                       <!-- <a href="javascript:void(0)" title="Add to Wishlist">

@@ -20,6 +20,8 @@ use App\transaction_detail;
 use App\User;
 use App\memo;
 use App\banner;
+use App\special_product;
+use App\special_product_list;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -154,13 +156,34 @@ class frontController extends Controller
       $main->product_list = $main_product_list;
     }
 
-    $special_product_list = product::where('product.active', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->groupby('product.id')->select('product.*', 'product_image.path as path')->get();
+    $special_product_list = special_product::where('active', 1)->get();
+    $special_product_id_array = array();
     foreach($special_product_list as $special_product)
     {
-      $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($special_product);
-      $special_product->promo_price = $promo_result->promo_price;
-      $special_product->promo_amount = $promo_result->promo_amount;
-      $special_product->promo_type = $promo_result->promo_type;
+      array_push($special_product_id_array, $special_product->id);
+    }
+
+    $special_product_detail_list = special_product_list::whereIn('special_product_list.special_product_id', $special_product_id_array)->leftJoin('product', 'special_product_list.product_id', '=', 'product.id')->where('product.active', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->groupby('special_product_list.id')->select('special_product_list.*', 'product.*', 'product_image.path as path')->get();
+    foreach($special_product_detail_list as $special_product_detail)
+    {
+      $promo_result = app('App\Http\Controllers\itemController')->getPromoPrice($special_product_detail);
+      $special_product_detail->promo_price = $promo_result->promo_price;
+      $special_product_detail->promo_amount = $promo_result->promo_amount;
+      $special_product_detail->promo_type = $promo_result->promo_type;
+    }
+
+    foreach($special_product_list as $special_product)
+    {
+      $special_product_items = array();
+      foreach($special_product_detail_list as $special_product_detail)
+      {
+        if($special_product->id == $special_product_detail->special_product_id)
+        {
+          array_push($special_product_items, $special_product_detail);
+        }
+      }
+
+      $special_product->items = $special_product_items;
     }
 
 		return view('front.index', compact("banner_list", "brand_list", "on_sales_list", "today_deal_list", "main_category_product", "special_product_list"));
@@ -423,8 +446,18 @@ class frontController extends Controller
   public function getEditInfo()
   {
     $user = Auth::user();
+    $breadcrumb = array([
+      'name' => "Homepage",
+      'route' => route("getFrontIndex"),
+    ],[
+      'name' => "Dashboard",
+      'route' => route("getUserProfile")
+    ],[
+      'name' => "User Profile",
+      'route' => route('getEditInfo')
+    ]);
 
-    return view('front.edit_info', compact('user'));
+    return view('front.edit_info', compact('user', 'breadcrumb'));
   }
 
   public function getEditAddress()

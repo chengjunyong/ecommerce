@@ -79,6 +79,15 @@
                                                 </button>
                                               @endif
                                             </h6> 
+                                            <h6><label> Contact : </label> {{ $user->contact }}</h6>
+                                            <h6><label> Date of birth  : </label>
+                                              @if($user->date_of_birth)
+                                                {{ date('d M Y', strtotime($user->date_of_birth)) }}
+                                              @else
+                                                -
+                                              @endif
+                                           </h6>
+
                                             <h6><a href="#">Change Password</a></h6></div>
                                     </div>
                                 </div>

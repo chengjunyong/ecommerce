@@ -105,7 +105,17 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
       $google = Socialite::driver('google')->user();
-      // dd($google);
+      // $google_email = $google->email;
+      // $google_exist = User::where('email', $google_email)->where('client_id', null)->first();
+
+      // if($google_exist)
+      // {
+      //   $google_response = new \stdClass();
+      //   $google_response->error = 1;
+      //   $google_response->message = "Email exist";
+      //   return redirect('/')->with(["google_response" => $google_response]);
+      // }
+
       $user = User::where("client_id",$google->id)->first();
 
       if($user)

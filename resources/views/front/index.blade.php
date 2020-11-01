@@ -22,17 +22,22 @@
   #brand_list .owl-nav .owl-next { position: absolute; top: 20px; right: 0px; padding: 0 10px; }
   .owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
 
+  .hot-deal { border: 5px solid #ff914b; border-radius: 5px; padding: 10px; position: relative; }
+  .hot-deal .hot-deal-left-box { display: inline-block; width: 200px; float: left; }
+  .hot-deal .hot-deal-left-box .hot-deal-title { font-weight: bold; font-size: 30px; color: #ff6000; text-decoration: underline; }
+  .hot-deal .hot-deal-left-box .hot-deal-icon { position: absolute; left: -30px; bottom: -30px; }
+  .hot-deal .hot-deal-left-box .hot-deal-icon img { width: 150px; }
+  .hot-deal .hot-deal-box { display: inline-block; width: calc(100% - 205px); }
   .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .timer span>span { color: #212529 !important; }
   .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .price span:last-child { color: #6c757d; }
   .media-banner .media-banner-box .media .media-body .media-contant h6 span { color: #6c757d; } 
 
-  .promotion_box { position: absolute; border-radius: 5px; margin-left: -180px; margin-top: -20px; width: calc(100% + 200px); height: calc(100% + 40px); border: 20px solid #fff4e8; background-color: #fff4e8; }
-  .promotion_box_title { width: 120px; font-weight: bold; font-size: 20px; font-family: arial; }
-  .promotion_box_link { padding-top: 10px; }
-  .promotion_box_link a, .promotion_box_link i { color: #3daade !important; font-weight: bold; }
-  .promotion_box_icon { position: absolute; bottom: 0px; left: -10px; }
-  .promotion_box_icon img { max-width: 100px; }
-  .promotion_expand { position: absolute; top: -20px; width: calc(100% + 20px); height: calc(100% + 40px); background-color: #fff4e8; border-radius: 5px; }
+  .on-sales { position: relative; border: 5px solid #dc3545; border-radius: 5px; padding: 10px; }
+  .on-sales .on-sales-left-box { height: 30px; z-index: 1; position: absolute; width: 100%; }
+  .on-sales .on-sales-left-box .on-sales-title { font-weight: bold; font-size: 20px; text-align: center; color: #333; }
+  .on-sales .on-sales-left-box .on-sales-icon { position: absolute; left: -70px; top: -50px; }
+  .on-sales .on-sales-left-box .on-sales-icon img { width: 130px; }
+  .on-sales-box { margin-top: 30px; }
 
   .main_product_tab { justify-content: center; }
   .main_product_tab .nav-item a { transition: none !important; }
@@ -194,66 +199,59 @@
 <!--media banner start-->
 <section class=" b-g-white section-big-pt-space">
   <div class="container">
-    <div class="row hot-1 justify-content-md-center" style="margin-left: 180px;">
+    <div class="row hot-1 justify-content-md-center">
       @if(count($on_sales_list) > 0)
         <div class="col-lg-5 col-sm-6 col-12">
-          <div class="promotion_box">
-            <div class="promotion_box_title">Discount of the week</div>
-            <div class="promotion_box_link">
-              <a href="#">
-                See all
-                <i class="fas fa-arrow-right"></i>
-              </a>
+          <div class="on-sales">
+            <div class="on-sales-left-box">
+              <div class="on-sales-title">Today Hot Deals</div>
+              <div class="on-sales-icon">
+                <img src="{{ asset('/assets/images/front/on_sales.png') }}" class="img-fluid" alt="banner" />
+              </div>
             </div>
-            <div class="promotion_box_icon">
-              <img src="{{ asset('/assets/images/discounts-icon.png') }}" />
-            </div>
-          </div>
-          <div class="slide-1 no-arrow" style="background-color: #fff4e8;">
-            <div>
-              <div class="media-banner" style="height: 350px; overflow-x: auto;">
-                <div class="media-banner-box">
-                  <div class="media-heading">
-                    <h5>on sale</h5>
+            <div class='on-sales-box'>
+              <div class="slide-1 no-arrow" style="background-color: #fff4e8;">
+                <div>
+                  <div class="media-banner" style="height: 350px; overflow-x: auto;">
+                    @foreach($on_sales_list as $key => $on_sales)
+                      <div class="media-banner-box">
+                        <a href="{{ route('getItemDetail', ['id' => $on_sales->id]) }}" class="media" style="color: #777; align-items: flex-end; flex: 1;">
+                          @if($on_sales->path)
+                            <img src="{{ Storage::url($on_sales->path) }}" class="img-fluid" alt="banner" style="width: 84px; height: 84px;" />
+                          @else
+                            <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid" alt="banner" />
+                          @endif
+                          <div class="media-body">
+                            <div class="media-contant">
+                              <div>
+                                <p>{{ $on_sales->name }}</p>
+                                <h6 style="font-size: 20px;">RM {{ $on_sales->on_sales_price }}</h6>
+                                <span style="text-decoration: line-through;">RM {{ $on_sales->price }}</span>
+                                @if($on_sales->on_sales_type == "percentage")
+                                  <span class="discount_amount"> -{{ $on_sales->on_sales_amount }}% </span>
+                                @elseif($on_sales->on_sales_type == "fixed")
+                                  <span class="discount_amount"> -RM {{ $on_sales->on_sales_amount }} </span>
+                                @endif
+                              </div>
+                            </div>
+                          </div>
+                          <div class="media-banner-box" style="padding-bottom: 10px;">
+                            <div class="media-view" style="text-align: right;">
+                              <a href="{{ route('getItemDetail', ['id' => $on_sales->id ])}}">
+                                <h5>Get now</h5>
+                              </a>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    @endforeach
+                    <!-- <div class="media-banner-box">
+                      <div class="media-view">
+                        <h5>Get It</h5>
+                      </div>
+                    </div> -->
                   </div>
                 </div>
-                @foreach($on_sales_list as $key => $on_sales)
-                  <div class="media-banner-box">
-                    <div class="media" style="color: #777; align-items: flex-end;">
-                      @if($on_sales->path)
-                        <img src="{{ Storage::url($on_sales->path) }}" class="img-fluid" alt="banner" style="width: 84px; height: 84px;" />
-                      @else
-                        <img src="{{ asset('/assets/images/layout-1/media-banner/1.jpg') }}" class="img-fluid" alt="banner" />
-                      @endif
-                      <div class="media-body">
-                        <div class="media-contant">
-                          <div>
-                            <p>{{ $on_sales->name }}</p>
-                            <h6 style="font-size: 20px;">RM {{ $on_sales->on_sales_price }}</h6>
-                            <span style="text-decoration: line-through;">RM {{ $on_sales->price }}</span>
-                            @if($on_sales->on_sales_type == "percentage")
-                              <span class="discount_amount"> -{{ $on_sales->on_sales_amount }}% </span>
-                            @elseif($on_sales->on_sales_type == "fixed")
-                              <span class="discount_amount"> -RM {{ $on_sales->on_sales_amount }} </span>
-                            @endif
-                          </div>
-                        </div>
-                      </div>
-                      <div class="media-banner-box" style="padding-bottom: 10px;">
-                        <div class="media-view">
-                          <a href="{{ route('getItemDetail', ['id' => $on_sales->id ])}}">
-                            <h5>Get now</h5>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                @endforeach
-                <!-- <div class="media-banner-box">
-                  <div class="media-view">
-                    <h5>Get It</h5>
-                  </div>
-                </div> -->
               </div>
             </div>
           </div>
@@ -261,32 +259,19 @@
       @endif
 
       @if(count($today_deal_list) > 0)
-        <div class="col-lg-7 col-sm-12 col-12">
-          @if(count($on_sales_list) == 0)
-            <div class="promotion_box">
-              <div class="promotion_box_title">Discount of the week</div>
-              <div class="promotion_box_link">
-                <a href="#">
-                  See all
-                  <i class="fas fa-arrow-right"></i>
-                </a>
-              </div>
-              <div class="promotion_box_icon">
-                <img src="{{ asset('/assets/images/discounts-icon.png') }}" />
+        <div class="col-lg-7 col-sm-12 col-12" style='padding-left: {{ count($on_sales_list) > 0 ? "30px" : "0px" }};'>
+          <div class="hot-deal">
+            <div class="hot-deal-left-box">
+              <div class="hot-deal-title">Today Hot Deals</div>
+              <div class="hot-deal-icon">
+                <img src="{{ asset('/assets/images/front/today_deal.png') }}" class="img-fluid" alt="banner" />
               </div>
             </div>
-          @else
-            <div class="promotion_expand"></div>
-          @endif
-          <div class="hot-deal">
             <div class="hot-deal-box">
               <div class="slide-1">
                 @foreach($today_deal_list as $today_deal)
                   <div>
                     <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 350px;">
-                      <div class="hot-deal-heading">
-                        <h5>today’s hot deal</h5>
-                      </div>
                       <div class="row hot-deal-subcontain">
                         <div class="col-lg-4 col-sm-4 col-12">
                           <div class="hotdeal-right-slick-1 no-arrow">
@@ -501,15 +486,15 @@
                       <div class="item">
                         <div class="product-box">
                           <div class="product-imgbox">
-                            <div class="product-front">
+                            <a href="{{ route('getItemDetail', ['id' => $main_product->id]) }}" class="product-front clickable">
                               @if($main_product->path)
                                 <img src="{{ Storage::url($main_product->path) }}" class="img-fluid" alt="product">
                               @else
                                 <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid" alt="product">
                               @endif
-                            </div>
+                            </a>
                             <div class="product-icon">
-                              <button onclick="openCart()" type="button" >
+                              <button onclick="addToCart({{ $main_product->id }} )" type="button" >
                                 <i class="ti-bag"></i>
                               </button>
                               <!-- <a href="javascript:void(0)" title="Add to Wishlist">
@@ -568,84 +553,87 @@
 </section>
 <!-- media tab end -->
 
-<!--title start-->
-<div class="title1 section-my-space">
-  <h4>Special Products</h4>
-</div>
+@foreach($special_product_list as $special_product)
+  @if(count($special_product->items) > 0)
+    <!--title start-->
+    <div class="title1 section-my-space">
+      <h4>{{ $special_product->name }}</h4>
+    </div>
 
-<!--product start-->
-<section class="product section-big-pb-space">
-  <div class="custom-container">
-    <div class="row ">
-      <div class="col pr-0">
-        <div class="product-slide-6 no-arrow mb--10">
-          <div id="special_product_list" class="owl-carousel owl-theme">
-            @foreach($special_product_list as $special_product)
-              <div class="item">
-                <div class="product-box">
-                  <div class="product-imgbox">
-                    <div class="product-front">
-                      @if($special_product->path)
-                        <img src="{{ Storage::url($special_product->path) }}" class="img-fluid" alt="product">
-                      @else
-                        <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid" alt="product">
-                      @endif
-                    </div>
-                    <div class="product-icon">
-                      <button onclick="openCart()" type="button" >
-                        <i class="ti-bag"></i>
-                      </button>
-                      <!-- <a href="javascript:void(0)" title="Add to Wishlist">
-                        <i class="ti-heart" aria-hidden="true"></i>
-                      </a> -->
-                    </div>
-                    <!-- <div class="new-label">
-                      <div>new</div>
-                    </div>
-                    <div class="on-sale">
-                      on sale
-                    </div> -->
-                  </div>
-                  <div class="product-detail">
-                    <div class="detail-title">
-                      <div class="detail-left">
-                        <a href="">
-                          <h6 class="price-title">
-                            {{ $special_product->name }}
-                          </h6>
-                        </a>
+    <section class="product section-big-pb-space">
+      <div class="custom-container">
+        <div class="row">
+          <div class="col pr-0">
+            <div class="product-slide-6 no-arrow mb--10">
+              <div class="special_product_list owl-carousel owl-theme">
+                @foreach($special_product->items as $special_product_detail)
+                  <div class="item">
+                    <div class="product-box">
+                      <div class="product-imgbox">
+                        <div class="product-front">
+                          @if($special_product_detail->path)
+                            <img src="{{ Storage::url($special_product_detail->path) }}" class="img-fluid" alt="product">
+                          @else
+                            <img src="{{ asset('/assets/images/layout-1/product/1.jpg') }}" class="img-fluid" alt="product">
+                          @endif
+                        </div>
+                        <div class="product-icon">
+                          <button onclick="addToCart({{ $special_product_detail->id }} )" type="button" >
+                            <i class="ti-bag"></i>
+                          </button>
+                          <!-- <a href="javascript:void(0)" title="Add to Wishlist">
+                            <i class="ti-heart" aria-hidden="true"></i>
+                          </a> -->
+                        </div>
+                        <!-- <div class="new-label">
+                          <div>new</div>
+                        </div>
+                        <div class="on-sale">
+                          on sale
+                        </div> -->
                       </div>
-                      <div class="detail-right">
-                        @if($special_product->promo_price)
-                          <div class="check-price">
-                            Rm {{ $special_product->price }}
+                      <div class="product-detail">
+                        <div class="detail-title">
+                          <div class="detail-left">
+                            <a href="">
+                              <h6 class="price-title">
+                                {{ $special_product_detail->name }}
+                              </h6>
+                            </a>
                           </div>
-                          <div class="price">
-                            <div class="price">
-                              Rm {{ $special_product->promo_price}}
-                            </div>
+                          <div class="detail-right">
+                            @if($special_product_detail->promo_price)
+                              <div class="check-price">
+                                Rm {{ $special_product_detail->price }}
+                              </div>
+                              <div class="price">
+                                <div class="price">
+                                  Rm {{ $special_product_detail->promo_price}}
+                                </div>
+                              </div>
+                            @else
+                              <div class="price">
+                                <div class="price">
+                                  Rm {{ $special_product_detail->price }}
+                                </div>
+                              </div>
+                            @endif
+                            
                           </div>
-                        @else
-                          <div class="price">
-                            <div class="price">
-                              Rm {{ $special_product->price }}
-                            </div>
-                          </div>
-                        @endif
-                        
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                @endforeach
               </div>
-            @endforeach
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-<!--product end-->
+    </section>
+    <!-- media tab end -->
+  @endif
+@endforeach
 
 <!--newsleatter start-->
 <section >
@@ -720,7 +708,7 @@
       }
     });
 
-    $(".main_product_list, #special_product_list").owlCarousel({
+    $(".main_product_list, .special_product_list").owlCarousel({
       loop:false,
       margin:10,
       nav:false,

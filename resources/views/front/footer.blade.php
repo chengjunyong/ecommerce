@@ -607,7 +607,7 @@
         <h5 class="mt-0 mb-1">Latest trending</h5>
         {{ $global_random_popup_item->name }}
       </div>
-    </a>
+    </div>
   </div>
 @endif
 <!-- notification product -->
@@ -661,7 +661,6 @@
 
 
 <script>
-
   var remove = 0;
   var global_cart_list = @json($global_cart_list);
   if(Object.keys(global_cart_list).length > 0)

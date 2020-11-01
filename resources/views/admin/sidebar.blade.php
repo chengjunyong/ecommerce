@@ -88,6 +88,9 @@
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getTodayDeal') }}"><i class="fa fa-circle"></i>Today Deal</a></li>
         </ul>
+        <ul class="sidebar-submenu">
+          <li><a href="{{ route('getSpecialProduct') }}"><i class="fa fa-circle"></i>Special Product</a></li>
+        </ul>
       </li>
 
       <li><a class="sidebar-header" href=""><i data-feather="image" ></i><span>Banner</span><i class="fa fa-angle-right pull-right"></i></a>

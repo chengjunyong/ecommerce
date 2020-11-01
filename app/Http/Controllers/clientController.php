@@ -91,12 +91,18 @@ class clientController extends Controller
   {
     $user = Auth::user();
 
+    $date_of_birth = null;
+    if($request->date_of_birth)
+    {
+      $date_of_birth = date('Y-m-d', strtotime($request->date_of_birth));
+    }
+    
     User::where('id', $user->id)->update([
       'fname' => $request->fname,
       'lname' => $request->lname,
       'email' => $request->email,
       'contact' => $request->contact,
-      'review' => $request->review
+      'date_of_birth' => $date_of_birth
     ]);
 
     return redirect()->back();

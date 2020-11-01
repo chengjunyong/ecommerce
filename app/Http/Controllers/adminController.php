@@ -39,6 +39,8 @@ use App\subscription_list;
 use App\template;
 use App\brand;
 use App\banner;
+use App\special_product;
+use App\special_product_list;
 
 use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
@@ -365,6 +367,59 @@ class adminController extends Controller
       return view('admin.today_deal', compact('product_list', 'search'));
     }
 
+    public function getSpecialProduct()
+    {
+      $search = null;
+      if(isset($_GET['search']))
+      {
+        $search = $_GET['search'];
+      }
+
+      $special_product_list = special_product::where(function($query) use ($search){
+        if($search)
+        {
+          $query->where('name', 'LIKE', '%'.$search.'%');
+        }
+      })->groupBy('name')->paginate(10);
+
+      return view('admin.special_product', compact('special_product_list', 'search'));
+    }
+
+    public function getSpecialProductDetail($id)
+    {
+      $special_product = special_product::where('id', $id)->first();
+
+      $search = null;
+      if(isset($_GET['search']))
+      {
+        $search = $_GET['search'];
+      }
+
+      $product_list = product::where('active', 1)->where(function($query) use ($search){
+        if($search)
+        {
+          $query->where('name', 'LIKE', '%'.$search.'%')->orWhere('sku', 'LIKE', '%'.$search.'%');
+        }
+      })->paginate(10);
+
+      $special_product_list = special_product_list::where('special_product_id', $id)->get();
+      
+      foreach($product_list as $product_detail)
+      {
+        $product_detail->special_product = null;
+        foreach($special_product_list as $special_product_detail)
+        {
+          if($special_product_detail->product_id == $product_detail->id)
+          {
+            $product_detail->special_product = 1;
+            break;
+          }
+        }
+      }
+
+      return view('admin.special_product_detail', compact('product_list', 'search', 'special_product'));
+    }
+
     public function updateOnsales(Request $request)
     {
       foreach($request->product_id as $product_id)
@@ -443,6 +498,81 @@ class adminController extends Controller
       }
 
       return redirect(route('getTodayDeal'));
+    }
+
+    public function updateSpecialProduct(Request $request)
+    {
+      $new_special_product_type = $request->new_special_product_type;
+      if($new_special_product_type)
+      {
+        if(count($new_special_product_type) > 0)
+        {
+          foreach($new_special_product_type as $new_type)
+          {
+            special_product::create([
+              'name' => $new_type,
+              'active' => 1,
+            ]);
+          }
+        }
+      }
+
+      if($request->special_product)
+      {
+        foreach($request->special_product as $special_product)
+        {
+          $active_name = "active_".$special_product;
+          $special_product_name = "name_".$special_product;
+          special_product::where('id', $special_product)->update([
+            'name' => $request->$special_product_name,
+            'active' => $request->$active_name
+          ]);
+        }
+      }
+
+      return redirect(route('getSpecialProduct'));
+    }
+
+    public function deleteSpecialProduct(Request $request)
+    {
+      special_product::where('id', $request->special_product_id)->delete();
+      special_product_list::where('special_product_id', $request->special_product_id)->delete();
+
+      return redirect(route('getSpecialProduct'));
+    }
+
+    public function updateSpecialProductList(Request $request)
+    {
+      $special_product_list = special_product_list::where('special_product_id', $request->special_product_id)->get();
+      foreach($request->product_id as $product_id)
+      {
+        $active_name = "active_".$product_id;
+        $product_found = 0;
+        $special_product_id = null;
+        foreach($special_product_list as $special_product_detail)
+        {
+          if($special_product_detail->product_id == $product_id)
+          {
+            $product_found = 1;
+            $special_product_id = $special_product_detail->id;
+            break;
+          }
+        }
+
+        if($product_found == 0 && $request->$active_name == 1)
+        {
+          special_product_list::create([
+            'special_product_id' => $request->special_product_id,
+            'product_id' => $product_id
+          ]);
+        }
+        elseif($product_found == 1 && $request->$active_name == 0)
+        {
+          special_product_list::where('id', $special_product_id)->delete();
+        }
+      }
+
+      return redirect(route('getSpecialProductDetail', ['id' => $request->special_product_id]));
     }
 
     public function postAddProduct(Request $request)

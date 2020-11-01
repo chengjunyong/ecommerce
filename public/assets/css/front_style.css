@@ -67,6 +67,19 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 .verify_loader { display: inline-block; border: none; background: #ff914b; padding: 0 12px; border-radius: 3px; cursor: pointer; color: #fff; }
 
 .product-image { width: 100%; }
+.clickable { cursor: pointer; }
+
+.cart-block.active { animation: hopping 200ms linear 2; }
+
+@keyframes hopping {
+  0% { transform: scale(1.0); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1.0); }
+}
+
+@media only screen and (max-width: 1280px) {
+  .product .product-box .product-imgbox .product-front { height: 200px; }
+}
 
 
 
