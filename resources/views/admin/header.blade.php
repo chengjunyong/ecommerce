@@ -1,3 +1,8 @@
+<style>
+  .maximize{
+    cursor:pointer;
+  }
+</style>
 <!-- Page Header Start-->
   <div class="page-main-header">
       <div class="main-header-left">
@@ -14,13 +19,15 @@
           <div class="nav-right col">
               <ul class="nav-menus">
                   <li>
-                      <form class="form-inline search-form">
+<!--                       <form class="form-inline search-form">
                           <div class="form-group">
                               <input class="form-control-plaintext" type="search" placeholder="Search.."><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
                           </div>
-                      </form>
+                      </form> -->
                   </li>
-                  <li><a class="text-dark" onclick="openFullscreen()"><i data-feather="maximize"></i></a></li>
+                  <li><a class="text-dark maximize" target="_blank" href="{{route('getFrontIndex')}}"><i data-feather="home"></i></a></li>
+                  <li><a class="text-dark maximize" onclick="openFullscreen()"><i data-feather="maximize"></i></a></li>
+
                   
                   <li class="onhover-dropdown">
                       <div class="media align-items-center"><img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/images/dashboard/man.png') }}" alt="header-user">

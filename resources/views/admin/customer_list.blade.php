@@ -34,25 +34,31 @@
      <div>
       <table class="" id="customer_list">
         <thead class="">							
-          <th class="" style="width: 100px;">Name
+          <th>Name
           </th>
-          <th class="" style="width: 100px;">Email
+          <th>Email
           </th>
-          <th class="" style="width: 100px;">Contact Number
+          <th>Contact Number
           </th>
-          <th class="" style="width: 100px;">Last Login
+          <th>Total Quantity Transaction
           </th>
-          <th class="" style="width: 100px;">Create Time
+          <th>Total Amount Spended
+          </th>
+          <th>Last Login
+          </th>
+          <th>Create Time
           </th>
         </thead>
         <tbody class="jsgrid-row">
           @foreach($user as $result)
           <tr>
-            <td class="" style="width: 100px;">{{ $result->fname }} {{$result->lname}}</td>
-            <td class="" style="width: 100px;">{{ $result->email }}</td>
-            <td class="" style="width: 100px;">{{ $result->contact }}</td>
-            <td class="" style="width: 100px;">{{ $result->last_login }}</td>
-            <td class="" style="width: 100px;">{{ $result->created_at }}</td>
+            <td>{{ $result->fname }} {{$result->lname}}</td>
+            <td>{{ $result->email }}</td>
+            <td>{{ ($result->contact == "") ? 'Not Available' : $result->contact }}</td>
+            <td style="text-align: center">{{ $result->quantity }}</td>
+            <td>Rm {{ ($result->total_amount == null) ? 0 : number_format($result->total_amount,2)}}</td>
+            <td>{{ $result->last_login }}</td>
+            <td>{{ $result->created_at }}</td>
           </tr>
           @endforeach
         </tbody>

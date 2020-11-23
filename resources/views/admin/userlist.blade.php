@@ -38,7 +38,7 @@
      <div class="jsgrid-grid-header jsgrid-header-scrollbar">
       <table class="jsgrid-table">
         <thead class="jsgrid-header-row">
-          <th class="jsgrid-header-cell jsgrid-align-center" style="width: 60px;"><button type="button" class="btn btn-danger btn-sm btn-delete mb-0 b-r-4">Delete</button>
+          <th class="jsgrid-header-cell jsgrid-align-center" style="width: 60px;"><button type="button" class="btn btn-danger btn-sm btn-delete mb-0 b-r-4" id="delete_btn">Delete</button>
           </th>								
           <th class="jsgrid-header-cell" style="width: 100px;">First Name
           </th>
@@ -51,11 +51,12 @@
           <th class="jsgrid-header-cell" style="width: 100px;">Role
           </th>
         </thead>
+        @csrf
         <tbody class="jsgrid-row">
           @foreach($user_list as $user)
           <tr>
             <td class="jsgrid-cell jsgrid-align-center" style="width: 60px;">
-              <input type="checkbox">
+              <input type="checkbox" class="checkbox" target="{{ $user->id }}">
             </td>
             <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ $user->fname }}</td>
             <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{ $user->lname }}</td>
@@ -80,4 +81,34 @@
 </div>
 <!-- Container-fluid Ends-->
 </div>
+
+<script>
+  $("#delete_btn").click(function(){
+    if($(".checkbox:checked").length <= 0){
+        alert("Please select atleast 1 user");
+    }else{
+        let token = $('input[name=_token]').val();
+        var user_list = [];
+        $(".checkbox:checked").each(function(){
+            user_list.push($(this).attr('target'));
+        });
+
+        $.post("{{ route('bulkUserDelete') }}",
+        {
+            _token : token,
+            user_list : user_list
+
+        },function(data){
+            if(data == 'true'){
+                alert("Data delete successful");
+                location.reload();
+            }else{
+                alert("Something Wrong, please contact IT services");
+            }
+        },"html");
+
+    }
+
+  });
+</script>
 @endsection
