@@ -163,9 +163,9 @@
               </div>
               <div class="item_price">
                 @if($cart_detail->promo_price === null)
-                  RM {{ $cart_detail->quantity * $cart_detail->price }}
+                  RM {{ number_format($cart_detail->quantity * $cart_detail->price, 2) }}
                 @else
-                  RM {{ $cart_detail->quantity * $cart_detail->promo_price }}
+                  RM {{ number_format($cart_detail->quantity * $cart_detail->promo_price, 2) }}
                 @endif
               </div>
               <div class="item_qty">
@@ -327,36 +327,6 @@
   </div>
 </div>
 <!-- Add to cart bar end-->
-
-
-<!--Newsletter modal popup start-->
-<div class="modal fade bd-example-modal-lg theme-modal" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="news-latter">
-          <div class="modal-bg">
-            <div class="offer-content">
-              <div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h2>newsletter</h2>
-                <p>Subscribe to our website mailling list <br> and get a Offer, Just for you!</p>
-                <form action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
-                  <div class="form-group mx-sm-3">
-                    <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required="required">
-                    <button type="submit" class="btn btn-theme btn-normal btn-sm " id="mc-submit">subscribe</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Newsletter Modal popup end-->
-
 
 <!-- Quick-view modal popup start-->
 <div class="modal fade bd-example-modal-lg theme-modal" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
@@ -637,6 +607,26 @@
   </div>
 </div>
 
+<div class="modal fade" style="z-index: 9999;" id="removeCartDetail_ajax" tabindex="-1" role="dialog" aria-labelledby="removeCartDetailLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Remove item</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Do you want to remove this item ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="removeCart_ajax">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" style="z-index: 9999;" id="loginPrompt" tabindex="-1" role="dialog" aria-labelledby="loginPromptLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -658,6 +648,181 @@
   <div style="position: fixed; top: 10px; right: 10px;" id="toastBox">
   </div>
 </div>
+
+<!--Newsletter modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="news-latter">
+          <div class="modal-bg">
+            <div class="offer-content">
+              <div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h2>newsletter</h2>
+                <p>Subscribe to our website mailling list <br> and get a Offer, Just for you!</p>
+                <form action="https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda" class="auth-form needs-validation" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+                  <div class="form-group mx-sm-3">
+                    <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email" required="required">
+                    <button type="submit" class="btn btn-theme btn-normal btn-sm " id="mc-submit">subscribe</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Newsletter Modal popup end-->
+
+<!--Newsletter modal popup start-->
+<div class="modal fade bd-example-modal-lg theme-modal" id="addressModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document" style="max-width: 800px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Change delivery/ billing address.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        @if(count($address_book_list) > 0)
+          <div id="address_list" class="row">
+            <div class="col-lg-12">
+              <form method="POST" action="{{ route('changeDefaultAddress') }}">
+                @csrf
+                <table class="table table-bordered table-striped" style="width: 100%; margin-bottom: 10px;">
+                  <thead>
+                    <th>Default shipping address</th>
+                    <th>Default billing address</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Postalcode</th>
+                    <th>Phone number</th>
+                  </thead>
+                  <tbody>
+                    @if(count($address_book_list) > 0)
+                      @foreach($address_book_list as $key => $address_book)
+                        <tr>
+                          <td>
+                            <div class="checkbox icheck_checkbox">
+                              <label>
+                                <input class="icheck" type="radio" name="default_shipping" value="{{ $address_book->id }}" {{ $address_book->default_shipping == 1 ? 'checked' : '' }} />
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="checkbox icheck_checkbox">
+                              <label>
+                                <input class="icheck" type="radio" name="default_billing" value="{{ $address_book->id }}" {{ $address_book->default_billing == 1 ? 'checked' : '' }} />
+                              </label>
+                            </div>
+                          </td>
+                          <td>{{ $address_book->name }}</td>
+                          <td>{{ $address_book->address }}</td>
+                          <td>{{ $address_book->postal_code }}</td>
+                          <td>{{ $address_book->phone_number }}</td>
+                        </tr>
+                      @endforeach
+                    @else
+                      <tr>
+                        <td colspan="5"> No address found. </td>
+                      </tr>
+                    @endif
+                  </tbody>
+                </table>
+
+                <button class="btn btn-success" type="submit">Save</button>
+                <button class="btn btn-primary pull-right" type="button" id="add_address_btn">Add new address</button>
+              </form>
+            </div>
+          </div>
+        @endif
+
+        <div id="add_new_address" class="{{ count($address_book_list) > 0 ? 'hide' : '' }}">
+          <form method="POST" action="{{ route('addressBook') }}">
+            @csrf
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" class="form-control" name="name" id="address_name" placeholder="Please enter your name" required />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>Phone number</label>
+                  <input type="text" class="form-control" name="phone_number" id="address_phone_number" placeholder="Please enter your phone number" required />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control" name="address" id="address_detail" placeholder="Please enter your address" required />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>State</label>
+                  <select class="form-control" name="state" id="address_state" required>
+                    <option value="0">Please select</option>
+                    <option value="pahang">Pahang</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>City</label>
+                  <select class="form-control" name="city" id="address_city" required>
+                    <option value="0">Please select</option>
+                    <option value="kuantan">Kuantan</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label>Postal code</label>
+                  <input type="text" class="form-control" name="postal_code" id="address_postal_code" placeholder="Please enter your postal code" required />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <div class="checkbox icheck_checkbox">
+                    <label>
+                      <input class="icheck" type="checkbox" name="default_shipping" id="address_default_shipping" value="1" checked /> Default shipping address
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <div class="checkbox icheck_checkbox">
+                    <label>
+                      <input class="icheck" type="checkbox" name="default_billing" id="address_default_billing" value="1" checked /> Default billing address
+                    </label>
+                  </div> 
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <input type="hidden" name="type" value="1" />
+                <input type="hidden" name="page" value="2" />
+                <button type="submit" class="btn btn-success pull-right" style="margin-left: 20px;">Save</button>
+                @if(count($address_book_list) > 0)
+                  <button type="button" class="btn pull-right" id="address_cancel">Cancel</button>
+                @endif
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--Newsletter Modal popup end-->
 
 
 <script>
@@ -681,49 +846,14 @@
     $("#sum_cart, #cart_page_sum, #checkout_page_sum").html("RM "+parseFloat(sum_cart).toFixed(2));
   }
 
-  $("a.removeCart").click(function(){
-    var cart_id = $(this).attr("cart_id");
-    $("#removeCartID").val(cart_id);
-  });
+  $(document).ready(function(){
+    $("a.removeCart").click(function(){
+      var cart_id = $(this).attr("cart_id");
+      $("#removeCartID").val(cart_id);
+    });
 
-  $("#removeCart").click(function(){
-    $("#removeCartForm").submit();
-  });
-
-  $(".icheck.memo").on("ifChanged", function(){
-    var memo_id = $(this).attr("memo_id");
-    var checked = $(this).is(":checked");
-
-    updateMemo(this, checked, memo_id);
-  });
-
-  $(".memo.add").click(function(){
-    var html = "";
-    html += '<div class="memo">';
-    html += '<div class="checkbox icheck_checkbox">';
-    html += '<label>';
-    html += '<input class="icheck memo cart_detail_checkbox" type="checkbox" memo_id="0" />';
-    html += '</label>';
-    html += '</div>';
-    html += "<label style='display: none;'></label>";
-    html += '<input type="text" class="memo-input" />';
-    html += '<div class="option remove" onclick="undoMemo(this)">';
-    html += '<i class="fas fa-times"></i>';
-    html += '</div>';
-    html += '<div class="option remove trash" style="display: block;" onclick="removeMemo(this, 0)">';
-    html += '<i class="far fa-trash-alt"></i>';
-    html += '</div>';
-    html += '<div class="option save" style="display: block;" onclick="saveMemo(this, 0)">';
-    html += '<i class="fas fa-check"></i>';
-    html += '</div>';
-    html += '</div>';
-
-    $("#memo_list").prepend(html);
-
-    $(".icheck").iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
+    $("#removeCart").click(function(){
+      $("#removeCartForm").submit();
     });
 
     $(".icheck.memo").on("ifChanged", function(){
@@ -733,21 +863,73 @@
       updateMemo(this, checked, memo_id);
     });
 
-    $("#memo_list .memo:first-child").find("input").focus();
+    $(".memo.add").click(function(){
+      var html = "";
+      html += '<div class="memo">';
+      html += '<div class="checkbox icheck_checkbox">';
+      html += '<label>';
+      html += '<input class="icheck memo cart_detail_checkbox" type="checkbox" memo_id="0" />';
+      html += '</label>';
+      html += '</div>';
+      html += "<label style='display: none;'></label>";
+      html += '<input type="text" class="memo-input" />';
+      html += '<div class="option remove" onclick="undoMemo(this)">';
+      html += '<i class="fas fa-times"></i>';
+      html += '</div>';
+      html += '<div class="option remove trash" style="display: block;" onclick="removeMemo(this, 0)">';
+      html += '<i class="far fa-trash-alt"></i>';
+      html += '</div>';
+      html += '<div class="option save" style="display: block;" onclick="saveMemo(this, 0)">';
+      html += '<i class="fas fa-check"></i>';
+      html += '</div>';
+      html += '</div>';
 
-  });
+      $("#memo_list").prepend(html);
 
-  $(".memo.expand").click(function(){
-    if($("#completed_memo").css("display") == "none")
-    {
-      $(".memo.expand svg").removeClass("fa-chevron-down").addClass("fa-chevron-up");
-    }
-    else
-    {
-      $(".memo.expand svg").removeClass("fa-chevron-up").addClass("fa-chevron-down");
-    }
+      $(".icheck").iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' /* optional */
+      });
 
-    $("#completed_memo").slideToggle();
+      $(".icheck.memo").on("ifChanged", function(){
+        var memo_id = $(this).attr("memo_id");
+        var checked = $(this).is(":checked");
+
+        updateMemo(this, checked, memo_id);
+      });
+
+      $("#memo_list .memo:first-child").find("input").focus();
+
+    });
+
+    $(".memo.expand").click(function(){
+      if($("#completed_memo").css("display") == "none")
+      {
+        $(".memo.expand svg").removeClass("fa-chevron-down").addClass("fa-chevron-up");
+      }
+      else
+      {
+        $(".memo.expand svg").removeClass("fa-chevron-up").addClass("fa-chevron-down");
+      }
+
+      $("#completed_memo").slideToggle();
+    });
+
+    $(".change_address").click(function(){
+      $("#addressModal").modal('show');
+    });
+
+    $("#add_address_btn").click(function(){
+      $("#address_list").addClass("hide");
+      $("#add_new_address").removeClass("hide");
+    });
+
+    $("#address_cancel").click(function(){
+      $("#address_list").removeClass("hide");
+      $("#add_new_address").addClass("hide");
+    });
+
   });
 
   function saveMemo(_this, id)

@@ -297,6 +297,10 @@ class itemController extends Controller
       $address_book = null;
 
       $cart_list = [];
+      $total = 0;
+      $round_off = 0;
+      $final_total = 0;
+
       if($user)
       {
         $address_book = address_book::where('user_id', $user->id)->where('default_shipping', 1)->first();
@@ -309,8 +313,20 @@ class itemController extends Controller
           $cart->promo_price = $promo_result->promo_price;
           $cart->promo_amount = $promo_result->promo_amount;
           $cart->promo_type = $promo_result->promo_type;
+
+          if($promo_result->promo_price)
+          {
+            $total = $total + ($cart->quantity * $cart->promo_price);
+          }
+          else
+          {
+            $total = $total + ($cart->quantity * $cart->price);
+          }
         }
       }
+
+      $final_total = round($total, 1);
+      $round_off = round(($final_total - $total), 2);
 
       $breadcrumb = array([
         'name' => "Homepage",
@@ -332,7 +348,7 @@ class itemController extends Controller
         $recommend_product->promo_type = $promo_result->promo_type;
       }
 
-      return view('front.checkout', compact('cart_list', 'address_book', 'breadcrumb', 'recommend_product_list'));
+      return view('front.checkout', compact('cart_list', 'address_book', 'breadcrumb', 'recommend_product_list', 'total', 'round_off', 'final_total'));
     }
 
     public function selectedItemCheckout(Request $request)
@@ -376,28 +392,34 @@ class itemController extends Controller
       $sub_total = 0;
       foreach($cart_list as $cart)
       {
-        if($cart->promo_price === null)
+        $cart->total = $cart->quantity * $cart->price;
+        if($cart->promo_price)
         {
-          $sub_total = $sub_total + ($cart->quantity * $cart->price);
+          $cart->total = $cart->quantity * $cart->promo_price;
         }
-        else
-        {
-          $sub_total = $sub_total + ($cart->quantity * $cart->promo_price);
-        }
+
+        $cart->total_text = number_format($cart->total, 2);
+
+        $sub_total = $sub_total + $cart->total;
       }
 
       $total = $sub_total - $discount_amount;
+      $final_total = round($total, 1);
+      $round_off = round(($final_total - $total), 2);
 
       $response = new \stdClass();
       $response->error = 0;
       $response->message = "Success";
       $response->sub_total = $sub_total;
       $response->total = $total;
+      $response->final_total = $final_total;
+      $response->round_off = $round_off;
       $response->coupon_code = $request->coupon_code;
       $response->coupon_valid = $coupon_valid;
       $response->coupon_message = $coupon_message;
       $response->coupon_name = $coupon_name;
       $response->discount_amount = $discount_amount;
+      $response->cart_list = $cart_list;
 
       return response()->json($response);
     }
@@ -468,12 +490,20 @@ class itemController extends Controller
       }
       
       $total = $sub_total - $discount_amount;
+
+      $final_total = round($total, 1);
+      $round_off = round(($final_total - $total), 2);
+
       $transaction = transaction::create([
         'user_id' => $user->id,
         'sub_total' => $sub_total,
         'discount_total' => $discount_amount,
         'total' => $total,
+        'round_off' => $round_off,
+        'final_total' => $final_total,
         'status' => 1,
+        'payment_type' => $request->payment_type,
+        'shipping_type' => $request->shipping_type,
         'delivery_address' => $full_address,
         'mailing_address' => $billing_address,
         'phone_number' => $phone_number
@@ -707,11 +737,16 @@ class itemController extends Controller
             $discount_amount = $item_total;
           }
 
+          $final_total = round($price_after_discount, 1);
+          $round_off = round(($final_total - $price_after_discount), 2);
+
           $response = new \stdClass();
           $response->error = 0;
           $response->valid = 1;
           $response->message = "Success.";
           $response->price_after_discount = $price_after_discount;
+          $response->round_off = $round_off;
+          $response->final_total = $final_total;
           $response->discount_amount = $discount_amount;
           $response->coupon_name = $coupon_code->name;
           $response->coupon_id = $coupon_code->id;
@@ -747,6 +782,17 @@ class itemController extends Controller
       cart_detail::where('id', $request->cart_id)->delete();
 
       return redirect()->back();
+    }
+
+    public function removeCartDetailAjax(Request $request)
+    {
+      cart_detail::where('id', $request->cart_id)->delete();
+
+      $response = new \stdClass();
+      $response->error = 0;
+      $response->message = "Success";
+
+      return response()->json($response);
     }
 
     public function updateCart(Request $request)
@@ -855,5 +901,29 @@ class itemController extends Controller
       $promo_result->promo_type = $promo_type;
 
       return $promo_result;
+    }
+
+    public function editCartQuantity(Request $request)
+    {
+      $cart_detail_id = $request->cart_detail_id;
+      if($cart_detail_id)
+      {
+        foreach($cart_detail_id as $cart_id)
+        {
+          $quantity_name = "quantity_".$cart_id;
+          $quantity = $request->$quantity_name;
+
+          cart_detail::where('id', $cart_id)->update([
+            'quantity' => $quantity
+          ]);
+        }
+      }
+
+      $response = new \stdClass();
+      $response->error = 0;
+      $response->message = "Success";
+
+      return response()->json($response);
+
     }
 }

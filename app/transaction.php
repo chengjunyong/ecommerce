@@ -12,8 +12,11 @@ class transaction extends Model
       'sub_total',
       'discount_total',
       'total',
+      'round_off',
+      'final_total',
       'status',
       'payment_type',
+      'shipping_type',
       'delivery_address',
       'mailing_address',
       'phone_number'

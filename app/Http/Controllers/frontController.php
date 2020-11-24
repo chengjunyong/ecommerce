@@ -416,6 +416,32 @@ class frontController extends Controller
     return view('front.category', compact('product_list', 'tag_list', 'brand_list', 'breadcrumb'));
   }
 
+  public function getEventPage()
+  {
+    $breadcrumb = array([
+      'name' => "Homepage",
+      'route' => route("getFrontIndex"),
+    ],[
+      'name' => "Event",
+      'route' => route("getEventPage")
+    ]);
+
+    return view('front.event', compact('breadcrumb'));
+  }
+
+  public function getWhatNewsPage()
+  {
+    $breadcrumb = array([
+      'name' => "Homepage",
+      'route' => route("getFrontIndex"),
+    ],[
+      'name' => "What News",
+      'route' => route("getWhatNewsPage")
+    ]);
+
+    return view('front.what_news', compact('breadcrumb'));
+  }
+
   public function getRegisterPage()
   {
     return view('front.register');

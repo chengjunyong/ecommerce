@@ -528,9 +528,9 @@
               @if(Route::currentRouteName() != "getFrontIndex")
                 <div class="banner_category">
                   <a href="#">Recipe</a>
-                  <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" class="active">Offers</a>
-                  <a href="#">Event</a>
-                  <a href="#">Whats New</a>
+                  <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" banner_type="offers">Offers</a>
+                  <a href="{{ route('getEventPage') }}" banner_type="event">Event</a>
+                  <a href="{{ route('getWhatNewsPage') }}" banner_type="whatNews">Whats New</a>
                 </div>
               @endif
             </div>
@@ -643,82 +643,98 @@
 <script>
 
   var searchTimeout;
+  var route_name = "{{ Route::currentRouteName() }}";
 
-$(document).ready(function(){  
-  $(".my_dropdown_2 li div").click(function(){
-    $(this).siblings("ul").toggleClass("active");
-  });
+  $(document).ready(function(){  
+    $(".my_dropdown_2 li div").click(function(){
+      $(this).siblings("ul").toggleClass("active");
+    });
 
-  $("#searchItem, #mobileSearchItem").on('keypress',function(e) {
-    if(e.which == 13)
-    {
-      if($(this).attr("id") == "searchItem")
+    $("#searchItem, #mobileSearchItem").on('keypress',function(e) {
+      if(e.which == 13)
       {
-        $("#searchItemSubmit").click();
+        if($(this).attr("id") == "searchItem")
+        {
+          $("#searchItemSubmit").click();
+        }
+        else if($(this).attr("id") == "mobileSearchItem")
+        {
+          $("#mobileSearchItemSubmit").click();
+        }
       }
-      else if($(this).attr("id") == "mobileSearchItem")
+      else
       {
-        $("#mobileSearchItemSubmit").click();
+        clearTimeout(searchTimeout);
+        var id = $(this).attr("id");
+        searchTimeout = setTimeout( function() { ajaxSearch(id) } , 500);
+      }
+    });
+
+    $("#check_area").click(function(){
+      $('#delivery_area').modal();
+    });
+
+    // $("#dismiss").click(function(){
+    //   $('#delivery_area').modal('toggle');
+    // });
+
+    $("#check").click(function(){
+      let token = $("input[name=_token]").val();
+      let postcode = $("#postcode").val();
+      $.post("{{ route('getPostcodeResult') }}",
+      {
+        _token:token,
+        postcode:postcode
+
+      },function(data){
+        $("#msg").html(data);
+      },"html");
+    });
+
+    $('body').on('click', function(){
+      $("#search_autocomplete").removeClass("show").html(""); 
+      if($(".login_alert").css("display") == "flex")
+      {
+        closeFloating();
+      }
+
+      // $(".my_dropdown_2").css({"left": "-300px"});
+    });
+
+    $("#searchItem, #search_autocomplete").click(function(e){
+      e.stopPropagation();
+    });
+
+    $("#floating_container, .floating_btn").click(function(e){
+      e.stopPropagation();
+    });
+
+    $(".my_dropdown_2").click(function(e){
+      e.stopPropagation();
+    });
+
+    // $(window).scroll(function (event) {
+    //   headerScroll();
+    // });
+
+    // headerScroll();
+
+    if(route_name == "getCategoryPage")
+    {
+      if("{{ isset($_GET['type_detail']) }}" == 1)
+      {
+        $(".banner_category a[banner_type=offers]").addClass("active");
       }
     }
-    else
+    else if(route_name == "getEventPage")
     {
-      clearTimeout(searchTimeout);
-      var id = $(this).attr("id");
-      searchTimeout = setTimeout( function() { ajaxSearch(id) } , 500);
+      $(".banner_category a[banner_type=event]").addClass("active");
+    }
+    else if(route_name == "getWhatNewsPage")
+    {
+      $(".banner_category a[banner_type=whatNews]").addClass("active");
     }
   });
-
-  $("#check_area").click(function(){
-    $('#delivery_area').modal();
-  });
-
-  // $("#dismiss").click(function(){
-  //   $('#delivery_area').modal('toggle');
-  // });
-
-  $("#check").click(function(){
-    let token = $("input[name=_token]").val();
-    let postcode = $("#postcode").val();
-    $.post("{{ route('getPostcodeResult') }}",
-    {
-      _token:token,
-      postcode:postcode
-
-    },function(data){
-      $("#msg").html(data);
-    },"html");
-  });
-
-  $('body').on('click', function(){
-    $("#search_autocomplete").removeClass("show").html(""); 
-    if($(".login_alert").css("display") == "flex")
-    {
-      closeFloating();
-    }
-
-    // $(".my_dropdown_2").css({"left": "-300px"});
-  });
-
-  $("#searchItem, #search_autocomplete").click(function(e){
-    e.stopPropagation();
-  });
-
-  $("#floating_container, .floating_btn").click(function(e){
-    e.stopPropagation();
-  });
-
-  $(".my_dropdown_2").click(function(e){
-    e.stopPropagation();
-  });
-
-  // $(window).scroll(function (event) {
-  //   headerScroll();
-  // });
-
-  // headerScroll();
-
-});
 
 // function headerScroll()
 // {

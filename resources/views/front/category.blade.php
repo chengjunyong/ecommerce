@@ -192,18 +192,18 @@
                                 <div class="product_price">
                                   @if($product->promo_price === null)
                                     <div class="price" style="margin: 0px;">
-                                      RM {{ $product->price }}
+                                      RM {{ number_format($product->price, 2) }}
                                     </div>
                                   @else
                                     <div class="price">
-                                      RM {{ $product->promo_price }}
+                                      RM {{ number_format($product->promo_price, 2) }}
                                     </div>
                                     <div class="old_price">
-                                      <span>RM {{ $product->price }} </span>
+                                      <span>RM {{ number_format($product->price, 2) }} </span>
                                       @if($product->promo_type == "percentage")
                                         <label class="discount_amount"> -{{ $product->promo_amount }}% </label>
                                       @elseif($product->promo_type == "fixed")
-                                        <label class="discount_amount"> -RM {{ $product->promo_amount }} </label>
+                                        <label class="discount_amount"> -RM {{ number_format($product->promo_amount, 2) }} </label>
                                       @endif
                                     </div>
                                   @endif

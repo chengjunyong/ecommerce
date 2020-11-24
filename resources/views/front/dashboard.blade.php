@@ -213,6 +213,7 @@
                         <div class="col-lg-12">
                           <input type="hidden" name="type" id="address_type" />
                           <input type="hidden" name="address_id" id="address_id" />
+                          <input type="hidden" name="page" value="1" />
                           <button type="submit" class="btn btn-success pull-right" style="margin-left: 20px;" id="address_form_save">Save</button>
                           <button type="button" class="btn pull-right" id="address_form_cancel">Cancel</button>
                         </div>

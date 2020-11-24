@@ -54,8 +54,8 @@
         <div class="banner_category">
           <a href="#">Recipes</a>
           <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}">Offers</a>
-          <a href="#">Event</a>
-          <a href="#">Whats New</a>
+          <a href="{{ route('getEventPage') }}">Event</a>
+          <a href="{{ route('getWhatNewsPage') }}">Whats New</a>
         </div>
         <div class="slide-1 no-arrow">
           @foreach($banner_list as $key => $banner)
@@ -225,12 +225,12 @@
                             <div class="media-contant">
                               <div>
                                 <p>{{ $on_sales->name }}</p>
-                                <h6 style="font-size: 20px;">RM {{ $on_sales->on_sales_price }}</h6>
-                                <span style="text-decoration: line-through;">RM {{ $on_sales->price }}</span>
+                                <h6 style="font-size: 20px;">RM {{ number_format($on_sales->on_sales_price, 2) }}</h6>
+                                <span style="text-decoration: line-through;">RM {{ number_format($on_sales->price, 2) }}</span>
                                 @if($on_sales->on_sales_type == "percentage")
                                   <span class="discount_amount"> -{{ $on_sales->on_sales_amount }}% </span>
                                 @elseif($on_sales->on_sales_type == "fixed")
-                                  <span class="discount_amount"> -RM {{ $on_sales->on_sales_amount }} </span>
+                                  <span class="discount_amount"> -RM {{ number_format($on_sales->on_sales_amount, 2) }} </span>
                                 @endif
                               </div>
                             </div>
@@ -310,17 +310,17 @@
                                 <h5>{{ $today_deal->name }}</h5>
                               </div>
                               <div>
-                                <p>
+                                <!-- <p>
                                   {{ $today_deal->description }}
-                                </p>
+                                </p> -->
                                 <div class="price">
-                                  <span style="font-size: 20px;">RM {{ $today_deal->today_deal_price }}</span>
+                                  <span style="font-size: 20px;">RM {{ number_format($today_deal->today_deal_price, 2) }}</span>
                                   <br>
-                                  <span style="text-decoration: line-through; color: #777; font-weight: 1;">RM {{ $today_deal->price }}</span>
+                                  <span style="text-decoration: line-through; color: #777; font-weight: 1;">RM {{ number_format($today_deal->price, 2) }}</span>
                                   @if($today_deal->today_deal_type == "percentage")
                                     <label class="discount_amount"> -{{ $today_deal->today_deal_amount }}% OFF</label>
                                   @elseif($today_deal->today_deal_type == "fixed")
-                                    <label class="discount_amount"> -RM {{ $today_deal->today_deal_amount }} OFF</label>
+                                    <label class="discount_amount"> -RM {{ number_format($today_deal->today_deal_amount, 2) }} OFF</label>
                                   @endif
                                   
                                 </div>
@@ -520,17 +520,17 @@
                               <div class="detail-right">
                                 @if($main_product->promo_price)
                                   <div class="check-price">
-                                    Rm {{ $main_product->price }}
+                                    Rm {{ number_format($main_product->price, 2) }}
                                   </div>
                                   <div class="price">
                                     <div class="price">
-                                      Rm {{ $main_product->promo_price}}
+                                      Rm {{ number_format($main_product->promo_price, 2) }}
                                     </div>
                                   </div>
                                 @else
                                   <div class="price">
                                     <div class="price">
-                                      Rm {{ $main_product->price }}
+                                      Rm {{ number_format($main_product->price, 2) }}
                                     </div>
                                   </div>
                                 @endif
@@ -604,17 +604,17 @@
                           <div class="detail-right">
                             @if($special_product_detail->promo_price)
                               <div class="check-price">
-                                Rm {{ $special_product_detail->price }}
+                                Rm {{ number_format($special_product_detail->price, 2) }}
                               </div>
                               <div class="price">
                                 <div class="price">
-                                  Rm {{ $special_product_detail->promo_price}}
+                                  Rm {{ number_format($special_product_detail->promo_price, 2) }}
                                 </div>
                               </div>
                             @else
                               <div class="price">
                                 <div class="price">
-                                  Rm {{ $special_product_detail->price }}
+                                  Rm {{ number_format($special_product_detail->price, 2) }}
                                 </div>
                               </div>
                             @endif

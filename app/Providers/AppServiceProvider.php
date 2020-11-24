@@ -16,6 +16,7 @@ use App\cart_detail;
 use App\product_image;
 use App\memo;
 use App\product;
+use App\address_book;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -64,6 +65,7 @@ class AppServiceProvider extends ServiceProvider
         $cart = null;
         $global_cart_list = [];
         $memo_list = [];
+        $address_book_list = [];
         $completed_memo_count = 0;
 
         if($logged_user)
@@ -120,11 +122,13 @@ class AppServiceProvider extends ServiceProvider
               $completed_memo_count++;
             }
           }
+
+          $address_book_list = address_book::where('user_id', $logged_user->id)->get();
         }
 
         $global_random_popup_item = product::where('product.popup_banner', 1)->leftJoin('product_image', 'product_image.product_id', '=', 'product.id')->select('product.*', 'product_image.path as path')->groupBy('product.id')->inRandomOrder()->first();
 
-        $view->with(['main_category' => $main_category, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list, "memo_list" => $memo_list, "completed_memo_count" => $completed_memo_count, "global_random_popup_item" => $global_random_popup_item ]); 
+        $view->with(['main_category' => $main_category, "logged_user" => $logged_user, "wishlist" => $wishlist, "wishlist_count" => $wishlist_count, "cart" => $cart, "global_cart_list" => $global_cart_list, "memo_list" => $memo_list, "completed_memo_count" => $completed_memo_count, "global_random_popup_item" => $global_random_popup_item, "address_book_list" => $address_book_list ]); 
       }); 
     }
 }

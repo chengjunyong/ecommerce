@@ -41,7 +41,7 @@
                 <div class="row check-out ">
                   <div class="col-lg-12">
                     @foreach($cart_list as $cart_detail)
-                      <div class="item_summary">
+                      <div class="item_summary" cart_id="{{ $cart_detail->id }}">
                         @if($cart_detail->path)
                           <img src="{{ Storage::url($cart_detail->path) }}" />
                         @else
@@ -50,23 +50,33 @@
                         
                         <div class="item_description">
                           <label>{{ $cart_detail->product_name }}</label>
-                          <span>{{ $cart_detail->description }}</span>
+                          <span class="description">{{ $cart_detail->description }}</span>
                         </div>
                         <div class="item_price">
                           @if($cart_detail->promo_price === null)
-                            RM {{ $cart_detail->quantity * $cart_detail->price }}
+                            RM {{ number_format($cart_detail->quantity * $cart_detail->price, 2) }}
                           @else
-                            RM {{ $cart_detail->quantity * $cart_detail->promo_price }}
+                            RM {{ number_format($cart_detail->quantity * $cart_detail->promo_price, 2) }}
                           @endif
                         </div>
                         <div class="item_qty">
-                          Qty : {{ $cart_detail->quantity }}
+                          <div class="edit_item_quantity" edit_type="minus" cart_id="{{ $cart_detail->id }}">
+                            <i class="fa fa-minus"></i>
+                          </div>
+                          <label>{{ $cart_detail->quantity }}</label>
+                          <div class="edit_item_quantity" edit_type="add" cart_id="{{ $cart_detail->id }}">
+                            <i class="fa fa-plus"></i>
+                          </div>
                         </div>
 
                         <div class="checkbox icheck_checkbox">
                           <label>
                             <input class="icheck cart_detail_checkbox" type="checkbox" name="cart_detail_id[]" value="{{ $cart_detail->id }}" checked />
                           </label>
+                        </div>
+
+                        <div class="delete_cart_detail" cart_id="{{ $cart_detail->id }}">
+                          <i class="fa fa-trash"></i>
                         </div>
 
                       </div>
@@ -79,6 +89,7 @@
               <div class="checkout-details theme-form section-big-mt-space">
                 <div>
                   <label>Shipping address</label>
+                  <label class="change_address">Change</label>
                   <div class="">
                     @if($address_book)
                       <span>{{ $address_book->address }}</span>
@@ -106,19 +117,27 @@
                     <li>Shipping
                       <div class="shipping">
                         <div class="shopping-option">
-                          <input type="checkbox" name="free-shipping" id="free-shipping">
-                          <label for="free-shipping">Free Shipping</label>
+                          <div class="checkbox icheck_checkbox">
+                            <label style="font-weight: normal;">
+                              <input class="icheck" type="radio" name="shipping_type" value="free_shipping" checked /> Free Shipping
+                            </label>
+                          </div>
                         </div>
                         <div class="shopping-option">
-                          <input type="checkbox" name="local-pickup" id="local-pickup">
-                          <label for="local-pickup">Local Pickup</label>
+                          <div class="checkbox icheck_checkbox">
+                            <label style="font-weight: normal;">
+                              <input class="icheck" type="radio" name="shipping_type" value="local_pickup" /> Local Pickup
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </li>
                   </ul>
                   <ul class="total">
                     <li style="display: none;" id="checkout_page_discount"><label></label> <span style="margin-right: 10px;" class="count">RM 0.00</span></li>
-                    <li>Total <span class="count" id="checkout_page_total">RM 0.00</span></li>
+                    <li>Total <span class="count" id="checkout_page_total">RM {{ number_format($total, 2) }}</span></li>
+                    <li>Round off <span class="count" id="checkout_page_round_off">RM {{ number_format($round_off, 2) }}</span></li>
+                    <li>Net Total <span class="count" id="checkout_page_final_total">RM {{ number_format($final_total, 2) }}</span></li>
                   </ul>
                 </div>
                 <div class="payment-box">
@@ -127,8 +146,11 @@
                       <ul>
                         <li>
                           <div class="radio-option">
-                            <input type="radio" name="payment-group" id="payment-2" checked>
-                            <label for="payment-2">Cash On Delivery<span class="small-text">Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</span></label>
+                            <div class="checkbox icheck_checkbox">
+                              <label style="font-weight: normal; padding-left: 0px;">
+                                <input class="icheck" type="radio" name="payment_type" value="cash_on_delivery" checked /> Cash on delivery
+                              </label>
+                            </div>
                           </div>
                         </li>
                       </ul>
@@ -200,17 +222,17 @@
                       <div class="detail-right">
                         @if($recommend_product->promo_price)
                           <div class="check-price">
-                            Rm {{ $recommend_product->price }}
+                            Rm {{ number_format($recommend_product->price, 2) }}
                           </div>
                           <div class="price">
                             <div class="price">
-                              Rm {{ $recommend_product->promo_price}}
+                              Rm {{ number_format($recommend_product->promo_price, 2) }}
                             </div>
                           </div>
                         @else
                           <div class="price">
                             <div class="price">
-                              Rm {{ $recommend_product->price }}
+                              Rm {{ number_format($recommend_product->price, 2) }}
                             </div>
                           </div>
                         @endif
@@ -248,109 +270,154 @@
     }
   });
 
+  var editing_timeout;
+  var removing_cart_detail_id;
+  var total = "{{ $total }}";
+  var round_off = "{{ $round_off }}";
+  var final_total = "{{ $final_total }}";
   var cart_list = @json($cart_list);
-  if(Object.keys(cart_list).length > 0)
-  {
-    var sum_cart = 0;
-    for(var a = 0; a < Object.keys(cart_list).length; a++)
-    {
-      if(cart_list[a].promo_price === null)
-      {
-        sum_cart += (cart_list[a].quantity * cart_list[a].price);
-      }
-      else
-      {
-        sum_cart += (cart_list[a].quantity * cart_list[a].promo_price);
-      }
-    }
 
-    $("#checkout_page_total").html("RM "+parseFloat(sum_cart).toFixed(2));
-  }
-
-  $("input[name=coupon_code]").on('keypress',function(e) {
-    if(e.which == 13) {
-      $("#submit_coupon_code").click();
-    }
-  });
-  
-  $("#submit_coupon_code").click(function(){
-
-    var coupon_code = $("input[name=coupon_code]").val();
-    if(coupon_code == "")
-    {
-      var html = "";
-      html += "<span class='invalid-feedback' role='alert'>Please key in coupon code.</span>";
-      $("input[name=coupon_code]").addClass("is-invalid").next("span").remove();
-      $("input[name=coupon_code]").after(html);
-      return;
-    }
-
-    var post_data = "_token={{ csrf_token() }}&coupon_code="+coupon_code;
-    
-    $(".cart_detail_checkbox").each(function(){
-      if($(this).is(":checked"))
-      {
-        post_data += "&cart_detail_id[]="+$(this).val();
+  $(document).ready(function(){
+    $("input[name=coupon_code]").on('keypress',function(e) {
+      if(e.which == 13) {
+        $("#submit_coupon_code").click();
       }
     });
 
-    $("input[name=coupon_code]").removeClass("is-invalid").next("span").remove();
+    $("#submit_coupon_code").click(function(){
 
-    $.post("{{ route('submitCouponcode') }}", post_data, function(response){
-
-      if(response.error == 0)
+      var coupon_code = $("input[name=coupon_code]").val();
+      if(coupon_code == "")
       {
-        if(response.valid == 0)
+        var html = "";
+        html += "<span class='invalid-feedback' role='alert'>Please key in coupon code.</span>";
+        $("input[name=coupon_code]").addClass("is-invalid").next("span").remove();
+        $("input[name=coupon_code]").after(html);
+        return;
+      }
+
+      var post_data = "_token={{ csrf_token() }}&coupon_code="+coupon_code;
+      
+      $(".cart_detail_checkbox").each(function(){
+        if($(this).is(":checked"))
         {
-          var html = "";
-          html += "<span class='invalid-feedback' role='alert'>";
-          html += "<strong>"+response.message+"</strong>";
-          html += "</span>";
-          $("input[name=coupon_code]").addClass("is-invalid");
-          $("input[name=coupon_code]").after(html);
+          post_data += "&cart_detail_id[]="+$(this).val();
+        }
+      });
 
-          $("input[name=coupon_code]").val("");
-          $("#checkout_page_discount").hide();
+      $("input[name=coupon_code]").removeClass("is-invalid").next("span").remove();
 
-          sum_cart = 0;
-          for(var a = 0; a < Object.keys(cart_list).length; a++)
+      $.post("{{ route('submitCouponcode') }}", post_data, function(response){
+
+        if(response.error == 0)
+        {
+          if(response.valid == 0)
           {
-            if($(".cart_detail_checkbox[value="+cart_list[a].id+"]").is(":checked"))
+            var html = "";
+            html += "<span class='invalid-feedback' role='alert'>";
+            html += "<strong>"+response.message+"</strong>";
+            html += "</span>";
+            $("input[name=coupon_code]").addClass("is-invalid");
+            $("input[name=coupon_code]").after(html);
+
+            $("input[name=coupon_code]").val("");
+            $("#checkout_page_discount").hide();
+
+            $("#checkout_page_total").html("RM "+parseFloat(total).toFixed(2));
+            $("#checkout_page_round_off").html("RM "+parseFloat(round_off).toFixed(2));
+            $("#checkout_page_final_total").html("RM "+parseFloat(final_total).toFixed(2));
+          }
+          else if(response.valid == 1)
+          {
+            $("#checkout_page_discount").show();
+            $("#checkout_page_discount").children("label").html(response.coupon_name);
+            $("#checkout_page_discount").children("span").html("- RM "+response.discount_amount);
+            $("#checkout_page_total").html("RM "+parseFloat(response.price_after_discount).toFixed(2));
+            $("#checkout_page_round_off").html("RM "+parseFloat(response.round_off).toFixed(2));
+            $("#checkout_page_final_total").html("RM "+parseFloat(response.final_total).toFixed(2));
+
+            toastBox("success", "Apply Successful", "Coupon "+response.coupon_name+" apply successful.");
+          }
+        }
+        else
+        {
+          alert(response.message);
+        }
+      }).fail(function(){
+        alert("Error");
+      });
+    });
+
+    $(".cart_detail_checkbox").on("ifChanged", function(){
+      refreshCart();
+    });
+
+    $(".edit_item_quantity").click(function(){
+      var updated = 0;
+      var edit_type = $(this).attr("edit_type");
+      var cart_id = $(this).attr("cart_id");
+      
+      for(var a = 0; a < cart_list.length; a++)
+      {
+        if(cart_list[a].id == cart_id)
+        {
+          if(edit_type == "add")
+          {
+            cart_list[a].quantity++;
+            updated = 1;
+          }
+          else if(edit_type == "minus")
+          {
+            if(cart_list[a].quantity > 1)
             {
-              if(cart_list[a].promo_price === null)
-              {
-                sum_cart += (cart_list[a].quantity * cart_list[a].price);
-              }
-              else
-              {
-                sum_cart += (cart_list[a].quantity * cart_list[a].promo_price);
-              }
+              cart_list[a].quantity--;
+              updated = 1;
             }
           }
 
-          $("#checkout_page_total").html("RM "+parseFloat(sum_cart).toFixed(2));
+          $(this).siblings("label").html(cart_list[a].quantity);
         }
-        else if(response.valid == 1)
-        {
-          $("#checkout_page_discount").show();
-          $("#checkout_page_discount").children("label").html(response.coupon_name);
-          $("#checkout_page_discount").children("span").html("- RM "+response.discount_amount);
-          $("#checkout_page_total").html("RM "+parseFloat(response.price_after_discount).toFixed(2));
+      }
 
-          toastBox("success", "Apply Successful", "Coupon "+response.coupon_name+" apply successful.");
-        }
-      }
-      else
+      if(updated == 1)
       {
-        alert(response.message);
+        clearTimeout(editing_timeout);
+
+        editing_timeout = setTimeout(function(){
+          editCartQuantity();
+        }, 500);
       }
-    }).fail(function(){
-      alert("Error");
+      
     });
+
+    $(".delete_cart_detail").click(function(){
+      removing_cart_detail_id = $(this).attr("cart_id");
+      $("#removeCartDetail_ajax").modal('show');
+    });
+
+    $("#removeCart_ajax").click(function(){
+
+      $("#removeCartDetail_ajax").modal('hide');
+      $(".item_summary[cart_id="+removing_cart_detail_id+"]").remove();
+
+      $.post("{{ route('removeCartDetailAjax') }}", {"_token" : "{{ csrf_token() }}", 'cart_id' : removing_cart_detail_id }, function(response){
+        if(response.error == 0)
+        {
+          refreshCart();
+        }
+        else
+        {
+          alert("Error");
+        }
+      }).fail(function(){
+        alert("Error");
+      });
+    });
+
   });
 
-  $(".cart_detail_checkbox").on("ifChanged", function(){
-
+  function refreshCart()
+  {
     var coupon_code = $("input[name=coupon_code]").val();
     var post_data = "_token={{ csrf_token() }}&coupon_code="+coupon_code;
     
@@ -384,12 +451,13 @@
             $("#checkout_page_discount").show();
             $("#checkout_page_discount").children("label").html(response.coupon_name);
             $("#checkout_page_discount").children("span").html("- RM "+response.discount_amount);
-            
           }
         }
         
         $("#checkout_page_sum").html("RM "+parseFloat(response.sub_total).toFixed(2));
         $("#checkout_page_total").html("RM "+parseFloat(response.total).toFixed(2));
+        $("#checkout_page_round_off").html("RM "+parseFloat(response.round_off).toFixed(2));
+        $("#checkout_page_final_total").html("RM "+parseFloat(response.final_total).toFixed(2));
 
         if($(".cart_detail_checkbox:checked").length == 0)
         {
@@ -399,6 +467,14 @@
         {
           $("#place_order").attr("disabled", false);
         }
+
+        cart_list = response.cart_list;
+
+        for(var a = 0; a < cart_list.length; a++)
+        {
+          var cart_detail = cart_list[a];
+          $(".item_summary[cart_id="+cart_detail.id+"] .item_price").html("RM "+cart_detail.total_text);
+        }
       }
       else
       {
@@ -407,8 +483,31 @@
     }).fail(function(){
       alert("Error");
     });
+  }
 
-  });
+  function editCartQuantity()
+  {
+    var post_data = "_token={{ csrf_token() }}";
+      
+    for(var a = 0; a < cart_list.length; a++)
+    {
+      var cart_detail = cart_list[a];
+      post_data += "&cart_detail_id[]="+cart_detail.id+"&quantity_"+cart_detail.id+"="+cart_detail.quantity;
+    }
+
+    $.post("{{ route('editCartQuantity') }}", post_data, function(response){
+        if(response.error == 0)
+        {
+          refreshCart();
+        }
+        else
+        {
+          alert("Error");
+        }
+    }).fail(function(){
+      alert("Error");
+    });
+  }
 
 </script>
 

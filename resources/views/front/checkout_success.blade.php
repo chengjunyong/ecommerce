@@ -7,7 +7,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="success-text"><i class="fa fa-check-circle" aria-hidden="true"></i>
+                <div class="success-text">
+                  <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 30px; color: #28a745; margin-bottom: 15px;"></i>
                     <h2>thank you</h2>
                     <p>Payment is successfully processsed and your order is on the way</p>
                     <p>Transaction ID:267676GHERT105467</p>

@@ -26,6 +26,8 @@ Route::get('/index6', 'frontController@getFrontIndex6')->name('getFrontIndex6');
 Route::get('/search', 'frontController@getItemSearch')->name('getItemSearch');
 Route::post('/ajaxSearch', 'frontController@getSearchedItems')->name('getSearchedItems');
 Route::get('/category/{id}', 'frontController@getCategoryPage')->name('getCategoryPage');
+Route::get('/event', 'frontController@getEventPage')->name('getEventPage');
+Route::get('/what_news', 'frontController@getWhatNewsPage')->name('getWhatNewsPage');
 Route::get('/contact_us', 'frontController@getContactUsPage')->name('getContactUsPage');
 Route::get('/edit_info', 'frontController@getEditInfo')->name('getEditInfo');
 Route::get('/edit_address', 'frontController@getEditAddress')->name('getEditAddress');
@@ -50,17 +52,20 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('addressBook', 'clientController@addressBook')->name('addressBook');
     Route::get('verify_now', 'clientController@verify_now')->name('verify_now');
     Route::post('editUserInfo', 'clientController@editUserInfo')->name('editUserInfo');
+    Route::post('changeDefaultAddress', 'clientController@changeDefaultAddress')->name('changeDefaultAddress');
   });
 
   Route::prefix('item')->group(function () {
     Route::post('/add_wishlist', 'itemController@addItemToWishlist')->name('addItemToWishlist');
     Route::post('/add_cart', 'itemController@addItemToCart')->name('addItemToCart');
     Route::post('/removeCartDetail', 'itemController@removeCartDetail')->name('removeCartDetail');
+    Route::post('/removeCartDetailAjax', 'itemController@removeCartDetailAjax')->name('removeCartDetailAjax');
     Route::post('/updateCart', 'itemController@updateCart')->name('updateCart');
     Route::post('/removeWishlistDetail', 'itemController@removeWishlistDetail')->name('removeWishlistDetail');
     Route::post('/updateWishlist', 'itemController@updateWishlist')->name('updateWishlist');
     Route::post('/updateWishlistToCart', 'itemController@updateWishlistToCart')->name('updateWishlistToCart');
     Route::post('/selectedItemCheckout', 'itemController@selectedItemCheckout')->name('selectedItemCheckout');
+    Route::post('/editCartQuantity', 'itemController@editCartQuantity')->name('editCartQuantity');
   });
 
   Route::prefix('checkout')->group(function(){

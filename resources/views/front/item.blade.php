@@ -93,14 +93,14 @@
             </div>
             <div class="border-product">
               @if($product_detail->promo_price === null)
-                <h3 style="margin: 0px; color: #ff914b;">RM {{ $product_detail->price }}</h3>
+                <h3 style="margin: 0px; color: #ff914b;">RM {{ number_format($product_detail->price, 2) }}</h3>
               @else
-                <h3 style="margin: 0px; color: #ff914b;">RM {{ $product_detail->promo_price }}</h3>
-                <h4><del>RM {{ $product_detail->price }}</del>
+                <h3 style="margin: 0px; color: #ff914b;">RM {{ number_format($product_detail->promo_price, 2) }}</h3>
+                <h4><del>RM {{ number_format($product_detail->price, 2) }}</del>
                   @if($product_detail->promo_type == "percentage")
                     <span>{{ $product_detail->promo_amount }}% OFF</span>
                   @elseif($product_detail->promo_type == "fixed")
-                    <span>RM{{ $product_detail->promo_amount }} OFF</span>
+                    <span>RM {{ number_format($product_detail->promo_amount, 2) }} OFF</span>
                   @endif
                 </h4>
               @endif
@@ -158,47 +158,51 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="product-right product-form-box">
-            @if($user)
-            <div class="border-product" style="text-align: left;">
-              <h6 class="product-title">Delivery option</h6>
 
-              <div style="margin-top: 10px;">
-                @if($address_book)
-                <span>{{ $address_book->address }}</span>
-                <span>{{ $address_book->city }} {{ $address_book->state }}</span>
-                <span>{{ $address_book->postal_code }}</span>
-                @else
-                <span>No default address.</span>
-                @endif
-              </div>
+        @if($product_detail->active_today_deal == 1 || $logged_user)
+          <div class="col-lg-4">
+            <div class="product-right product-form-box">
+              @if($user)
+              <div class="border-product" style="text-align: left;">
+                <h6 style="display: inline-block;" class="product-title">Delivery option</h6>
+                <label class="change_address">Change</label>
 
-            </div>
-            @endif
-
-            @if($product_detail->active_today_deal == 1)
-              <div class="product-description border-product" style="border-bottom: 1px solid #ddd;">
-                <h6 class="product-title">Time Reminder</h6>
-                <div class="timer">
-                  <p id="today_deal_timer">
-                    <span>{{ $product_detail->hours }}
-                      <span class="padding-l">:</span> 
-                      <span class="timer-cal">Hrs</span> 
-                    </span>
-                    <span>{{ $product_detail->minutes }}
-                      <span class="padding-l">:</span> 
-                      <span class="timer-cal">Min</span> 
-                    </span>
-                    <span>{{ $product_detail->seconds }}
-                      <span class="timer-cal">Sec</span>
-                    </span>
-                  </p>
+                <div style="margin-top: 10px;">
+                  @if($address_book)
+                  <span>{{ $address_book->address }}</span>
+                  <span>{{ $address_book->city }} {{ $address_book->state }}</span>
+                  <span>{{ $address_book->postal_code }}</span>
+                  @else
+                  <span>No default address.</span>
+                  @endif
                 </div>
+
               </div>
-            @endif
+              @endif
+
+              @if($product_detail->active_today_deal == 1)
+                <div class="product-description border-product" style="border-bottom: 1px solid #ddd;">
+                  <h6 class="product-title">Time Reminder</h6>
+                  <div class="timer">
+                    <p id="today_deal_timer">
+                      <span>{{ $product_detail->hours }}
+                        <span class="padding-l">:</span> 
+                        <span class="timer-cal">Hrs</span> 
+                      </span>
+                      <span>{{ $product_detail->minutes }}
+                        <span class="padding-l">:</span> 
+                        <span class="timer-cal">Min</span> 
+                      </span>
+                      <span>{{ $product_detail->seconds }}
+                        <span class="timer-cal">Sec</span>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              @endif
+            </div>
           </div>
-        </div>
+        @endif
       </div>
     </div>
   </div>
@@ -358,17 +362,17 @@
                       <div class="detail-right">
                         @if($related_product->promo_price)
                           <div class="check-price">
-                            Rm {{ $related_product->price }}
+                            Rm {{ number_format($related_product->price, 2) }}
                           </div>
                           <div class="price">
                             <div class="price">
-                              Rm {{ $related_product->promo_price}}
+                              Rm {{ number_format($related_product->promo_price, 2) }}
                             </div>
                           </div>
                         @else
                           <div class="price">
                             <div class="price">
-                              Rm {{ $related_product->price }}
+                              Rm {{ number_format($related_product->price, 2) }}
                             </div>
                           </div>
                         @endif

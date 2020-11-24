@@ -16,6 +16,7 @@ class clientController extends Controller
   public function addressBook(Request $request)
   {
     $user = Auth::user();
+    $page = $request->page;
 
     if($request->default_shipping == 1)
     {
@@ -59,7 +60,34 @@ class clientController extends Controller
       ]);
     }
     
-    return redirect(route('getUserProfile', ['tab' => 'address']));
+    if($page == 2)
+    {
+      return back();
+    }
+    else
+    {
+      return redirect(route('getUserProfile', ['tab' => 'address']));
+    }
+  }
+
+  public function changeDefaultAddress(Request $request)
+  {
+    $user = Auth::user();
+
+    address_book::where('user_id', $user->id)->update([
+      'default_billing' => null,
+      'default_shipping' => null
+    ]);
+
+    address_book::where('id', $request->default_billing)->update([
+      'default_billing' => 1
+    ]);
+
+    address_book::where('id', $request->default_shipping)->update([
+      'default_shipping' => 1
+    ]);
+
+    return back();
   }
 
   public function verify_now()
