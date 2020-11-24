@@ -360,7 +360,13 @@
                         </a>
                       </div>
                       <div class="detail-right">
-                        @if($related_product->promo_price)
+                        @if($related_product->promo_price === null)
+                          <div class="price">
+                            <div class="price">
+                              Rm {{ number_format($related_product->price, 2) }}
+                            </div>
+                          </div>
+                        @else
                           <div class="check-price">
                             Rm {{ number_format($related_product->price, 2) }}
                           </div>
@@ -369,14 +375,7 @@
                               Rm {{ number_format($related_product->promo_price, 2) }}
                             </div>
                           </div>
-                        @else
-                          <div class="price">
-                            <div class="price">
-                              Rm {{ number_format($related_product->price, 2) }}
-                            </div>
-                          </div>
                         @endif
-                        
                       </div>
                     </div>
                   </div>

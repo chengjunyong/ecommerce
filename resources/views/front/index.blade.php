@@ -518,19 +518,19 @@
                                 </a>
                               </div>
                               <div class="detail-right">
-                                @if($main_product->promo_price)
+                                @if($main_product->promo_price === null)
+                                  <div class="price">
+                                    <div class="price">
+                                      Rm {{ number_format($main_product->price, 2) }}
+                                    </div>
+                                  </div>
+                                @else
                                   <div class="check-price">
                                     Rm {{ number_format($main_product->price, 2) }}
                                   </div>
                                   <div class="price">
                                     <div class="price">
                                       Rm {{ number_format($main_product->promo_price, 2) }}
-                                    </div>
-                                  </div>
-                                @else
-                                  <div class="price">
-                                    <div class="price">
-                                      Rm {{ number_format($main_product->price, 2) }}
                                     </div>
                                   </div>
                                 @endif
@@ -602,19 +602,19 @@
                             </a>
                           </div>
                           <div class="detail-right">
-                            @if($special_product_detail->promo_price)
+                            @if($special_product_detail->promo_price === null)
+                              <div class="price">
+                                <div class="price">
+                                  Rm {{ number_format($special_product_detail->price, 2) }}
+                                </div>
+                              </div>
+                            @else
                               <div class="check-price">
                                 Rm {{ number_format($special_product_detail->price, 2) }}
                               </div>
                               <div class="price">
                                 <div class="price">
                                   Rm {{ number_format($special_product_detail->promo_price, 2) }}
-                                </div>
-                              </div>
-                            @else
-                              <div class="price">
-                                <div class="price">
-                                  Rm {{ number_format($special_product_detail->price, 2) }}
                                 </div>
                               </div>
                             @endif

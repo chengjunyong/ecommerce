@@ -54,9 +54,9 @@
                         </div>
                         <div class="item_price">
                           @if($cart_detail->promo_price === null)
-                            RM {{ number_format($cart_detail->quantity * $cart_detail->price, 2) }}
+                            RM {{ number_format($cart_detail->price, 2) }}
                           @else
-                            RM {{ number_format($cart_detail->quantity * $cart_detail->promo_price, 2) }}
+                            RM {{ number_format($cart_detail->promo_price, 2) }}
                           @endif
                         </div>
                         <div class="item_qty">
@@ -67,6 +67,14 @@
                           <div class="edit_item_quantity" edit_type="add" cart_id="{{ $cart_detail->id }}">
                             <i class="fa fa-plus"></i>
                           </div>
+                        </div>
+
+                        <div class="item_price">
+                          @if($cart_detail->promo_price === null)
+                            RM {{ number_format($cart_detail->quantity * $cart_detail->price, 2) }}
+                          @else
+                            RM {{ number_format($cart_detail->quantity * $cart_detail->promo_price, 2) }}
+                          @endif
                         </div>
 
                         <div class="checkbox icheck_checkbox">
@@ -220,7 +228,13 @@
                         </a>
                       </div>
                       <div class="detail-right">
-                        @if($recommend_product->promo_price)
+                        @if($recommend_product->promo_price === null)
+                          <div class="price">
+                            <div class="price">
+                              Rm {{ number_format($recommend_product->price, 2) }}
+                            </div>
+                          </div>
+                        @else
                           <div class="check-price">
                             Rm {{ number_format($recommend_product->price, 2) }}
                           </div>
@@ -229,14 +243,7 @@
                               Rm {{ number_format($recommend_product->promo_price, 2) }}
                             </div>
                           </div>
-                        @else
-                          <div class="price">
-                            <div class="price">
-                              Rm {{ number_format($recommend_product->price, 2) }}
-                            </div>
-                          </div>
                         @endif
-                        
                       </div>
                     </div>
                   </div>

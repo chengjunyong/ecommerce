@@ -314,7 +314,7 @@ class itemController extends Controller
           $cart->promo_amount = $promo_result->promo_amount;
           $cart->promo_type = $promo_result->promo_type;
 
-          if($promo_result->promo_price)
+          if($promo_result->promo_price !== null)
           {
             $total = $total + ($cart->quantity * $cart->promo_price);
           }
@@ -393,7 +393,7 @@ class itemController extends Controller
       foreach($cart_list as $cart)
       {
         $cart->total = $cart->quantity * $cart->price;
-        if($cart->promo_price)
+        if($cart->promo_price !== null)
         {
           $cart->total = $cart->quantity * $cart->promo_price;
         }
