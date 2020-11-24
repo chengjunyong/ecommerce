@@ -248,7 +248,11 @@ class adminController extends Controller
 
     public function getCustomerList(){
 
-        $user = User::where('user_type',null)->get();
+        $user = User::leftJoin('transaction','transaction.user_id','=','users.id')
+                  ->selectRaw('users.*,SUM(transaction.total) as total_amount,COUNT(transaction.id) as quantity')
+                  ->where('users.user_type',null)
+                  ->groupBy('users.id')
+                  ->get();
 
         return view('admin.customer_list',compact('user'));
     }
@@ -1633,6 +1637,15 @@ class adminController extends Controller
       }
 
       return redirect(route('getPopupBanner'));
+    }
+
+    public function bulkUserDelete(Request $request)
+    {
+      if(User::whereIn('id',$request->user_list)->delete()){
+        return 'true';
+      }else{
+        return 'false';
+      }
     }
 
 }

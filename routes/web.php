@@ -149,6 +149,9 @@ Route::group(['middleware' => ['auth:admin']], function () {
     //ajax delete category
     Route::post('/deleteCategory','adminController@deleteCategory')->name('deleteCategory');
 
+    //ajax delete user
+    Route::post('/bulkUserDelete','adminController@bulkUserDelete')->name('bulkUserDelete');
+
     //ajax bulk delete product
     Route::post('/bulkDeleteProduct','adminController@bulkDelete')->name('bulkDelete');
 
