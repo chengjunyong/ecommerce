@@ -98,6 +98,7 @@
 <script>
   
   var logged_user = "{{ $logged_user }}";
+  var route_name = "{{ Route::currentRouteName() }}".replace(/\./g, '_');
 
   $(document).ready(function(){
 
@@ -275,6 +276,13 @@
 
         toastBox("success", "Added Successful", response.message);
         $(".cart-block").addClass("active");
+
+        if(route_name == "getCheckoutIndex")
+        {
+          // checkout.blade.php
+          console.log(cart_list);
+          refreshCheckOutCart(cart_list);
+        }
       }
       else
       {

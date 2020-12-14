@@ -3,7 +3,7 @@
 @section('layout')
 
 <!--section start-->
-<section class="login-page section-big-py-space bg-light">
+<section class="login-page section-big-py-space bg-light" style="margin-top: 210px;">
   <div class="custom-container">
     <div class="row">
       <div class="col-lg-4 offset-lg-4">

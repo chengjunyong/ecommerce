@@ -57,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
         }
         
         $logged_user = Auth::user();
-
+        
         // $main_category = main_category();
 
         $wishlist = null;

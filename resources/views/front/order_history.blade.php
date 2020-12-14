@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="row" style="padding: 0 1.25rem;">
-          <div class="col-6">
+          <div class="col-4">
             <label>PRODUCT</label>
           </div>
           <div class="col-2">
@@ -50,6 +50,9 @@
           <div class="col-2">
             <label>STATUS</label>
           </div>
+          <div class="col-2">
+            <label>RECEIPT</label>
+          </div>
         </div>
 
         <div id="accordion">
@@ -57,19 +60,22 @@
             @foreach($transaction_list as $transaction)
               <div class="card-header">
                 <div class="row" class="collapsed" data-toggle="collapse" data-target="#collapse{{ $transaction->id }}" aria-expanded="true" aria-controls="collapse{{ $transaction->id }}">
-                  <div class="col-6">
+                  <div class="col-4">
                     <label style="font-weight: bold; font-size: 18px;">Order ID : {{ $transaction->id }}</label>
                     <br>
                     <label style="font-size: 18px;"> ( {{ date('d M Y', strtotime($transaction->created_at )) }} )</label>
                   </div>
                   <div class="col-2" style="font-size: 18px; font-weight: bold;">
-                    RM {{ $transaction->total }}
+                    RM {{ number_format($transaction->final_total, 2) }}
                   </div>
                   <div class="col-2" style="font-size: 18px; font-weight: bold;">
-                    {{ $transaction->quantity }}
+                    {{ number_format($transaction->quantity, 2) }}
                   </div>
                   <div class="col-2" style="font-size: 18px; font-weight: bold;">
                     {{ $transaction->status_text }}
+                  </div>
+                  <div class="col-2" style="font-size: 18px; font-weight: bold;">
+                    <a target="_blank" href="{{ route('getCheckoutSuccessIndex', ['id' => $transaction->id]) }}">Receipt</a>
                   </div>
                 </div>
               </div>
@@ -80,7 +86,7 @@
                     <div class="col-12">
                       <div class="collapse_box">
                         <div class="row">
-                          <div class="col-3">
+                          <div class="col-2">
                             <a href="#">
                               @if($item->path)
                               <img src="{{ Storage::url($item->path) }}" alt="product" class="img-fluid  ">
@@ -89,11 +95,11 @@
                               @endif
                             </a>
                           </div>
-                          <div class="col-3" style="font-size: 18px;">
+                          <div class="col-2" style="font-size: 18px;">
                             {{ $item->product_name }}
                           </div>
                           <div class="col-2" style="font-size: 18px;">
-                            RM {{ $item->total }}
+                            RM {{ number_format($item->total, 2) }}
                           </div>
                           <div class="col-2" style="font-size: 18px;">
                             {{ $item->quantity }}

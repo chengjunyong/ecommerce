@@ -33,69 +33,103 @@
         <form method="POST" action="{{ route('submitPayment') }}">
           @csrf
           <div class="row">
-            <div class="col-lg-6 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-xs-12">
               <div class="checkout-title">
                 <h3>Order detail</h3>
               </div>
-              <div class="theme-form">
-                <div class="row check-out ">
+              <div class="theme-form" style="height: 700px; overflow-y: auto;">
+                <div class="row check-out">
                   <div class="col-lg-12">
-                    @foreach($cart_list as $cart_detail)
-                      <div class="item_summary" cart_id="{{ $cart_detail->id }}">
-                        @if($cart_detail->path)
-                          <img src="{{ Storage::url($cart_detail->path) }}" />
-                        @else
-                          <img src="../assets/images/layout-3/product/1.jpg" />
-                        @endif
-                        
-                        <div class="item_description">
-                          <label>{{ $cart_detail->product_name }}</label>
-                          <span class="description">{{ $cart_detail->description }}</span>
-                        </div>
-                        <div class="item_price">
-                          @if($cart_detail->promo_price === null)
-                            RM {{ number_format($cart_detail->price, 2) }}
-                          @else
-                            RM {{ number_format($cart_detail->promo_price, 2) }}
-                          @endif
-                        </div>
-                        <div class="item_qty">
-                          <div class="edit_item_quantity" edit_type="minus" cart_id="{{ $cart_detail->id }}">
-                            <i class="fa fa-minus"></i>
-                          </div>
-                          <label>{{ $cart_detail->quantity }}</label>
-                          <div class="edit_item_quantity" edit_type="add" cart_id="{{ $cart_detail->id }}">
-                            <i class="fa fa-plus"></i>
-                          </div>
-                        </div>
+                    <table id="checkout-table" class="table" cellspacing="0">
+                      <thead>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th colspan="2">Total</th>
+                      </thead>
+                      <tbody>
+                        @foreach($cart_list as $cart_detail)
+                          <tr class="checkout-summary" cart_id="{{ $cart_detail->id }}">
+                            <td class="checkout-description">
+                              @if($cart_detail->path)
+                                <img src="{{ Storage::url($cart_detail->path) }}" />
+                              @else
+                                <img src="../assets/images/layout-3/product/1.jpg" />
+                              @endif
+                              <div class="checkout-description-info">
+                                <label>{{ $cart_detail->product_name }}</label>
+                                <span>{{ $cart_detail->description }}</span>
+                              </div>
+                            </td>
+                            <td class="item_price single">
+                              @if($cart_detail->promo_price === null)
+                                RM {{ number_format($cart_detail->price, 2) }}
+                              @else
+                                RM {{ number_format($cart_detail->promo_price, 2) }}
+                              @endif
+                            </td>
+                            <td>
+                              <div class="item_qty">
+                                <div class="edit_item_quantity" edit_type="minus" cart_id="{{ $cart_detail->id }}" onclick="editCartQuantityTrigger(this)">
+                                  <i class="fa fa-minus"></i>
+                                </div>
+                                <label>{{ $cart_detail->quantity }}</label>
+                                <div class="edit_item_quantity" edit_type="add" cart_id="{{ $cart_detail->id }}" onclick="editCartQuantityTrigger(this)">
+                                  <i class="fa fa-plus"></i>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="item_price subtotal">
+                              @if($cart_detail->promo_price === null)
+                                RM {{ number_format($cart_detail->quantity * $cart_detail->price, 2) }}
+                              @else
+                                RM {{ number_format($cart_detail->quantity * $cart_detail->promo_price, 2) }}
+                              @endif
+                            </td>
+                            <td>
+                              <div class="checkbox icheck_checkbox">
+                                <label>
+                                  <input class="icheck cart_detail_checkbox" type="checkbox" name="cart_detail_id[]" value="{{ $cart_detail->id }}" checked />
+                                </label>
+                              </div>
 
-                        <div class="item_price">
-                          @if($cart_detail->promo_price === null)
-                            RM {{ number_format($cart_detail->quantity * $cart_detail->price, 2) }}
-                          @else
-                            RM {{ number_format($cart_detail->quantity * $cart_detail->promo_price, 2) }}
-                          @endif
-                        </div>
-
-                        <div class="checkbox icheck_checkbox">
-                          <label>
-                            <input class="icheck cart_detail_checkbox" type="checkbox" name="cart_detail_id[]" value="{{ $cart_detail->id }}" checked />
-                          </label>
-                        </div>
-
-                        <div class="delete_cart_detail" cart_id="{{ $cart_detail->id }}">
-                          <i class="fa fa-trash"></i>
-                        </div>
-
-                      </div>
-                    @endforeach
+                              <div class="delete_cart_detail" cart_id="{{ $cart_detail->id }}" onclick="deleteCartDetail(this)">
+                                <i class="fa fa-trash"></i>
+                              </div>
+                            </td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-lg-6 col-sm-12 col-xs-12">
-              <div class="checkout-details theme-form section-big-mt-space">
+              <div class="checkout-details theme-form section-big-mt-space" style="height: 700px; position: relative;">
                 <div>
+                  <div class="order-box" style="margin: 0px;">
+                    <ul class="sub-total" style="border: 0px; margin: 0px;">
+                      <li>Shipping
+                        <div class="shipping">
+                          <div class="shopping-option">
+                            <div class="checkbox icheck_checkbox">
+                              <label style="font-weight: normal;">
+                                <input class="icheck" type="radio" name="shipping_type" value="free_shipping" checked /> Free Shipping
+                              </label>
+                            </div>
+                          </div>
+                          <div class="shopping-option">
+                            <div class="checkbox icheck_checkbox">
+                              <label style="font-weight: normal;">
+                                <input class="icheck" type="radio" name="shipping_type" value="local_pickup" /> Local Pickup
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                   <label>Shipping address</label>
                   <label class="change_address">Change</label>
                   <div class="">
@@ -119,24 +153,6 @@
                         </div>
                         <div style="display: inline-block; float: right; width: 35%; line-height: 40px;">
                           <button class="btn btn-success" type="button" id="submit_coupon_code">Submit</button>
-                        </div>
-                      </div>
-                    </li>
-                    <li>Shipping
-                      <div class="shipping">
-                        <div class="shopping-option">
-                          <div class="checkbox icheck_checkbox">
-                            <label style="font-weight: normal;">
-                              <input class="icheck" type="radio" name="shipping_type" value="free_shipping" checked /> Free Shipping
-                            </label>
-                          </div>
-                        </div>
-                        <div class="shopping-option">
-                          <div class="checkbox icheck_checkbox">
-                            <label style="font-weight: normal;">
-                              <input class="icheck" type="radio" name="shipping_type" value="local_pickup" /> Local Pickup
-                            </label>
-                          </div>
                         </div>
                       </div>
                     </li>
@@ -164,13 +180,13 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="text-right">
-                    @if(count($cart_list) > 0)
-                      <button class="btn-normal btn" type="submit" id="place_order">Place Order</button>
-                    @else
-                      <button class="btn-normal btn" type="button" disabled id="place_order">Place Order</button>
-                    @endif
-                  </div>
+                </div>
+                <div class="text-right" style="position: absolute; right: 10px; bottom: 10px;">
+                  @if(count($cart_list) > 0)
+                    <button class="btn-normal btn" type="submit" id="place_order">Place Order</button>
+                  @else
+                    <button class="btn-normal btn" type="button" disabled id="place_order">Place Order</button>
+                  @endif
                 </div>
               </div>
             </div>
@@ -283,6 +299,7 @@
   var round_off = "{{ $round_off }}";
   var final_total = "{{ $final_total }}";
   var cart_list = @json($cart_list);
+  var uncheckedCart = [];
 
   $(document).ready(function(){
     $("input[name=coupon_code]").on('keypress',function(e) {
@@ -355,57 +372,10 @@
       });
     });
 
-    $(".cart_detail_checkbox").on("ifChanged", function(){
-      refreshCart();
-    });
-
-    $(".edit_item_quantity").click(function(){
-      var updated = 0;
-      var edit_type = $(this).attr("edit_type");
-      var cart_id = $(this).attr("cart_id");
-      
-      for(var a = 0; a < cart_list.length; a++)
-      {
-        if(cart_list[a].id == cart_id)
-        {
-          if(edit_type == "add")
-          {
-            cart_list[a].quantity++;
-            updated = 1;
-          }
-          else if(edit_type == "minus")
-          {
-            if(cart_list[a].quantity > 1)
-            {
-              cart_list[a].quantity--;
-              updated = 1;
-            }
-          }
-
-          $(this).siblings("label").html(cart_list[a].quantity);
-        }
-      }
-
-      if(updated == 1)
-      {
-        clearTimeout(editing_timeout);
-
-        editing_timeout = setTimeout(function(){
-          editCartQuantity();
-        }, 500);
-      }
-      
-    });
-
-    $(".delete_cart_detail").click(function(){
-      removing_cart_detail_id = $(this).attr("cart_id");
-      $("#removeCartDetail_ajax").modal('show');
-    });
-
     $("#removeCart_ajax").click(function(){
 
       $("#removeCartDetail_ajax").modal('hide');
-      $(".item_summary[cart_id="+removing_cart_detail_id+"]").remove();
+      $(".checkout-summary[cart_id="+removing_cart_detail_id+"]").remove();
 
       $.post("{{ route('removeCartDetailAjax') }}", {"_token" : "{{ csrf_token() }}", 'cart_id' : removing_cart_detail_id }, function(response){
         if(response.error == 0)
@@ -419,6 +389,27 @@
       }).fail(function(){
         alert("Error");
       });
+    });
+
+    $(".cart_detail_checkbox").on("ifChanged", function(){
+      var checked = $(this).is(":checked");
+      var cart_detail_id = $(this).val();
+      if(checked == false)
+      {
+        uncheckedCart.push(cart_detail_id);
+      }
+      else
+      {
+        for(var b = 0; b < uncheckedCart.length; b++)
+        {
+          if(uncheckedCart[b] == cart_detail_id)
+          {
+            uncheckedCart.splice(b, 1);
+            break; 
+          }
+        } 
+      }
+      refreshCart();
     });
 
   });
@@ -460,12 +451,16 @@
             $("#checkout_page_discount").children("span").html("- RM "+response.discount_amount);
           }
         }
+
+        total = response.total;
+        round_off = response.round_off;
+        final_total = response.final_total;
         
         $("#checkout_page_sum").html("RM "+parseFloat(response.sub_total).toFixed(2));
-        $("#checkout_page_total").html("RM "+parseFloat(response.total).toFixed(2));
-        $("#checkout_page_round_off").html("RM "+parseFloat(response.round_off).toFixed(2));
-        $("#checkout_page_final_total").html("RM "+parseFloat(response.final_total).toFixed(2));
-
+        $("#checkout_page_total").html("RM "+parseFloat(total).toFixed(2));
+        $("#checkout_page_round_off").html("RM "+parseFloat(round_off).toFixed(2));
+        $("#checkout_page_final_total").html("RM "+parseFloat(final_total).toFixed(2));
+        
         if($(".cart_detail_checkbox:checked").length == 0)
         {
           $("#place_order").attr("disabled", true);
@@ -480,7 +475,16 @@
         for(var a = 0; a < cart_list.length; a++)
         {
           var cart_detail = cart_list[a];
-          $(".item_summary[cart_id="+cart_detail.id+"] .item_price").html("RM "+cart_detail.total_text);
+          if(cart_detail.promo_price === null)
+          {
+            $(".checkout-summary[cart_id="+cart_detail.id+"] .item_price.single").html("RM "+cart_detail.price_text);
+          }
+          else
+          {
+            $(".checkout-summary[cart_id="+cart_detail.id+"] .item_price.single").html("RM "+cart_detail.promo_price_text);
+          }
+          
+          $(".checkout-summary[cart_id="+cart_detail.id+"] .item_price.subtotal").html("RM "+cart_detail.total_text);
         }
       }
       else
@@ -490,6 +494,44 @@
     }).fail(function(){
       alert("Error");
     });
+  }
+
+  function editCartQuantityTrigger(_this)
+  {
+    var updated = 0;
+    var edit_type = $(_this).attr("edit_type");
+    var cart_id = $(_this).attr("cart_id");
+    
+    for(var a = 0; a < cart_list.length; a++)
+    {
+      if(cart_list[a].id == cart_id)
+      {
+        if(edit_type == "add")
+        {
+          cart_list[a].quantity++;
+          updated = 1;
+        }
+        else if(edit_type == "minus")
+        {
+          if(cart_list[a].quantity > 1)
+          {
+            cart_list[a].quantity--;
+            updated = 1;
+          }
+        }
+
+        $(_this).siblings("label").html(cart_list[a].quantity);
+      }
+    }
+
+    if(updated == 1)
+    {
+      clearTimeout(editing_timeout);
+
+      editing_timeout = setTimeout(function(){
+        editCartQuantity();
+      }, 500);
+    }
   }
 
   function editCartQuantity()
@@ -514,6 +556,129 @@
     }).fail(function(){
       alert("Error");
     });
+  }
+
+  function deleteCartDetail(_this)
+  {
+    removing_cart_detail_id = $(_this).attr("cart_id");
+    $("#removeCartDetail_ajax").modal('show');
+  }
+
+  function refreshCheckOutCart(cart_list)
+  {
+    console.log(cart_list);
+    var html = "";
+    for(var a = 0; a < cart_list.length; a++)
+    {
+      var cart_detail = cart_list[a];
+      html += '<tr class="checkout-summary" cart_id="'+cart_detail.id+'">';
+      html += '<td class="checkout-description">';
+      if(cart_detail.path)
+      {
+        html += '<img src="/storage/'+cart_detail.path+'" />';
+      }
+      else
+      {
+        html += '<img src="../assets/images/layout-3/product/1.jpg" />';
+      }
+      html += '<div class="checkout-description-info">';
+      html += '<label>'+cart_detail.product_name+'</label>';
+      if(cart_detail.description !== null)
+      {
+        html += '<span>'+cart_detail.description+'</span>';
+      }
+      else
+      {
+        html += '<span></span>';
+      }
+      
+      html += '</div>';
+      html += '</td>';
+      html += '<td class="item_price">';
+      if(cart_detail.promo_price === null)
+      {
+        html += 'RM '+cart_detail.price_text;
+      }      
+      else
+      {
+        html += 'RM '+cart_detail.promo_price_text;
+      }
+      html += '</td>';
+      html += '<td>';
+      html += '<div class="item_qty">';
+      html += '<div class="edit_item_quantity" edit_type="minus" cart_id="'+cart_detail.id+'" onclick="editCartQuantityTrigger(this)">';
+      html += '<i class="fa fa-minus"></i>';
+      html += '</div>';
+      html += '<label>'+cart_detail.quantity+'</label>';
+      html += '<div class="edit_item_quantity" edit_type="add" cart_id="'+cart_detail.id+'" onclick="editCartQuantityTrigger(this)">';
+      html += '<i class="fa fa-plus"></i>';
+      html += '</div>';
+      html += '</div>';
+      html += '</td>';
+      html += '<td class="item_price">';
+      html += 'RM '+cart_detail.subtotal_text;
+      html += '</td>';
+      html += '<td>';
+      html += '<div class="checkbox icheck_checkbox">';
+      html += '<label>';
+
+      var uncheck = false;
+      for(var c = 0; c < uncheckedCart.length; c++)
+      {
+        if(uncheckedCart[c] == cart_detail.id)
+        {
+          uncheck = true;
+          break;
+        }
+      }
+
+      var checked = "";
+      if(uncheck == false)
+      {
+        checked = "checked";
+      }
+
+      html += '<input class="icheck cart_detail_checkbox" type="checkbox" name="cart_detail_id[]" value="'+cart_detail.id+'" '+checked+' onchange="refreshCart()" />';
+      html += '</label>';
+      html += '</div>';
+
+      html += '<div class="delete_cart_detail" cart_id="'+cart_detail.id+'" onclick="deleteCartDetail(this)">';
+      html += '<i class="fa fa-trash"></i>';
+      html += '</div>';
+      html += '</td>';
+      html += '</tr>';
+    }
+
+    $("#checkout-table tbody").html(html);
+
+    $(".icheck").iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass: 'iradio_square-blue',
+      increaseArea: '20%' /* optional */
+    });
+
+    $(".cart_detail_checkbox").on("ifChanged", function(){
+      var checked = $(this).is(":checked");
+      var cart_detail_id = $(this).val();
+      if(checked == false)
+      {
+        uncheckedCart.push(cart_detail_id);
+      }
+      else
+      {
+        for(var b = 0; b < uncheckedCart.length; b++)
+        {
+          if(uncheckedCart[b] == cart_detail_id)
+          {
+            uncheckedCart.splice(b, 1);
+            break; 
+          }
+        } 
+      }
+      refreshCart();
+    });
+
+    refreshCart();
   }
 
 </script>

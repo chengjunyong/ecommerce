@@ -69,6 +69,7 @@
   .navbar { cursor: pointer; }
   .navbar.minimize { height: 50px; padding: 0px !important; background: transparent !important; justify-content: space-between !important; padding: 10px !important; color: #333; }
   .navbar.minimize:hover { background: #ff914c !important; color: #fff; }
+  .navbar.minimize.index { background: #444 !important; color: #fff; }
 
   .category_more { float: right; font-size: 12px !important; font-weight: normal !important; color: #dc3545 !important; margin-top: 3px; padding: 0 5px; }
   .category_more:hover { color: #ff914b !important; font-weight: bold !important; }
@@ -398,216 +399,140 @@
   </div>
 </div>
 
-<div class="category-header" style="background: rgba(0,0,0,0); margin-top: 160px;">
+<div class="category-header" style="position: fixed; top: 160px; width: 100%; z-index: 2; background: #f2f2f2;">
   <div class="custom-container">
-      <div class="row">
-        <div class="col">
-          <div class="navbar-menu">
-            @if(Route::currentRouteName() == "getFrontIndex")
-              <div class="category-left">
-            @else
-              <div class="category-left" style="width: 100%;">
-            @endif
-              <div class="nav-block">
-                <div class="nav-left">
-                  @if(Route::currentRouteName() == "getFrontIndex")
-                    <nav class="navbar" data-toggle="collapse" data-target="#navbarToggleExternalContent">
-                      <button class="navbar-toggler" type="button">
-                        <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
-                      </button>
-                      <h5 class="mb-0 ml-3 text-white title-font">Shop by category</h5>
-                    </nav>
-                  @else
-                    <nav class="navbar minimize" data-toggle="collapse" data-target="#navbarToggleExternalContent">
-                      <h5 class="mb-0 ml-3 title-font">Shop by category</h5>
-                      <button class="navbar-toggler" type="button">
-                        <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
-                      </button>
-                    </nav>
-                  @endif
-                  <div class="collapse nav-desk" id="navbarToggleExternalContent">
-                    <ul class="nav-cat title-font my_dropdown" style="margin: 0px; {{ Route::currentRouteName() != 'getFrontIndex' ? 'box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);' : '' }}">
+    <div class="row">
+      <div class="col">
+        <div class="navbar-menu">
+          @if(Route::currentRouteName() == "getFrontIndex")
+            <div class="category-left">
+          @else
+            <div class="category-left" style="width: 100%;">
+          @endif
+            <div class="nav-block">
+              <div class="nav-left">
+                
+                <nav class="navbar minimize" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+                  <h5 class="mb-0 ml-3 title-font">Categories</h5>
+                  <button class="navbar-toggler" type="button">
+                    <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
+                  </button>
+                </nav>
+                
+                <div class="collapse nav-desk" id="navbarToggleExternalContent">
+                  <ul class="nav-cat title-font my_dropdown" style="margin: 0px; {{ Route::currentRouteName() != 'getFrontIndex' ? 'box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);' : '' }}">
 
-                      @if(count($main_category) <= 7)
-                        @foreach($main_category as $main)
-                          <li> 
-                            @if(Route::currentRouteName() == "getFrontIndex")
-                              <!-- <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> -->
-                            @endif
-                            <a href="{{ route('getCategoryPage', ['id' => $main->id, 'type' => 1]) }}">{{ $main->name }}</a>
-                            @if(count($main->category) > 0)
-                              <div class="category_box">
-                                <ul class="category_tab">
-                                  @foreach($main->category as $category)
-                                    <li>
-                                      <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }}</a>
-                                      @if(count($category->subcategory) > 0)
-                                        <div class="category_box">
-                                          <ul class="category_tab">
-                                            @foreach($category->subcategory as $subcategory)
-                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                            @endforeach
-                                          </ul>
-                                        </div>
-                                      @endif
-                                    </li>
-                                  @endforeach
-                                </ul>
-                              </div>
-                            @endif
-                          </li>
-                        @endforeach
-                      @else
-                        @for ($i = 0; $i < 7; $i++)
-                          <li>
-                            @if(Route::currentRouteName() == "getFrontIndex") 
-                              <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
-                            @endif
-                            <a href="{{ route('getCategoryPage', ['id' => $main_category[$i]->id, 'type' => 1]) }}">{{ $main_category[$i]->name }}</a>
-                            @if(count($main_category[$i]->category) > 0)
-                              <div class="category_box">
-                                <ul class="category_tab">
-                                  @foreach($main_category[$i]->category as $category)
-                                    <li>
-                                      <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }}</a>
-                                      @if(count($category->subcategory) > 0)
-                                        <div class="category_box">
-                                          <ul class="category_tab">
-                                            @foreach($category->subcategory as $subcategory)
-                                              <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                            @endforeach
-                                          </ul>
-                                        </div>
-                                      @endif
-                                    </li>
-                                  @endforeach
-                                </ul>
-                              </div>
-                            @endif
-                          </li>
-
-                        @endfor
-
-                        <li class="mor-slide-open">
-                          <ul>
-                            @for($b = 7; $b < count($main_category); $b++)
-                              <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product">
-                                <a href="{{ route('getCategoryPage', ['id' => $main_category[$b]->id, 'type' => 1]) }}">{{ $main_category[$b]->name }}</a>
-                                @if(count($main_category[$b]->category) > 0)
-                                  <div class="category_box">
-                                    <ul class="category_tab">
-                                      @foreach($main_category[$b]->category as $category)
-                                        <li>
-                                          <a href="{{ route('getCategoryPage', ['id' => $category->id, 'type' => 2]) }}">{{ $category->category_name }}</a>
-                                          @if(count($category->subcategory) > 0)
-                                            <div class="category_box">
-                                              <ul class="category_tab">
-                                                @foreach($category->subcategory as $subcategory)
-                                                  <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
-                                                @endforeach
-                                              </ul>
-                                            </div>
-                                          @endif
-                                        </li>
-                                      @endforeach
-                                    </ul>
-                                  </div>
-                                @endif
-                              </li> 
-                            @endfor
-                          </ul>
+                    @if(count($main_category) <= 7)
+                      @foreach($main_category as $main)
+                        <li> 
+                          @if(Route::currentRouteName() == "getFrontIndex")
+                            <!-- <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> -->
+                          @endif
+                          <a href="{{ route('getCategoryPage', ['id' => $main->id, 'type' => 1]) }}">{{ $main->name }}</a>
+                          @if(count($main->category) > 0)
+                            <div class="category_box">
+                              <ul class="category_tab">
+                                @foreach($main->category as $category)
+                                  <li>
+                                    <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }}</a>
+                                    @if(count($category->subcategory) > 0)
+                                      <div class="category_box">
+                                        <ul class="category_tab">
+                                          @foreach($category->subcategory as $subcategory)
+                                            <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                          @endforeach
+                                        </ul>
+                                      </div>
+                                    @endif
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          @endif
+                        </li>
+                      @endforeach
+                    @else
+                      @for ($i = 0; $i < 7; $i++)
+                        <li>
+                          @if(Route::currentRouteName() == "getFrontIndex") 
+                            <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
+                          @endif
+                          <a href="{{ route('getCategoryPage', ['id' => $main_category[$i]->id, 'type' => 1]) }}">{{ $main_category[$i]->name }}</a>
+                          @if(count($main_category[$i]->category) > 0)
+                            <div class="category_box">
+                              <ul class="category_tab">
+                                @foreach($main_category[$i]->category as $category)
+                                  <li>
+                                    <a href="{{ route('getCategoryPage', ['id' => $category->category_id, 'type' => 2]) }}">{{ $category->category_name }}</a>
+                                    @if(count($category->subcategory) > 0)
+                                      <div class="category_box">
+                                        <ul class="category_tab">
+                                          @foreach($category->subcategory as $subcategory)
+                                            <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                          @endforeach
+                                        </ul>
+                                      </div>
+                                    @endif
+                                  </li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          @endif
                         </li>
 
-                        <li> <a class="mor-slide-click">more category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
-                      @endif
-                    </ul>
-                  </div>
+                      @endfor
+
+                      <li class="mor-slide-open">
+                        <ul>
+                          @for($b = 7; $b < count($main_category); $b++)
+                            <li> <img src="{{ asset('/assets/images/layout-1/nav-img/08.png') }}" alt="catergory-product">
+                              <a href="{{ route('getCategoryPage', ['id' => $main_category[$b]->id, 'type' => 1]) }}">{{ $main_category[$b]->name }}</a>
+                              @if(count($main_category[$b]->category) > 0)
+                                <div class="category_box">
+                                  <ul class="category_tab">
+                                    @foreach($main_category[$b]->category as $category)
+                                      <li>
+                                        <a href="{{ route('getCategoryPage', ['id' => $category->id, 'type' => 2]) }}">{{ $category->category_name }}</a>
+                                        @if(count($category->subcategory) > 0)
+                                          <div class="category_box">
+                                            <ul class="category_tab">
+                                              @foreach($category->subcategory as $subcategory)
+                                                <li><a href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a></li>
+                                              @endforeach
+                                            </ul>
+                                          </div>
+                                        @endif
+                                      </li>
+                                    @endforeach
+                                  </ul>
+                                </div>
+                              @endif
+                            </li> 
+                          @endfor
+                        </ul>
+                      </li>
+
+                      <li> <a class="mor-slide-click">more category <i class="fa fa-angle-down pro-down"></i><i class="fa fa-angle-up pro-up"></i></a></li>
+                    @endif
+                  </ul>
                 </div>
               </div>
-
-              @if(Route::currentRouteName() != "getFrontIndex")
-                <div class="banner_category">
-                  <a href="#">Recipe</a>
-                  <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" banner_type="offers">Offers</a>
-                  <a href="{{ route('getEventPage') }}" banner_type="event">Event</a>
-                  <a href="{{ route('getWhatNewsPage') }}" banner_type="whatNews">Whats New</a>
-                </div>
-              @endif
             </div>
-            <!-- <div class="category-right">
-              <div class="contact-block">
-                <div>
-                  <i class="fa fa-volume-control-phone"></i>
-                  <span>call us<span>(09-xxxxxxx)</span></span>
-                </div>
-              </div>
-              <div class="btn-group">
-                <div  class="gift-block" data-toggle="dropdown" >
-                  <div class="grif-icon">
-                    <i class="icon-gift"></i>
-                  </div>
-                  <div class="gift-offer">
-                    <p>Get It</p>
-                    <span>Promotion Offer</span>
-                  </div>
-                </div> -->
-                
-              <!-- <div class="dropdown-menu gift-dropdown">
-                <div class="media">
-                  <div  class="mr-3">
-                    <img src="{{ asset('/assets/images/icon/1.png') }}" alt="Generic placeholder image">
-                  </div>
-                  <div class="media-body">
-                    <h5 class="mt-0">Billion Days</h5>
-                    <p><img src="{{ asset('/assets/images/icon/currency.png') }}" class="cash" alt="gift-block"> Flat Rs. 270 Rewards</p>
-                  </div>
-                </div>
-                  <div class="media">
-                    <div  class="mr-3">
-                      <img src="{{ asset('/assets/images/icon/2.png') }}" alt="Generic placeholder image">
-                    </div>
-                    <div class="media-body">
-                      <h5 class="mt-0">Fashion Discount</h5>
-                      <p><img src="{{ asset('/assets/images/icon/fire.png') }}"  class="fire" alt="gift-block">Extra 10% off (upto Rs. 10,000*) </p>
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div  class="mr-3">
-                      <img src="{{ asset('/assets/images/icon/3.png') }}" alt="Generic placeholder image">
-                    </div>
-                    <div class="media-body">
-                      <h5 class="mt-0">75% off Store</h5>
-                      <p>No coupon code is required.</p>
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div  class="mr-3">
-                      <img src="{{ asset('/assets/images/icon/6.png') }}" alt="Generic placeholder image">
-                    </div>
-                    <div class="media-body">
-                      <h5 class="mt-0">Upto 50% off</h5>
-                      <p>Buy popular phones under Rs.20.</p>
-                    </div>
-                  </div>
-                  <div class="media">
-                    <div  class="mr-3">
-                      <img src="{{ asset('/assets/images/icon/5.png') }}" alt="Generic placeholder image">
-                    </div>
-                    <div class="media-body">
-                      <h5 class="mt-0">Beauty store</h5>
-                      <p><img src="{{ asset('/assets/images/icon/currency.png') }}" class="cash" alt="curancy"> Flat Rs. 270 Rewards</p>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
 
-           <!--  </div>
-          </div> -->
+            @if(Route::currentRouteName() != "getFrontIndex")
+              <div class="banner_category">
+                <a href="#">Recipes</a>
+                <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" banner_type="offers">Offers</a>
+                <a href="{{ route('getEventPage') }}" banner_type="event">Event</a>
+                <a href="{{ route('getWhatNewsPage') }}" banner_type="whatNews">Whats New</a>
+              </div>
+            @endif
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 </header>
 <!-- Modal -->
@@ -645,7 +570,13 @@
   var searchTimeout;
   var route_name = "{{ Route::currentRouteName() }}";
 
-  $(document).ready(function(){  
+  $(document).ready(function(){ 
+
+    if(route_name == "getFrontIndex")
+    {
+      $(".navbar.minimize").addClass("index").click();
+    }
+
     $(".my_dropdown_2 li div").click(function(){
       $(this).siblings("ul").toggleClass("active");
     });

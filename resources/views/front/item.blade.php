@@ -87,10 +87,10 @@
         <div class="col-lg-4">
           <div class="product-right product-description-box">
             <h2>{{ $product_detail->name }}</h2>
-            <div class="border-product">
+            <!-- <div class="border-product">
               <h6 class="product-title">product details</h6>
               <p>{{ $product_detail->description }}</p>
-            </div>
+            </div> -->
             <div class="border-product">
               @if($product_detail->promo_price === null)
                 <h3 style="margin: 0px; color: #ff914b;">RM {{ number_format($product_detail->price, 2) }}</h3>

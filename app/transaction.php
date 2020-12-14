@@ -19,6 +19,7 @@ class transaction extends Model
       'shipping_type',
       'delivery_address',
       'mailing_address',
-      'phone_number'
+      'phone_number',
+      'delivery_time'
     ];
 }

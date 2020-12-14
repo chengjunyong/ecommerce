@@ -2,7 +2,7 @@
 
 @section('layout')
 
-<section class="p-0 bg-light">
+<section class="p-0 bg-light" style="margin-top: 210px;">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -15,5 +15,7 @@
         </div>
     </div>
 </section>
+
+@include('front.footer')
 
 @endsection

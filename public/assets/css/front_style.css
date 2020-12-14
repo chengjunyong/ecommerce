@@ -13,13 +13,16 @@
 .toast.success { background-color: #28a745; } .toast-body { color: #fff; }
 
 .is-invalid { border-color: #dc3545 !important; }
-.item_summary { position: relative; display: flex; margin-bottom: 20px; box-shadow: 1px 1px 5px 0px #333; padding: 10px; }
-.item_summary img { max-width: 125px; width: 125px; max-height: 125px; object-fit: cover; }
-.item_summary .item_description { padding: 0 10px; flex: 2; }
-.item_summary .item_description label { width: 100%; margin-bottom: 5px; }
-.item_summary .item_description span { width: 100%; }
-.item_summary .item_price { color: #ff6000; font-weight: bold; font-size: 16px; padding: 0 10px; max-width: 150px; }
-.item_summary .item_qty { text-align: right; min-width: 130px; flex: 1; }
+
+#checkout-table { border-collapse:separate; border-spacing:0 10px; }
+.checkout-summary { position: relative; box-shadow: 1px 1px 5px 0px #333; }
+.checkout-summary td { border: 0px; }
+.checkout-description img { display: inline-block; max-width: 125px; float: left; padding-right: 10px; }
+.checkout-description .checkout-description-info { display: inline-block; float: left; }
+.checkout-description .checkout-description-info label { margin-bottom: 0px; }
+.checkout-description .checkout-description-info span { margin-bottom: 0px; display: block; width: 150px; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis; }
+
+.checkout-summary .item_price { color: #ff6000; font-weight: bold; font-size: 16px; padding: .75rem 10px; max-width: 150px; white-space: nowrap; }
 
 .theme-form { background-color: #fff !important; padding: 20px; overflow-y: auto; overflow-x: hidden; }
 
@@ -81,13 +84,34 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
   .product .product-box .product-imgbox .product-front { height: 200px; }
 }
 
-.change_address { display: inline-block; float: right; color: #00f !important; font-weight: bold; cursor: pointer; }
+.brand_label { display: inline-block; color: #ff6000; font-size: 16px; font-weight: bold; margin-top: 27px; float: left; padding-right: 10px; }
+.brand_box { padding: 10px 20px; position: relative; }
+#brand_list { display: block; width: 100%; padding: 0 40px; }
+#brand_list a { color: transparent; }
+@media (max-width: 991px)
+{
+  .brand_label { display: block; text-align: center; border: 0; border-bottom: 2px solid #ff6000; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; margin: 0 auto; margin-bottom: 10px; font-size: 16px; float: initial; }
+}
+
+.brand { cursor: pointer; text-align: center; height: 50px; display: flex; align-items: center; }
+.brand:hover { color: #ff6000; }
+.brand img { width: auto !important; height: auto !important; max-width: 80px !important; max-height: 50px !important; margin: 5px auto; }
+.brand.active { border-bottom: 3px solid #ff914b; } 
+#brand_list .owl-nav { position: absolute; left: 0px; top: 0px; width: 100%; }
+#brand_list .owl-nav .owl-prev { position: absolute; top: 20px; left: 0px; padding: 0 10px; }
+.owl-prev.disabled, .owl-next.disabled { color: #ccc !important; }
+#brand_list .owl-nav .owl-next { position: absolute; top: 20px; right: 0px; padding: 0 10px; }
+.owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
+
+.change_address { display: inline-block; float: right; color: #00f !important; font-weight: bold; cursor: pointer; width: 35%; }
 .hide { display: none; }
 .description { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 
-.edit_item_quantity { cursor: pointer; margin: 0 10px; background: #777; display: inline-block; border-radius: 3px; color: #fff; height: 25px; width: 25px; text-align: center; line-height: 25px; }
+.edit_item_quantity { cursor: pointer; background: #777; display: inline-block; border-radius: 3px; color: #fff; height: 25px; width: 25px; text-align: center; line-height: 25px; }
+.edit_item_quantity:first-child { margin-right: 10px; }
+.edit_item_quantity:last-child { margin-left: 10px; }
 .edit_item_quantity:hover { background: #333; }
-.delete_cart_detail { cursor: pointer; position: absolute; right: 10px; bottom: 10px; color: #dc3545; font-size: 18px; }
+.delete_cart_detail { cursor: pointer; color: #dc3545; font-size: 18px; }
 .delete_cart_detail:hover { color: #ca0f21; }
 
 

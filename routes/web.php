@@ -92,7 +92,6 @@ Route::prefix('checkout')->group(function () {
   Route::get('/success/{id}', 'itemController@getCheckoutSuccessIndex')->name('getCheckoutSuccessIndex');
 });
 
-
 Route::group(['middleware' => ['auth:admin']], function () {
   Route::prefix('/admin')->group(function(){
     Route::get('/', 'adminController@getIndex')->name('getIndex');
@@ -311,3 +310,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/readexcel', 'adminController@readExcel')->name('readExcel');
 Route::get('/front_testing', 'frontController@testing')->name('front_testing');
 Route::get('/verify_email', 'frontController@verify_email')->name('verify_email');
+
+Route::fallback(function(){
+  return view('errors.404');
+});
+
+Route::get('/testing', 'HomeController@testing')->name('testing');

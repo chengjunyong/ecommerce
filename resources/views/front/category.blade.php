@@ -6,26 +6,6 @@
   
   .collection-filter-block { max-height: 450px; overflow: auto; }
 
-  .brand_label { display: inline-block; color: #ff6000; font-size: 16px; font-weight: bold; margin-top: 27px; float: left; padding-right: 10px; }
-  .brand_box { padding: 10px 20px; position: relative; }
-  #brand_list { display: block; width: 100%; padding: 0 40px; }
-  #brand_list a { color: transparent; }
-  @media (max-width: 991px)
-  {
-    .brand_label { display: block; text-align: center; border: 0; border-bottom: 2px solid #ff6000; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; margin: 0 auto; margin-bottom: 10px; font-size: 16px; float: initial; }
-  }
-
-  .brand { line-height: 30px; cursor: pointer; text-align: center; }
-  .brand:hover, .brand.active { color: #ff6000; }
-  .brand img { border-radius: 50%; box-shadow: 0px 0px 1px 3px; width: 50px !important; height: 50px !important; margin: 5px auto; filter: grayscale(1); }
-  .brand.active img { filter: grayscale(0); }
-
-  #brand_list .owl-nav { position: absolute; left: 0px; top: 0px; width: 100%; }
-  #brand_list .owl-nav .owl-prev { position: absolute; top: 20px; left: 0px; padding: 0 10px; }
-  .owl-prev.disabled, .owl-next.disabled { color: #ccc !important; }
-  #brand_list .owl-nav .owl-next { position: absolute; top: 20px; right: 0px; padding: 0 10px; }
-  .owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
-
 </style>
 
 <!-- breadcrumb start -->
@@ -95,11 +75,13 @@
                     <div class="brand_box">
                       <div class="owl-carousel" id="brand_list">
                         @foreach($brand_list as $brand)
-                          <div class="item brand active">
-                            <img src="{{ Storage::url($brand->path) }}" />
+                          <div class="item">
+                            <div class='brand active'>
+                              <img src="{{ Storage::url($brand->path) }}" />
 
-                            <div style="display: none;">
-                              <input class="brand_checkbox" type="checkbox" value="{{ $brand->id }}" checked />
+                              <div style="display: none;">
+                                <input class="brand_checkbox" type="checkbox" value="{{ $brand->id }}" checked />
+                              </div>
                             </div>
                           </div>
                         @endforeach
@@ -305,14 +287,14 @@
         },
         1000: 
         {
-          items: 10
+          items: 8
         }
       }
     });
 
   });
 
-  $(".item.brand").click(function(){
+  $(".brand").click(function(){
     var checked = $(this).find("input[type=checkbox]").is(":checked");
 
     if(checked == false)

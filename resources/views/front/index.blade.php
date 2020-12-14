@@ -3,38 +3,19 @@
 @section('layout')
 
 <style>
-  
-  .brand_label { display: inline-block; color: #ff6000; font-size: 16px; font-weight: bold; margin-top: 27px; float: left; padding-right: 10px; }
-  .brand_box { padding: 10px 20px; position: relative; }
-  #brand_list { display: block; width: 100%; padding: 0 40px; }
-  #brand_list a { color: transparent; }
-  @media (max-width: 991px)
-  {
-    .brand_label { display: block; text-align: center; border: 0; border-bottom: 2px solid #ff6000; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; margin: 0 auto; margin-bottom: 10px; font-size: 16px; float: initial; }
-  }
-
-  .brand { line-height: 30px; cursor: pointer; text-align: center; }
-  .brand:hover { color: #ff6000; }
-  .brand img { border-radius: 50%; box-shadow: 0px 0px 1px 3px; width: 50px !important; height: 50px !important; margin: 5px auto; }
-  #brand_list .owl-nav { position: absolute; left: 0px; top: 0px; width: 100%; }
-  #brand_list .owl-nav .owl-prev { position: absolute; top: 20px; left: 0px; padding: 0 10px; }
-  .owl-prev.disabled, .owl-next.disabled { color: #ccc !important; }
-  #brand_list .owl-nav .owl-next { position: absolute; top: 20px; right: 0px; padding: 0 10px; }
-  .owl-prev:not(.disabled):hover, .owl-next:not(.disabled):hover { color: #ff6000 !important; }
 
   .hot-deal { border: 5px solid #ff914b; border-radius: 5px; padding: 10px; position: relative; }
-  .hot-deal .hot-deal-left-box { display: inline-block; width: 200px; float: left; }
-  .hot-deal .hot-deal-left-box .hot-deal-title { font-weight: bold; font-size: 30px; color: #ff6000; text-decoration: underline; }
-  .hot-deal .hot-deal-left-box .hot-deal-icon { position: absolute; left: -30px; bottom: -30px; }
-  .hot-deal .hot-deal-left-box .hot-deal-icon img { width: 150px; }
-  .hot-deal .hot-deal-box { display: inline-block; width: calc(100% - 205px); }
+  .hot-deal .hot-deal-box .hot-deal-icon { position: absolute; left: -20px; bottom: -20px; z-index: 2; }
+  .hot-deal .hot-deal-box .hot-deal-icon img { width: 120px; }
+  .hot-deal .hot-deal-box .promo-title { width: 100%; font-weight: bold; font-size: 20px; text-align: center; color: #333; }
+  .hot-deal .hot-deal-box { display: inline-block; width: 100%; }
   .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .timer span>span { color: #212529 !important; }
   .hot-deal .hot-deal-contain1 .hot-deal-subcontain .hot-deal-center .price span:last-child { color: #6c757d; }
   .media-banner .media-banner-box .media .media-body .media-contant h6 span { color: #6c757d; } 
 
   .on-sales { position: relative; border: 5px solid #dc3545; border-radius: 5px; padding: 10px; }
   .on-sales .on-sales-left-box { height: 30px; z-index: 1; position: absolute; width: 100%; }
-  .on-sales .on-sales-left-box .on-sales-title { font-weight: bold; font-size: 20px; text-align: center; color: #333; }
+  .on-sales .on-sales-left-box .promo-title { font-weight: bold; font-size: 20px; text-align: center; color: #333; }
   .on-sales .on-sales-left-box .on-sales-icon { position: absolute; left: -70px; top: -50px; }
   .on-sales .on-sales-left-box .on-sales-icon img { width: 130px; }
   .on-sales-box { margin-top: 30px; }
@@ -51,13 +32,13 @@
   <div class="custom-container">
     <div class="row">
       <div class="col-xl-8 col-lg-9 offset-xl-2 px-abjust">
-        <div class="banner_category">
-          <a href="#">Recipes</a>
-          <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}">Offers</a>
-          <a href="{{ route('getEventPage') }}">Event</a>
-          <a href="{{ route('getWhatNewsPage') }}">Whats New</a>
+        <div class="banner_category" style="position: fixed; top: 160px; z-index: 2; background: #f2f2f2;">
+          <a href="#" style="margin-left: 10px; margin-bottom: 2px;">Recipes</a>
+          <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" style="margin-bottom: 2px;">Offers</a>
+          <a href="{{ route('getEventPage') }}" style="margin-bottom: 2px;">Event</a>
+          <a href="{{ route('getWhatNewsPage') }}" style="margin-bottom: 2px;">Whats New</a>
         </div>
-        <div class="slide-1 no-arrow">
+        <div class="slide-1 no-arrow" style="margin-top: 210px;">
           @foreach($banner_list as $key => $banner)
             <div>
               <a href="{{ $banner->target_url }}">
@@ -201,10 +182,10 @@
   <div class="container">
     <div class="row hot-1 justify-content-md-center">
       @if(count($on_sales_list) > 0)
-        <div class="col-lg-5 col-sm-6 col-12">
+        <div class="col-lg-6 col-sm-12 col-12">
           <div class="on-sales">
             <div class="on-sales-left-box">
-              <div class="on-sales-title">Today Hot Deals</div>
+              <div class="promo-title">On Sales Products</div>
               <div class="on-sales-icon">
                 <img src="{{ asset('/assets/images/front/on_sales.png') }}" class="img-fluid" alt="banner" />
               </div>
@@ -259,19 +240,17 @@
       @endif
 
       @if(count($today_deal_list) > 0)
-        <div class="col-lg-7 col-sm-12 col-12" style='padding-left: {{ count($on_sales_list) > 0 ? "30px" : "0px" }};'>
+        <div class="col-lg-6 col-sm-12 col-12" style='padding-left: {{ count($on_sales_list) > 0 ? "30px" : "0px" }};'>
           <div class="hot-deal">
-            <div class="hot-deal-left-box">
-              <div class="hot-deal-title">Today Hot Deals</div>
+            <div class="hot-deal-box">
               <div class="hot-deal-icon">
                 <img src="{{ asset('/assets/images/front/today_deal.png') }}" class="img-fluid" alt="banner" />
               </div>
-            </div>
-            <div class="hot-deal-box">
+              <label class="promo-title">Today Hot Deals</label>
               <div class="slide-1">
                 @foreach($today_deal_list as $today_deal)
                   <div>
-                    <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 350px;">
+                    <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 320px;">
                       <div class="row hot-deal-subcontain">
                         <div class="col-lg-4 col-sm-4 col-12">
                           <div class="hotdeal-right-slick-1 no-arrow">
@@ -442,11 +421,13 @@
     <div class="brand_box">
       <div class="owl-carousel" id="brand_list">
         @foreach($brand_list as $brand)
-          <a href="{{ route('getFrontBrandList', ['id' => $brand->id]) }}">
-            <div class="item brand">
-              <img src="{{ Storage::url($brand->path) }}" />
-            </div>
-          </a>
+          <div class='item'>
+            <a href="{{ route('getFrontBrandList', ['id' => $brand->id]) }}">
+              <div class="brand">
+                <img src="{{ Storage::url($brand->path) }}" />
+              </div>
+            </a>
+          </div>
         @endforeach
       </div>
     </div>
@@ -684,7 +665,7 @@
   var today_deal_timer = [];
 
   $(document).ready(function(){
-    $("#navbarToggleExternalContent").addClass("show");
+    // $("#navbarToggleExternalContent").addClass("show");
 
     $('#brand_list').owlCarousel({
       margin: 10,
@@ -703,7 +684,7 @@
         },
         1000: 
         {
-          items: 10
+          items: 8
         }
       }
     });

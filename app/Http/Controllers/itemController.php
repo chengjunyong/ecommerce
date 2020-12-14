@@ -215,6 +215,20 @@ class itemController extends Controller
             $cart->promo_price = $promo_result->promo_price;
             $cart->promo_amount = $promo_result->promo_amount;
             $cart->promo_type = $promo_result->promo_type;
+
+            $cart->price_text = number_format($cart->price, 2);
+            $cart->promo_price_text = 0;
+            if($cart->promo_price)
+            {
+              $cart->promo_price_text = number_format($cart->promo_price, 2);
+              $cart->subtotal = $cart->promo_price * $cart->quantity;
+            }
+            else
+            {
+              $cart->subtotal = $cart->price * $cart->quantity;
+            }
+
+            $cart->subtotal_text = number_format($cart->subtotal, 2);
           }
 
           $response = new \stdClass();
@@ -242,6 +256,20 @@ class itemController extends Controller
           $cart->promo_price = $promo_result->promo_price;
           $cart->promo_amount = $promo_result->promo_amount;
           $cart->promo_type = $promo_result->promo_type;
+
+          $cart->price_text = number_format($cart->price, 2);
+          $cart->promo_price_text = 0;
+          if($cart->promo_price)
+          {
+            $cart->promo_price_text = number_format($cart->promo_price, 2);
+            $cart->subtotal = $cart->promo_price * $cart->quantity;
+          }
+          else
+          {
+            $cart->subtotal = $cart->price * $cart->quantity;
+          }
+
+          $cart->subtotal_text = number_format($cart->subtotal, 2);
         }
 
         $response = new \stdClass();
@@ -374,6 +402,13 @@ class itemController extends Controller
         $cart->promo_price = $promo_result->promo_price;
         $cart->promo_amount = $promo_result->promo_amount;
         $cart->promo_type = $promo_result->promo_type;
+
+        $cart->price_text = number_format($cart->price, 2);
+        $cart->promo_price_text = 0;
+        if($cart->promo_price)
+        {
+          $cart->promo_price_text = number_format($cart->promo_price, 2);
+        }
       }
 
       if($request->coupon_code)
@@ -494,6 +529,19 @@ class itemController extends Controller
       $final_total = round($total, 1);
       $round_off = round(($final_total - $total), 2);
 
+      $now = now();
+      $now_hours = intval(date('H', strtotime($now)));
+
+      // if order time is 00 - 09 and 13 - 00
+      if($now_hours < 9 || $now_hours > 15)
+      {
+        $delivery_time = date('Y-m-d 12:00:00',strtotime('+1 day',strtotime($now)));
+      }
+      else
+      {
+        $delivery_time = date('Y-m-d H:i:s',strtotime('+3 hours',strtotime($now)));
+      }
+
       $transaction = transaction::create([
         'user_id' => $user->id,
         'sub_total' => $sub_total,
@@ -506,7 +554,8 @@ class itemController extends Controller
         'shipping_type' => $request->shipping_type,
         'delivery_address' => $full_address,
         'mailing_address' => $billing_address,
-        'phone_number' => $phone_number
+        'phone_number' => $phone_number,
+        'delivery_time' => $delivery_time
       ]);
 
       $transaction_detail_items = array();
@@ -771,10 +820,14 @@ class itemController extends Controller
       $transaction = transaction::where('id', $id)->where('user_id', $user->id)->first();
       if($transaction)
       {
+        $transaction->status_text = transactionStatusText($transaction->status);
         $transaction->detail = transaction_detail::where('transaction_id', $transaction->id)->get();
+        return view('front.checkout_success', compact('transaction'));
       }
-
-      return view('front.checkout_success', compact('transaction'));
+      else
+      {
+        return view('errors.404');
+      }
     }
 
     public function removeCartDetail(Request $request)
