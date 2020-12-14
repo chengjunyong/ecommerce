@@ -37,6 +37,30 @@
       </li>
 
       @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
+      <li><a class="sidebar-header" href="#"><i data-feather="shopping-bag"></i> <span>Marketing</span><i class="fa fa-angle-right pull-right"></i></a>
+          <ul class="sidebar-submenu">
+
+            @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
+            <li><a href="{{ route('getCouponList') }}"><i class="fa fa-circle"></i>List Coupons</a></li>
+            <li><a href="{{ route('getCouponCreate') }}"><i class="fa fa-circle"></i>Create Coupons </a></li>
+            <li><a href="{{ route('getCouponTransaction') }}"><i class="fa fa-circle"></i>Coupons Transaction</a></li>
+            @endif
+
+            @if($logged_user->user_type == 1)
+            <li><a href="{{ route('getSubscriptionList') }}"><i class="fa fa-circle"></i>Subscription List</a></li>
+            <li><a href="{{ route('getEmailMarketing') }}"><i class="fa fa-circle"></i>Email Marketing</a></li>
+            <li><a href="{{ route('listTemplate') }}"><i class="fa fa-circle"></i>Template List</a></li>
+            <li><a href="{{ route('getTemplateUpload') }}"><i class="fa fa-circle"></i>Upload Template</a></li>
+            @endif
+
+            <li><a href="{{ route('getOnSales') }}"><i class="fa fa-circle"></i>On Sales</a></li>
+            <li><a href="{{ route('getTodayDeal') }}"><i class="fa fa-circle"></i>Today Deal</a></li>
+            <li><a href="{{ route('getSpecialProduct') }}"><i class="fa fa-circle"></i>Special Product</a></li>
+          </ul>
+      </li>
+      @endif
+
+      <!-- @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
       <li><a class="sidebar-header" href=""><i data-feather="tag"></i><span>Coupons</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getCouponList') }}"><i class="fa fa-circle"></i>List Coupons</a></li>
@@ -44,7 +68,7 @@
           <li><a href="{{ route('getCouponTransaction') }}"><i class="fa fa-circle"></i>Coupons Transaction</a></li>
         </ul>
       </li>
-      @endif
+      @endif -->
 
       @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
       <li><a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
@@ -56,7 +80,7 @@
       </li>
       @endif
 
-      @if($logged_user->user_type == 1)
+<!--       @if($logged_user->user_type == 1)
         <li><a class="sidebar-header" href=""><i data-feather="mail"></i><span>Email</span><i class="fa fa-angle-right pull-right"></i></a>
           <ul class="sidebar-submenu">
             <li><a href="{{ route('getSubscriptionList') }}"><i class="fa fa-circle"></i>Subscription List</a></li>
@@ -65,7 +89,7 @@
             <li><a href="{{ route('getTemplateUpload') }}"><i class="fa fa-circle"></i>Upload Template</a></li>
           </ul>
         </li>
-      @endif
+      @endif -->
 
       @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
 
@@ -82,23 +106,17 @@
         </ul>
       </li>
 
-      <li><a class="sidebar-header" href=""><i data-feather="gift" ></i><span>Promotion</span><i class="fa fa-angle-right pull-right"></i></a>
+<!--       <li><a class="sidebar-header" href=""><i data-feather="gift" ></i><span>Promotion</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getOnSales') }}"><i class="fa fa-circle"></i>On Sales</a></li>
-        </ul>
-        <ul class="sidebar-submenu">
           <li><a href="{{ route('getTodayDeal') }}"><i class="fa fa-circle"></i>Today Deal</a></li>
-        </ul>
-        <ul class="sidebar-submenu">
           <li><a href="{{ route('getSpecialProduct') }}"><i class="fa fa-circle"></i>Special Product</a></li>
         </ul>
-      </li>
+      </li> -->
 
       <li><a class="sidebar-header" href=""><i data-feather="image" ></i><span>Banner</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getBannerSlider') }}"><i class="fa fa-circle"></i>Banner Slider</a></li>
-        </ul>
-        <ul class="sidebar-submenu">
           <li><a href="{{ route('getPopupBanner') }}"><i class="fa fa-circle"></i>Pop-up Banner</a></li>
         </ul>
       </li>
