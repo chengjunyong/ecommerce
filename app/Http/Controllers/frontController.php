@@ -807,8 +807,16 @@ class frontController extends Controller
 
   public function testing()
   {
-    $encrypted = Crypt::encryptString('Hello world.');
+    $email_data = new \stdClass();
+    $email_data->user = Auth::user();
+    $email_data->transaction = transaction::first();
+    $email_data->transaction_detail = [];
+    $email_data->email = Auth::user()->email;
+    $email_data->type = "receipt";
+    $email_data->subject = "HomeU Receipt";
 
-    dd(Crypt::decryptString($encrypted), $encrypted);
+    app('App\Http\Controllers\frontController')->sendMail($email_data);
+
+    dd("sent");
   }
 }
