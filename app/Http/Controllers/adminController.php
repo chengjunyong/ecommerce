@@ -1,22 +1,5 @@
 <?php
 
-// migration
-// 1) run migration
-// php artisan migrate
-// 2) make migration
-// php artisan make:migration [naming]
-// 3) reverse migration
-// php artisan migrate:rollback
-
-// model
-// 1) make model
-// php artisan make:model [naming]
-
-// clear cache
-// php artisan config:cache
-
-// composer dump-autoload
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -41,7 +24,6 @@ use App\brand;
 use App\banner;
 use App\special_product;
 use App\special_product_list;
-
 use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -608,6 +590,7 @@ class adminController extends Controller
         'price' => $request->price,
         'active' => $request->active
       ]);
+      
       if($request->image){
         foreach($request->image as $image)
         {
@@ -1125,7 +1108,6 @@ class adminController extends Controller
       }
     }
 
-    // not used
     public function getChecklistDetail($id)
     {
       $transaction_id = $id;
@@ -1140,9 +1122,7 @@ class adminController extends Controller
 
       return view('admin.checklist_detail', compact('transaction_detail', 'next_transaction', 'transaction_id'));
     }
-    // not used
 
-    // not used
     public function updateChecklist(Request $request)
     {
       $checked = 0;
@@ -1155,9 +1135,7 @@ class adminController extends Controller
         'checked' => $checked
       ]);
     }
-    // not used
 
-    // not used
     public function updateTransaction(Request $request)
     {
       transaction::where('id', $request->transaction_id)->update([
@@ -1170,7 +1148,6 @@ class adminController extends Controller
 
       return response()->json($response);
     }
-    // not used
 
     public function templateUpload(Request $request)
     {

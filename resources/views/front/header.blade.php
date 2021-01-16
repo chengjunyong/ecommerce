@@ -521,7 +521,7 @@
 
             @if(Route::currentRouteName() != "getFrontIndex")
               <div class="banner_category">
-                <a href="#">Recipes</a>
+                <a href="https://recipes.homeu.com.my">Recipes</a>
                 <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" banner_type="offers">Offers</a>
                 <a href="{{ route('getEventPage') }}" banner_type="event">Event</a>
                 <a href="{{ route('getWhatNewsPage') }}" banner_type="whatNews">Whats New</a>
