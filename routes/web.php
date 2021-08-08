@@ -92,6 +92,9 @@ Route::prefix('checkout')->group(function () {
   Route::get('/success/{id}', 'itemController@getCheckoutSuccessIndex')->name('getCheckoutSuccessIndex');
 });
 
+
+// Admin Part Start Here
+
 Route::group(['middleware' => ['auth:admin']], function () {
   Route::prefix('/admin')->group(function(){
     Route::get('/', 'adminController@getIndex')->name('getIndex');
@@ -296,6 +299,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
   });
 });
 
+
+// Admin Part End Here
 
 Route::prefix('/admin')->group(function(){
   Route::get('/login','adminController@getLogin')->name('getAdminLogin');
