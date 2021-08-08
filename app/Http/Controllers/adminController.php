@@ -28,6 +28,7 @@ use App\Mail\bulkmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 // phpspreadsheet
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx; 
@@ -35,13 +36,91 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 class adminController extends Controller
 {
     public function __construct(){
-      
+      $logged_user = Auth::user();
     }
 
     public function getIndex()
     {
+      $monthly_sales = transaction::where('created_at','>',date("Y-m",strtotime(now())))
+                                    ->get();
 
-      return view('admin.index');
+      $weekly_sales = transaction::where('created_at','>',date('Y-m-d',strtotime(now().'- 7 days')))
+                                  ->where('created_at','<=',date('Y-m-d',strtotime(now().'+ 1 days')))
+                                  ->get();
+
+      $new_user = User::where('created_at','>',date('Y-m',strtotime(now())))
+                        ->get();
+
+      $a = transaction::selectRaw('month(created_at) as month, count(*) as total_sales, sum(total) as total')
+                                    ->groupBy(DB::raw('month(created_at)'))
+                                    ->get();
+      $monthly_quantity = array(0,0,0,0,0,0,0,0,0,0,0,0);
+      $monthly_income = array(0,0,0,0,0,0,0,0,0,0,0,0);
+      foreach($a as $result){
+        $monthly_quantity[$result->month-1] = $result->total_sales;
+        $monthly_income[$result->month-1] = $result->total;
+      }
+      $monthly_quantity = json_encode($monthly_quantity);
+      $monthly_income = json_encode($monthly_income);
+
+      $category_sales = array();
+      $a = transaction_detail::join('category','category.category_id','=','transaction_detail.category_id')
+                              ->selectRaw('category.category_name,count(transaction_detail.id) as sales_qty')
+                              ->where('transaction_detail.created_at','>',date("Y-m",strtotime(now())))
+                              ->groupBy('transaction_detail.category_id')
+                              ->get()
+                              ->toArray();
+
+      $category_sales = json_encode(array_column($a,'sales_qty'));
+      $category = json_encode(array_column($a,'category_name'));
+
+      $order_activity = transaction::join('users','users.id','=','transaction.user_id')
+                                    ->limit(5)
+                                    ->orderBy('transaction.created_at','desc')
+                                    ->get();
+
+      $order_status = transaction::where('status',4)->limit(5)->get();
+
+      $different_type_status = array(0,0,0,0);
+      $a = transaction::groupBy('status')
+                      ->where('status','!=',-1)
+                      ->selectRaw('count(id) as qty, status')
+                      ->orderBy('status','asc')
+                      ->get();
+
+      foreach($a as $result){
+        if($result->status == 1)
+          $different_type_status[0] = $result->qty;
+        else if($result->status == 2)
+          $different_type_status[1] = $result->qty;
+        else if($result->status == 3)
+          $different_type_status[2] = $result->qty;
+        else if($result->status == 4)
+          $different_type_status[3] = $result->qty;
+      }
+
+      $different_type_status = json_encode($different_type_status);
+
+      $top_5 = transaction_detail::join('product','product.id','=','transaction_detail.product_id')
+                              ->selectRaw('count(transaction_detail.id) as d_qty,product.sku,sum(transaction_detail.quantity) as total_qty, sum(transaction_detail.total) as total,transaction_detail.product_name')
+                              ->limit(5)
+                              ->groupBy('transaction_detail.product_id')
+                              ->orderBy('d_qty','desc')
+                              ->get();
+
+      return view('admin.index',compact(
+        'monthly_sales',
+        'weekly_sales',
+        'new_user',
+        'monthly_quantity',
+        'monthly_income',
+        'category_sales',
+        'category',
+        'order_activity',
+        'order_status',
+        'different_type_status',
+        'top_5',
+      ));
     }
 
     public function createStaff(Request $request)

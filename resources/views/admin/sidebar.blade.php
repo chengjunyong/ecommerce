@@ -2,9 +2,16 @@
 <div class="page-sidebar">
   <div class="sidebar custom-scrollbar">
     <div class="sidebar-user text-center">
-      <div><img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/man.png') }}" alt="#">
+      <div>
+        @if($logged_user->user_type == 1)
+          <img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/admin.png') }}" alt="#" style="box-shadow: none;border-radius: 0px !important;">
+        @elseif($logged_user->user_type == 5)
+          <img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/driver.png') }}" alt="#" style="box-shadow: none;border-radius: 0px !important;">
+        @else
+          <img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/staff.png') }}" alt="#" style="box-shadow: none;border-radius: 0px !important;">
+        @endif
       </div>
-      <h6 class="mt-3 f-14">Admin</h6>
+      <h6 class="mt-3 f-14">{{$logged_user->fname}} {{$logged_user->lname}}</h6>
       <p>Homeu</p>
     </div>
     <ul class="sidebar-menu">
@@ -92,28 +99,17 @@
       @endif -->
 
       @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
-
       <li><a class="sidebar-header" href=""><i data-feather="bar-chart"></i><span>Report</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getSpecifyDateReport') }}"><i class="fa fa-circle"></i>Specify Date Report</a></li>
           <li><a href="{{ route('getProductReport') }}"><i class="fa fa-circle"></i>Product Report</a></li>
         </ul>
       </li> 
-
       <li><a class="sidebar-header" href=""><i data-feather="settings" ></i><span>Settings</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getProfile') }}"><i class="fa fa-circle"></i>Profile</a></li>
         </ul>
       </li>
-
-<!--       <li><a class="sidebar-header" href=""><i data-feather="gift" ></i><span>Promotion</span><i class="fa fa-angle-right pull-right"></i></a>
-        <ul class="sidebar-submenu">
-          <li><a href="{{ route('getOnSales') }}"><i class="fa fa-circle"></i>On Sales</a></li>
-          <li><a href="{{ route('getTodayDeal') }}"><i class="fa fa-circle"></i>Today Deal</a></li>
-          <li><a href="{{ route('getSpecialProduct') }}"><i class="fa fa-circle"></i>Special Product</a></li>
-        </ul>
-      </li> -->
-
       <li><a class="sidebar-header" href=""><i data-feather="image" ></i><span>Banner</span><i class="fa fa-angle-right pull-right"></i></a>
         <ul class="sidebar-submenu">
           <li><a href="{{ route('getBannerSlider') }}"><i class="fa fa-circle"></i>Banner Slider</a></li>
@@ -121,8 +117,8 @@
         </ul>
       </li>
 
-      <li><a class="sidebar-header" href="{{ route('getInvoice') }}"><i data-feather="archive"></i><span>Invoice</span></a>
-      </li>
+<!--       <li><a class="sidebar-header" href="{{ route('getInvoice') }}"><i data-feather="archive"></i><span>Invoice</span></a>
+      </li> -->
       @endif
       <li><a class="sidebar-header" href="{{ route('adminLogout') }}"><i data-feather="log-in"></i><span>Logout</span></a>
       </li>
