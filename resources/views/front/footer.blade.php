@@ -696,7 +696,7 @@
                 <table class="table table-bordered table-striped" style="width: 100%; margin-bottom: 10px;">
                   <thead>
                     <th>Default shipping address</th>
-                    <th>Default billing address</th>
+                    <!-- <th>Default billing address</th> -->
                     <th>Name</th>
                     <th>Address</th>
                     <th>Postalcode</th>
@@ -713,13 +713,13 @@
                               </label>
                             </div>
                           </td>
-                          <td>
+                          <!-- <td>
                             <div class="checkbox icheck_checkbox">
                               <label>
                                 <input class="icheck" type="radio" name="default_billing" value="{{ $address_book->id }}" {{ $address_book->default_billing == 1 ? 'checked' : '' }} />
                               </label>
                             </div>
-                          </td>
+                          </td> -->
                           <td>{{ $address_book->name }}</td>
                           <td>{{ $address_book->address }}</td>
                           <td>{{ $address_book->postal_code }}</td>
@@ -787,7 +787,7 @@
                   <input type="text" class="form-control" name="postal_code" id="address_postal_code" placeholder="Please enter your postal code" required />
                 </div>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-12">
                 <div class="form-group">
                   <div class="checkbox icheck_checkbox">
                     <label>
@@ -796,7 +796,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
+              <!-- <div class="col-lg-6">
                 <div class="form-group">
                   <div class="checkbox icheck_checkbox">
                     <label>
@@ -804,7 +804,7 @@
                     </label>
                   </div> 
                 </div>
-              </div>
+              </div> -->
 
               <div class="col-lg-12">
                 <input type="hidden" name="type" value="1" />

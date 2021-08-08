@@ -27,7 +27,7 @@
 
 
 <!--section start-->
-<section class="cart-section section-big-py-space bg-light">
+<section class="cart-section section-big-py-space">
   <div class="custom-container">
     <div class="row">
       <div class="col-sm-12">

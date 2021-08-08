@@ -88,7 +88,7 @@
   </script>
 
 </head>
-<body class="bg-light ">
+<body style="background: #ffffff;">
 
 @yield('content')
 

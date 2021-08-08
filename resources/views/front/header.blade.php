@@ -67,7 +67,7 @@
   .form-control::-ms-input-placeholder { color: #888 !important; }  /* Microsoft Edge */
 
   .navbar { cursor: pointer; }
-  .navbar.minimize { height: 50px; padding: 0px !important; background: transparent !important; justify-content: space-between !important; padding: 10px !important; color: #333; }
+  .navbar.minimize { height: 51px; padding: 0px !important; background: transparent !important; justify-content: space-between !important; padding: 10px !important; color: #333; }
   .navbar.minimize:hover { background: #ff914c !important; color: #fff; }
   .navbar.minimize.index { background: #444 !important; color: #fff; }
 
@@ -399,7 +399,7 @@
   </div>
 </div>
 
-<div class="category-header" style="position: fixed; top: 160px; width: 100%; z-index: 2; background: #f2f2f2;">
+<div class="category-header" style="position: fixed; top: 162px; width: 100%; z-index: 2; background: #ffffff; border-top: 1px solid #333; border-bottom: 1px solid #333;">
   <div class="custom-container">
     <div class="row">
       <div class="col">
@@ -412,14 +412,14 @@
             <div class="nav-block">
               <div class="nav-left">
                 
-                <nav class="navbar minimize" data-toggle="collapse" data-target="#navbarToggleExternalContent">
+                <nav class="navbar index minimize" data-toggle="collapse" data-target="#navbarToggleExternalContent">
                   <h5 class="mb-0 ml-3 title-font">Categories</h5>
                   <button class="navbar-toggler" type="button">
                     <span class="navbar-icon"><i class="fa fa-arrow-down"></i></span>
                   </button>
                 </nav>
                 
-                <div class="collapse nav-desk" id="navbarToggleExternalContent">
+                <div class="nav-desk collapse" id="navbarToggleExternalContent">
                   <ul class="nav-cat title-font my_dropdown" style="margin: 0px; {{ Route::currentRouteName() != 'getFrontIndex' ? 'box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);' : '' }}">
 
                     @if(count($main_category) <= 7)
@@ -455,7 +455,7 @@
                       @for ($i = 0; $i < 7; $i++)
                         <li>
                           @if(Route::currentRouteName() == "getFrontIndex") 
-                            <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product">
+                            <!-- <img src="{{ asset('/assets/images/layout-1/nav-img/01.png') }}" alt="catergory-product"> -->
                           @endif
                           <a href="{{ route('getCategoryPage', ['id' => $main_category[$i]->id, 'type' => 1]) }}">{{ $main_category[$i]->name }}</a>
                           @if(count($main_category[$i]->category) > 0)
@@ -574,7 +574,22 @@
 
     if(route_name == "getFrontIndex")
     {
-      $(".navbar.minimize").addClass("index").click();
+      if($(window).scrollTop() < 300)
+      {
+        $(".navbar").click();
+      }
+
+      $(window).scroll(function(e){
+        let scrollY = $(window).scrollTop();
+        if(scrollY >= 300 && $(".nav-desk").hasClass("show"))
+        {
+          $(".navbar").click();
+        }
+        else if(scrollY < 300 && !$(".nav-desk").hasClass("show"))
+        {
+          $(".navbar").click();
+        }
+      });
     }
 
     $(".my_dropdown_2 li div").click(function(){

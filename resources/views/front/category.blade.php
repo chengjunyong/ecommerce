@@ -9,7 +9,7 @@
 </style>
 
 <!-- breadcrumb start -->
-<div class="breadcrumb-main ">
+<div class="breadcrumb-main">
   <div class="custom-container">
     <div class="row" style="padding-left: calc(10px + 1em);">
       <div class="col">
@@ -33,7 +33,7 @@
 
 
 <!-- section start -->
-<section class="section-big-pt-space ratio_asos bg-light">
+<section class="section-big-pt-space ratio_asos">
   <div class="collection-wrapper">
     <div class="custom-container">
       <div class="row">
@@ -41,7 +41,7 @@
           <div class="page-main-content">
             <div class="row">
 
-              <div class="col-sm-3 collection-filter category-side category-page-side">
+              <div class="col-sm-3 collection-filter category-side category-page-side" style="border-right: 1px solid #333;">
                 <!-- side-bar colleps block stat -->
                 <div class="collection-filter-block creative-card creative-inner">
                   <!-- brand filter start -->
@@ -67,10 +67,10 @@
 
               <div class="col-sm-9 col-xs-12">
                 <div class="top-banner-wrapper">
-                  <a href="#">
+                  <!-- <a href="#">
                     <img src="../assets/images/category/1.jpg" class="img-fluid " alt="">
                   </a>
-
+ -->
                   <div class="brand-panel-box">
                     <div class="brand_box">
                       <div class="owl-carousel" id="brand_list">

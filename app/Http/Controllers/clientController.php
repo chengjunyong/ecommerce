@@ -23,14 +23,18 @@ class clientController extends Controller
       address_book::where('user_id', $user->id)->where('default_shipping', 1)->update([
         'default_shipping' => null
       ]);
-    }
 
-    if($request->default_billing == 1)
-    {
       address_book::where('user_id', $user->id)->where('default_billing', 1)->update([
         'default_billing' => null
       ]);
     }
+
+    // if($request->default_billing == 1)
+    // {
+    //   address_book::where('user_id', $user->id)->where('default_billing', 1)->update([
+    //     'default_billing' => null
+    //   ]);
+    // }
 
     if($request->type == 1)
     {
@@ -43,7 +47,8 @@ class clientController extends Controller
         'city' => $request->city,
         'postal_code' => $request->postal_code,
         'default_shipping' => $request->default_shipping,
-        'default_billing' => $request->default_billing
+        // 'default_billing' => $request->default_billing
+        'default_billing' => $request->default_shipping
       ]);
     }
     elseif($request->type == 2)
@@ -56,7 +61,8 @@ class clientController extends Controller
         'city' => $request->city,
         'postal_code' => $request->postal_code,
         'default_shipping' => $request->default_shipping,
-        'default_billing' => $request->default_billing
+        // 'default_billing' => $request->default_billing
+        'default_billing' => $request->default_shipping
       ]);
     }
     
@@ -79,12 +85,13 @@ class clientController extends Controller
       'default_shipping' => null
     ]);
 
-    address_book::where('id', $request->default_billing)->update([
-      'default_billing' => 1
-    ]);
+    // address_book::where('id', $request->default_billing)->update([
+    //   'default_billing' => 1
+    // ]);
 
     address_book::where('id', $request->default_shipping)->update([
-      'default_shipping' => 1
+      'default_shipping' => 1,
+      'default_billing' => 1
     ]);
 
     return back();

@@ -4,7 +4,7 @@
 
 <style>
 
-  .hot-deal { border: 5px solid #ff914b; border-radius: 5px; padding: 10px; position: relative; }
+  .hot-deal { border: 7px solid #ff914b; border-radius: 5px; padding: 10px; position: relative; }
   .hot-deal .hot-deal-box .hot-deal-icon { position: absolute; left: -20px; bottom: -20px; z-index: 2; }
   .hot-deal .hot-deal-box .hot-deal-icon img { width: 120px; }
   .hot-deal .hot-deal-box .promo-title { width: 100%; font-weight: bold; font-size: 20px; text-align: center; color: #333; }
@@ -26,13 +26,15 @@
   .main_product_tab .nav-item a.active { border: none; color: #ff914b; }
   .main_product_tab .nav-item a.active:before { position: absolute; top: 0; left: 0; height: 5px; background-color: #ff6000; width: 100%; content: ''; }
 
+  .product-detail { display: inline-block; }
+
 </style>
 
 <section class="theme-slider section-pt-space" style="padding-top: 0px;">
   <div class="custom-container">
     <div class="row">
       <div class="col-xl-8 col-lg-9 offset-xl-2 px-abjust">
-        <div class="banner_category" style="position: fixed; top: 160px; z-index: 2; background: #f2f2f2;">
+        <div class="banner_category" style="position: fixed; top: 162px; z-index: 2;">
           <a href="https://recipes.homeu.com.my" style="margin-left: 10px; margin-bottom: 2px;">Recipes</a>
           <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" style="margin-bottom: 2px;">Offers</a>
           <a href="{{ route('getEventPage') }}" style="margin-bottom: 2px;">Event</a>
@@ -71,7 +73,7 @@
 <!--slider end-->
 
 <!--services start-->
-<section class="services">
+<!-- <section class="services">
   <div class="container">
     <div class="row service-block">
       <div class="col-lg-3 col-md-6  col-sm-12">
@@ -174,7 +176,7 @@
   </div>
 </div>
 </div>
-</section>
+</section> -->
 <!--services end-->
 
 <!--media banner start-->
@@ -182,13 +184,10 @@
   <div class="container">
     <div class="row hot-1 justify-content-md-center">
       @if(count($on_sales_list) > 0)
-        <div class="col-lg-6 col-sm-12 col-12">
+        <!-- <div class="col-lg-6 col-sm-12 col-12">
           <div class="on-sales">
             <div class="on-sales-left-box">
               <div class="promo-title">On Sales Products</div>
-              <div class="on-sales-icon">
-                <img src="{{ asset('/assets/images/front/on_sales.png') }}" class="img-fluid" alt="banner" />
-              </div>
             </div>
             <div class='on-sales-box'>
               <div class="slide-1 no-arrow" style="background-color: #fff4e8;">
@@ -226,13 +225,70 @@
                         </a>
                       </div>
                     @endforeach
-                    <!-- <div class="media-banner-box">
-                      <div class="media-view">
-                        <h5>Get It</h5>
-                      </div>
-                    </div> -->
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      @endif
+
+      @if(count($on_sales_list) > 0)
+        <div class="col-lg-6 col-sm-12 col-12">
+          <div class="hot-deal" style="border: 7px solid #dc3545;">
+            <div class="hot-deal-box">
+              <!-- <div class="hot-deal-icon">
+                <img src="{{ asset('/assets/images/front/today_deal.png') }}" class="img-fluid" alt="banner" />
+              </div> -->
+              <label class="promo-title">On Sales Products</label>
+              <div class="slide-1">
+                @foreach($on_sales_list as $on_sales)
+                  <div>
+                    <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 250px;">
+                      <div class="row hot-deal-subcontain">
+                        <div class="col-lg-4 col-sm-4 col-12">
+                          <div class="hotdeal-right-slick-1 no-arrow">
+                            <div class="right-slick-img">
+                              @if($on_sales->path)
+                                <img src="{{ Storage::url($on_sales->path) }}" class="img-fluid" alt="hot-deal" style="width: 150px; height: 150px;" />
+                              @else
+                                <img src="{{ asset('/assets/images/layout-1/hot-deal/1.jpg') }}" class="img-fluid" alt="banner" />
+                              @endif
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6">
+                          <div class="hot-deal-center">
+                            <div>   
+                              <div>
+                                <h5>{{ $on_sales->name }}</h5>
+                              </div>
+                              <div>
+                                <div class="price">
+                                  <span style="font-size: 20px;">RM {{ number_format($on_sales->on_sales_price, 2) }}</span>
+                                  <br>
+                                  <span style="text-decoration: line-through; color: #777; font-weight: 1;">RM {{ number_format($on_sales->price, 2) }}</span>
+                                  @if($on_sales->on_sales_type == "percentage")
+                                    <label class="discount_amount"> -{{ $on_sales->on_sales_amount }}% OFF</label>
+                                  @elseif($on_sales->on_sales_type == "fixed")
+                                    <label class="discount_amount"> -RM {{ number_format($on_sales->on_sales_amount, 2) }} OFF</label>
+                                  @endif
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="media-view">
+                            <a href="{{ route('getItemDetail', ['id' => $on_sales->id ])}}" style="color: #ff6000;">
+                              <h4 style="text-align: right;">Get now</h4>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @endforeach
               </div>
             </div>
           </div>
@@ -243,14 +299,14 @@
         <div class="col-lg-6 col-sm-12 col-12" style='padding-left: {{ count($on_sales_list) > 0 ? "30px" : "0px" }};'>
           <div class="hot-deal">
             <div class="hot-deal-box">
-              <div class="hot-deal-icon">
+              <!-- <div class="hot-deal-icon">
                 <img src="{{ asset('/assets/images/front/today_deal.png') }}" class="img-fluid" alt="banner" />
-              </div>
+              </div> -->
               <label class="promo-title">Today Hot Deals</label>
               <div class="slide-1">
                 @foreach($today_deal_list as $today_deal)
                   <div>
-                    <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 320px;">
+                    <div class="hot-deal-contain1 hot-deal-banner-1" style="height: 250px;">
                       <div class="row hot-deal-subcontain">
                         <div class="col-lg-4 col-sm-4 col-12">
                           <div class="hotdeal-right-slick-1 no-arrow">
@@ -416,7 +472,7 @@
 <!--collection banner end-->
 
 <!--top brand panel start-->
-<section class="brand-panel section-pt-space">
+<!-- <section class="brand-panel section-pt-space">
   <div class="brand-panel-box">
     <div class="brand_box">
       <div class="owl-carousel" id="brand_list">
@@ -432,7 +488,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--top brand panel end-->
 
 <!-- media tab start -->
@@ -464,7 +520,7 @@
                 <div id="main_tab_{{ $key }}" class="tab-pane fade {{ $key == 0 ? 'active show' : '' }}">
                   <div class="owl-carousel owl-theme main_product_list">
                     @foreach($main->product_list as $main_product)
-                      <div class="item">
+                      <div class="item product_item" item_id="{{ $main_product->id }}" style="cursor: pointer;">
                         <div class="product-box">
                           <div class="product-imgbox">
                             <a href="{{ route('getItemDetail', ['id' => $main_product->id]) }}" class="product-front clickable">
@@ -548,7 +604,7 @@
             <div class="product-slide-6 no-arrow mb--10">
               <div class="special_product_list owl-carousel owl-theme">
                 @foreach($special_product->items as $special_product_detail)
-                  <div class="item">
+                  <div class="item product_item" item_id="{{ $special_product_detail->id }}" style="cursor: pointer;">
                     <div class="product-box">
                       <div class="product-imgbox">
                         <div class="product-front">
@@ -752,6 +808,15 @@
 
       }, 1000);
     }
+
+    $(".product_item").click(function(){
+      let item_id = $(this).attr("item_id");
+
+      var route_url = "{{ route('getItemDetail', ['id' => '_id']) }}";
+      route_url = route_url.replace('_id', item_id);
+
+      window.location.href = route_url;
+    });
   });
 
 </script>

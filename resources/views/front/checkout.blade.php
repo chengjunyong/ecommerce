@@ -40,7 +40,7 @@
               <div class="theme-form" style="height: 700px; overflow-y: auto;">
                 <div class="row check-out">
                   <div class="col-lg-12">
-                    <table id="checkout-table" class="table" cellspacing="0">
+                    <table id="checkout-table" class="table" cellspacing="0" style="max-width: 100%;">
                       <thead>
                         <th>Description</th>
                         <th>Price</th>
