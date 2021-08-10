@@ -26,7 +26,7 @@
   .main_product_tab .nav-item a.active { border: none; color: #ff914b; }
   .main_product_tab .nav-item a.active:before { position: absolute; top: 0; left: 0; height: 5px; background-color: #ff6000; width: 100%; content: ''; }
 
-  .product-detail { display: inline-block; }
+  .product-detail { display: inline-block; width: 100%; }
 
 </style>
 
@@ -547,7 +547,7 @@
                           </div>
                           <div class="product-detail">
                             <div class="detail-title">
-                              <div class="detail-left">
+                              <div class="detail-left" style="width: 100%;">
                                 <a href="">
                                   <h6 class="price-title">
                                     {{ $main_product->name }}
@@ -631,7 +631,7 @@
                       </div>
                       <div class="product-detail">
                         <div class="detail-title">
-                          <div class="detail-left">
+                          <div class="detail-left" style="width: 100%;">
                             <a href="">
                               <h6 class="price-title">
                                 {{ $special_product_detail->name }}

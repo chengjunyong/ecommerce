@@ -695,7 +695,7 @@
                 @csrf
                 <table class="table table-bordered table-striped" style="width: 100%; margin-bottom: 10px;">
                   <thead>
-                    <th>Default shipping address</th>
+                    <th style="width: 130px;">Default shipping address</th>
                     <!-- <th>Default billing address</th> -->
                     <th>Name</th>
                     <th>Address</th>
