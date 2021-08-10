@@ -3,12 +3,12 @@
   <div class="sidebar custom-scrollbar">
     <div class="sidebar-user text-center">
       <div>
-        @if($logged_user->user_type == 1)
+        @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
           <img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/admin.png') }}" alt="#" style="box-shadow: none;border-radius: 0px !important;">
-        @elseif($logged_user->user_type == 5)
-          <img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/driver.png') }}" alt="#" style="box-shadow: none;border-radius: 0px !important;">
-        @else
+        @elseif($logged_user->user_type == 3 || $logged_user->user_type == 4)
           <img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/staff.png') }}" alt="#" style="box-shadow: none;border-radius: 0px !important;">
+        @else
+          <img class="img-60 rounded-circle lazyloaded blur-up" src="{{ asset('assets/images/dashboard/driver.png') }}" alt="#" style="box-shadow: none;border-radius: 0px !important;">
         @endif
       </div>
       <h6 class="mt-3 f-14">{{$logged_user->fname}} {{$logged_user->lname}}</h6>

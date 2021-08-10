@@ -25,10 +25,10 @@
           <li><a class="text-dark maximize" onclick="openFullscreen()"><i data-feather="maximize"></i></a></li>     
           <li class="onhover-dropdown">
             <div class="media align-items-center">
-              @if($logged_user->user_type == 1)
+              @if($logged_user->user_type == 1 || $logged_user->user_type == 2)
               <img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/images/dashboard/admin.png') }}" style="border-radius: 0px !important;" alt="header-user">
-              @elseif($logged_user->user_type == 5)
-              <img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/images/dashboard/drive.png') }}" style="border-radius: 0px !important;" alt="header-user">
+              @elseif($logged_user->user_type == 3 || $logged_user->user_type == 4)
+              <img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/images/dashboard/staff.png') }}" style="border-radius: 0px !important;" alt="header-user">
               @else
               <img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="{{ asset('assets/images/dashboard/driver.png') }}" style="border-radius: 0px !important;" alt="header-user">
               @endif
