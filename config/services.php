@@ -39,7 +39,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRECT'),
-        'redirect' => 'https://homeu.com.my/facebook/callback',
+        'redirect' => 'https://homeu.com.my/login/facebook/callback',
     ],
 
 ];
