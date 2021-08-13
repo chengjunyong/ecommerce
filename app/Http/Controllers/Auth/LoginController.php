@@ -94,12 +94,12 @@ class LoginController extends Controller
 
     public function redirectToProvider()
     {
-        return Socialite::driver('google')->redirect();
+        return Socialite::driver('google')->setScopes(['openid', 'email'])->redirect();
     }
 
     public function handleProviderCallback()
     {
-      $google = Socialite::driver('google')->user();
+      $google = Socialite::driver('google')->stateless()->user();
 
       $user = User::where("client_id",$google->id)->first();
 
@@ -139,6 +139,7 @@ class LoginController extends Controller
     public function facebookCallback()
     {
         $facebook = Socialite::driver('facebook')->user();
+
         $user = User::where("client_id",$facebook->id)->first();
         
         if($user){

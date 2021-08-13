@@ -117,7 +117,7 @@ class adminController extends Controller
 
       }else if($user->user_type == 3){
 
-        $transaction = transaction::where('created_at','>',date("Y-m-d"))
+        $transaction = transaction::where('created_at','>',date("Y-m-d",strtotime(now().'-1 days')))
                                     ->where('status',1)
                                     ->limit(100)
                                     ->get();
@@ -151,11 +151,57 @@ class adminController extends Controller
 
       }else if($user->user_type == 4){
 
-        return "4";
+        $transaction = transaction::where('status',2)->get();
+
+        $status = array(0,0);
+        $a = transaction::groupBy('status')
+                        ->where('status',2)
+                        ->orWhere('status',3)
+                        ->selectRaw('count(id) as qty, status')
+                        ->orderBy('status','asc')
+                        ->get();
+
+        foreach($a as $result){
+          if($result->status == 2)
+            $status[0] = $result->qty;
+          else if($result->status == 3)
+            $status[1] = $result->qty;
+        }
+
+        $status = json_encode($status);
+        
+        return view('admin.index3',compact('transaction','status'));
 
       }else if($user->user_type == 5){
 
-        return "5";
+        $transaction = transaction::where('status',3)->get();
+
+        $status = array(0,0,0);
+        $a = transaction::groupBy('status')
+                        ->selectRaw('count(id) as qty, status')
+                        ->orderBy('status','asc')
+                        ->get();
+
+        foreach($a as $result){
+          if($result->status == 2)
+            $status[0] = $result->qty;
+          else if($result->status == 3)
+            $status[1] = $result->qty;
+          else if($result->status == 4)
+            $status[2] = $result->qty;
+        }
+
+        $status = json_encode($status);
+
+        $order_activity = transaction::join('users','users.id','=','transaction.user_id')
+                                      ->where('transaction.created_at','>',date("Y-m-d",strtotime(now().'-1 days')))
+                                      ->where('transaction.status',3)
+                                      ->orWhere('transaction.status',4)
+                                      ->orderBy('transaction.created_at','desc')
+                                      ->limit(100)
+                                      ->get();
+
+        return view('admin.index4',compact('transaction','status','order_activity'));
 
       }else{
 
