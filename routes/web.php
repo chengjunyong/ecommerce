@@ -16,7 +16,6 @@ Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback
 Route::get('login/facebook', 'Auth\LoginController@facebookLogin')->name('login_with_facebook');
 Route::get('login/facebook/callback', 'Auth\LoginController@facebookCallback');
 
-
 Route::get('/', 'frontController@getFrontIndex')->name('getFrontIndex');
 Route::get('/index2', 'frontController@getFrontIndex2')->name('getFrontIndex2');
 Route::get('/index3', 'frontController@getFrontIndex3')->name('getFrontIndex3');
