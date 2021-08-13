@@ -1,7 +1,7 @@
 <style>
 
   .nav-left { top: 0px; overflow: visible !important; }
-  .my_dropdown { position: relative; padding: 0px 0px 7px 0px !important; } 
+  .my_dropdown { position: relative; padding: 0px 0px 7px 0px !important; background-color: #ffffff !important;} 
   .my_dropdown > li { padding: 7px 20px; }
   .my_dropdown > li a { font-size: 18px !important; }
   .my_dropdown li:hover { background: #eee; }
@@ -133,19 +133,7 @@
                     <a href="javascript:void(0)" onclick="openAccount()">track order</a>
                   @endif
                 </li>
-                <li><a href="#">easy returns</a></li>
               </ul>
-            </div>
-            <div class="language-block">
-              <div class="language-dropdown">
-                <span  class="language-dropdown-click">
-                  english <i class="fa fa-angle-down" aria-hidden="true"></i>
-                </span>
-                <ul class="language-dropdown-open">
-                  <li><a href="#">English</a></li>
-                  <li><a href="#">Malay</a></li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
@@ -399,7 +387,7 @@
   </div>
 </div>
 
-<div class="category-header" style="position: fixed; top: 162px; width: 100%; z-index: 2; background: #ffffff; border-top: 1px solid #333; border-bottom: 1px solid #333;">
+<div class="category-header" style="position: fixed; top: 162px; width: 100%; z-index: 2; background: #ff914b;">
   <div class="custom-container">
     <div class="row">
       <div class="col">

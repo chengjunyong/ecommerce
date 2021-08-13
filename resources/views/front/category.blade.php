@@ -41,7 +41,7 @@
           <div class="page-main-content">
             <div class="row">
 
-              <div class="col-sm-3 collection-filter category-side category-page-side" style="border-right: 1px solid #333;">
+              <div class="col-sm-3 collection-filter category-side category-page-side">
                 <!-- side-bar colleps block stat -->
                 <div class="collection-filter-block creative-card creative-inner">
                   <!-- brand filter start -->

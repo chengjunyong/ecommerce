@@ -34,7 +34,8 @@ table, th, td {
 					<div class="row">
 						<div class="col-sm-5" style="margin-left:15px">
 							<label><b>Transaction Id</b> : {{ $result->id }}</label><br/>
-							<label><b>Address</b> : </label><br/>{{ $result->fname }} {{ $result->lname }}<br/><textarea rows="3" cols="30" style="border:none;resize:none">{!! $result->delivery_address !!}</textarea> <br/>
+							<label><b>Address</b> : </label><br/>{{ $result->fname }} {{ $result->lname }}<br/>
+                {!! $result->delivery_address !!}
 						</div>
 						<div class="col-sm-5">
 							<label><b>Contact Number</b> : {{ $result->phone_number }}</label><br/>
