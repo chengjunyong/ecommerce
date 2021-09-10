@@ -325,7 +325,7 @@
         <div class="product-slide no-arrow">
           <div id="related_product_list" class="owl-carousel owl-theme">
             @foreach($related_product_list as $related_product)
-              <div class="item">
+              <div class="item product_item" item_id="{{ $related_product->id }}" style="cursor: pointer;">
                 <div class="product-box">
                   <div class="product-imgbox">
                     <div class="product-front">

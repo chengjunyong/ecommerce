@@ -43,9 +43,9 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 .title-box.box-footer div a:hover { color: #ff914b; }
 
 .banner_category { display: flex; width: 100%; align-items: center; height: 50px; }
-.banner_category a { font-size: 20px; color: #333; font-weight: bold; padding: 0 50px 0 10px; }
+.banner_category a { font-size: 20px; color: #333; font-weight: bold; padding: 0 50px 0 10px; transition-duration: 0.2s; }
 .banner_category a.active { color: #ff914b; }
-.banner_category a:hover { color: #ff914b; }
+.banner_category a:hover { color: #fff; }
 
 .login_alert { width: 100%; position: absolute; height: 100%; background: rgba(0,0,0,0.9); z-index: 3; display: flex; align-items: center; justify-content: center; }
 .login_alert h4 { padding: 20px 0; color: #fff; }
@@ -114,5 +114,21 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 .delete_cart_detail { cursor: pointer; color: #dc3545; font-size: 18px; }
 .delete_cart_detail:hover { color: #ca0f21; }
 
+.hot-1>div:nth-child(2) { padding-left: 15px; padding-right: 15px; margin-top: 15px; }
 
+@media only screen and (max-width: 1200px) {
+  .banner_category { margin-left: -30px; padding-left: 15px; }
+}
+
+@media only screen and (min-width: 992px) {
+  .hot-1>div:nth-child(2) { margin-top: 0px; }
+}
+
+@media only screen and (max-width: 991px) {
+  #today_deal_box { padding-left: 0px !important; padding-right: 0px !important; }
+}
+
+@media only screen and (max-width: 575px) {
+  #today_deal_box { padding-left: 15px !important; padding-right: 15px !important; }
+}
 

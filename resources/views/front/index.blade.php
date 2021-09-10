@@ -34,7 +34,7 @@
   <div class="custom-container">
     <div class="row">
       <div class="col-xl-8 col-lg-9 offset-xl-2 px-abjust">
-        <div class="banner_category" style="position: fixed; top: 162px; z-index: 2;">
+        <div class="banner_category" style="position: fixed; top: 162px; z-index: 2; background: #ff914b;">
           <a href="https://recipes.homeu.com.my" style="margin-left: 10px; margin-bottom: 2px;">Recipes</a>
           <a href="{{ route('getCategoryPage', ['id' => 0, 'type' => 4, 'type_detail' => 'offers' ]) }}" style="margin-bottom: 2px;">Offers</a>
           <a href="{{ route('getEventPage') }}" style="margin-bottom: 2px;">Event</a>
@@ -296,7 +296,7 @@
       @endif
 
       @if(count($today_deal_list) > 0)
-        <div class="col-lg-6 col-sm-12 col-12" style='padding-left: {{ count($on_sales_list) > 0 ? "30px" : "0px" }};'>
+        <div id="today_deal_box" class="col-lg-6 col-sm-12 col-12" style='padding-left: {{ count($on_sales_list) > 0 ? "30px" : "0px" }};'>
           <div class="hot-deal">
             <div class="hot-deal-box">
               <!-- <div class="hot-deal-icon">
@@ -808,15 +808,6 @@
 
       }, 1000);
     }
-
-    $(".product_item").click(function(){
-      let item_id = $(this).attr("item_id");
-
-      var route_url = "{{ route('getItemDetail', ['id' => '_id']) }}";
-      route_url = route_url.replace('_id', item_id);
-
-      window.location.href = route_url;
-    });
   });
 
 </script>

@@ -112,7 +112,6 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/createuser','adminController@getCreateUser')->name('getCreateUser');
     Route::get('/Sreport','adminController@getSpecifyDateReport')->name('getSpecifyDateReport');
     Route::get('/Preport','adminController@getProductReport')->name('getProductReport');
-    Route::get('/profile','adminController@getProfile')->name('getProfile');
     Route::get('/invoice','adminController@getInvoice')->name('getInvoice');
     Route::get('/getEmailMarketing','adminController@getEmailMarketing')->name('getEmailMarketing');
     Route::get('../','adminController@getHome')->name('getHome');
@@ -122,6 +121,10 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/brand','adminController@getBrand')->name('getBrand');
     Route::get('/brandlist','adminController@getBrandList')->name('getBrandList');
     Route::get('/customerlist','adminController@getCustomerList')->name('getCustomerList');
+
+    //user profile
+    Route::get('/profile','adminController@getProfile')->name('getProfile');
+    Route::post('/changeUserProfile', 'adminController@changeUserProfile')->name('changeUserProfile');
 
     //add brand
     Route::post('/addbrand','adminController@addBrand')->name('addBrand');

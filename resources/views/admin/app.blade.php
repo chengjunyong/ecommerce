@@ -77,6 +77,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
+    <!-- sweetalert2 -->
+    <link rel="stylesheet" href="{{ asset('assets/sweetalert2/sweetalert2.min.css') }}">
+
 
 </head>
 
@@ -104,6 +107,9 @@
 <!-- bootstrap date range picker -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<!-- sweetalert2 -->
+<script src="{{ asset('assets/sweetalert2/sweetalert2.min.js') }}"></script>
 
 <!--Full Screen -->
 <script>

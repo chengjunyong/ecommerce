@@ -668,6 +668,16 @@
     {
       $(".banner_category a[banner_type=whatNews]").addClass("active");
     }
+
+    $(".product_item").click(function(){
+      let item_id = $(this).attr("item_id");
+
+      var route_url = "{{ route('getItemDetail', ['id' => '_id']) }}";
+      route_url = route_url.replace('_id', item_id);
+
+      window.location.href = route_url;
+    });
+    
   });
 
 // function headerScroll()

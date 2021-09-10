@@ -443,8 +443,30 @@ class adminController extends Controller
     }
 
     public function getProfile()
+    { 
+        $user = Auth::user();
+
+        return view('admin.profile', compact('user'));
+    }
+
+    public function changeUserProfile(Request $request)
     {
-        return view('admin.profile');
+      $user = Auth::user();
+
+      $query = [
+        'fname' => $request->fname,
+        'lname' => $request->lname,
+        'contact' => $request->contact,
+      ];
+
+      if($request->password && $request->password_confirmation)
+      {
+        $query['password'] = Hash::make($request->password);
+      }
+
+      User::where('id', $user->id)->update($query);
+
+      return back();
     }
 
     public function getInvoice()
