@@ -2794,7 +2794,7 @@ button {
 
 .layout-header1 .main-menu-block .menu-left .sm-nav-block .nav-slide li {
     display: block;
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
     padding: 7px 10px;
     padding-right: 0px
 }
@@ -23230,7 +23230,8 @@ body.rtl {
         display: none
     }*/
 
-    .banner_category a { font-size: 13px !important; }
+    .banner_category a { font-size: 13px !important; padding: 0px !important; flex: 1; }
+    .banner_category a:last-child { flex: 2; }
 
     /*.category-header {
         display: none

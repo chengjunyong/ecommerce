@@ -117,7 +117,7 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 .hot-1>div:nth-child(2) { padding-left: 15px; padding-right: 15px; margin-top: 15px; }
 
 @media only screen and (max-width: 1200px) {
-  .banner_category { margin-left: -30px; padding-left: 15px; }
+  .banner_category { margin-left: -30px; padding-left: 15px; width: calc(100% + 30px); }
 }
 
 @media only screen and (min-width: 992px) {
@@ -130,5 +130,7 @@ button:disabled { cursor: not-allowed; pointer-events: all !important; }
 
 @media only screen and (max-width: 575px) {
   #today_deal_box { padding-left: 15px !important; padding-right: 15px !important; }
+  .top-header .top-header-right .top-menu-block ul li { margin-right: 5px; }
+  .top-header .top-header-right .top-menu-block ul li a { font-size: 11px; }
 }
 

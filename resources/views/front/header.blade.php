@@ -14,7 +14,9 @@
 
   .layout-header1 .main-menu-block .menu-left .sm-nav-block .nav-slide>li:last-child a { color: #333; }
 
+  .my_dropdown_2 .dropdown_2_list div { padding-right: 10px; }
   .my_dropdown_2 .dropdown_2_list i { font-size: 20px; margin-left: 10px; float: right; }
+  .my_dropdown_2 .dropdown_2_list li.last a { color: #ff6000 !important; }
   .my_dropdown_2 li:hover > div a { color: #ff6000 !important; }
   .dropdown_2_list ul { display: none; }
   ul.active { display: block; }
@@ -176,7 +178,7 @@
                               @if(count($category->subcategory) > 0)
                                 <ul>
                                   @foreach($category->subcategory as $subcategory)
-                                    <li> 
+                                    <li class="last"> 
                                       <div> 
                                         <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> 
                                       </div> 
@@ -212,7 +214,7 @@
                               @if(count($category->subcategory) > 0)
                                 <ul>
                                   @foreach($category->subcategory as $subcategory)
-                                    <li> 
+                                    <li class="last"> 
                                       <div> 
                                         <a style="width: 100%;" href="{{ route('getCategoryPage', ['id' => $subcategory->subcategory_id, 'type' => 3]) }}">{{ $subcategory->subcategory_name }}</a> 
                                       </div> 
