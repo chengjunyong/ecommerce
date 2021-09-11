@@ -125,6 +125,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     //user profile
     Route::get('/profile','adminController@getProfile')->name('getProfile');
     Route::post('/changeUserProfile', 'adminController@changeUserProfile')->name('changeUserProfile');
+    Route::get('/CustomerPurchaseList/{id}','adminController@getCustomerPurchaseList')->name('getCustomerPurchaseList');
 
     //add brand
     Route::post('/addbrand','adminController@addBrand')->name('addBrand');
@@ -298,7 +299,12 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/banner/popupbanner','adminController@getPopupBanner')->name('getPopupBanner');
     Route::post('/banner/productlist','adminController@getProductPopup')->name('getProductPopup');
     Route::post('/banner/postpopupbanner','adminController@postPopupBanner')->name('postPopupBanner');
+
+    //Get Transaction Detail
+    Route::get('/Transaction/{id}','adminController@getTransactionDetail')->name('getTransactionDetail');
+
   });
+
 });
 
 
