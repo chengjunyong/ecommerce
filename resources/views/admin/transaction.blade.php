@@ -40,40 +40,34 @@
 					<div class="card-body">
 						<div id="" class="transactions jsgrid" style="position: relative; height: auto; width: 100%;">
 							<div class="jsgrid-grid-header jsgrid-header-scrollbar">
-								<table class="jsgrid-table" id="transaction" style="border-bottom:none">
+								<table class="jsgrid-table" id="transaction" style="border-bottom:none;width:100%">
 									<thead>
 										<tr class="jsgrid-header-row">
-											<th class="jsgrid-header-cell" style="width: 50px;">Transaction Id
+											<th class="jsgrid-header-cell" style="width:5%">Id
 											</th>
-											<th class="jsgrid-header-cell jsgrid-align-right" style="width: 100px;">Customer Contact Number
+											<th class="jsgrid-header-cell" style="width:10%">Contact Number
 											</th>
-											<th class="jsgrid-header-cell" style="width: 100px;">Total Amount
+											<th class="jsgrid-header-cell" style="width:10%">Total Amount
 											</th>
-											<th class="jsgrid-header-cell" style="width: 50px;">Payment Method
+											<th class="jsgrid-header-cell" style="width:10%">Payment Method
 											</th>
-											<th class="jsgrid-header-cell" style="width: 100px;">Delivery Status
+											<th class="jsgrid-header-cell" style="width:10%">Delivery Status
 											</th>
-											<th class="jsgrid-header-cell" style="width: 100px;">Delivered Date
+											<th class="jsgrid-header-cell" style="width:10%">Delivered Date
 											</th>
 										</tr>
 									</thead>
 							</div>
 							<div class="jsgrid-grid-body">
-
 									<tbody>
 										@foreach($transaction as $key => $result)
 										<tr class="{{ $key % 2 == 0 ? 'jsgrid-row' : 'jsgrid-alt-row' }}">
-											<td class="jsgrid-cell" style="width: 50px;">{{ $result->id }}</td>
-											
-											<td class="jsgrid-cell jsgrid-align-right" style="width: 100px;">{{ $result->phone_number }}</td>
-											
-											<td class="jsgrid-cell" style="width: 100px;">{{ $result->total }}</td>
-											
-											<td class="jsgrid-cell" style="width: 50px;">{{ $result->payment_type }} Cash On Delivery</td>
-										
-											<td class="jsgrid-cell" style="width: 100px;">{{ $result->status == 4 ? 'Delivered' : 'Cancel' }}</td>
-										
-											<td class="jsgrid-cell" style="width: 100px;">{{ $result->updated_at }}</td>
+											<td class="jsgrid-cell" style="width:5%">{{ $result->id }}</td>
+											<td class="jsgrid-cell jsgrid-align-right">{{ $result->phone_number }}</td>
+											<td class="jsgrid-cell">{{ $result->total }}</td>
+											<td class="jsgrid-cell">Cash On Delivery</td>
+											<td class="jsgrid-cell">{{ $result->status == 4 ? 'Delivered' : 'Cancel' }}</td>
+											<td class="jsgrid-cell">{{ $result->updated_at }}</td>
 										</tr>
 										@endforeach
 									</tbody>

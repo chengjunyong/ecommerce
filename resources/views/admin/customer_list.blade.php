@@ -32,27 +32,27 @@
   <div class="card-body">
    <div class="category-table user-list order-table jsgrid" style="position: relative; height: auto; width: 100%;">
      <div>
-      <table class="" id="customer_list">
-        <thead class="">							
-          <th>Name
+      <table id="customer_list" style="border:none">
+        <thead>							
+          <th style="border:none">Name
           </th>
-          <th>Email
+          <th style="border:none">Email
           </th>
-          <th>Contact Number
+          <th style="border:none">Contact Number
           </th>
-          <th>Total Quantity Transaction
+          <th style="border:none">Total Quantity Transaction
           </th>
-          <th>Total Amount Spended
+          <th style="border:none">Total Amount Spended
           </th>
-          <th>Last Login
+          <th style="border:none">Last Login
           </th>
-          <th>Create Time
+          <th style="border:none">Create Time
           </th>
         </thead>
-        <tbody class="jsgrid-row">
+        <tbody>
           @foreach($user as $result)
           <tr>
-            <td>{{ $result->fname }} {{$result->lname}}</td>
+            <td><a href="{{route('getCustomerPurchaseList',$result->id)}}">{{$result->fname}} {{$result->lname}}</a></td>
             <td>{{ $result->email }}</td>
             <td>{{ ($result->contact == "") ? 'Not Available' : $result->contact }}</td>
             <td style="text-align: center">{{ $result->quantity }}</td>
@@ -75,7 +75,6 @@
 
 <script>
   $("#customer_list").DataTable();
-
 </script>
 
 @endsection

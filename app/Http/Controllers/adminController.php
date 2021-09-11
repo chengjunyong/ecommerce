@@ -1813,5 +1813,20 @@ class adminController extends Controller
       }
     }
 
+    public function getCustomerPurchaseList(Request $request)
+    {
+      $transaction = transaction::where('user_id',$request->id)->get();
+
+      return view('admin.customer_purchase_list',compact('transaction'));
+    }
+
+    public function getTransactionDetail(Request $request)
+    {
+      $transaction = transaction::where('id',$request->id)->first();
+      $transaction_detail = transaction_detail::where('transaction_id',$request->id)->get();
+
+      return view('admin.transaction_detail',compact('transaction','transaction_detail'));
+    }
+
 }
 
